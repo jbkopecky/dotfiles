@@ -1,3 +1,6 @@
+"Pathogen
+call pathogen#infect()
+
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 
@@ -64,13 +67,6 @@ let mapleader = "\<Space>"
 "" set nobackup
 "" set nowritebackup
 "" set noswapfile
-
-
-" Setup Pathogen to manage your plugins
-" mkdir -p ~/.vim/autoload ~/.vim/bundle
-" curl -so ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-" Now you can install any plugin into a .vim/bundle/plugin-name/ folder
-"" call pathogen#infect()
 
 
 " ============================================================================
