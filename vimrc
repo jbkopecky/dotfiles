@@ -17,7 +17,7 @@ let mapleader = "\<Space>"
 " Color scheme
 syntax enable
 set background=dark
-colorscheme = solarized
+colorscheme solarized
 
 " Enable syntax highlighting
 " You need to reload this file for the change to apply
