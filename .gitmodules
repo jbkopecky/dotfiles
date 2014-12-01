@@ -22,3 +22,12 @@
 [submodule "bundle/jedi-vim"]
 	path = bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "bundle/nerdcommenter"]
+	path = bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "bundle/promptline"]
+	path = bundle/promptline
+	url = https://github.com/edkolev/promptline.vim
+[submodule "fonts/powerline_fonts"]
+	path = fonts/powerline_fonts
+	url = https://github.com/Lokaltog/powerline-fonts.git
