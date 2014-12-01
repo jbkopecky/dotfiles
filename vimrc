@@ -3,21 +3,21 @@ call pathogen#infect()
 
 " Airline
 set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 1
-" unicode symbols
-let g:airline_symbols = {}
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+
+" Font Settings (For Powerline Patches)
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Anonymous\ Pro\ for\ Powerline:h14
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
 
 "Nerdtree remap to ctrl + n
 map <C-n> :NERDTreeToggle<CR>
@@ -71,9 +71,20 @@ set expandtab
 
 
 " Settings for ctrlp
-" cd ~/.vim/bundle
-" git clone https://github.com/kien/ctrlp.vim.git
 let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
+
+
+"Install Promptpline
+    "UnComment following settings:
+
+    "let g:promptline_preset = {
+    "        \'a' : [ promptline#slices#user() ],
+    "        \'b' : [ promptline#slices#cwd() ],
+    "        \'c' : [ promptline#slices#vcs_branch(), promptline#slices#git_status(),],
+    "        \'warn' : [ promptline#slices#last_exit_code()]}
+
+    "Run following command
+    ":PromptlineSnapshot ~/.shell_prompt.sh airline
