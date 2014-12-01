@@ -31,3 +31,6 @@
 [submodule "fonts/powerline_fonts"]
 	path = fonts/powerline_fonts
 	url = https://github.com/Lokaltog/powerline-fonts.git
+[submodule "bundle/vim-latex"]
+	path = bundle/vim-latex
+	url = https://github.com/vim-latex/vim-latex.git

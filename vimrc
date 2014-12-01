@@ -1,12 +1,26 @@
 "Pathogen
 call pathogen#infect()
 
+
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
+
+
+" Enable syntax highlighting
+" You need to reload this file for the change to apply
+filetype on
+filetype plugin indent on
+syntax on
+let g:tex_flavor='latex' "Recognise Latex files
+
+
 " Airline
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 1
+
 
 " Font Settings (For Powerline Patches)
 if has("gui_running")
@@ -19,11 +33,9 @@ if has("gui_running")
   endif
 endif
 
+
 "Nerdtree remap to ctrl + n
 map <C-n> :NERDTreeToggle<CR>
-
-" Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
 
 
 " Mouse and backspace
@@ -40,12 +52,6 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-" Enable syntax highlighting
-" You need to reload this file for the change to apply
-filetype on
-filetype plugin indent on
-syntax on
-
 
 " Showing line numbers and length
 set number  " show line numbers
@@ -54,7 +60,6 @@ set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
 set colorcolumn=80
 highlight ColorColumn ctermbg=233
-
 
 
 " Useful settings
