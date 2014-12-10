@@ -34,3 +34,6 @@
 [submodule "bundle/vim-latex"]
 	path = bundle/vim-latex
 	url = https://github.com/vim-latex/vim-latex.git
+[submodule "bundle/jellybeans"]
+	path = bundle/jellybeans
+	url = https://github.com/nanotech/jellybeans.vim
