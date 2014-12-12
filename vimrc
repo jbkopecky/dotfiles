@@ -9,6 +9,7 @@ autocmd! bufwritepost .vimrc source %
 " Enable syntax highlighting
 " You need to reload this file for the change to apply
 filetype on
+filetype plugin on
 filetype plugin indent on
 syntax on
 let g:tex_flavor='latex' "Recognise Latex files
@@ -83,7 +84,7 @@ set tw=79   " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
 set colorcolumn=80
-highlight ColorColumn ctermbg=233
+
 
 
 " Useful settings
