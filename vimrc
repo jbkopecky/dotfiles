@@ -38,6 +38,28 @@ else
   colorscheme jellybeans
 endif
 
+" 80 Column Highlighting
+highlight ColorColumn ctermbg=magenta
+
+function! MarkMargin (on)
+    if exists('b:MarkMargin')
+        try
+            call matchdelete(b:MarkMargin)
+        catch /./
+        endtry
+        unlet b:MarkMargin
+    endif
+    if a:on
+        let b:MarkMargin = matchadd('ColorColumn', '\%81v', 100)
+    endif
+endfunction
+
+augroup MarkMargin
+    autocmd!
+    autocmd BufEnter  *       :call MarkMargin(1)
+    autocmd BufEnter  *.vp*   :call MarkMargin(0)
+augroup END
+
 
 "Nerdtree remap to ctrl + n
 map <C-n> :NERDTreeToggle<CR>
@@ -82,3 +104,38 @@ let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
+
+" ============================================================================
+" Python IDE Setup
+" ============================================================================
+
+" Settings for jedi-vim
+" cd ~/.vim/bundle
+" git clone git://github.com/davidhalter/jedi-vim.git
+let g:jedi#usages_command = "<leader>z"
+let g:jedi#popup_select_first = 0
+
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+" Better navigating through omnicomplete option list
+" See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
+set completeopt=longest,menuone
+function! OmniPopup(action)
+     if pumvisible()
+         if a:action == 'j'
+             return "\<C-N>"
+         elseif a:action == 'k'
+             return "\<C-P>"
+         endif
+     endif
+     return a:action
+ endfunction
+
+inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
+inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+
+" Python folding
+set nofoldenable
