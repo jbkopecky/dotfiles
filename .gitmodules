@@ -43,9 +43,9 @@
 [submodule "bundle/jedi"]
 	path = bundle/jedi
 	url = https://github.com/davidhalter/jedi.git
-[submodule "/home/jky/.vim/bundle/vim-colors-pencil"]
-	path = /home/jky/.vim/bundle/vim-colors-pencil
+[submodule "bundle/vim-colors-pencil"]
+	path = bundle/vim-colors-pencil
 	url = https://github.com/reedes/vim-colors-pencil.git
-[submodule "/home/jky/.vim/bundle/csv"]
-	path = /home/jky/.vim/bundle/csv
+[submodule "bundle/csv"]
+	path = bundle/csv
 	url = https://github.com/chrisbra/csv.vim
