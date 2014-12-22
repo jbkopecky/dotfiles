@@ -46,3 +46,6 @@
 [submodule "/home/jky/.vim/bundle/vim-colors-pencil"]
 	path = /home/jky/.vim/bundle/vim-colors-pencil
 	url = https://github.com/reedes/vim-colors-pencil.git
+[submodule "/home/jky/.vim/bundle/csv"]
+	path = /home/jky/.vim/bundle/csv
+	url = https://github.com/chrisbra/csv.vim
