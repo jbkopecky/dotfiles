@@ -4,7 +4,7 @@ call pathogen#infect()
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
-
+set laststatus=2
 
 " Enable syntax highlighting
 " You need to reload this file for the change to apply
@@ -12,38 +12,40 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 syntax on
+syntax enable
 let g:tex_flavor='latex' "Recognise Latex files
 
 
-" Airline
-set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#whitespace#enabled = 1
-
 " Font and colors Settings (For Powerline Patches)
 set t_Co=256
-colorscheme jellybeans
-let g:NERDTreeDirArrows=0   
-syntax enable
-
 if has("gui_running")  
-  let g:airline_powerline_fonts = 1
-  set background=dark
-  colorscheme solarized
-  set guifont=Anonymous\ Pro\ for\ Powerline:h14
+  set background=light
+  colorscheme pencil
+  let g:airline_themes='pencil'
+  set guifont=Consolas:h12
   set guioptions-=m "No Menu
   set guioptions-=T "No toolbar
   set guioptions-=r "No scrollbar
   set guioptions-=b "No scrollbar
   set guioptions-=L "No scrollbar
-  set guicursor+=a:block-blinkon0 "Use solid cursor
+else
+  set background=dark  
+  colorscheme jellybeans
+  let g:airline_themes='jellybeans'
 endif
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline_inactive_collapse=0
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 
 "Nerdtree remap to ctrl + n
 map <C-n> :NERDTreeToggle<CR>
-
+let g:NERDTreeDirArrows=0   
 
 " Mouse and backspace
 set mouse=a  " on OSX press ALT and click
@@ -60,7 +62,6 @@ set tw=79   " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
 set colorcolumn=80
-
 
 
 " Useful settings
@@ -87,9 +88,6 @@ set wildignore+=*/coverage/*
 " ============================================================================
 
 " Settings for jedi-vim
-" cd ~/.vim/bundle
-" git clone git://github.com/davidhalter/jedi-vim.git
-let g:jedi#usages_command = "<leader>z"
 let g:jedi#popup_select_first = 0
 
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
