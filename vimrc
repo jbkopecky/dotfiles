@@ -16,6 +16,17 @@ syntax on
 syntax enable
 let g:tex_flavor='latex' "Recognise Latex files
 
+" No Arrow Keys !
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+
 
 " Font and colors Settings (For Powerline Patches)
 set t_Co=256
