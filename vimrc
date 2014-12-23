@@ -3,7 +3,6 @@ call pathogen#infect()
 
 
 " Automatic reloading of .vimrc
-"
 autocmd! bufwritepost .vimrc source %
 set laststatus=2
 
@@ -56,7 +55,7 @@ let g:airline_right_sep=''
 
 
 "Nerdtree remap to ctrl + n
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeTabsToggle<CR>
 let g:NERDTreeDirArrows=0   
 
 " Mouse and backspace
