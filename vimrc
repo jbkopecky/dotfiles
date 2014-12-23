@@ -3,6 +3,7 @@ call pathogen#infect()
 
 
 " Automatic reloading of .vimrc
+"
 autocmd! bufwritepost .vimrc source %
 set laststatus=2
 
@@ -18,7 +19,7 @@ let g:tex_flavor='latex' "Recognise Latex files
 
 " Font and colors Settings (For Powerline Patches)
 set t_Co=256
-if has("gui_running")  
+if has("gui_running") 
   set background=light
   colorscheme pencil
   let g:airline_themes='pencil'
@@ -29,7 +30,7 @@ if has("gui_running")
   set guioptions-=b "No scrollbar
   set guioptions-=L "No scrollbar
 else
-  set background=dark  
+  set background=dark 
   colorscheme jellybeans
   let g:airline_themes='jellybeans'
 endif
@@ -76,6 +77,12 @@ set shiftwidth=4
 set shiftround
 set expandtab
 
+" Easy motion settings:
+let g: EasyMotion_do_mapping = 0 "Disable default mappings
+nmap s <Plug>(easymotion-s)
+let g:EasyMotion_smartcase = 1
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 " Settings for ctrlp
 let g:ctrlp_max_height = 30
