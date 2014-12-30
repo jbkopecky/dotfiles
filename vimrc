@@ -1,6 +1,6 @@
 "Pathogen
 call pathogen#infect()
-
+call pathogen#helptags()
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
@@ -55,7 +55,8 @@ let g:airline_right_sep=''
 
 
 "Nerdtree remap to ctrl + n
-map <C-n> :NERDTreeTabsToggle<CR>
+map <C-n> <Plug>NERDTreeTabsToggle<CR>
+let g:nerdtree_tab_open_on_gui_startup=0
 let g:NERDTreeDirArrows=0   
 
 " Mouse and backspace
