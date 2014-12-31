@@ -25,11 +25,9 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-
-
 " Font and colors Settings (For Powerline Patches)
 set t_Co=256
-if has("gui_running") 
+if has("gui_running")
   set background=light
   colorscheme pencil
   let g:airline_themes='pencil'
@@ -53,20 +51,17 @@ let g:airline_inactive_collapse=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 
-
 "Nerdtree remap to ctrl + n
 map <C-n> <Plug>NERDTreeTabsToggle<CR>
 let g:nerdtree_tab_open_on_gui_startup=0
-let g:NERDTreeDirArrows=0   
+let g:NERDTreeDirArrows=0
 
 " Mouse and backspace
 set mouse=a  " on OSX press ALT and click
 set bs=2     " make backspace behave like normal again
 
-
 " Rebind <Leader> key
-let g:mapleader = "\<Space>"
-
+let g:mapleader = ","
 
 " Showing line numbers and length
 set number  " show line numbers
@@ -82,12 +77,20 @@ set wildmenu
 set wildmode=list:longest,full
 set undolevels=700
 set incsearch "show search as I type
+set hlsearch
+set ignorecase
+set smartcase
 set ttimeoutlen=100 "shorter exit time
 set vb "enable visual bell and disable sound bell
 set scrolloff=3
 set wildmenu
 set wildmode=list:longest,full
 set nofoldenable
+
+"Invisible Characters
+set listchars=trail:.,tab:>-
+set nolist
+:noremap <Leader>i :set list!<CR>
 
 " Real programmers don't use TABs but spaces
 set tabstop=4
@@ -105,15 +108,8 @@ map <Leader>k <Plug>(easymotion-k)
 
 " Settings for ctrlp
 let g:ctrlp_max_height = 30
-set wildignore+=*.pyc
-set wildignore+=*_build/*
-set wildignore+=*/coverage/*
-
-" ============================================================================
-" Python IDE Setup
-" ============================================================================
+set wildignore=*/tmp/*,*.pyc,*.swp,*.so,*.zip,*.o,.DS_Store
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-
