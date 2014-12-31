@@ -87,6 +87,7 @@ set vb "enable visual bell and disable sound bell
 set scrolloff=3
 set wildmenu
 set wildmode=list:longest,full
+set nofoldenable
 
 " Real programmers don't use TABs but spaces
 set tabstop=4
@@ -114,11 +115,5 @@ set wildignore+=*/coverage/*
 
 " Settings for jedi-vim
 let g:jedi#popup_select_first = 0
-
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
-" Python folding
-set nofoldenable
