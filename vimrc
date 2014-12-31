@@ -74,12 +74,19 @@ set tw=79   " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
 set colorcolumn=80
-
+set cursorline
 
 " Useful settings
 set history=700
+set wildmenu
+set wildmode=list:longest,full
 set undolevels=700
-
+set incsearch "show search as I type
+set ttimeoutlen=100 "shorter exit time
+set vb "enable visual bell and disable sound bell
+set scrolloff=3
+set wildmenu
+set wildmode=list:longest,full
 
 " Real programmers don't use TABs but spaces
 set tabstop=4
