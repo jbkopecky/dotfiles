@@ -65,7 +65,7 @@ set bs=2     " make backspace behave like normal again
 
 
 " Rebind <Leader> key
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 
 " Showing line numbers and length
