@@ -1,3 +1,5 @@
+set nocompatible
+
 "Pathogen
 call pathogen#infect()
 call pathogen#helptags()
@@ -86,11 +88,6 @@ set scrolloff=3
 set wildmenu
 set wildmode=list:longest,full
 set nofoldenable
-
-"Invisible Characters
-set listchars=trail:.,tab:>-
-set nolist
-:noremap <Leader>i :set list!<CR>
 
 " Real programmers don't use TABs but spaces
 set tabstop=4
