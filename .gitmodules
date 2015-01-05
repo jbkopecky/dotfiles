@@ -61,3 +61,6 @@
 [submodule "bundle/vimux"]
 	path = bundle/vimux
 	url = https://github.com/benmills/vimux.git
+[submodule "bundle/Mustang-vim-color"]
+	path = bundle/Mustang-vim-color
+	url = https://github.com/croaker/mustang-vim.git
