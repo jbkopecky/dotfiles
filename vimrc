@@ -104,6 +104,10 @@ map <Leader>n <Plug>NERDTreeTabsToggle<CR>
 let g:nerdtree_tab_open_on_gui_startup=0
 let g:NERDTreeDirArrows=0
 
+" Nerdcommenter toggle comment line *******************************************
+let NERDCreateDefaultMappings=0
+map <Leader>c :call NERDComment(0, "Toggle")<CR>
+
 " Easy motion settings: *******************************************************
 let g:EasyMotion_do_mapping = 0 "Disable default mappings
 nmap s <Plug>(easymotion-s)
