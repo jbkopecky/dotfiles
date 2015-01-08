@@ -119,6 +119,9 @@ map <Leader>k <Plug>(easymotion-k)
 let g:ctrlp_max_height = 30
 set wildignore=*/tmp/*,*.pyc,*.swp,*.so,*.zip,*.o,.DS_Store
 
+" Settings for CSV - Vim ******************************************************
+let g:csv_nomap_space = 1
+
 " Settings for jedi-vim *******************************************************
 let g:jedi#popup_select_first = 0
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
