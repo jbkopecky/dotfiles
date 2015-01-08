@@ -12,7 +12,7 @@ let g:mapleader = "\<Space>"
 filetype plugin on
 filetype plugin indent on
 syntax on
-let g:tex_flavor='latex' "Recognise Latex files
+let g:tex_flavor="latex" "Recognise Latex files
 
 " No Arrow Keys ! *************************************************************
 inoremap <Up> <NOP>
