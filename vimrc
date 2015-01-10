@@ -124,4 +124,6 @@ let g:csv_nomap_space = 1
 
 " Settings for jedi-vim *******************************************************
 let g:jedi#popup_select_first = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#usages_command = "<leader>z"
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
