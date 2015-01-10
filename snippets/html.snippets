@@ -425,7 +425,7 @@ snippet head
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-		<title>${1:`substitute(vim_snippets#Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
+		<title>${1:title}</title>
 		${0}
 	</head>
 snippet header
@@ -464,7 +464,7 @@ snippet html5
 		<head>
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width">
-			<title>${1:`substitute(vim_snippets#Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
+			<title>${1:title}</title>
 			${2:link}
 		</head>
 		<body>
@@ -477,7 +477,7 @@ snippet html5l
 		<head>
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width">
-			<title>${2:`substitute(vim_snippets#Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
+			<title>${}</title>
 			${3:link}
 		</head>
 		<body>
@@ -838,7 +838,7 @@ snippet thead
 snippet time
 	<time datetime="${1}" pubdate="${2:$1}">${0:$1}</time>
 snippet title
-	<title>${0:`substitute(vim_snippets#Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
+	<title>${0}</title>
 snippet tr
 	<tr>
 		${0}
