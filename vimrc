@@ -33,7 +33,7 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow splitright
 set equalalways
 
-map <Leader>p <C-^> 
+map <Leader>p <C-^>
 
 " Font and colors Settings ****************************************************
 set t_Co=256
@@ -48,7 +48,7 @@ if has("gui_running")
   set guioptions-=b "No scrollbar
   set guioptions-=L "No scrollbar
 else
-  set background=dark 
+  set background=dark
   colorscheme jellybeans
   let g:airline_themes='jellybeans'
 endif
