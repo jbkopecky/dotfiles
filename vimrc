@@ -122,6 +122,9 @@ set wildignore=*/tmp/*,*.pyc,*.swp,*.so,*.zip,*.o,.DS_Store
 " Settings for CSV - Vim ******************************************************
 let g:csv_nomap_space = 1
 
+" Setting for Supertab ********************************************************
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
 " Settings for jedi-vim *******************************************************
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
