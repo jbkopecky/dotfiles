@@ -55,3 +55,6 @@
 [submodule "bundle/tlib_vim"]
 	path = bundle/tlib_vim
 	url = https://github.com/tomtom/tlib_vim.git
+[submodule "bundle/tex-pdf"]
+	path = bundle/tex-pdf
+	url = https://github.com/vim-scripts/TeX-PDF

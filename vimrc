@@ -60,7 +60,6 @@ set bs=2     " make backspace behave like normal again
 " Showing line numbers and length *********************************************
 set number  " show line numbers
 set tw=79   " width of document (used by gd)
-set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
 set colorcolumn=80
 set cursorline
@@ -122,10 +121,9 @@ set wildignore=*/tmp/*,*.pyc,*.swp,*.so,*.zip,*.o,.DS_Store
 " Settings for CSV - Vim ******************************************************
 let g:csv_nomap_space = 1
 
-" Setting for Supertab ********************************************************
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-
 " Settings for jedi-vim *******************************************************
+au Filetype python let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+au Filetype python set nowrap
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = "<leader>z"
