@@ -124,6 +124,7 @@ let g:csv_nomap_space = 1
 " Settings for jedi-vim *******************************************************
 au Filetype python let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 au Filetype python set nowrap
+let g:python_highlight_all = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = "<leader>z"
