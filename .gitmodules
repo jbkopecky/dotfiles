@@ -58,3 +58,6 @@
 [submodule "bundle/tex-pdf"]
 	path = bundle/tex-pdf
 	url = https://github.com/vim-scripts/TeX-PDF
+[submodule "bundle/vim-atom-dark"]
+	path = bundle/vim-atom-dark
+	url = https://github.com/gosukiwi/vim-atom-dark.git
