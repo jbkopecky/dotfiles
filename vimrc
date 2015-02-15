@@ -104,6 +104,9 @@ map <Leader>n <Plug>NERDTreeTabsToggle<CR>
 let g:nerdtree_tab_open_on_gui_startup=0
 let g:NERDTreeDirArrows=0
 
+" Vim Notes Settings **********************************************************
+let g:notes_directories = ['~/Documents/Notes']
+
 " Nerdcommenter toggle comment line *******************************************
 let NERDCreateDefaultMappings=0
 map <Leader>c :call NERDComment(0, "Toggle")<CR>
