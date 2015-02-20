@@ -95,8 +95,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline_inactive_collapse=0
-"let g:airline_left_sep=''
-"let g:airline_right_sep=''
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 let g:airline_powerline_fonts = 1
 
 " Nerdtree remap to ctrl + n **************************************************
@@ -105,7 +105,7 @@ let g:nerdtree_tab_open_on_gui_startup=0
 let g:NERDTreeDirArrows=0
 
 " Vim Notes Settings **********************************************************
-let g:notes_directories = ['~/Documents/Notes']
+let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Notes']
 
 " Nerdcommenter toggle comment line *******************************************
 let NERDCreateDefaultMappings=0
