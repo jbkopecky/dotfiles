@@ -29,10 +29,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-set splitbelow splitright
-set equalalways
-
 map <Leader>p <C-^>
 
 " Font and colors Settings ****************************************************
@@ -78,9 +74,12 @@ set scrolloff=3
 set wildmenu
 set wildmode=list:longest,full
 set nofoldenable
+set backupdir=~/tmp/backup//
+set directory=~/tmp/swap//
+set undodir=~/tmp/undo//
 
 " Invisible Characters ********************************************************
-set listchars=trail:.,tab:>-,eol:$
+set listchars=trail:⋅,eol:¬
 noremap <Leader>i :set list!<CR>
 
 " Tabs ************************************************************************
@@ -103,6 +102,12 @@ let g:airline_powerline_fonts = 1
 map <Leader>n <Plug>NERDTreeTabsToggle<CR>
 let g:nerdtree_tab_open_on_gui_startup=0
 let g:NERDTreeDirArrows=0
+
+" Vimux Settings **************************************************************
+map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vl :VimuxRunLastCommand<CR>
+map <leader>vx :VimuxInterruptRunner<CR>
+let g:VimuxOrientation = "v"
 
 " Vim Notes Settings **********************************************************
 let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Notes']
