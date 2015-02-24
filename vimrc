@@ -8,6 +8,12 @@ call pathogen#helptags()
 " Rebind <Leader> key *********************************************************
 let g:mapleader = "\<Space>"
 
+" mispelings ******************************************************************
+nnoremap ; :
+nnoremap : ;
+cabbrev ew :wq
+cabbrev qw :wq
+
 " Enable syntax highlighting **************************************************
 filetype plugin on
 filetype plugin indent on
@@ -77,6 +83,9 @@ set nofoldenable
 set backupdir=~/tmp/backup//
 set directory=~/tmp/swap//
 set undodir=~/tmp/undo//
+
+" Save when leaving insert mode ***********************************************
+autocmd InsertLeave * if expand('%') != '' | update | endif
 
 " Invisible Characters ********************************************************
 set listchars=trail:⋅,eol:¬
