@@ -120,6 +120,7 @@ let g:VimuxOrientation = "v"
 
 " Vim Notes Settings **********************************************************
 let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Notes']
+autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " Nerdcommenter toggle comment line *******************************************
 let NERDCreateDefaultMappings=0

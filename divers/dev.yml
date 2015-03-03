@@ -1,0 +1,29 @@
+# ~/.tmuxinator/dev.yml
+
+name: dev
+root: ~/Quantopian
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+tmux_options: -2
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+windows:
+  - editor:
+      layout: "18c0,191x54,0,0[191x41,0,0,0,191x12,0,42,1]"
+      panes:
+        - vim +vsplit
+        - 
+  - bash: la
+  - iPy: ipython
+  - Notes: vim +Note quant
