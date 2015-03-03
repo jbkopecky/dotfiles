@@ -8,12 +8,6 @@ call pathogen#helptags()
 " Rebind <Leader> key *********************************************************
 let g:mapleader = "\<Space>"
 
-" mispelings ******************************************************************
-nnoremap ; :
-nnoremap : ;
-cabbrev ew :wq
-cabbrev qw :wq
-
 " Enable syntax highlighting **************************************************
 filetype plugin on
 filetype plugin indent on
