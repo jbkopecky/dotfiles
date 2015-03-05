@@ -86,7 +86,7 @@ set undodir=~/tmp/undo//
 autocmd InsertLeave * if expand('%') != '' | update | endif
 
 " Invisible Characters ********************************************************
-set listchars=trail:⋅,eol:¬
+set listchars=tab:>-,trail:⋅,eol:¬
 noremap <Leader>i :set list!<CR>
 
 " Tabs ************************************************************************
@@ -117,7 +117,7 @@ map <leader>vx :VimuxInterruptRunner<CR>
 let g:VimuxOrientation = "v"
 
 " Vim Notes Settings **********************************************************
-let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Notes']
+let g:notes_directories = ['~/Dropbox/Notes','~/Documents/Notes']
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " Nerdcommenter toggle comment line *******************************************
