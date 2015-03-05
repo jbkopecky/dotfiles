@@ -1,7 +1,7 @@
-# ~/.tmuxinator/dev.yml
+# ~/.tmuxinator/robot.yml
 
-name: dev
-root: ~/Quantopian
+name: robot
+root: ~/botking
 
 # Optional tmux socket
 # socket_name: foo
@@ -22,8 +22,7 @@ windows:
   - editor:
       layout: "18c0,191x54,0,0[191x41,0,0,0,191x12,0,42,1]"
       panes:
-        - vim +vsplit
-        - 
-  - bash: la
-  - iPy: ipython
-  - Notes: vim +Note quant
+        - vim roburger.py
+        - clear 
+  - iPy: ipython && clear 
+  - bash: clear 
