@@ -35,28 +35,10 @@ COLOREND="\[\e[00m\]"
 source ~/.vim/divers/.git-prompt.sh
 export GIT_PS1_SHOWUPSTREAM="auto"
 
-#git_showupstream() {
-  #branch=`__git_ps1 "%s"`
-  #branch=`echo $branch | sed s/feature//1`
-  #branch=`echo $branch | sed s/hotfix//1`
-  #branch=`echo $branch | sed s/release//1`
-  #branch=`echo $branch | sed s/master//1`
-  #branch=`echo $branch | sed s/develop//1`
-  #if [[ $branch != "" ]]; then
-    #if [[ $branch == "=" ]]; then
-        #echo " "
-    #else
-        #echo "${BLUE}[${COLOREND}${RED}$branch${COLOREND}${BLUE}]${COLOREND}"
-    #fi
-  #fi
-#}
-
 parse_git_branch() {
-
   git_branch=`__git_ps1 "%s"`
 
   if [[ $git_branch != "" ]]; then
-
     branch=`echo $git_branch | sed s/\<//1`
     branch=`echo $branch | sed s/\>//1`
     branch=`echo $branch | sed s/\=//1`
