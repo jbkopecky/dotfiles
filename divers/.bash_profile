@@ -35,46 +35,48 @@ COLOREND="\[\e[00m\]"
 source ~/.vim/divers/.git-prompt.sh
 export GIT_PS1_SHOWUPSTREAM="auto"
 
-git_showupstream() {
-  branch=`__git_ps1 "%s"`
-  branch=`echo $branch | sed s/feature//1`
-  branch=`echo $branch | sed s/hotfix//1`
-  branch=`echo $branch | sed s/release//1`
-  branch=`echo $branch | sed s/master//1`
-  branch=`echo $branch | sed s/develop//1`
-  if [[ $branch != "" ]]; then
-    if [[ $branch == "=" ]]; then
-        echo " "
-    else
-        echo "${BLUE}[${COLOREND}${RED}$branch${COLOREND}${BLUE}]${COLOREND}"
-    fi
-  fi
-}
+#git_showupstream() {
+  #branch=`__git_ps1 "%s"`
+  #branch=`echo $branch | sed s/feature//1`
+  #branch=`echo $branch | sed s/hotfix//1`
+  #branch=`echo $branch | sed s/release//1`
+  #branch=`echo $branch | sed s/master//1`
+  #branch=`echo $branch | sed s/develop//1`
+  #if [[ $branch != "" ]]; then
+    #if [[ $branch == "=" ]]; then
+        #echo " "
+    #else
+        #echo "${BLUE}[${COLOREND}${RED}$branch${COLOREND}${BLUE}]${COLOREND}"
+    #fi
+  #fi
+#}
 
 parse_git_branch() {
 
   git_branch=`__git_ps1 "%s"`
-  branch=`echo $git_branch | sed s/\<//1`
-  branch=`echo $branch | sed s/\>//1`
-  branch=`echo $branch | sed s/\=//1`
-  upstream=`echo $git_branch | sed s/$branch//1`
+  if [[ $git_branch != "" ]]; then
+    branch=`echo $git_branch | sed s/\<//1`
+    branch=`echo $branch | sed s/\>//1`
+    branch=`echo $branch | sed s/\=//1`
+    upstream=`echo $git_branch | sed s/$branch//1`
 
-  if [[ `tput cols` -lt 110 ]]; then
-    branch=`echo $branch | sed s/feature/f/1`
-    branch=`echo $branch | sed s/hotfix/h/1`
-    branch=`echo $branch | sed s/release/\r/1`
+    if [[ `tput cols` -lt 110 ]]; then
+        branch=`echo $branch | sed s/feature/f/1`
+        branch=`echo $branch | sed s/hotfix/h/1`
+        branch=`echo $branch | sed s/release/\r/1`
 
-    branch=`echo $branch | sed s/master/mstr/1`
-    branch=`echo $branch | sed s/develop/dev/1`
-  fi
-  if [[ $branch != "" ]]; then
+        branch=`echo $branch | sed s/master/mstr/1`
+        branch=`echo $branch | sed s/develop/dev/1`
+    fi
+
     if [[ $(git status 2> /dev/null | tail -n1) == "nothing to commit, working directory clean" ]]; then
       branch="${GREEN}$branch${COLOREND}"
     else
       branch="${RED}$branch${COLROEND}"
     fi
+
     if [[ $upstream != "=" ]]; then
-      branch="$branch ${BLUE}[${COLOREND}${RED}$upstream${COLOREND}${BLUE}]${COLOREND}"
+      branch="$branch${BLUE}[${COLOREND}${RED}$upstream${COLOREND}${BLUE}]${COLOREND}"
     fi
     echo "$branch"
   fi
