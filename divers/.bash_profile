@@ -54,7 +54,9 @@ export GIT_PS1_SHOWUPSTREAM="auto"
 parse_git_branch() {
 
   git_branch=`__git_ps1 "%s"`
+
   if [[ $git_branch != "" ]]; then
+
     branch=`echo $git_branch | sed s/\<//1`
     branch=`echo $branch | sed s/\>//1`
     branch=`echo $branch | sed s/\=//1`
@@ -78,7 +80,7 @@ parse_git_branch() {
     if [[ $upstream != "=" ]]; then
       branch="$branch${BLUE}[${COLOREND}${RED}$upstream${COLOREND}${BLUE}]${COLOREND}"
     fi
-    echo "$branch"
+    echo "$branch "
   fi
 }
 
