@@ -53,10 +53,11 @@ git_showupstream() {
 
 parse_git_branch() {
 
-  branch=`__git_ps1 "%s"`
-  branch=`echo $branch | sed s/\<//1`
+  git_branch=`__git_ps1 "%s"`
+  branch=`echo $git_branch | sed s/\<//1`
   branch=`echo $branch | sed s/\>//1`
   branch=`echo $branch | sed s/\=//1`
+  upstream=`echo $git_branch | sed s/$branch//1`
 
   if [[ `tput cols` -lt 110 ]]; then
     branch=`echo $branch | sed s/feature/f/1`
@@ -68,10 +69,14 @@ parse_git_branch() {
   fi
   if [[ $branch != "" ]]; then
     if [[ $(git status 2> /dev/null | tail -n1) == "nothing to commit, working directory clean" ]]; then
-      echo "${GREEN}$branch${COLOREND}"
+      branch="${GREEN}$branch${COLOREND}"
     else
-      echo "${RED}$branch${COLROEND}"
+      branch="${RED}$branch${COLROEND}"
     fi
+    if [[ $upstream != "=" ]]; then
+      branch="$branch ${BLUE}[${COLOREND}${RED}$upstream${COLOREND}${BLUE}]${COLOREND}"
+    fi
+    echo "$branch"
   fi
 }
 
@@ -119,7 +124,7 @@ prompt() {
     exit_status="${RED}▸${COLOREND} "
   fi
 
-  PS1="$(working_directory)$(parse_git_branch)$(git_showupstream)$exit_status"
+  PS1="$(working_directory)$(parse_git_branch)$exit_status"
 }
 
 PROMPT_COMMAND=prompt
