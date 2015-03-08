@@ -1,9 +1,52 @@
+"==============================================================================
+" JBK Dotfiles
+"==============================================================================
+
+call plug#begin('~/.vim/plugged')
+
+" Colors
+Plug 'nanotech/jellybeans.vim'
+Plug 'reedes/vim-colors-pencil'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'bling/vim-airline'
+
+" Edit
+Plug 'scrooloose/nerdcommenter'
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+
+" Snipmate
+Plug 'marcweber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+
+" Notes
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+
+" Browsing
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'    }
+Plug 'kien/ctrlp.vim'
+Plug 'Lokaltog/vim-easymotion'
+
+" Tmux
+Plug 'benmills/vimux', {'on': 'VimuxPromptCommand'}
+
+" Git
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
+
+" Lang
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'latex'}
+Plug 'chrisbra/csv.vim', {'for': 'csv'}
+
+call plug#end()
+
 set nocompatible
 set laststatus=2
-
-" Pathogen ********************************************************************
-call pathogen#infect()
-call pathogen#helptags()
 
 " Rebind <Leader> key *********************************************************
 let g:mapleader = "\<Space>"
@@ -14,16 +57,6 @@ filetype plugin indent on
 syntax on
 let g:tex_flavor="latex" "Recognise Latex files
 
-" No Arrow Keys ! *************************************************************
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-
 " Split navigation ************************************************************
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -33,25 +66,9 @@ map <Leader>p <C-^>
 
 " Font and colors Settings ****************************************************
 set t_Co=256
-if has("gui_running")
-  set background=light
-  colorscheme pencil
-  let g:airline_themes='pencil'
-  if has("gui_gtk2")
-    set guifont=Inconsolata\ for\ Powerline\ 15
-  elseif has("gui_win32")
-    set guifont=Consolas:h11:cANSI
-  endif
-  set guioptions-=m "No Menu
-  set guioptions-=T "No toolbar
-  set guioptions-=r "No scrollbar
-  set guioptions-=b "No scrollbar
-  set guioptions-=L "No scrollbar
-else
-  set background=dark
-  colorscheme jellybeans
-  let g:airline_themes='jellybeans'
-endif
+set background=dark
+colorscheme jellybeans
+let g:airline_themes='jellybeans'
 
 " Mouse and backspace *********************************************************
 set mouse=a  " on OSX press ALT and click
@@ -78,15 +95,13 @@ set scrolloff=3
 set wildmenu
 set wildmode=list:longest,full
 set nofoldenable
-set backupdir=~/tmp/backup//
-set directory=~/tmp/swap//
-set undodir=~/tmp/undo//
-
-" Save when leaving insert mode ***********************************************
-autocmd InsertLeave * if expand('%') != '' | update | endif
+set backupdir=~/.vim/backups//
+set directory=~/.vim/swaps//
+set undodir=~/.vim/undo//
+set nostartofline
 
 " Invisible Characters ********************************************************
-set listchars=tab:>-,trail:⋅,eol:¬
+set listchars=tab:\|\ ,trail:⋅,eol:¬
 noremap <Leader>i :set list!<CR>
 
 " Tabs ************************************************************************
@@ -99,30 +114,24 @@ set expandtab
 " Airline *********************************************************************
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline_inactive_collapse=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 1
 
-" Nerdtree remap to ctrl + n **************************************************
-map <Leader>n <Plug>NERDTreeTabsToggle<CR>
+" Nerdtree settings ***********************************************************
+map <Leader>n <Plug>NERDTreeToggle<CR>
 let g:nerdtree_tab_open_on_gui_startup=0
-let g:NERDTreeDirArrows=0
+"let g:NERDTreeDirArrows=0
+
+" Notes Settings
+let g:notes_directories = ['~/Dropbox/Notes']
 
 " Vimux Settings **************************************************************
 map <Leader>vp :VimuxPromptCommand<CR>
 map <Leader>vl :VimuxRunLastCommand<CR>
 map <leader>vx :VimuxInterruptRunner<CR>
 let g:VimuxOrientation = "v"
-
-" Vim Notes Settings **********************************************************
-let g:notes_directories = ['~/Dropbox/Notes','~/Documents/Notes']
-autocmd BufNewFile,BufRead *.md set filetype=markdown
-
-" Nerdcommenter toggle comment line *******************************************
-let NERDCreateDefaultMappings=0
-map <Leader>c :call NERDComment(0, "Toggle")<CR>
 
 " Easy motion settings: *******************************************************
 let g:EasyMotion_do_mapping = 0 "Disable default mappings
@@ -134,9 +143,6 @@ map <Leader>k <Plug>(easymotion-k)
 " Settings for ctrlp **********************************************************
 let g:ctrlp_max_height = 30
 set wildignore=*/tmp/*,*.pyc,*.swp,*.so,*.zip,*.o,.DS_Store
-
-" Settings for CSV - Vim ******************************************************
-let g:csv_nomap_space = 1
 
 " Settings for jedi-vim *******************************************************
 au Filetype python let g:SuperTabDefaultCompletionType = "<c-x><c-o>"

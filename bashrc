@@ -32,7 +32,7 @@ COLOREND="\[\e[00m\]"
 }
 
 # Responsive Prompt
-source ~/.vim/divers/.git-prompt.sh
+source ~/.git-prompt.sh
 export GIT_PS1_SHOWUPSTREAM="auto"
 
 parse_git_branch() {
