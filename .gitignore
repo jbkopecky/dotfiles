@@ -3,3 +3,7 @@
 *.swp
 *.swo
 *.pyc
+vim/backups/*
+vim/swaps/*
+vim/undo/*
+!.gitignore
