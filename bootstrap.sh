@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # RC files
 cd $(dirname $BASH_SOURCE)
@@ -21,3 +21,5 @@ if [ ! -e ~/.git-prompt.sh ]; then
 fi
 git config --global user.email "jb.kopecky@gmail.com"
 git config --global user.name "jbkopecky"
+
+vim +PlugInstall +qall
