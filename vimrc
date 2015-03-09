@@ -16,18 +16,14 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-
-" Snipmate
-Plug 'marcweber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+Plug 'msanders/snipmate.vim'
 
 " Notes
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 
 " Browsing
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'    }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim'
 Plug 'Lokaltog/vim-easymotion'
 
@@ -120,7 +116,7 @@ let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 1
 
 " Nerdtree settings ***********************************************************
-map <Leader>n <Plug>NERDTreeToggle<CR>
+map <Leader>n :NERDTreeToggle<CR>
 let g:nerdtree_tab_open_on_gui_startup=0
 "let g:NERDTreeDirArrows=0
 
