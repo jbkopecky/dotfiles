@@ -2,7 +2,7 @@
 " JBK Dotfiles
 "==============================================================================
 
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 " Colors
 Plug 'nanotech/jellybeans.vim'

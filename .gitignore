@@ -3,6 +3,9 @@
 *.swp
 *.swo
 *.pyc
+bak/*
+bashrc-extra
+vim/plugged/*
 vim/backups/*
 vim/swaps/*
 vim/undo/*
