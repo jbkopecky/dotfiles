@@ -2,7 +2,7 @@
 " JBK Dotfiles
 "==============================================================================
 
-call plug#begin()
+call plug#begin('~/.vim/plugged')
 
 " Colors
 Plug 'nanotech/jellybeans.vim'
@@ -67,7 +67,7 @@ map <Leader>p <C-^>
 " Font and colors Settings ****************************************************
 set t_Co=256
 set background=dark
-colorscheme jellybeans
+silent! colorscheme jellybeans
 let g:airline_themes='jellybeans'
 
 " Mouse and backspace *********************************************************
