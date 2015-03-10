@@ -1,5 +1,5 @@
 "==============================================================================
-" JBK Dotfiles
+" JBK .vimrc
 "==============================================================================
 
 call plug#begin('~/.vim/plugged')
@@ -118,9 +118,8 @@ let g:airline_powerline_fonts = 1
 " Nerdtree settings ***********************************************************
 map <Leader>n :NERDTreeToggle<CR>
 let g:nerdtree_tab_open_on_gui_startup=0
-"let g:NERDTreeDirArrows=0
 
-" Notes Settings
+" Notes Settings **************************************************************
 let g:notes_directories = ['~/Dropbox/Notes']
 
 " Vimux Settings **************************************************************
@@ -139,6 +138,37 @@ map <Leader>k <Plug>(easymotion-k)
 " Settings for ctrlp **********************************************************
 let g:ctrlp_max_height = 30
 set wildignore=*/tmp/*,*.pyc,*.swp,*.so,*.zip,*.o,.DS_Store
+
+" Goyo & Limelight settings ****************************************************
+let g:limelight_paragraph_span = 1
+let g:limelight_conceal_ctermfg = 'DarkGray'
+
+function! s:goyo_enter()
+    if has('gui_running')
+        set fullscreen
+        set linespace=7
+    elseif exists('$TMUX')
+        silent !tmux set status off
+    endif
+    Limelight
+endfunction
+
+function! s:goyo_leave()
+    if has('gui_running')
+        set nofullscreen
+        set linespace=0
+    elseif exists('$TMUX')
+        silent !tmux set status on
+    endif
+    Limelight!
+endfunction
+
+autocmd! User GoyoEnter
+autocmd! User GoyoLeave
+autocmd User GoyoEnter nested call <SID>goyo_enter()
+autocmd User GoyoLeave nested call <SID>goyo_leave()
+
+nnoremap <Leader>G :Goyo<CR>
 
 " Settings for jedi-vim *******************************************************
 au Filetype python let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
