@@ -147,3 +147,8 @@ prompt() {
 }
 
 PROMPT_COMMAND=prompt
+
+# Plug into Bashrc-Extra
+BASE=$(dirname $(readlink $BASH_SOURCE))
+EXTRA=$BASE/bashrc-extra
+[ -f "$EXTRA" ] && source "$EXTRA"
