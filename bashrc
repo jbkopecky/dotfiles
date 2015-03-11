@@ -1,4 +1,5 @@
 # Variables
+export TERM=screen-256color
 export EDITOR=vim
 export PYTHONPATH="/home/jb/Python/lib"
 
