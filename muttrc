@@ -29,6 +29,7 @@ unset mark_old           # read/new is good enough for me
 set beep_new             # bell on new mails
 set pipe_decode          # strip headers and eval mimes when piping
 set thorough_search      # strip headers and eval mimes before searching
+set text_flowed = yes
 
 # Sidebar Patch --------------------------------------
 #set sidebar_delim   = '  │'
@@ -90,14 +91,13 @@ bind pager k  previous-line
 bind pager j  next-line
 bind pager gg top
 bind pager G  bottom
-
 bind pager R  group-reply
 
 # # View attachments properly.
 bind attach <return> view-mailcap
 
 # Compose View Options -------------------------------
-set realname = "Steve Losh"          # who am i?
+set realname = "JB Kopecky"          # who am i?
 set envelope_from                    # which from?
 set sig_dashes                       # dashes before sig
 set edit_headers                     # show headers when composing

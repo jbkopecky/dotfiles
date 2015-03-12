@@ -121,6 +121,7 @@ let g:nerdtree_tab_open_on_gui_startup=0
 
 " Notes Settings **************************************************************
 let g:notes_directories = ['~/Dropbox/Notes']
+let g:notes_suffix = '.txt'
 
 " Vimux Settings **************************************************************
 map <Leader>vp :VimuxPromptCommand<CR>
@@ -130,8 +131,8 @@ let g:VimuxOrientation = "v"
 
 " Easy motion settings: *******************************************************
 let g:EasyMotion_do_mapping = 0 "Disable default mappings
-nmap s <Plug>(easymotion-s)
 let g:EasyMotion_smartcase = 1
+nmap s <Plug>(easymotion-s)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
@@ -178,3 +179,7 @@ let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = "<leader>z"
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+" Mails Settings
+au Filetype mail setl tw=76
+au Filetype mail setl fo+=aw
