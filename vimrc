@@ -7,9 +7,11 @@ call plug#begin('~/.vim/plugged')
 " Colors
 Plug 'nanotech/jellybeans.vim'
 Plug 'reedes/vim-colors-pencil'
+Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'bling/vim-airline'
+Plug 'bling/vim-bufferline'
 
 " Edit
 Plug 'scrooloose/nerdcommenter'
@@ -36,7 +38,7 @@ Plug 'tpope/vim-fugitive'
 
 " Lang
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'latex'}
+Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 
 call plug#end()
@@ -180,6 +182,26 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = "<leader>z"
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
-" Mails Settings
+" Mails Settings **************************************************************
 au Filetype mail setl tw=76
 au Filetype mail setl fo+=aw
+
+" Color Toggle ****************************************************************
+function! s:rotate_colors()
+  if !exists('s:colors_list')
+    let s:colors_list =
+    \ sort(map(
+    \   filter(split(globpath(&rtp, "colors/*.vim"), "\n"), 'v:val !~ "^/usr/"'),
+    \   "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"))
+  endif
+  if !exists('s:colors_index')
+    let s:colors_index = index(s:colors_list, g:colors_name)
+  endif
+  let s:colors_index = (s:colors_index + 1) % len(s:colors_list)
+  let name = s:colors_list[s:colors_index]
+  execute 'colorscheme' name
+  redraw
+  echo name
+endfunction
+
+nnoremap <F8> :call <SID>rotate_colors()<cr>
