@@ -2,7 +2,7 @@ set background=light
 colorscheme pencil
 let g:airline_themes='pencil'
 if has("gui_gtk2")
-  set guifont=Inconsolata\ for\ Powerline\ 15
+  set guifont=Monospace 15
 elseif has("gui_win32")
   set guifont=Consolas:h11:cANSI
 endif

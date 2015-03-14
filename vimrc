@@ -38,7 +38,7 @@ Plug 'tpope/vim-fugitive'
 
 " Lang
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'lervag/vimtex', {'for': 'latex'}
+Plug 'lervag/vimtex' ", {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 
 call plug#end()
@@ -48,6 +48,7 @@ set laststatus=2
 
 " Rebind <Leader> key *********************************************************
 let g:mapleader = "\<Space>"
+let g:maplocalleader = "\<Space>"
 
 " Enable syntax highlighting **************************************************
 filetype plugin on
@@ -67,6 +68,7 @@ set t_Co=256
 set background=dark
 silent! colorscheme jellybeans
 let g:airline_themes='jellybeans'
+let g:bufferline_echo=0
 
 " Mouse and backspace *********************************************************
 set mouse=a  " on OSX press ALT and click
@@ -126,8 +128,8 @@ let g:notes_directories = ['~/Dropbox/Notes']
 let g:notes_suffix = '.txt'
 
 " Vimux Settings **************************************************************
-map <Leader>vp :VimuxPromptCommand<CR>
-map <Leader>vl :VimuxRunLastCommand<CR>
+map <Leader>vp :w<CR>:VimuxPromptCommand<CR>
+map <Leader>vl :w<CR>:VimuxRunLastCommand<CR>
 map <leader>vx :VimuxInterruptRunner<CR>
 let g:VimuxOrientation = "v"
 
