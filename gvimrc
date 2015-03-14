@@ -1,11 +1,9 @@
 set background=light
 colorscheme pencil
 let g:airline_themes='pencil'
-if has("gui_gtk2")
-  set guifont=Monospace 15
-elseif has("gui_win32")
-  set guifont=Consolas:h11:cANSI
-endif
+
+set guifont=Monospace\ 13 
+
 set guioptions-=m "No Menu
 set guioptions-=T "No toolbar
 set guioptions-=r "No scrollbar
