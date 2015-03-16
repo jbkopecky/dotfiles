@@ -40,7 +40,8 @@ Plug 'tpope/vim-fugitive'
 
 " Lang
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'lervag/vimtex' ", {'for': 'tex'}
+Plug 'lervag/vimtex', {'for': 'tex'}
+"Plug 'matze/vim-tex-fold', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 
 call plug#end()
@@ -170,11 +171,11 @@ set wildignore=*/tmp/*,*.pyc,*.swp,*.so,*.zip,*.o,.DS_Store
 "{{{ Jedi-vim ********************************************************
 au Filetype python let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 au Filetype python set nowrap
+au Filetype python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 let g:python_highlight_all = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = "<leader>z"
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 "}}}
 
 "{{{ Mails ***********************************************************
@@ -184,6 +185,7 @@ au Filetype mail setl fo+=aw
 
 "{{{ Vimtex **********************************************************
 au BufEnter *.tex setl tx fo+=n2a
+"let g:vimtex_fold_enabled=1
 "}}}
 
 "{{{ Goyo & Limelight ************************************************
