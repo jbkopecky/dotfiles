@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 " Colors
 Plug 'nanotech/jellybeans.vim'
 Plug 'reedes/vim-colors-pencil'
+Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'bling/vim-airline'

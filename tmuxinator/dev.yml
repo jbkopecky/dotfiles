@@ -1,7 +1,7 @@
 # ~/.tmuxinator/robot.yml
 
-name: robot
-root: ~/botking
+name: dev
+root: ~/
 
 # Optional tmux socket
 # socket_name: foo
@@ -22,7 +22,8 @@ windows:
   - editor:
       layout: "18c0,191x54,0,0[191x41,0,0,0,191x12,0,42,1]"
       panes:
-        - vim roburger.py
+        - vim 
         - clear 
-  - iPy: ipython && clear 
   - bash: clear 
+  - iPy: ipython && clear 
+  - Mail: mutt
