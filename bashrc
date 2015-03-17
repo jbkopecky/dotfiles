@@ -12,14 +12,16 @@ alias tmk="tmux kill-session"
 alias tm="tmux new-session"
 alias gc="git commit -m"
 
+# Vim aliases
+alias vim="vim --servername VIM"
+alias vi="vim"
+
 # Aliases
 alias cd.='cd ..'
 alias cd..='cd ..'
 alias l='ls -CF'
 alias ll='ls -alF'
 alias la='ls -a'
-alias v='vim'
-alias vi='vim'
 
 # Colored ls
 if [ -x /usr/bin/dircolors ]; then
