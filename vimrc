@@ -20,7 +20,11 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'msanders/snipmate.vim'
+
+" snippets (first 2 plugins are dependencies)
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 
 " Notes
 Plug 'xolox/vim-misc'
@@ -169,13 +173,17 @@ set wildignore=*/tmp/*,*.pyc,*.swp,*.so,*.zip,*.o,.DS_Store
 "}}}
 
 "{{{ Jedi-vim ********************************************************
-au Filetype python let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 au Filetype python set nowrap
-au Filetype python map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 let g:python_highlight_all = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = "<leader>z"
+"}}}
+
+"{{{ Snipmate ********************************************************
+let g:snips_author = 'JB Kopecky' 
 "}}}
 
 "{{{ Mails ***********************************************************
