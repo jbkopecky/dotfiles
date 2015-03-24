@@ -193,7 +193,6 @@ au Filetype mail setl fo+=aw
 
 "{{{ Vimtex **********************************************************
 au BufEnter *.tex setl tx fo+=n2a
-"let g:vimtex_fold_enabled=1
 "}}}
 
 "{{{ Goyo & Limelight ************************************************
