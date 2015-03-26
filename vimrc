@@ -14,6 +14,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'bling/vim-airline'
 Plug 'bling/vim-bufferline'
+Plug 'gosukiwi/vim-atom-dark'
+Plug 'noahfrederick/vim-hemisu'
 
 " Edit
 Plug 'scrooloose/nerdcommenter'
@@ -47,6 +49,9 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 "Plug 'matze/vim-tex-fold', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
+
+" fzf
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': 'yes\| ./install'}
 
 call plug#end()
 "}}}
@@ -183,7 +188,7 @@ let g:jedi#usages_command = "<leader>z"
 "}}}
 
 "{{{ Snipmate ********************************************************
-let g:snips_author = 'JB Kopecky' 
+let g:snips_author = 'JB Kopecky'
 "}}}
 
 "{{{ Mails ***********************************************************

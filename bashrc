@@ -67,6 +67,32 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+# FzF
+
+# fd - cd to selected dir
+fd() {
+    DIR=`find ${1:-.} -type d 2> /dev/null | fzf-tmux` && cd "$DIR"
+}
+
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() {
+    local file
+    file=$(fzf-tmux --query="$1" --select-1 --exit-0)
+    [ -n "$file" ] && ${EDITOR:-vim} "$file"
+}
+
+# Equivalent to above, but opens it with `open` command
+fo() {
+    local file
+    file=$(fzf-tmux --query="$1" --select-1 --exit-0)
+    [ -n "$file" ] && open "$file"
+}
+
+
+
+
 # Responsive Prompt
 source ~/.git-prompt.sh
 export GIT_PS1_SHOWUPSTREAM="auto"
@@ -155,3 +181,4 @@ PROMPT_COMMAND=prompt
 BASE=$(dirname $(readlink $BASH_SOURCE))
 EXTRA=$BASE/bashrc-extra
 [ -f "$EXTRA" ] && source "$EXTRA"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
