@@ -78,16 +78,26 @@ fd() {
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
 fe() {
-    local file
-    file=$(fzf-tmux --query="$1" --select-1 --exit-0)
-    [ -n "$file" ] && ${EDITOR:-vim} "$file"
+  local file
+  file=$(fzf-tmux --query="$1" --select-1 --exit-0)
+  [ -n "$file" ] && ${EDITOR:-vim} "$file"
 }
 
 # Equivalent to above, but opens it with `open` command
 fo() {
-    local file
-    file=$(fzf-tmux --query="$1" --select-1 --exit-0)
-    [ -n "$file" ] && open "$file"
+  local file
+  file=$(fzf-tmux --query="$1" --select-1 --exit-0)
+  [ -n "$file" ] && open "$file"
+}
+
+# fkill - kill process
+fkill() {
+  pid=$(ps -ef | sed 1d | fzf-tmux -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    kill -${1:-9} $pid
+  fi
 }
 
 
