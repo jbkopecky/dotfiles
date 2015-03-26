@@ -41,6 +41,8 @@ Plug 'garbas/vim-snipmate'
 " Browsing
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Lokaltog/vim-easymotion'
+Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': 'yes\| ./install'}
 
 " Tmux
 Plug 'benmills/vimux', {'on': 'VimuxPromptCommand'}
@@ -53,9 +55,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
-
-" fzf
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': 'yes\| ./install'}
 
 call plug#end()
 "}}}
@@ -171,52 +170,6 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 "}}}
 
-"{{{ FzF *************************************************************
-" Open files
-nnoremap <silent> <Leader><Leader> :FZF -m<CR>
-
-" Open files in horizontal split
-nnoremap <silent> <Leader><Leader>s :call fzf#run({
-\   'down': '40%',
-\   'sink': 'botright split' })<CR>
-
-" Open files in vertical horizontal split
-nnoremap <silent> <Leader><Leader>v :call fzf#run({
-\   'right': winwidth('.') / 2,
-\   'sink':  'vertical botright split' })<CR>
-
-" Choose Color Scheme
-nnoremap <silent> <Leader>C :call fzf#run({
-  \   'source':
-  \     map(split(globpath(&rtp, "colors/*.vim"), "\n"),
-  \         "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"),
-  \   'sink':     'colo',
-  \   'options':  '+m',
-  \   'left':     30,
-  \   'launcher': 'iterm2-launcher 20 30 %s'
-  \ })<CR>
-
-" Select Buffer
-function! s:buflist()
-  redir => ls
-  silent ls
-  redir END
-  return split(ls, '\n')
-endfunction
-
-function! s:bufopen(e)
-  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-endfunction
-
-nnoremap <silent> <Leader><Enter> :call fzf#run({
-  \   'source':  reverse(<sid>buflist()),
-  \   'sink':    function('<sid>bufopen'),
-  \   'options': '+m',
-  \   'down':    len(<sid>buflist()) + 2
-  \ })<CR>
-
-"}}}
-
 "{{{ Jedi-vim ********************************************************
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
@@ -232,9 +185,9 @@ let g:startify_custom_header = [
             \ '                 __     __       ',
             \ '                /  \~~~/  \      ',
             \ '          ,----(     ..    )     ',
-            \ '         /      \__     __/      ',
-            \ '       /|         (\  |(         ',
-            \ '      ^ \   /___\  /\ |          ',
+            \ '         /      \__     __/     << Celui qui abandonne un jour,',
+            \ '       /|         (\  |(           Abandonnera toute sa vie ! >>',
+            \ '      ^ \   /___\  /\ |                                         Marius',
             \ '         |__|   |__|-"           ',
             \ '',
             \ ]
@@ -251,6 +204,14 @@ au Filetype mail setl fo+=aw
 
 "{{{ Vimtex **********************************************************
 au BufEnter *.tex setl tx fo+=n2a
+"}}}
+
+"{{{ CtrlP ***********************************************************
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \}
 "}}}
 
 "{{{ Goyo & Limelight ************************************************

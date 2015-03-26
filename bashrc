@@ -1,5 +1,5 @@
 # Variables
-export TERM=xterm-256color
+#export TERM=xterm-256color
 export EDITOR=vim
 export PYTHONPATH="/home/jb/Python/lib"
 
