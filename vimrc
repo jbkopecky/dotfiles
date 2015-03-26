@@ -10,12 +10,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'nanotech/jellybeans.vim'
 Plug 'reedes/vim-colors-pencil'
 Plug 'junegunn/seoul256.vim'
+
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+
 Plug 'bling/vim-airline'
-Plug 'bling/vim-bufferline'
-Plug 'gosukiwi/vim-atom-dark'
-Plug 'noahfrederick/vim-hemisu'
 
 " Edit
 Plug 'scrooloose/nerdcommenter'
@@ -28,13 +27,8 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 
-" Notes
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-notes'
-
 " Browsing
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'kien/ctrlp.vim'
 Plug 'Lokaltog/vim-easymotion'
 
 " Tmux
@@ -47,7 +41,6 @@ Plug 'tpope/vim-fugitive'
 " Lang
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex', {'for': 'tex'}
-"Plug 'matze/vim-tex-fold', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 
 " fzf
@@ -141,8 +134,8 @@ set expandtab
 "{{{ Airline *********************************************************
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 1
 "}}}
@@ -150,11 +143,6 @@ let g:airline_powerline_fonts = 1
 "{{{ Nerdtree ********************************************************
 map <Leader>n :NERDTreeToggle<CR>
 let g:nerdtree_tab_open_on_gui_startup=0
-"}}}
-
-"{{{ Notes ***********************************************************
-let g:notes_directories = ['~/Dropbox/Notes']
-let g:notes_suffix = '.txt'
 "}}}
 
 "{{{ Vimux ***********************************************************
@@ -172,9 +160,50 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 "}}}
 
-"{{{ Ctrlp ***********************************************************
-let g:ctrlp_max_height = 30
-set wildignore=*/tmp/*,*.pyc,*.swp,*.so,*.zip,*.o,.DS_Store
+"{{{ FzF *************************************************************
+" Open files
+nnoremap <silent> <Leader><Leader> :FZF -m<CR>
+
+" Open files in horizontal split
+nnoremap <silent> <Leader><Leader>s :call fzf#run({
+\   'down': '40%',
+\   'sink': 'botright split' })<CR>
+
+" Open files in vertical horizontal split
+nnoremap <silent> <Leader><Leader>v :call fzf#run({
+\   'right': winwidth('.') / 2,
+\   'sink':  'vertical botright split' })<CR>
+
+" Choose Color Scheme
+nnoremap <silent> <Leader>C :call fzf#run({
+  \   'source':
+  \     map(split(globpath(&rtp, "colors/*.vim"), "\n"),
+  \         "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"),
+  \   'sink':     'colo',
+  \   'options':  '+m',
+  \   'left':     30,
+  \   'launcher': 'iterm2-launcher 20 30 %s'
+  \ })<CR>
+
+" Select Buffer
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <silent> <Leader><Enter> :call fzf#run({
+  \   'source':  reverse(<sid>buflist()),
+  \   'sink':    function('<sid>bufopen'),
+  \   'options': '+m',
+  \   'down':    len(<sid>buflist()) + 2
+  \ })<CR>
+
 "}}}
 
 "{{{ Jedi-vim ********************************************************
@@ -185,6 +214,14 @@ let g:python_highlight_all = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = "<leader>z"
+"}}}
+
+"{{{ SuperTab ********************************************************
+autocmd FileType *
+  \ if &omnifunc != '' |
+  \   call SuperTabChain(&omnifunc, "<c-p>") |
+  \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
+  \ endif
 "}}}
 
 "{{{ Snipmate ********************************************************
@@ -252,3 +289,4 @@ endfunction
 
 nnoremap <F8> :call <SID>rotate_colors()<cr>
 "}}}
+
