@@ -1,6 +1,15 @@
 [user]
     email = jb.kopecky@gmail.com
     name = jbkopecky
+[github]
+    user = jbkopecky
+[merge]
+    tool = fugitive
+[mergetool "fugitive"]
+    cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+    keepBackup = false
+[color]
+    ui = auto
 [push]
     default = simple
 [alias]
