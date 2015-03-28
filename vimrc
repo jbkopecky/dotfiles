@@ -55,6 +55,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
+Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
 
 call plug#end()
 "}}}
@@ -170,8 +171,11 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 "}}}
 
+"{{{ SuperTab ********************************************************
+au Filetype python let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+"}}}
+
 "{{{ Jedi-vim ********************************************************
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 au Filetype python set nowrap
 let g:python_highlight_all = 1
@@ -194,7 +198,6 @@ let g:startify_custom_header = [
 "}}}
 
 "{{{ Snipmate ********************************************************
-let g:snips_author = 'JB Kopecky'
 "}}}
 
 "{{{ Mails ***********************************************************
