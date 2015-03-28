@@ -1,6 +1,5 @@
 set background=light
 colorscheme seoul256-light
-"let g:airline_themes='seoul256-light'
 
 set guifont=Menlo\ for\ Powerline\ 13
 

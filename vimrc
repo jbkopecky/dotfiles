@@ -190,9 +190,9 @@ let g:startify_custom_header = [
             \ '                /  \~~~/  \      ',
             \ '          ,----(     ..    )     ',
             \ '         /      \__     __/     << Celui qui abandonne un jour,',
-            \ '       /|         (\  |(           Abandonnera toute sa vie ! >>',
-            \ '      ^ \   /___\  /\ |                                         Marius',
-            \ '         |__|   |__|-"           ',
+            \ '        /|         (\  |(           Abandonnera toute sa vie ! >>',
+            \ '       ^ \   /___\  /\ |                                         Marius',
+            \ '          |__|   |__|-"           ',
             \ '',
             \ ]
 "}}}
