@@ -90,8 +90,6 @@ map <Leader>p <C-^>
 set t_Co=256
 set background=dark
 silent! colorscheme jellybeans
-let g:airline_themes='jellybeans'
-let g:bufferline_echo=0
 "}}}
 
 "{{{ Mouse and backspace *********************************************
@@ -264,13 +262,14 @@ function! s:rotate_colors()
   endif
   let s:colors_index = (s:colors_index + 1) % len(s:colors_list)
   let name = s:colors_list[s:colors_index]
+  execute 'AirlineTheme base16'
   execute 'colorscheme' name
   redraw
   echo name
 endfunction
 
 function! s:sync_term_colors()
-  let s:bg_patch = {'jellybeans': '#121212', 'seoul256': '#383838', 'seoul256-light': '#e4e4e4',}
+  let s:bg_patch = {'jellybeans': '#121212', 'seoul256': '#383838', 'seoul256-light': '#d9d9d9',}
   let s:fg_color = synIDattr(synIDtrans(hlID('Normal')), 'fg', 'gui')
   let s:bg_color = synIDattr(synIDtrans(hlID('Normal')), 'bg', 'gui')
   let s:bg_color = get(s:bg_patch, g:colors_name,  s:bg_color)
