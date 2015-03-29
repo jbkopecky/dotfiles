@@ -18,13 +18,14 @@ call plug#begin('~/.vim/plugged')
 
 " Colors
 Plug 'nanotech/jellybeans.vim'
-Plug 'reedes/vim-colors-pencil'
+"Plug 'reedes/vim-colors-pencil'
 Plug 'junegunn/seoul256.vim'
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
 Plug 'bling/vim-airline'
+Plug 'edkolev/tmuxline.vim'
 Plug 'mhinz/vim-startify'
 
 " Edit
@@ -144,11 +145,12 @@ set expandtab
 
 "{{{ Airline *********************************************************
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_alt_sep = '|'
-"let g:airline_left_sep=''
-"let g:airline_right_sep=''
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tmuxline#snapshot_file = "~/.tmux-statusline-colors.conf"
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
 "}}}
 
 "{{{ Nerdtree ********************************************************
@@ -267,6 +269,19 @@ function! s:rotate_colors()
   echo name
 endfunction
 
+function! s:sync_term_colors()
+  let s:bg_patch = {'jellybeans': '#121212', 'seoul256': '#383838', 'seoul256-light': '#e4e4e4',}
+  let s:fg_color = synIDattr(synIDtrans(hlID('Normal')), 'fg', 'gui')
+  let s:bg_color = synIDattr(synIDtrans(hlID('Normal')), 'bg', 'gui')
+  let s:bg_color = get(s:bg_patch, g:colors_name,  s:bg_color)
+  call  system('gconftool --set --type string \/apps\/gnome-terminal\/profiles\/Default\/foreground_color '.'"'.s:fg_color.'"')
+  call  system('gconftool --set --type string \/apps\/gnome-terminal\/profiles\/Default\/background_color '.'"'.s:bg_color.'"')
+  redraw
+endfunction
+
 nnoremap <F8> :call <SID>rotate_colors()<cr>
+if has('unix')
+  nnoremap <F9> :call <SID>sync_term_colors()<cr>
+endif
 "}}}
 
