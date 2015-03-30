@@ -12,6 +12,9 @@
 "
 "=============================================================================="
 
+" TODO: get gvimrc up to date
+" TODO: source a local.vimrc
+
 "{{{ Plugins ! *******************************************************
 
 call plug#begin('~/.vim/plugged')
@@ -104,7 +107,7 @@ set history=700
 set wildmenu
 set wildmode=list:longest,full
 set undolevels=700
-set incsearch 
+set incsearch
 set hlsearch
 set ignorecase
 set smartcase
@@ -121,13 +124,13 @@ set number
 set tw=79
 set fo-=t   " don't automatically wrap text when typing
 set linebreak " Breaks fold at end of word only if listchar is off
-let &showbreak = '↳ '
 set colorcolumn=80
 set cursorline
 "}}}
 
 "{{{ Invisible Characters ********************************************
 set listchars=tab:▸\ ,trail:⋅,eol:¬,precedes:«,extends:»
+let &showbreak = '↳ '
 noremap <Leader>i :set list!<CR>
 "}}}
 
@@ -185,6 +188,9 @@ let g:jedi#usages_command = "<leader>z"
 "}}}
 
 "{{{ Startify ********************************************************
+let g:startify_bookmarks = [ '~/.vimrc' ]
+let g:startify_files_number = 5
+
 let g:startify_custom_header = [
             \ '                 __     __       ',
             \ '                /  \~~~/  \      ',
@@ -263,6 +269,7 @@ function! s:rotate_colors()
   endif
   let s:colors_index = (s:colors_index + 1) % len(s:colors_list)
   let name = s:colors_list[s:colors_index]
+  set bg=dark
   execute 'AirlineTheme base16'
   execute 'colorscheme' name
   redraw
