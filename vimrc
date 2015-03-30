@@ -11,9 +11,6 @@
 "             __\/////////________\/////////////_____\///________\///__
 "
 "=============================================================================="
-"TODO:
-" * fix wraps mess
-" * Check out unimpaired
 
 "{{{ Plugins ! *******************************************************
 
@@ -23,6 +20,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'nanotech/jellybeans.vim'
 "Plug 'reedes/vim-colors-pencil'
 Plug 'junegunn/seoul256.vim'
+Plug 'morhetz/gruvbox'
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -36,6 +34,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
 
 " snippets (first 2 plugins are dependencies)
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -100,24 +99,16 @@ set mouse=a  " on OSX press ALT and click
 set bs=2     " make backspace behave like normal again
 "}}}
 
-"{{{ Showing line numbers and length *********************************
-set number  " show line numbers
-set tw=79   " width of document (used by gd)
-set fo-=t   " don't automatically wrap text when typing
-set colorcolumn=80
-set cursorline
-"}}}
-
 "{{{ Useful settings *************************************************
 set history=700
 set wildmenu
 set wildmode=list:longest,full
 set undolevels=700
-set incsearch "show search as I type
+set incsearch 
 set hlsearch
 set ignorecase
 set smartcase
-set ttimeoutlen=100 "shorter exit time
+set ttimeoutlen=100
 set scrolloff=3
 set wildmenu
 set wildmode=list:longest,full
@@ -126,11 +117,17 @@ set foldopen+=jump
 set backupdir=~/.vim/backups//
 set directory=~/.vim/swaps//
 set undodir=~/.vim/undo//
-set nostartofline
+set number
+set tw=79
+set fo-=t   " don't automatically wrap text when typing
+set linebreak " Breaks fold at end of word only if listchar is off
+let &showbreak = '↳ '
+set colorcolumn=80
+set cursorline
 "}}}
 
 "{{{ Invisible Characters ********************************************
-set listchars=tab:\|\ ,trail:⋅,eol:¬
+set listchars=tab:▸\ ,trail:⋅,eol:¬,precedes:«,extends:»
 noremap <Leader>i :set list!<CR>
 "}}}
 
@@ -209,8 +206,9 @@ au Filetype mail setl fo+=aw
 "}}}
 
 "{{{ Vimtex **********************************************************
-au BufEnter *.tex setl tx fo+=n2a
-"}}}
+"au BufEnter *.tex setl tw=0
+"au Filetype mail setl fo+=aw
+""}}}
 
 "{{{ CtrlP ***********************************************************
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
