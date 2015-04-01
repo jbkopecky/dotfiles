@@ -17,11 +17,10 @@
 
 "{{{ Plugins ! *******************************************************
 
-call plug#begin('~/.vim/plugged')
+silent! call plug#begin('~/.vim/plugged')
 
 " Colors
 Plug 'nanotech/jellybeans.vim'
-"Plug 'reedes/vim-colors-pencil'
 Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
 
@@ -37,7 +36,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-unimpaired'
 
 " snippets (first 2 plugins are dependencies)
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -126,6 +124,7 @@ set fo-=t   " don't automatically wrap text when typing
 set linebreak " Breaks fold at end of word only if listchar is off
 set colorcolumn=80
 set cursorline
+set clipboard=unnamed
 "}}}
 
 "{{{ Invisible Characters ********************************************
