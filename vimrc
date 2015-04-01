@@ -189,7 +189,7 @@ let g:jedi#usages_command = "<leader>z"
 "}}}
 
 "{{{ Startify ********************************************************
-let g:startify_bookmarks = [ '~/.vimrc' ]
+let g:startify_bookmarks = [ '~/.dotfiles/vimrc' ]
 let g:startify_files_number = 5
 
 let g:startify_custom_header = [
@@ -204,18 +204,10 @@ let g:startify_custom_header = [
             \ ]
 "}}}
 
-"{{{ Snipmate ********************************************************
-"}}}
-
 "{{{ Mails ***********************************************************
 au Filetype mail setl tw=76
 au Filetype mail setl fo+=aw
 "}}}
-
-"{{{ Vimtex **********************************************************
-"au BufEnter *.tex setl tw=0
-"au Filetype mail setl fo+=aw
-""}}}
 
 "{{{ CtrlP ***********************************************************
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
@@ -228,6 +220,7 @@ let g:ctrlp_custom_ignore = {
 "{{{ Goyo & Limelight ************************************************
 let g:limelight_paragraph_span = 1
 let g:limelight_conceal_ctermfg = 'DarkGray'
+let g:limelight_default_coefficient = 0.7
 
 function! s:goyo_enter()
     if has('gui_running')
