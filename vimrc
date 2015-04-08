@@ -13,7 +13,6 @@
 "=============================================================================="
 
 " TODO: get gvimrc up to date
-" TODO: source a local.vimrc
 
 "{{{ Plugins ! *******************************************************
 
@@ -144,6 +143,12 @@ set shiftround
 set expandtab
 "}}}
 
+"{{{ Misc ************************************************************
+"Paste toggle
+map <Leader>pp :setlocal paste!<CR>
+map <silent> <Leader><CR> :noh<CR>
+"}}}
+
 " End Of General Settings }}}
 
 "{{{ Airline *********************************************************
@@ -218,6 +223,8 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
   \}
+" Notes
+silent! nnoremap <Leader>N :CtrlP ~/Dropbox/Notes<CR>
 "}}}
 
 "{{{ Goyo & Limelight ************************************************
@@ -273,19 +280,13 @@ function! s:rotate_colors()
   echo name
 endfunction
 
-function! s:sync_term_colors()
-  let s:bg_patch = {'jellybeans': '#121212', 'seoul256': '#383838', 'seoul256-light': '#d9d9d9',}
-  let s:fg_color = synIDattr(synIDtrans(hlID('Normal')), 'fg', 'gui')
-  let s:bg_color = synIDattr(synIDtrans(hlID('Normal')), 'bg', 'gui')
-  let s:bg_color = get(s:bg_patch, g:colors_name,  s:bg_color)
-  call  system('gconftool --set --type string \/apps\/gnome-terminal\/profiles\/Default\/foreground_color '.'"'.s:fg_color.'"')
-  call  system('gconftool --set --type string \/apps\/gnome-terminal\/profiles\/Default\/background_color '.'"'.s:bg_color.'"')
-  redraw
-endfunction
 
 nnoremap <F8> :call <SID>rotate_colors()<cr>
-if has('unix')
-  nnoremap <F9> :call <SID>sync_term_colors()<cr>
+"}}}
+
+"{{{ Local Vimrc *****************************************************
+if filereadable(glob("~/.local.vimrc"))
+  so ~/.local.vimrc
 endif
 "}}}
 
