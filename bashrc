@@ -119,12 +119,6 @@ fshow() {
   done
 }
 
-
-
-
-
-
-
 # Responsive Prompt
 source ~/.git-prompt.sh
 export GIT_PS1_SHOWUPSTREAM="auto"
@@ -214,3 +208,4 @@ BASE=$(dirname $(readlink $BASH_SOURCE))
 EXTRA=$BASE/bashrc-extra
 [ -f "$EXTRA" ] && source "$EXTRA"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source $BASE/env/hyperjump

@@ -61,6 +61,9 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
 
+" Test
+Plug 'ryanss/vim-hackernews', {'on': 'HackerNews'}
+
 call plug#end()
 "}}}
 

@@ -113,3 +113,10 @@ snippet section
 	${1:Section}~\ref{${2:sec:}}${3}
 snippet page
 	${1:page}~\pageref{${2}}${3}
+# New Glossary Entry
+snippet ngl
+	\newglossaryentry{${1:abbr}}{name=${2}, description={${3}}}
+
+# Abbreviation
+snippet gls
+	\gls{${1}} ${0}
