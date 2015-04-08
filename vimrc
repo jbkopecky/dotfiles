@@ -14,7 +14,7 @@
 
 " TODO: get gvimrc up to date
 
-"{{{ Plugins ! *******************************************************
+" Plugins ! *************************************************************** {{{
 
 silent! call plug#begin('~/.vim/plugged')
 
@@ -66,24 +66,24 @@ Plug 'ryanss/vim-hackernews', {'on': 'HackerNews'}
 call plug#end()
 "}}}
 
-"{{{ General Settings ************************************************
+" General Settings ******************************************************** {{{
 
 set nocompatible
 set laststatus=2
 
-"{{{ Rebind <Leader> key *********************************************
+" Rebind <Leader> key ***************************************************** {{{
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\<Space>"
 "}}}
 
-"{{{ Enable syntax highlighting **************************************
+" Enable syntax highlighting ********************************************** {{{
 filetype plugin on
 filetype plugin indent on
 syntax on
 let g:tex_flavor="latex" "Recognise Latex files
 "}}}
 
-"{{{ Split navigation ************************************************
+" Split navigation ******************************************************** {{{
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -91,18 +91,18 @@ nnoremap <C-H> <C-W><C-H>
 map <Leader>p <C-^>
 "}}}
 
-"{{{ Font and colors Settings ****************************************
+" Font and colors Settings ************************************************ {{{
 set t_Co=256
 set background=dark
 silent! colorscheme jellybeans
 "}}}
 
-"{{{ Mouse and backspace *********************************************
+" Mouse and backspace ***************************************************** {{{
 set mouse=a  " on OSX press ALT and click
 set bs=2     " make backspace behave like normal again
 "}}}
 
-"{{{ Useful settings *************************************************
+" Useful settings ********************************************************* {{{
 set history=700
 set wildmenu
 set wildmode=list:longest,full
@@ -129,13 +129,13 @@ set cursorline
 set clipboard=unnamed
 "}}}
 
-"{{{ Invisible Characters ********************************************
+" Invisible Characters **************************************************** {{{
 set listchars=tab:▸\ ,trail:⋅,eol:¬,precedes:«,extends:»
-let &showbreak = '↳ '
+let &showbreak = '↪ '
 noremap <Leader>i :set list!<CR>
 "}}}
 
-"{{{ Tabs ************************************************************
+" Tabs ******************************************************************** {{{
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -143,15 +143,37 @@ set shiftround
 set expandtab
 "}}}
 
-"{{{ Misc ************************************************************
+" Folding ***************************************************************** {{{
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction " }}}
+set foldtext=MyFoldText()
+"}}}
+
+" Misc ******************************************************************** {{{
 "Paste toggle
 map <Leader>pp :setlocal paste!<CR>
 map <silent> <Leader><CR> :noh<CR>
+
+noremap H ^
+noremap L g_
 "}}}
 
 " End Of General Settings }}}
 
-"{{{ Airline *********************************************************
+" Airline ***************************************************************** {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -163,19 +185,19 @@ endif
 "let g:airline_right_sep=''
 "}}}
 
-"{{{ Nerdtree ********************************************************
+" Nerdtree **************************************************************** {{{
 map <Leader>n :NERDTreeToggle<CR>
 let g:nerdtree_tab_open_on_gui_startup=0
 "}}}
 
-"{{{ Vimux ***********************************************************
+" Vimux ******************************************************************* {{{
 map <Leader>vp :w<CR>:VimuxPromptCommand<CR>
 map <Leader>vl :w<CR>:VimuxRunLastCommand<CR>
 map <leader>vx :VimuxInterruptRunner<CR>
 let g:VimuxOrientation = "v"
 "}}}
 
-"{{{ Easy motion *****************************************************
+" Easy motion ************************************************************* {{{
 let g:EasyMotion_do_mapping = 0 "Disable default mappings
 let g:EasyMotion_smartcase = 1
 nmap s <Plug>(easymotion-s)
@@ -183,20 +205,21 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 "}}}
 
-"{{{ SuperTab ********************************************************
+" SuperTab **************************************************************** {{{
 au Filetype python let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 "}}}
 
-"{{{ Jedi-vim ********************************************************
+" Jedi-vim **************************************************************** {{{
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 au Filetype python set nowrap
+
 let g:python_highlight_all = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = "<leader>z"
 "}}}
 
-"{{{ Startify ********************************************************
+" Startify **************************************************************** {{{
 let g:startify_bookmarks = [ '~/.dotfiles/vimrc' ]
 let g:startify_files_number = 5
 
@@ -212,12 +235,12 @@ let g:startify_custom_header = [
             \ ]
 "}}}
 
-"{{{ Mails ***********************************************************
+" Mails ******************************************************************* {{{
 au Filetype mail setl tw=76
 au Filetype mail setl fo+=aw
 "}}}
 
-"{{{ CtrlP ***********************************************************
+" CtrlP ******************************************************************* {{{
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
@@ -227,7 +250,7 @@ let g:ctrlp_custom_ignore = {
 silent! nnoremap <Leader>N :CtrlP ~/Dropbox/Notes<CR>
 "}}}
 
-"{{{ Goyo & Limelight ************************************************
+" Goyo & Limelight ******************************************************** {{{
 let g:limelight_paragraph_span = 1
 let g:limelight_conceal_ctermfg = 'DarkGray'
 let g:limelight_default_coefficient = 0.7
@@ -260,7 +283,7 @@ autocmd User GoyoLeave nested call <SID>goyo_leave()
 nnoremap <Leader>G :Goyo<CR>
 "}}}
 
-"{{{ Color Toggle ****************************************************
+" Color Toggle ************************************************************ {{{
 function! s:rotate_colors()
   if !exists('s:colors_list')
     let s:colors_list =
@@ -284,7 +307,7 @@ endfunction
 nnoremap <F8> :call <SID>rotate_colors()<cr>
 "}}}
 
-"{{{ Local Vimrc *****************************************************
+" Local Vimrc ************************************************************* {{{
 if filereadable(glob("~/.local.vimrc"))
   so ~/.local.vimrc
 endif
