@@ -47,6 +47,7 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': 'yes\| ./install'}
 
 " Tmux
 Plug 'benmills/vimux', {'on': 'VimuxPromptCommand'}
+Plug 'tpope/vim-dispatch', {'on': 'Dispatch'}
 
 " Git
 Plug 'mhinz/vim-signify'
@@ -56,10 +57,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
-Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
-
-" Test
-Plug 'ryanss/vim-hackernews', {'on': 'HackerNews'}
+Plug 'plasticboy/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
 
 call plug#end()
 "}}}
@@ -146,7 +144,7 @@ function! MyFoldText() " {{{
     let line = getline(v:foldstart)
 
     let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
+    let windowwidth = winwidth(0) - nucolwidth - 5
     let foldedlinecount = v:foldend - v:foldstart
 
     " expand tabs into spaces
@@ -155,7 +153,7 @@ function! MyFoldText() " {{{
 
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+    return line . ' ' . repeat("-",fillcharcount) . ' ' . foldedlinecount . '…' . '  '
 endfunction " }}}
 set foldtext=MyFoldText()
 "}}}
