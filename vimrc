@@ -13,7 +13,6 @@
 "=============================================================================="
 
 " Plugins ! *************************************************************** {{{
-
 silent! call plug#begin('~/.vim/plugged')
 
 " Colors
@@ -46,7 +45,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': 'yes\| ./install'}
 
 " Tmux
-Plug 'benmills/vimux', {'on': 'VimuxPromptCommand'}
 Plug 'tpope/vim-dispatch', {'on': 'Dispatch'}
 
 " Git
@@ -62,81 +60,52 @@ Plug 'plasticboy/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
 call plug#end()
 "}}}
 
-" General Settings ******************************************************** {{{
-
-set nocompatible
-set laststatus=2
-
-" Rebind <Leader> key ***************************************************** {{{
-let g:mapleader = "\<Space>"
-let g:maplocalleader = "\<Space>"
+" Preamble **************************************************************** {{{
+set nocompatible                     " Get rid of Vi compatibility
+set laststatus=2                     " Always show status bar
+set mouse=a                          " Enable Mouse
+set bs=2                             " Normal backspace
+set history=700                      " More cmd line history
+set undolevels=700                   " More undo
+set wildmenu                         " Cmd completion
+set wildmode=longest:full,full       " Cmd completion options
+set incsearch                        " Show search result as I type
+set hlsearch                         " Highlight search results
+set ignorecase                       " Search for min and maj
+set smartcase                        " If maj asked, only look for maj
+set ttimeoutlen=100                  " Faster Escape
+set scrolloff=3                      " Leave 3 l bellow cursos when scrolling
+set foldmethod=marker                " Fold on markers
+set backupdir=~/.vim/backups//       " Specify backup dir
+set directory=~/.vim/swaps//         " Specify swap dir
+set number                           " Show line number
+set tw=79                            " No more than 80 col
+set colorcolumn=80                   " Color 80 col
+set fo-=t                            " no automatic wrap text when typing
+set linebreak                        " Breaks fold at end of word
+set cursorline                       " Show cursor line
+set clipboard=unnamed                " Easier paste
+set tabstop=4                        " Four spaces tabs
+set shiftwidth=4                     " Four spaces shifts
+set shiftround                       " Round Shifts
+set expandtab smarttab               " Smart tabs
+if exists('+undofile')               " If possible
+  set undofile                       " Set Undo file
+  set undodir=~/.vim/undo//          " Specify undodir
+endif
 "}}}
 
-" Enable syntax highlighting ********************************************** {{{
-filetype plugin on
-filetype plugin indent on
-syntax on
-let g:tex_flavor="latex" "Recognise Latex files
-"}}}
-
-" Split navigation ******************************************************** {{{
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-map <Leader>p <C-^>
-"}}}
-
-" Font and colors Settings ************************************************ {{{
+" Colors ****************************************************************** {{{
 set t_Co=256
 set background=dark
 silent! colorscheme jellybeans
-"}}}
-
-" Mouse and backspace ***************************************************** {{{
-set mouse=a  " on OSX press ALT and click
-set bs=2     " make backspace behave like normal again
-"}}}
-
-" Useful settings ********************************************************* {{{
-set history=700
-set wildmenu
-set wildmode=list:longest,full
-set undolevels=700
-set incsearch
-set hlsearch
-set ignorecase
-set smartcase
-set ttimeoutlen=100
-set scrolloff=3
-set wildmenu
-set wildmode=list:longest,full
-set foldmethod=marker
-set foldopen+=jump
-set backupdir=~/.vim/backups//
-set directory=~/.vim/swaps//
-set undodir=~/.vim/undo//
-set number
-set tw=79
-set fo-=t   " don't automatically wrap text when typing
-set linebreak " Breaks fold at end of word only if listchar is off
-set colorcolumn=80
-set cursorline
-set clipboard=unnamed
+filetype plugin indent on
+syntax on
 "}}}
 
 " Invisible Characters **************************************************** {{{
 set listchars=tab:▸\ ,trail:⋅,eol:¬,precedes:«,extends:»
 let &showbreak = '↪ '
-noremap <Leader>i :set list!<CR>
-"}}}
-
-" Tabs ******************************************************************** {{{
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set shiftround
-set expandtab
 "}}}
 
 " Folding ***************************************************************** {{{
@@ -158,16 +127,54 @@ endfunction " }}}
 set foldtext=MyFoldText()
 "}}}
 
-" Misc ******************************************************************** {{{
-"Paste toggle
-map <Leader>pp :setlocal paste!<CR>
-map <silent> <Leader><CR> :noh<CR>
-
-noremap H ^
-noremap L g_
+" File Type *************************************************************** {{{
+let g:tex_flavor="latex" "Recognise Latex files
+au Filetype python setl nowrap
+au Filetype python setl foldmethod=indent
+au Filetype mail setl tw=76
+au Filetype mail setl fo+=aw
+au FileType help nnoremap <silent><buffer> q :q<CR>
 "}}}
 
-" End Of General Settings }}}
+" Mappings **************************************************************** {{{
+
+" Leader                                                                    {{{
+let g:mapleader = "\<Space>"
+let g:maplocalleader = "\<Space>"
+"}}}
+
+" Splits Navigation                                                         {{{
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+"}}}
+
+" Motions                                                                   {{{
+noremap H ^
+noremap L g_
+nmap s <Plug>(easymotion-s)
+"}}}
+
+" Leader Mappings                                                           {{{
+map <silent> <Leader>pp :setlocal paste!<CR>
+map <silent> <Leader><CR> :noh<CR>
+map <silent> <Leader><esc> :ccl<CR>
+map <silent> <Leader>n :NERDTreeToggle<CR>
+map <silent> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+map <Leader>i :set list!<CR>
+nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
+nnoremap <Leader>G :Goyo<CR>
+"}}}
+
+" F Mappings                                                                {{{
+nnoremap <F5> :w<CR> :Dispatch<CR>
+nnoremap <F8> :call <SID>rotate_colors()<cr>
+"}}}
+
+"}}}
+
+" Plugins Settings ******************************************************** {{{
 
 " Airline ***************************************************************** {{{
 let g:airline#extensions#tabline#enabled = 1
@@ -176,29 +183,19 @@ let g:airline_powerline_fonts = 1
 if exists('$TMUX')
     let g:airline#extensions#tmuxline#snapshot_file = "~/.tmux-statusline-colors.conf"
 endif
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-"let g:airline_left_sep=''
-"let g:airline_right_sep=''
 "}}}
 
 " Nerdtree **************************************************************** {{{
-map <Leader>n :NERDTreeToggle<CR>
 let g:nerdtree_tab_open_on_gui_startup=0
 "}}}
 
-" Vimux ******************************************************************* {{{
-map <Leader>vp :w<CR>:VimuxPromptCommand<CR>
-map <Leader>vl :w<CR>:VimuxRunLastCommand<CR>
-map <leader>vx :VimuxInterruptRunner<CR>
-let g:VimuxOrientation = "v"
+" Dispatch **************************************************************** {{{
+autocmd FileType python let b:dispatch = 'python %'
 "}}}
 
 " Easy motion ************************************************************* {{{
-let g:EasyMotion_do_mapping = 0 "Disable default mappings
+let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
-nmap s <Plug>(easymotion-s)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
 "}}}
 
 " SuperTab **************************************************************** {{{
@@ -206,19 +203,14 @@ au Filetype python let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 "}}}
 
 " Jedi-vim **************************************************************** {{{
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-au Filetype python set nowrap
-
 let g:python_highlight_all = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
-let g:jedi#usages_command = "<leader>z"
 "}}}
 
 " Startify **************************************************************** {{{
 let g:startify_bookmarks = [ '~/.dotfiles/vimrc' ]
 let g:startify_files_number = 5
-
 let g:startify_custom_header = [
             \ '                 __     __       ',
             \ '                /  \~~~/  \      ',
@@ -231,19 +223,12 @@ let g:startify_custom_header = [
             \ ]
 "}}}
 
-" Mails ******************************************************************* {{{
-au Filetype mail setl tw=76
-au Filetype mail setl fo+=aw
-"}}}
-
 " CtrlP ******************************************************************* {{{
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
   \}
-" Notes
-silent! nnoremap <Leader>N :CtrlP ~/Dropbox/Notes<CR>
 "}}}
 
 " Goyo & Limelight ******************************************************** {{{
@@ -275,8 +260,8 @@ autocmd! User GoyoEnter
 autocmd! User GoyoLeave
 autocmd User GoyoEnter nested call <SID>goyo_enter()
 autocmd User GoyoLeave nested call <SID>goyo_leave()
+"}}}
 
-nnoremap <Leader>G :Goyo<CR>
 "}}}
 
 " Color Toggle ************************************************************ {{{
@@ -298,9 +283,6 @@ function! s:rotate_colors()
   redraw
   echo name
 endfunction
-
-
-nnoremap <F8> :call <SID>rotate_colors()<cr>
 "}}}
 
 " Local Vimrc ************************************************************* {{{
@@ -308,4 +290,3 @@ if filereadable(glob("~/.local.vimrc"))
   so ~/.local.vimrc
 endif
 "}}}
-
