@@ -123,7 +123,7 @@ function! MyFoldText() " {{{
 
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . ' ' . repeat("-",fillcharcount) . ' ' . foldedlinecount . '…' . '  '
+    return line . ' ' . repeat("-",fillcharcount) . ' ' . foldedlinecount . ' ' . '  '
 endfunction " }}}
 set foldtext=MyFoldText()
 "}}}
@@ -139,25 +139,22 @@ au FileType help nnoremap <silent><buffer> q :q<CR>
 
 " Mappings **************************************************************** {{{
 
-" Leader                                                                    {{{
+" Leader
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\<Space>"
-"}}}
 
-" Splits Navigation                                                         {{{
+" Splits Navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-"}}}
 
-" Motions                                                                   {{{
+" Motions
 noremap H ^
 noremap L g_
 nmap s <Plug>(easymotion-s)
-"}}}
 
-" Leader Mappings                                                           {{{
+" Leader Mappings
 map <silent> <Leader>pp :setlocal paste!<CR>
 map <silent> <Leader><CR> :noh<CR>
 map <silent> <Leader><esc> :ccl<CR>
@@ -166,12 +163,10 @@ map <silent> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 map <Leader>i :set list!<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
 nnoremap <Leader>G :Goyo<CR>
-"}}}
 
-" F Mappings                                                                {{{
+" F Mappings
 nnoremap <F5> :w<CR> :Dispatch<CR>
 nnoremap <F8> :call <SID>rotate_colors()<cr>
-"}}}
 
 "}}}
 
