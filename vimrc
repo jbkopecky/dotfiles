@@ -46,7 +46,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': 'yes\| ./install'}
 
 " Tmux
-Plug 'tpope/vim-dispatch', {'on': 'Dispatch'}
+Plug 'tpope/vim-dispatch'
 
 " Git
 Plug 'mhinz/vim-signify'
@@ -262,6 +262,7 @@ autocmd User GoyoLeave nested call <SID>goyo_leave()
 
 " Color Toggle ************************************************************ {{{
 function! s:rotate_colors()
+  "{{{
   if !exists('s:colors_list')
     let s:colors_list =
     \ sort(map(
@@ -278,7 +279,7 @@ function! s:rotate_colors()
   execute 'colorscheme' name
   redraw
   echo name
-endfunction
+endfunction "}}}
 "}}}
 
 " Local Vimrc ************************************************************* {{{
