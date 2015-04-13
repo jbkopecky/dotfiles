@@ -112,8 +112,13 @@ syntax on
 "}}}
 
 " Invisible Characters **************************************************** {{{
-set listchars=tab:▸\ ,trail:⋅,eol:¬,precedes:«,extends:»
-let &showbreak = '↪ '
+if has("win32")
+    set listchars=tab:▸\ ,trail:.,eol:¬,precedes:«,extends:»
+    let &showbreak = '»'
+else
+    set listchars=tab:▸\ ,trail:⋅,eol:¬,precedes:«,extends:»
+    let &showbreak = '↪ '
+endif
 "}}}
 
 " Folding ***************************************************************** {{{
