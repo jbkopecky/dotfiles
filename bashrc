@@ -15,6 +15,7 @@ alias gc="git commit -m"
 # Vim aliases
 alias vim="vim --servername VIM"
 alias vi="vim"
+    alias v="vim"
 
 # Aliases
 alias cd.='cd ..'

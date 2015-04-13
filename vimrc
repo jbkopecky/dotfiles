@@ -12,6 +12,12 @@
 "
 "=============================================================================="
 
+" Runtime Path ************************************************************ {{{
+if has("win32")
+    let &runtimepath = substitute(&runtimepath,'\(Documents and Settings\|Users\)[\\/][^\\/,]*[\\/]\zsvimfiles\>','.vim','g')
+endif
+" }}}
+
 " Plugins ! *************************************************************** {{{
 silent! call plug#begin('~/.vim/plugged')
 
@@ -90,6 +96,7 @@ set tabstop=4                        " Four spaces tabs
 set shiftwidth=4                     " Four spaces shifts
 set shiftround                       " Round Shifts
 set expandtab smarttab               " Smart tabs
+set fileformats=unix,dos,mac         " Freaking formats
 if exists('+undofile')               " If possible
   set undofile                       " Set Undo file
   set undodir=~/.vim/undo//          " Specify undodir
