@@ -97,6 +97,7 @@ set shiftwidth=4                     " Four spaces shifts
 set shiftround                       " Round Shifts
 set expandtab smarttab               " Smart tabs
 set fileformats=unix,dos,mac         " Freaking formats
+set encoding=utf-8 nobomb            " Freaking formats
 if exists('+undofile')               " If possible
   set undofile                       " Set Undo file
   set undodir=~/.vim/undo//          " Specify undodir
