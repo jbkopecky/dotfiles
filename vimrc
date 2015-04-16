@@ -238,7 +238,6 @@ let g:jedi#popup_on_dot = 0
 "}}}
 
 " Startify **************************************************************** {{{
-let g:startify_bookmarks = [ '~/.dotfiles/vimrc' ]
 let g:startify_files_number = 5
 let g:startify_custom_header = [
             \ '                 __     __       ',
