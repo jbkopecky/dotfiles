@@ -175,7 +175,7 @@ vmap <Down> ]egv
 map <silent> <Leader>pp :setlocal paste!<CR>
 nnoremap <silent> <Leader><Leader> :noh<CR>
 map <silent> <Leader>q :ccl<CR>
-map <silent> <Leader>N :NERDTreeToggle<CR>
+map <silent> <Leader>n :NERDTreeToggle<CR>
 map <silent> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 map <Leader>i :set list!<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
@@ -235,6 +235,7 @@ autocmd FileType *
 let g:python_highlight_all = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
+let g:jedi#usages_command = "<leader>u"
 "}}}
 
 " Startify **************************************************************** {{{
