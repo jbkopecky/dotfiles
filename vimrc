@@ -178,6 +178,7 @@ map <silent> <Leader>q :ccl<CR>
 map <silent> <Leader>n :NERDTreeToggle<CR>
 map <silent> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 map <Leader>i :set list!<CR>
+map <silent> <Leader>c :cd %:p:h<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
 nnoremap <Leader>G :Goyo<CR>
 
