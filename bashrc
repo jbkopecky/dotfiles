@@ -1,8 +1,10 @@
-# Variables
+# Variables ****************************************************************{{{
 #export TERM=xterm-256color
 export EDITOR=vim
 export PYTHONPATH="/home/jb/Python/lib"
+# }}}
 
+# Aliases ******************************************************************{{{
 # TMUX aliases
 alias tmux="tmux -2"
 alias tml="tmux list-sessions"
@@ -34,9 +36,17 @@ fi
 # Howdoi
 alias how="howdoi -c"
 
-# Notes
-alias note="cd ~/Dropbox/Notes && vim +Note"
+# Useful .. func
+..() {
+    for i in $(seq $1); do cd ..; done;
+}
 
+# The Fuck
+alias fuck='$(thefuck $(fc -ln -1))'
+
+#}}}
+
+# Misc *********************************************************************{{{
 # Colors
 GREEN="\[\e[0;32m\]"
 BLUE="\[\e[0;34m\]"
@@ -45,11 +55,6 @@ BRED="\e[1;31m\]"
 WHITE="\e[0;37m\]"
 BWHITE="\e[1;37m\]"
 COLOREND="\[\e[00m\]"
-
-# Useful .. func
-..() {
-    for i in $(seq $1); do cd ..; done;
-}
 
 # Misc
 HISTCONTROL=ignoreboth
@@ -67,8 +72,9 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+#}}}
 
-# FzF
+# FzF **********************************************************************{{{
 
 # fd - cd to selected dir
 fd() {
@@ -120,7 +126,9 @@ fshow() {
   done
 }
 
-# Responsive Prompt
+# }}}
+
+# Responsive Prompt ********************************************************{{{
 source ~/.git-prompt.sh
 export GIT_PS1_SHOWUPSTREAM="auto"
 
@@ -204,9 +212,13 @@ prompt() {
 
 PROMPT_COMMAND=prompt
 
+# }}}
+
+# Source *******************************************************************{{{
 # Plug into Bashrc-Extra
 BASE=$(dirname $(readlink $BASH_SOURCE))
 EXTRA=$BASE/bashrc-extra
 [ -f "$EXTRA" ] && source "$EXTRA"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 source $BASE/env/hyperjump
+# }}}
