@@ -39,6 +39,7 @@ Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 
 " snippets (first 2 plugins are dependencies)
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -46,8 +47,7 @@ Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 
 " Browsing
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Lokaltog/vim-easymotion'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': 'yes\| ./install'}
 
@@ -160,7 +160,6 @@ nnoremap <C-H> <C-W><C-H>
 " Motions
 noremap H ^
 noremap L g_
-nmap s <Plug>(easymotion-s)
 
 nmap <Left> <<
 nmap <Right> >>
@@ -181,6 +180,7 @@ map <Leader>i :set list!<CR>
 map <silent> <Leader>c :cd %:p:h<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
 nnoremap <Leader>G :Goyo<CR>
+nnoremap U :UndotreeToggle<CR>
 
 " F Mappings
 nnoremap <F5> :w<CR> :Dispatch<CR>
@@ -213,11 +213,6 @@ let g:nerdtree_tab_open_on_gui_startup=0
 
 " Dispatch **************************************************************** {{{
 autocmd FileType python let b:dispatch = 'python %'
-"}}}
-
-" Easy motion ************************************************************* {{{
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_smartcase = 1
 "}}}
 
 " SuperTab **************************************************************** {{{
@@ -294,6 +289,10 @@ autocmd User GoyoLeave nested call <SID>goyo_leave()
 
 " VimTex ****************************************************************** {{{
 let g:vimtex_complete_enabled = 0
+"}}}
+
+" UndoTree **************************************************************** {{{
+let g:undotree_WindowLayout = 2
 "}}}
 
 "}}}

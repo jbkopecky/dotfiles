@@ -1,4 +1,4 @@
-let g:airline_theme = 'sol'
+let g:airline_theme = 'base16'
 colorscheme seoul256-light
 set background=light
 if has("win32")
