@@ -1,6 +1,7 @@
-let g:airline_theme = 'base16'
+let g:airline_theme = 'seoul256'
 colorscheme seoul256-light
 set background=light
+
 if has("win32")
     set guifont=Consolas_for_Powerline_FixedD:h14:cANSI
 else

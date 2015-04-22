@@ -312,7 +312,7 @@ function! s:rotate_colors()
   let s:colors_index = (s:colors_index + 1) % len(s:colors_list)
   let name = s:colors_list[s:colors_index]
   set bg=dark
-  execute 'AirlineTheme base16'
+  "execute 'AirlineTheme base16'
   execute 'colorscheme' name
   redraw
   echo name
