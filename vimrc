@@ -39,6 +39,7 @@ Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 
 " snippets (first 2 plugins are dependencies)
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -46,7 +47,7 @@ Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 
 " Browsing
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'Lokaltog/vim-easymotion'
 Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': 'yes\| ./install'}
@@ -181,6 +182,7 @@ map <Leader>i :set list!<CR>
 map <silent> <Leader>c :cd %:p:h<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
 nnoremap <Leader>G :Goyo<CR>
+nnoremap U :UndotreeToggle<CR>
 
 " F Mappings
 nnoremap <F5> :w<CR> :Dispatch<CR>
@@ -294,6 +296,10 @@ autocmd User GoyoLeave nested call <SID>goyo_leave()
 
 " VimTex ****************************************************************** {{{
 let g:vimtex_complete_enabled = 0
+"}}}
+
+" UndoTree **************************************************************** {{{
+let g:undotree_WindowLayout = 2
 "}}}
 
 "}}}
