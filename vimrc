@@ -48,7 +48,6 @@ Plug 'garbas/vim-snipmate'
 
 " Browsing
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'Lokaltog/vim-easymotion'
 Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': 'yes\| ./install'}
 
@@ -161,7 +160,6 @@ nnoremap <C-H> <C-W><C-H>
 " Motions
 noremap H ^
 noremap L g_
-nmap s <Plug>(easymotion-s)
 
 nmap <Left> <<
 nmap <Right> >>
@@ -215,11 +213,6 @@ let g:nerdtree_tab_open_on_gui_startup=0
 
 " Dispatch **************************************************************** {{{
 autocmd FileType python let b:dispatch = 'python %'
-"}}}
-
-" Easy motion ************************************************************* {{{
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_smartcase = 1
 "}}}
 
 " SuperTab **************************************************************** {{{
