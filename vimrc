@@ -34,7 +34,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'mhinz/vim-startify'
 
 " Edit
-Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -49,6 +49,7 @@ Plug 'garbas/vim-snipmate'
 " Browsing
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'kien/ctrlp.vim'
+Plug 'justinmk/vim-gtfo'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': 'yes\| ./install'}
 
 " Tmux
@@ -309,7 +310,7 @@ function! s:rotate_colors()
   let s:colors_index = (s:colors_index + 1) % len(s:colors_list)
   let name = s:colors_list[s:colors_index]
   set bg=dark
-  silent! execute 'AirlineTheme ' . name
+  silent! execute 'AirlineTheme' name
   execute 'colorscheme' name
   redraw
   echo name
