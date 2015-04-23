@@ -183,6 +183,7 @@ map <silent> <Leader>c :cd %:p:h<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
 nnoremap <Leader>G :Goyo<CR>
 nnoremap U :UndotreeToggle<CR>
+nnoremap <Leader>a :mksession<CR>
 
 " F Mappings
 nnoremap <F5> :w<CR> :Dispatch<CR>
