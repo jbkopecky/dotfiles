@@ -292,10 +292,6 @@ autocmd User GoyoLeave nested call <SID>goyo_leave()
 let g:vimtex_complete_enabled = 0
 "}}}
 
-" UndoTree **************************************************************** {{{
-let g:undotree_WindowLayout = 2
-"}}}
-
 "}}}
 
 " Color Toggle ************************************************************ {{{
