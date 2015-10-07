@@ -50,7 +50,6 @@ Plug 'garbas/vim-snipmate'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'kien/ctrlp.vim'
 Plug 'justinmk/vim-gtfo'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': 'yes\| ./install'}
 
 " Tmux
 Plug 'tpope/vim-dispatch'
@@ -64,6 +63,9 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'plasticboy/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
+
+"HN
+Plug 'ryanss/vim-hackernews'
 
 call plug#end()
 "}}}
@@ -290,7 +292,7 @@ autocmd User GoyoEnter nested call <SID>goyo_enter()
 autocmd User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 
-" VimTex ****************************************************************** {{{
+" vimtex ****************************************************************** {{{
 let g:vimtex_complete_enabled = 0
 "}}}
 
