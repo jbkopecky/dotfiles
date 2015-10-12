@@ -42,7 +42,7 @@ alias how="howdoi -c"
 }
 
 # The Fuck
-alias fuck='$(thefuck $(fc -ln -1))'
+alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
 
 #}}}
 
