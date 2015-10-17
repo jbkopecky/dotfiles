@@ -129,6 +129,7 @@ fshow() {
 # }}}
 
 # Responsive Prompt ********************************************************{{{
+source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
 source ~/.git-prompt.sh
 export GIT_PS1_SHOWUPSTREAM="auto"
 
