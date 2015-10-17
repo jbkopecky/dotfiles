@@ -111,7 +111,7 @@ endif
 " Colors ****************************************************************** {{{
 set t_Co=256
 set background=dark
-silent! colorscheme jellybeans
+silent! colorscheme gruvbox
 filetype plugin indent on
 syntax on
 "}}}
