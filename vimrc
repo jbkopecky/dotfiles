@@ -35,6 +35,7 @@ Plug 'mhinz/vim-startify'
 
 " Edit
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
