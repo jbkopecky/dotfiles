@@ -67,6 +67,7 @@ Plug 'plasticboy/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
 
 "HN
 Plug 'ryanss/vim-hackernews'
+Plug 'laurentgoudet/vim-howdoi'
 
 call plug#end()
 "}}}
@@ -114,10 +115,10 @@ endif
 set t_Co=256
 set background=dark
 if has('gui_running')
-    silent! colorscheme seoul256-light
-    silent! AirlineTheme seoul256
+  let g:airline_theme = 'seoul256'
+  silent! colorscheme seoul256-light
 else
-    silent! colorscheme gruvbox
+  silent! colorscheme gruvbox
 endif
 
 filetype plugin indent on
@@ -184,16 +185,17 @@ vmap <Down> ]egv
 
 " Leader Mappings
 map <silent> <Leader>pp :setlocal paste!<CR>
-nnoremap <silent> <Leader><Leader> :noh<CR>
 map <silent> <Leader>q :ccl<CR>
 map <silent> <Leader>n :NERDTreeToggle<CR>
 map <silent> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-map <Leader>i :set list!<CR>
 map <silent> <Leader>c :cd %:p:h<CR>
+map <Leader>i :set list!<CR>
+map <Leader>h <Plug>Howdoi 
+nnoremap <silent> <Leader><Leader> :noh<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
 nnoremap <Leader>G :Goyo<CR>
-nnoremap U :UndotreeToggle<CR>
 nnoremap <Leader>a :mksession<CR>
+nnoremap U :UndotreeToggle<CR>
 
 " F Mappings
 nnoremap <F5> :w<CR> :Dispatch<CR>
