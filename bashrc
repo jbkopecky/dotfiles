@@ -1,7 +1,7 @@
 # Variables ****************************************************************{{{
 #export TERM=xterm-256color
 export EDITOR=vim
-export PYTHONPATH="/home/jb/Python/lib;/home/jb/Python/"
+export PYTHONPATH="/home/jb/Py/lib/kepler-mapper/"
 # }}}
 
 # Aliases ******************************************************************{{{
@@ -74,62 +74,8 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 #}}}
 
-# FzF **********************************************************************{{{
-
-# fd - cd to selected dir
-fd() {
-    DIR=`find ${1:-.} -type d 2> /dev/null | fzf-tmux` && cd "$DIR"
-}
-
-# fe [FUZZY PATTERN] - Open the selected file with the default editor
-#   - Bypass fuzzy finder if there's only one match (--select-1)
-#   - Exit if there's no match (--exit-0)
-fe() {
-  local file
-  file=$(fzf-tmux --query="$1" --select-1 --exit-0)
-  [ -n "$file" ] && ${EDITOR:-vim} "$file"
-}
-
-# Equivalent to above, but opens it with `open` command
-fo() {
-  local file
-  file=$(fzf-tmux --query="$1" --select-1 --exit-0)
-  [ -n "$file" ] && open "$file"
-}
-
-# fkill - kill process
-fkill() {
-  pid=$(ps -ef | sed 1d | fzf-tmux -m | awk '{print $2}')
-
-  if [ "x$pid" != "x" ]
-  then
-    kill -${1:-9} $pid
-  fi
-}
-
-# fshow - browse git commit branch !
-fshow() {
-  local out sha q k
-  while out=$(
-      git log --graph --color=always \
-              --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" |
-      fzf --ansi --multi --no-sort --reverse --query="$q" \
-          --print-query --expect=ctrl-d); do
-    q=$(head -1 <<< "$out")
-    k=$(head -2 <<< "$out" | tail -1)
-    sha=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "$out" | awk '{print $1}')
-    if [ "$k" = 'ctrl-d' ]; then
-      git diff --color=always $sha | less -R
-    else
-      git show --color=always $sha | less -R
-    fi
-  done
-}
-
-# }}}
 
 # Responsive Prompt ********************************************************{{{
-source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
 source ~/.git-prompt.sh
 export GIT_PS1_SHOWUPSTREAM="auto"
 
