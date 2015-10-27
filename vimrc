@@ -22,7 +22,7 @@ endif
 silent! call plug#begin('~/.vim/plugged')
 
 " Colors
-Plug 'nanotech/jellybeans.vim'
+Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
 
@@ -102,6 +102,7 @@ set expandtab smarttab               " Smart tabs
 set fileformats=unix,dos,mac         " Freaking formats
 set encoding=utf-8 nobomb            " Freaking formats
 set noshowmode                       " dont show mode. airline does it
+set tags=./tags;/                    " ctags
 if exists('+undofile')               " If possible
   set undofile                       " Set Undo file
   set undodir=~/.vim/undo//          " Specify undodir
@@ -111,7 +112,12 @@ endif
 " Colors ****************************************************************** {{{
 set t_Co=256
 set background=dark
-silent! colorscheme gruvbox
+if has('gui_running')
+    silent! colorscheme seoul256-light
+else
+    silent! colorscheme gruvbox
+endif
+
 filetype plugin indent on
 syntax on
 "}}}
@@ -236,6 +242,7 @@ autocmd FileType *
 let g:python_highlight_all = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
+let g:jedi#use_tag_stack = 0
 let g:jedi#usages_command = "<leader>u"
 "}}}
 
@@ -313,8 +320,8 @@ function! s:rotate_colors()
   let s:colors_index = (s:colors_index + 1) % len(s:colors_list)
   let name = s:colors_list[s:colors_index]
   set bg=dark
-  silent! execute 'AirlineTheme' name
   execute 'colorscheme' name
+  silent! execute 'AirlineTheme' name
   redraw
   echo name
 endfunction "}}}
