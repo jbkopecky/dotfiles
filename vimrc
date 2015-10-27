@@ -115,6 +115,7 @@ set t_Co=256
 set background=dark
 if has('gui_running')
     silent! colorscheme seoul256-light
+    silent! AirlineTheme seoul256
 else
     silent! colorscheme gruvbox
 endif
