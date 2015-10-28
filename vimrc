@@ -36,16 +36,17 @@ Plug 'mhinz/vim-startify'
 " Edit
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
-Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
+Plug 'ervandew/supertab'
+Plug 'wellle/targets.vim'
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 
 " snippets (first 2 plugins are dependencies)
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
+" Plug 'garbas/vim-snipmate'
 
 " Browsing
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -65,8 +66,7 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'plasticboy/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
 
-"HN
-Plug 'ryanss/vim-hackernews'
+" Misc
 Plug 'laurentgoudet/vim-howdoi'
 
 call plug#end()
