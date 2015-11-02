@@ -245,7 +245,6 @@ autocmd FileType *
 let g:python_highlight_all = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
-let g:jedi#use_tag_stack = 0
 let g:jedi#usages_command = "<leader>u"
 "}}}
 
