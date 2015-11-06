@@ -1,7 +1,6 @@
 # Variables ****************************************************************{{{
 #export TERM=xterm-256color
 export EDITOR=vim
-export PYTHONPATH="/home/jb/Py/lib/kepler-mapper/"
 # }}}
 
 # Aliases ******************************************************************{{{
@@ -165,6 +164,5 @@ PROMPT_COMMAND=prompt
 BASE=$(dirname $(readlink $BASH_SOURCE))
 EXTRA=~/.local.bashrc
 [ -f "$EXTRA" ] && source "$EXTRA"
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 source $BASE/env/hyperjump
 # }}}
