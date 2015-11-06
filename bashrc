@@ -74,7 +74,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 #}}}
 
-
 # Responsive Prompt ********************************************************{{{
 source ~/.git-prompt.sh
 export GIT_PS1_SHOWUPSTREAM="auto"
@@ -164,7 +163,7 @@ PROMPT_COMMAND=prompt
 # Source *******************************************************************{{{
 # Plug into Bashrc-Extra
 BASE=$(dirname $(readlink $BASH_SOURCE))
-EXTRA=$BASE/bashrc-extra
+EXTRA=~/.local.bashrc
 [ -f "$EXTRA" ] && source "$EXTRA"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 source $BASE/env/hyperjump
