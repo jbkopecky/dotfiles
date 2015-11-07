@@ -22,7 +22,6 @@ endif
 silent! call plug#begin('~/.vim/plugged')
 
 " Colors
-Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
 
@@ -190,7 +189,7 @@ map <silent> <Leader>n :NERDTreeToggle<CR>
 map <silent> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 map <silent> <Leader>c :cd %:p:h<CR>
 map <Leader>i :set list!<CR>
-map <Leader>h <Plug>Howdoi 
+map <Leader>h <Plug>Howdoi
 nnoremap <silent> <Leader><Leader> :noh<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
 nnoremap <Leader>G :Goyo<CR>
@@ -246,7 +245,6 @@ autocmd FileType *
 let g:python_highlight_all = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
-let g:jedi#use_tag_stack = 0
 let g:jedi#usages_command = "<leader>u"
 "}}}
 
