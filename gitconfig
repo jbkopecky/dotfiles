@@ -8,11 +8,16 @@
 [mergetool "fugitive"]
     cmd = vim -f -c \"Gdiff\" \"$MERGED\"
     keepBackup = false
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
 [color]
     ui = auto
 [push]
     default = simple
 [alias]
+	d = difftool
     ec = config --global -e
     co = checkout
     dh1 = diff HEAD~1

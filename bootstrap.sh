@@ -10,7 +10,6 @@ for rc in *rc *profile tmux.conf gitconfig; do
   ln -sfv $BASE/$rc ~/.$rc
 done
 
-ln -sfv $BASE/tmuxinator ~/.tmuxinator
 ln -sfv $BASE/vim ~/.vim
 
 # git-prompt
