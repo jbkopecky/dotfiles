@@ -12,9 +12,16 @@ done
 
 ln -sfv $BASE/tmuxinator ~/.tmuxinator
 ln -sfv $BASE/vim ~/.vim
+mkdir ~/.tmux
+mkdir ~/.tmux/plugins
 
 # git-prompt
 if [ ! -e ~/.git-prompt.sh ]; then
   wget https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh \
       -O ~/.git-prompt.sh
+fi
+
+# tpm
+if [ ! -e ~/.tmux/plugins/tpm/tpm ]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
