@@ -5,5 +5,6 @@ vim/backups/*
 vim/swaps/*
 vim/undo/*
 vim/autoload/plug.vim.old
+tmux/plugins/*
 !.gitignore
 .netrwhist
