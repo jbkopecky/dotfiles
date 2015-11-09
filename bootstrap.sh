@@ -12,8 +12,7 @@ done
 
 ln -sfv $BASE/tmuxinator ~/.tmuxinator
 ln -sfv $BASE/vim ~/.vim
-mkdir ~/.tmux
-mkdir ~/.tmux/plugins
+ln -sfv $BASE/tmux ~/.tmux
 
 # git-prompt
 if [ ! -e ~/.git-prompt.sh ]; then
