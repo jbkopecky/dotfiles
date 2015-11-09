@@ -21,6 +21,7 @@ if [ ! -e ~/.git-prompt.sh ]; then
 fi
 
 # tpm
-if [ ! -e ~/.tmux/plugins/tpm/tpm ]; then
+if [ ! -e ~/.tmux/plugins/tpm ]; then
+  echo "Installing Tmux Plugin Manager"
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
