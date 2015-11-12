@@ -10,11 +10,17 @@ for rc in *rc *profile tmux.conf gitconfig; do
   ln -sfv $BASE/$rc ~/.$rc
 done
 
-ln -sfv $BASE/tmuxinator ~/.tmuxinator
 ln -sfv $BASE/vim ~/.vim
+ln -sfv $BASE/tmux ~/.tmux
 
 # git-prompt
 if [ ! -e ~/.git-prompt.sh ]; then
   wget https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh \
       -O ~/.git-prompt.sh
+fi
+
+# tpm
+if [ ! -e ~/.tmux/plugins/tpm ]; then
+  echo "Installing Tmux Plugin Manager"
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
