@@ -105,7 +105,6 @@ set fileformats=unix,dos,mac         " Freaking formats
 set encoding=utf-8 nobomb            " Freaking formats
 set noshowmode                       " dont show mode. airline does it
 set lazyredraw                       " Speed up things
-set shellslash                       " forward slash in win files addresses
 set tags=./tags;/                    " ctags
 if exists('+undofile')               " If possible
   set undofile                       " Set Undo file
