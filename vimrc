@@ -24,6 +24,7 @@ silent! call plug#begin('~/.vim/plugged')
 " Colors
 Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -62,8 +63,8 @@ Plug 'tpope/vim-fugitive'
 " Lang
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex', {'for': 'tex'}
-Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'plasticboy/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
+Plug 'chrisbra/csv.vim' ", {'for': 'csv'} problem with columns parsing
 
 " Misc
 Plug 'laurentgoudet/vim-howdoi'
@@ -103,6 +104,7 @@ set expandtab smarttab               " Smart tabs
 set fileformats=unix,dos,mac         " Freaking formats
 set encoding=utf-8 nobomb            " Freaking formats
 set noshowmode                       " dont show mode. airline does it
+set lazyredraw                       " Speed up things
 set tags=./tags;/                    " ctags
 if exists('+undofile')               " If possible
   set undofile                       " Set Undo file
@@ -119,9 +121,6 @@ if has('gui_running')
 else
   silent! colorscheme gruvbox
 endif
-
-filetype plugin indent on
-syntax on
 "}}}
 
 " Invisible Characters **************************************************** {{{
