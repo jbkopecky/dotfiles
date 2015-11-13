@@ -39,9 +39,9 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'ervandew/supertab'
 Plug 'wellle/targets.vim'
-Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
+Plug 'ervandew/supertab'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " snippets (first 2 plugins are dependencies)
 " Plug 'MarcWeber/vim-addon-mw-utils'
@@ -49,6 +49,7 @@ Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 " Plug 'garbas/vim-snipmate'
 
 " Browsing
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'kien/ctrlp.vim'
 Plug 'justinmk/vim-gtfo'
