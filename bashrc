@@ -43,6 +43,9 @@ alias how="howdoi -c"
 # The Fuck
 alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
 
+# Remove all *.pyc recursively
+alias clean='find . -name "*.pyc" -exec rm -rf {} \;'
+
 #}}}
 
 # Misc *********************************************************************{{{
