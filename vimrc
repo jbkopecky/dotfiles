@@ -163,6 +163,9 @@ au FileType help nnoremap <silent><buffer> q :q<CR>
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\<Space>"
 
+" Escape shorcut
+inoremap kj <Esc>
+
 " Splits Navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
