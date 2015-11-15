@@ -11,12 +11,11 @@ alias tma="tmux attach-session"
 alias tmc="clear && tmux clear-history"
 alias tmk="tmux kill-session"
 alias tm="tmux new-session"
-alias gc="git commit -m"
 
 # Vim aliases
 alias vim="vim --servername VIM"
 alias vi="vim"
-    alias v="vim"
+alias v="vim"
 
 # Aliases
 alias cd.='cd ..'
