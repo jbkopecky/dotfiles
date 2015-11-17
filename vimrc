@@ -118,6 +118,7 @@ set t_Co=256
 set background=dark
 if has('gui_running')
   let g:airline_theme = 'seoul256'
+  let g:seoul256_light_background = 255
   silent! colorscheme seoul256-light
 else
   silent! colorscheme gruvbox
