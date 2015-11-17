@@ -119,6 +119,7 @@ set background=dark
 if has('gui_running')
   let g:airline_theme = 'seoul256'
   let g:seoul256_light_background = 255
+  let g:seoul256_background = 237
   silent! colorscheme seoul256-light
 else
   silent! colorscheme gruvbox
@@ -281,7 +282,7 @@ let g:limelight_default_coefficient = 0.7
 
 function! s:goyo_enter()
     if has('gui_running')
-        set fullscreen
+        silent !set fullscreen
         set linespace=7
     elseif exists('$TMUX')
         silent !tmux set status off
@@ -291,7 +292,7 @@ endfunction
 
 function! s:goyo_leave()
     if has('gui_running')
-        set nofullscreen
+        silent !set nofullscreen
         set linespace=0
     elseif exists('$TMUX')
         silent !tmux set status on
@@ -299,8 +300,6 @@ function! s:goyo_leave()
     Limelight!
 endfunction
 
-autocmd! User GoyoEnter
-autocmd! User GoyoLeave
 autocmd User GoyoEnter nested call <SID>goyo_enter()
 autocmd User GoyoLeave nested call <SID>goyo_leave()
 "}}}
@@ -325,12 +324,36 @@ function! s:rotate_colors()
   endif
   let s:colors_index = (s:colors_index + 1) % len(s:colors_list)
   let name = s:colors_list[s:colors_index]
-  set bg=dark
+  " set bg=dark
   execute 'colorscheme' name
   silent! execute 'AirlineTheme' name
   redraw
   echo name
 endfunction "}}}
+"}}}
+
+" TODO Quickfix *********************************************************** {{{
+function! s:todo() abort
+  let entries = []
+  for cmd in ['git grep -n -e TODO -e FIXME -e XXX 2> /dev/null',
+            \ 'grep -rn -e TODO -e FIXME -e XXX * 2> /dev/null']
+    let lines = split(system(cmd), '\n')
+    if v:shell_error != 0 | continue | endif
+    for line in lines
+      let [fname, lno, text] = matchlist(line, '^\([^:]*\):\([^:]*\):\(.*\)')[1:3]
+      call add(entries, { 'filename': fname, 'lnum': lno, 'text': text })
+    endfor
+    break
+  endfor
+
+  if !empty(entries)
+    call setqflist(entries)
+    copen
+  endif
+endfunction
+if !has("win32")
+ command! Todo call s:todo()
+endif
 "}}}
 
 " Local Vimrc ************************************************************* {{{
