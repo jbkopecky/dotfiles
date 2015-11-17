@@ -188,7 +188,6 @@ vmap <Up> [egv
 vmap <Down> ]egv
 
 " Leader Mappings
-map <silent> <Leader>pp :setlocal paste!<CR>
 map <silent> <Leader>q :ccl<CR>
 map <silent> <Leader>n :NERDTreeToggle<CR>
 map <silent> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
@@ -198,8 +197,9 @@ map <Leader>h <Plug>Howdoi
 nnoremap <silent> <Leader><Leader> :noh<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
 nnoremap <Leader>G :Goyo<CR>
-nnoremap <Leader>a :mksession<CR>
 nnoremap U :UndotreeToggle<CR>
+nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <Leader>sv :source $MYVIMRC<cr>
 
 " F Mappings
 nnoremap <F5> :w<CR> :Dispatch<CR>
@@ -248,7 +248,6 @@ autocmd FileType *
 
 " Jedi-vim **************************************************************** {{{
 let g:python_highlight_all = 1
-" let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = "<leader>u"
 "}}}
