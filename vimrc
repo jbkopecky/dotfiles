@@ -168,6 +168,10 @@ let g:maplocalleader = "\<Space>"
 " Escape shorcut
 inoremap kj <Esc>
 
+" Split Join
+nmap sj :SplitjoinSplit<cr>
+nmap sk :SplitjoinJoin<cr>
+
 " Splits Navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -323,36 +327,12 @@ function! s:rotate_colors()
   endif
   let s:colors_index = (s:colors_index + 1) % len(s:colors_list)
   let name = s:colors_list[s:colors_index]
-  " set bg=dark
+  set bg=dark
   execute 'colorscheme' name
   silent! execute 'AirlineTheme' name
   redraw
   echo name
 endfunction "}}}
-"}}}
-
-" TODO Quickfix *********************************************************** {{{
-function! s:todo() abort
-  let entries = []
-  for cmd in ['git grep -n -e TODO -e FIXME -e XXX 2> /dev/null',
-            \ 'grep -rn -e TODO -e FIXME -e XXX * 2> /dev/null']
-    let lines = split(system(cmd), '\n')
-    if v:shell_error != 0 | continue | endif
-    for line in lines
-      let [fname, lno, text] = matchlist(line, '^\([^:]*\):\([^:]*\):\(.*\)')[1:3]
-      call add(entries, { 'filename': fname, 'lnum': lno, 'text': text })
-    endfor
-    break
-  endfor
-
-  if !empty(entries)
-    call setqflist(entries)
-    copen
-  endif
-endfunction
-if !has("win32")
- command! Todo call s:todo()
-endif
 "}}}
 
 " Local Vimrc ************************************************************* {{{
