@@ -28,7 +28,7 @@ Plug 'morhetz/gruvbox'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
-Plug 'bling/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'mhinz/vim-startify'
 
@@ -221,13 +221,10 @@ command! Q q
 
 " Plugins Settings ******************************************************** {{{
 
-" Airline ***************************************************************** {{{
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline_powerline_fonts = 1
-if exists('$TMUX')
-    let g:airline#extensions#tmuxline#snapshot_file = "~/.tmux-statusline-colors.conf"
-endif
+" Lightline *************************************************************** {{{
+
+let g:lightline_symbols = 1
+
 "}}}
 
 " Nerdtree **************************************************************** {{{
@@ -313,6 +310,186 @@ let g:vimtex_complete_enabled = 0
 
 "}}}
 
+" Status Line ************************************************************* {{{
+
+let g:lightline = {
+      \ 'mode_map': { 'c': 'NORMAL' },
+      \ 'colorscheme': 'gruvbox',
+      \ 'active':{
+      \   'left': [ [ 'mode', 'paste'],
+      \             [ 'fugitive', 'filename', 'signify', 'csv'] ],
+      \ },
+      \ 'component_function': {
+      \   'modified': 'LightLineModified',
+      \   'readonly': 'LightLineReadonly',
+      \   'fugitive': 'LightLineFugitive',
+      \   'filename': 'LightLineFilename',
+      \   'fileformat': 'LightLineFileformat',
+      \   'filetype': 'LightLineFiletype',
+      \   'fileencoding': 'LightLineFileencoding',
+      \   'mode': 'LightLineMode',
+      \   'lineinfo': 'LightLineLineInfo',
+      \   'percent': 'LightLinePercent',
+      \   'signify': 'LightLineSignify',
+      \   'csv': 'LightLineCSV',
+      \ },
+      \ }
+
+function! Separator() "{{{
+  if exists('g:lightline_symbols')
+    if g:lightline_symbols
+      return {'left': '', 'right': ''}
+    else
+      return {'left': '⮀', 'right': '⮂'}
+    endif
+  else
+    return {'left': '', 'right': ''}
+  endif
+endfunction
+let g:lightline.separator = Separator() "}}}
+
+function! SubSeparator() "{{{
+  if exists('g:lightline_symbols')
+    if g:lightline_symbols
+      return {'left': '', 'right': ''}
+    else
+      return {'left': '⮁', 'right': '⮃'}
+    endif
+  else
+    return {'left': '|', 'right': '|'}
+  endif
+endfunction
+let g:lightline.subseparator = SubSeparator() "}}}
+
+function! Visible(discard) "{{{
+  let fname = expand('%:t')
+  let _ = &ft == 'startify' ||
+        \ &ft == 'nerdtree' ||
+        \ fname =~ 'Undo' ||
+        \ fname =~ 'diffpanel'
+  return !_
+endfunction
+"}}}
+
+function! LightLineModified() "{{{
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction "}}}
+
+function! LightLineReadonly() "{{{
+  if exists('g:lightline_symbols')
+    if g:lightline_symbols
+      let ro = ''
+    else
+      let ro = '⭤'
+    endif
+  else
+    let ro = 'ro'
+  endif
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'ro' : ''
+endfunction "}}}
+
+function! LightLineFilename() "{{{
+  let ro = ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '')
+  let mo = ('' != LightLineModified() ? ' ' . LightLineModified() : '') 
+  let fn = (&ft == 'csv' ? CSVColumne() : 
+           \ '' != expand('%:t') ? expand('%:t') : '[No Name]')
+  return Visible(0) ? ro . fn . mo : expand('%:t')
+endfunction "}}}
+
+function! LightLineFugitive() "{{{
+  if exists('g:lightline_symbols')
+    if g:lightline_symbols
+      let fu = ' '
+    else
+      let fu = '⭠ '
+    endif
+  else
+    let fu = ''
+  endif
+  let out = ''
+  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+    let _ = fugitive#head()
+    let out = strlen(_) ? fu ._ : ''
+  endif
+  return Visible(0)? out : ''
+endfunction "}}}
+
+function! LightLinePercent() "{{{
+  return Visible(0) ? (100 * line('.') / line('$')) . '%' : ''
+endfunction "}}}
+
+function! LightLineLineInfo() "{{{
+  " return Visible(0) ? printf("%3d:%-2d", line('.'), col('.')) : ''
+  return Visible(0) ? printf("%-2d", col('.')) : ''
+endfunction
+"}}}
+
+function! LightLineFileformat() "{{{
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction "}}}
+
+function! LightLineFiletype() "{{{
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction "}}}
+
+function! LightLineFileencoding() "{{{
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction "}}}
+
+function! LightLineMode() "{{{
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction "}}}
+
+function! LightLineSignify() "{{{
+  let symbols = ['+', '-', '~']
+  let [added, modified, removed] = sy#repo#get_stats()
+  let stats = [added, removed, modified]  " reorder
+  let hunkline = ''
+
+  for i in range(3)
+    if stats[i] > 0
+      let hunkline .= printf('%s%s ', symbols[i], stats[i])
+    endif
+  endfor
+
+  if !empty(hunkline)
+    let hunkline = printf('[%s]', hunkline[:-2])
+  endif
+
+  return hunkline
+endfunction "}}}
+
+function! LightLineCSV() "{{{
+  if exists("*CSV_WCol")
+      let csv = '%1*%{&ft=~"csv" ? CSV_WCol() : ""}%*'
+  else
+      let csv = ''
+  endif
+  return csv
+endfunction "}}}
+
+function! s:lightline_update() "{{{
+  if !exists('g:loaded_lightline')
+    return
+  endif
+  try
+    if g:colors_name =~# 'jellybeans\|seoul256\|gruvbox\|seoul256-light'
+      let g:lightline.colorscheme = g:colors_name
+      call lightline#colorscheme()
+      call lightline#init()
+      call lightline#update()
+    endif
+  catch
+  endtry
+endfunction "}}}
+
+augroup LightLineColorscheme
+  autocmd!
+  autocmd ColorScheme * call s:lightline_update()
+augroup END
+
+"}}}
+
 " Color Toggle ************************************************************ {{{
 function! s:rotate_colors()
   "{{{
@@ -329,7 +506,6 @@ function! s:rotate_colors()
   let name = s:colors_list[s:colors_index]
   set bg=dark
   execute 'colorscheme' name
-  silent! execute 'AirlineTheme' name
   redraw
   echo name
 endfunction "}}}
