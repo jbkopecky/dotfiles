@@ -63,7 +63,7 @@ Plug 'tpope/vim-fugitive'
 " Lang
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex', {'for': 'tex'}
-Plug 'plasticboy/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
+Plug 'tpope/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
 Plug 'chrisbra/csv.vim' ", {'for': 'csv'} problem with columns parsing
 
 " Misc
@@ -309,6 +309,10 @@ autocmd User GoyoLeave nested call <SID>goyo_leave()
 
 " vimtex ****************************************************************** {{{
 let g:vimtex_complete_enabled = 0
+"}}}
+
+" Markdown **************************************************************** {{{
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 "}}}
 
 "}}}
