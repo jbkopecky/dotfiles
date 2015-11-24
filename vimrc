@@ -38,7 +38,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'wellle/targets.vim'
 Plug 'ervandew/supertab'
 Plug 'AndrewRadev/splitjoin.vim'
 
@@ -64,10 +63,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'tpope/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
-Plug 'chrisbra/csv.vim' ", {'for': 'csv'} problem with columns parsing
-
-" Misc
-Plug 'laurentgoudet/vim-howdoi'
+Plug 'vim-scripts/rainbow_csv.vim', {'for': 'csv'}
+Plug 'junegunn/vim-journal'
 
 call plug#end()
 "}}}
@@ -152,11 +149,24 @@ set foldtext=MyFoldText()
 
 " File Type *************************************************************** {{{
 let g:tex_flavor="latex" "Recognise Latex files
-au Filetype python setl nowrap
-au Filetype python setl foldmethod=indent
-au Filetype mail setl tw=76
-au Filetype mail setl fo+=aw
-au FileType help nnoremap <silent><buffer> q :q<CR>
+
+if has("autocmd")
+    augroup FTOptions
+        autocmd!
+        autocmd Filetype python setl nowrap
+        autocmd Filetype python setl foldmethod=indent
+        autocmd Filetype mail setl tw=76
+        autocmd Filetype mail setl fo+=aw
+        autocmd FileType help nnoremap <silent><buffer> q :q<CR>
+    augroup END
+
+    augroup FTCheck
+        autocmd!
+        autocmd Bufread,BufNewFile *.csv,*.dat set ft=csv
+        autocmd Bufread,BufNewFile *.journal set ft=journal
+    augroup END
+endif
+
 "}}}
 
 " Mappings **************************************************************** {{{
@@ -313,6 +323,14 @@ let g:vimtex_complete_enabled = 0
 
 " Markdown **************************************************************** {{{
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+"}}}
+
+" CSV ********************************************************************* {{{
+let g:rcsv_delimiters = ['	',';',',']
+"}}}
+
+" journal ***************************************************************** {{{
+let g:journal#dirs = ['Notes']
 "}}}
 
 "}}}
