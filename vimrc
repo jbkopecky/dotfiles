@@ -32,13 +32,17 @@ Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'mhinz/vim-startify'
 
+Plug 'gorodinskiy/vim-coloresque', {'for': ['css', 'html', 'xml', 'sh', 'svg', 'vim']}
+
 " Edit
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-characterize'
 Plug 'ervandew/supertab'
+Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)', 'EasyAlign']}
 Plug 'AndrewRadev/splitjoin.vim'
 
 " snippets (first 2 plugins are dependencies)
@@ -46,11 +50,14 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'tomtom/tlib_vim'
 " Plug 'garbas/vim-snipmate'
 
+
 " Browsing
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'kien/ctrlp.vim'
 Plug 'justinmk/vim-gtfo'
+Plug 'junegunn/vim-pseudocl'
+Plug 'junegunn/vim-oblique'
 
 " Tmux
 Plug 'tpope/vim-dispatch'
