@@ -28,3 +28,7 @@ if [ ! -e ~/.tmux/plugins/tpm ]; then
   echo "Installing Tmux Plugin Manager"
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
+
+# git profile
+git config --global user.email "jb.kopecky@gmail.com"
+git config --global user.name "jbkopecky"
