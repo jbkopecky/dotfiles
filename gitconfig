@@ -1,8 +1,10 @@
 [user]
     email = jb.kopecky@gmail.com
-    name = jbkopecky
+	name = jbkopecky
 [github]
-    user = jbkopecky
+    email = jb.kopecky@gmail.com
+	name = JB KOPECKY
+    username = jbkopecky
 [merge]
     tool = fugitive
 [mergetool "fugitive"]

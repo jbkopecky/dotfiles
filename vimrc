@@ -32,7 +32,7 @@ Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'mhinz/vim-startify'
 
-Plug 'gorodinskiy/vim-coloresque', {'for': ['css', 'html', 'xml', 'sh', 'svg', 'vim']}
+Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 
 " Edit
 Plug 'tpope/vim-commentary'

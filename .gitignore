@@ -1,11 +1,11 @@
 bashrc-extra
 bak/*
-vim/plugged/*
-vim/backups/*
-vim/swaps/*
-vim/undo/*
+vim/plugged
+vim/backups
+vim/swaps
+vim/undo
 vim/autoload/plug.vim.old
-tmux/plugins/*
-tmux/resurrect/*
+tmux/plugins
+tmux/resurrect
 !.gitignore
 .netrwhist
