@@ -185,5 +185,5 @@ PROMPT_COMMAND=prompt
 BASE=$(dirname $(readlink $BASH_SOURCE))
 EXTRA=~/.local.bashrc
 [ -f "$EXTRA" ] && source "$EXTRA"
-source $BASE/env/hyperjump
+source $BASE/bin/hyperjump
 # }}}
