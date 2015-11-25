@@ -13,6 +13,10 @@ done
 ln -sfv $BASE/vim ~/.vim
 ln -sfv $BASE/tmux ~/.tmux
 
+mkdir ~/.vim/backups
+mkdir ~/.vim/undo
+mkdir ~/.vim/swaps
+
 # git-prompt
 if [ ! -e ~/.git-prompt.sh ]; then
   wget https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh \
