@@ -24,6 +24,7 @@ silent! call plug#begin('~/.vim/plugged')
 " Colors
 Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim' | Plug 'joshdick/airline-onedark.vim'
 
 Plug 'junegunn/goyo.vim',      {'on': 'Goyo'}
 Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
