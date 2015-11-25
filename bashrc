@@ -3,6 +3,25 @@
 export EDITOR=vim
 # }}}
 
+# Color_Management *********************************************************{{{
+
+# Set here default colors & bg
+export COLOR="gruvbox"
+export BG="dark"
+
+colo() {
+    export COLOR=$1
+}
+
+bg() {
+    export BG=$1
+}
+
+
+
+
+# }}}
+
 # Aliases ******************************************************************{{{
 # TMUX aliases
 alias tmux="tmux -2"
