@@ -16,6 +16,7 @@ ln -sfv $BASE/tmux ~/.tmux
 mkdir ~/.vim/backups
 mkdir ~/.vim/undo
 mkdir ~/.vim/swaps
+mkdir ~/.vim/info
 
 # git-prompt
 if [ ! -e ~/.git-prompt.sh ]; then

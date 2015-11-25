@@ -4,6 +4,7 @@ vim/plugged
 vim/backups
 vim/swaps
 vim/undo
+vim/info
 vim/autoload/plug.vim.old
 tmux/plugins
 tmux/resurrect
