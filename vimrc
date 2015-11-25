@@ -115,6 +115,9 @@ if exists('+undofile')               " If possible
   set undofile                       " Set Undo file
   set undodir=~/.vim/undo//          " Specify undodir
 endif
+if exists('+viminfo')
+  set viminfo='100,n$HOME/.vim/info/viminfo' "set viminfodir for startify
+endif
 "}}}
 
 " Colors ****************************************************************** {{{
