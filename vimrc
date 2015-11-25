@@ -70,7 +70,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'tpope/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
-" Plug 'vim-scripts/rainbow_csv.vim', {'for': 'csv'}
+Plug 'vim-scripts/rainbow_csv.vim', {'for': 'csv'}
 Plug 'junegunn/vim-journal'
 
 call plug#end()
