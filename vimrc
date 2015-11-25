@@ -279,16 +279,28 @@ let g:jedi#usages_command = "<leader>u"
 
 " Startify **************************************************************** {{{
 let g:startify_files_number = 5
+
+" Current Header {{{
 let g:startify_custom_header = [
-            \ '                 __     __       ',
-            \ '                /  \~~~/  \      ',
-            \ '          ,----(     ..    )     ',
-            \ '         /      \__     __/     << Celui qui abandonne un jour,',
-            \ '        /|         (\  |(           Abandonnera toute sa vie ! >>',
-            \ '       ^ \   /___\  /\ |                                         Marius',
-            \ '          |__|   |__|-"           ',
-            \ '',
-            \ ]
+\ '',
+\ '                              ~ 不作死就不会死 ~ ',
+\ '',
+\ '',
+\ ] "}}}
+
+" Old Header {{{
+" let g:startify_custom_header = [
+"             \ '                 __     __       ',
+"             \ '                /  \~~~/  \      ',
+"             \ '          ,----(     ..    )     ',
+"             \ '         /      \__     __/     << Celui qui abandonne un jour,',
+"             \ '        /|         (\  |(           Abandonnera toute sa vie ! >>',
+"             \ '       ^ \   /___\  /\ |                                         Marius',
+"             \ '          |__|   |__|-"           ',
+"             \ '',
+"             \ ] 
+" }}}
+
 "}}}
 
 " CtrlP ******************************************************************* {{{
