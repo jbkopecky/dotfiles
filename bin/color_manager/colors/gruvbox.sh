@@ -20,4 +20,4 @@ BA="#8ec07c"
 BG="#ebdbb2"
 
 
-PABETTE="$LN:$LR:$LV:$LY:$LB:$LP:$LA:$LG:$BN:$BR:$BV:$BY:$BB:$BP:$BA:$BG"
+PALETTE="$LN:$LR:$LV:$LY:$LB:$LP:$LA:$LG:$BN:$BR:$BV:$BY:$BB:$BP:$BA:$BG"
