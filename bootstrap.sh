@@ -12,6 +12,7 @@ done
 
 ln -sfv $BASE/vim ~/.vim
 ln -sfv $BASE/tmux ~/.tmux
+ln -sfv $BASE/bin ~/.bin
 
 mkdir ~/.vim/backups
 mkdir ~/.vim/undo
