@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+
+# CONFIG ****************************************************************** {{{ 
+
+[[ -z "$BASE_KEY" ]] && BASE_KEY=/apps/gnome-terminal/profiles
+[[ -z "$BASE_KEY_NEW" ]] && BASE_KEY_NEW=/org/gnome/terminal/legacy/profiles:
+[[ -z "$GCONFTOOL" ]] && GCONFTOOL=gconftool
+[[ -z "$DCONF" ]] && DCONF=dconf
+[[ -z "$UUIDGEN" ]] && UUIDGEN=uuidgen
+
+# }}}
+
+
 dset() { # {{{
     local key="$1"; shift
     local val="$1"; shift
@@ -74,6 +86,7 @@ glist_append() { # {{{
 } # }}}
 
 gconf_create_profile() { # {{{
+
     local palette="$1"; shift
     local bg_color="$1"; shift
     local fg_color="$1"; shift
@@ -95,6 +108,7 @@ gconf_create_profile() { # {{{
     gset bool   bold_color_same_as_fg "$same_as_fg"
     gset bool   use_theme_colors "$theme_colors"
     gset bool   use_theme_background "$theme_bg"
+
 } # }}}
 
 create_profile(){ # {{{
@@ -160,3 +174,72 @@ create_profile(){ # {{{
 
 } #}}}
 
+dconf_get_default_id(){ #{{{
+    if [[ -n "`$DCONF read $BASE_KEY_NEW/default`" ]]; then
+        # Profile ID if "default" profile exists
+        local default_slug=`$DCONF read $BASE_KEY_NEW/default | tr -d \'`
+    else
+        local default_slug=`$DCONF list $BASE_KEY_NEW/ | grep '^:' | head -n1 | tr -d :/`
+    fi
+    return $default_slug
+} #}}}
+
+generate_new_key(){ #{{{
+    if which "$UUIDGEN" > /dev/null 2>&1; then
+        local profile_slug=`uuidgen`
+    else 
+        echo "[ERROR] UUIDGEN programm not found"
+    fi
+    return $profile_slug 
+} #}}}
+
+modify_profile(){ # {{{
+
+    # gnome_modify_profile palette bg_color fg_color bold_color profile_slug
+
+    local pa="$1"; shift
+    local bg="$1"; shift
+    local fg="$1"; shift
+    local bo="$1";shift
+    local ps="$1";shift
+
+
+    # Newest versions of gnome-terminal use dconf
+    if which "$DCONF" > /dev/null 2>&1; then
+
+        if [[ -n "`$DCONF list $BASE_KEY_NEW/`" ]]; then
+            # We did not find key in profile list
+
+            # We create a key
+            $PROFILE_SLUG = $(generate_new_key)
+
+            # We get existing key to copy
+            $DEFAULT_SLUG = $(dconf_get_default_id)
+
+            DEFAULT_KEY="$BASE_KEY_NEW/:$DEFAULT_SLUG"
+            PROFILE_KEY="$BASE_KEY_NEW/:$PROFILE_SLUG"
+
+            # copy existing settings from default profile
+            $DCONF dump "$DEFAULT_KEY/" | $DCONF load "$PROFILE_KEY/"
+
+            # We modify it to our taste
+            dconf_set_profile "$pa" "$bg" "$fg" "$bo" "$pn" "$ps" "$PROFILE_KEY"
+
+            unset PROFILE_SLUG
+            unset DEFAULT_SLUG
+            exit 0
+        fi
+    fi
+
+    # Fallback for Gnome 2 and early Gnome 3
+
+    PROFILE_KEY="$BASE_KEY/$PROFILE_SLUG"
+
+    KEY="/apps/gnome-terminal/global/profile_list"
+
+    gconf_create_profile "$pa" "$bg" "$fg" "$bo" "$pn" "$ps" "$KEY"
+
+    unset PROFILE_NAME
+    unset PROFILE_SLUG
+
+} #}}}

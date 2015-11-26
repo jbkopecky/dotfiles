@@ -22,7 +22,7 @@ colo() {
         source "$color_file"
     fi
 
-    create_profile "$PALETTE" "$BG" "$FG" "$FG" "$PROFILE_NAME" "$PROFILE_SLUG"
+    modify_profile "$PALETTE" "$BG" "$FG" "$FG" "$PROFILE_SLUG"
 
 }
 
