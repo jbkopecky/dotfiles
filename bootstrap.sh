@@ -34,3 +34,20 @@ fi
 # git profile
 git config --global user.email "jb.kopecky@gmail.com"
 git config --global user.name "jbkopecky"
+
+# XTerm
+if ! command_exists xterm; then
+  sudo apt-get install xterm -y
+fi
+
+if [ ! -f ~/.Xresources ]; then
+  echo "   Creating Xresources!"
+  ln -sf $BASE/Xresources ~/.Xresources
+  xrdb -merge  ~/.Xresources
+else 
+  echo "   Deleting old Xresources!"
+  rm ~/.Xresources
+  ln -sf $BASE/Xresources ~/.Xresources
+  xrdb -merge  ~/.Xresources
+fi
+
