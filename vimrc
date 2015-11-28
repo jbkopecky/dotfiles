@@ -135,8 +135,10 @@ endif
 "}}}
 
 " Invisible Characters **************************************************** {{{
-set listchars=tab:▸\ ,trail:⋅,eol:¬,precedes:«,extends:»
-let &showbreak = '↪ '
+" ․ ‣ · ∘ ∙ • ⁕ ↓ → ∆ ∇〈〉《》
+
+set listchars=tab:‣\ ,trail:∙,eol:¬,precedes:«,extends:»
+let &showbreak = '→ '
 "}}}
 
 " Folding ***************************************************************** {{{

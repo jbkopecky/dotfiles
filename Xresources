@@ -4,17 +4,19 @@
 
 ! Unicode support
 xterm*utf8: 1
+/* xterm*locale:true */
 
 ! Color support
 xterm*customization: -color
 xterm*termName: xterm-256color
 
 ! Font settings
-xterm*allowBoldFonts: false
-xterm*faceName: Monaco for Powerline Regular
+xterm*faceName: Monaco for Powerline
+xterm*faceNameDoublesize:WenQuanYi Micro Hei Mono
+xterm*facesize: 10
 
-! Font size
-xterm*faceSize: 12
+! select URLS
+xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
 
 ! For inclusion of all necessary environment variables
 xterm*loginShell: true
@@ -32,7 +34,7 @@ xterm*scrollTtyOutput: false
 xterm*selectToClipboard: true
 
 ! Include color scheme
-#include "/home/jb/.dotfiles/shell/colors/gruvbox.dark.xrdb"
+#include "/home/jb/.dotfiles/shell/colors/jellybeans.dark.xrdb"
 
 ! Apply included colors
 xterm*color0:      Ansi_0_Color

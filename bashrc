@@ -1,6 +1,7 @@
 # Variables ****************************************************************{{{
 #export TERM=xterm-256color
 export EDITOR=vim
+export LANG=en_US.UTF-8
 # }}}
 
 # Color_Management *********************************************************{{{
@@ -98,7 +99,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 source ~/.git-prompt.sh
 export GIT_PS1_SHOWUPSTREAM="auto"
 
-parse_git_branch() {
+parse_git_branch() { # {{{
   git_branch=`__git_ps1 "%s"`
 
   if [[ $git_branch != "" ]]; then
@@ -111,7 +112,6 @@ parse_git_branch() {
         branch=`echo $branch | sed s/feature/f/1`
         branch=`echo $branch | sed s/hotfix/h/1`
         branch=`echo $branch | sed s/release/\r/1`
-
         branch=`echo $branch | sed s/master/mstr/1`
         branch=`echo $branch | sed s/develop/dev/1`
     fi
@@ -119,7 +119,7 @@ parse_git_branch() {
     if [[ $(git status 2> /dev/null | tail -n1) == "nothing to commit, working directory clean" ]]; then
       branch="${GREEN}$branch${COLOREND}"
     else
-      branch="${RED}$branch${COLROEND}"
+      branch="${RED}$branch${COLOREND}"
     fi
 
     if [[ $upstream != "=" ]]; then
@@ -127,9 +127,9 @@ parse_git_branch() {
     fi
     echo "$branch "
   fi
-}
+} # }}}
 
-working_directory() {
+working_directory() { # {{{
   dir=`pwd`
   in_home=0
   if [[ `pwd` =~ ^"$HOME"(/|$) ]]; then
@@ -164,13 +164,23 @@ working_directory() {
   fi
 
   echo -e "${GREEN}[${COLOREND}${BLUE}$workingdir${COLOREND}${GREEN}]${COLOREND} "
-}
+} # }}}
+
+GREEN="\[\e[0;32m\]"
+BLUE="\[\e[0;34m\]"
+RED="\[\e[0;31m\]"
+BRED="\e[1;31m\]"
+WHITE="\e[0;37m\]"
+BWHITE="\e[1;37m\]"
+COLOREND="\[\e[00m\]"
+
+# ․ ‣ · ∘ ∙ • ⁕ ↓ → ∆ ∇〈〉《》
 
 prompt() {
   if [[ $? -eq 0 ]]; then
-    exit_status="${BLUE}▸${COLOREND} "
+    exit_status="${BLUE}〉${COLOREND} "
   else
-    exit_status="${RED}▸${COLOREND} "
+    exit_status="${RED}〉${COLOREND} "
   fi
 
   PS1="$(working_directory)$(parse_git_branch)$exit_status"
