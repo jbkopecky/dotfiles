@@ -32,7 +32,7 @@ xterm*scrollTtyOutput: false
 xterm*selectToClipboard: true
 
 ! Include color scheme
-#include "/home/jky/.dotfiles/colors/gruvbox.dark.xrdb"
+#include "/home/jb/.dotfiles/shell/colors/gruvbox.dark.xrdb"
 
 ! Apply included colors
 xterm*color0:      Ansi_0_Color

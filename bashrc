@@ -182,8 +182,8 @@ PROMPT_COMMAND=prompt
 
 # Source *******************************************************************{{{
 # Plug into Bashrc-Extra
-BASE=$(dirname $(readlink $BASH_SOURCE))
 EXTRA=~/.local.bashrc
 [ -f "$EXTRA" ] && source "$EXTRA"
-source $BASE/bin/hyperjump
+
+source ~/Bin/hyperjump
 # }}}
