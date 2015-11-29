@@ -10,3 +10,5 @@ tmux/plugins
 tmux/resurrect
 !.gitignore
 .netrwhist
+shell/colors/colors.sh
+shell/colors/colors.xrdb
