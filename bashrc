@@ -132,6 +132,8 @@ if command_exists xtermcontrol ; then
 
             source $COL/$1.$BG.sh
 
+            # echo "Using Colorscheme $1 $BG"
+
             # TODO: find a way to do this in loop
             export TERM="xterm-256color"
             xtermcontrol --bg=$bg # {{{
@@ -146,17 +148,24 @@ if command_exists xtermcontrol ; then
             xtermcontrol --color7=$color7 --color15=$color15
             export TERM="screen-256color"
             # }}}
+            return 0
         fi
     } # }}}
 
     background() { # {{{
-        source $CSH
-        sed -i "s/$BG/$1/g" $CSH
-        sed -i "s/$BG/$1/g" $CXT
-        xrdb merge  ~/.Xresources
-        source $CSH
-        export BG=$1
-        colorscheme $COLOR
+        if  [[ ("$1" == "dark") || ("$1" == "light") ]]; then
+            source $CSH
+            sed -i "s/$BG/$1/g" $CSH
+            sed -i "s/$BG/$1/g" $CXT
+            xrdb merge  ~/.Xresources
+            source $CSH
+            export BG=$1
+            colorscheme $COLOR
+            return 0
+        else
+            echo "[ERROR] Background must be either dark or light"
+            return 1
+        fi
     } # }}}
 
     c_up() { # {{{
@@ -164,12 +173,11 @@ if command_exists xtermcontrol ; then
             source $CSH
             export $COLOR
             export $BG
-
             colorscheme $COLOR
             background $BG
         else
             colorscheme $DEFAULT_COLOR
-            background $BG
+            background $DEFAULT_BG
         fi
     } # }}}
 
@@ -186,6 +194,14 @@ fi
 
 source ~/.git-prompt.sh
 export GIT_PS1_SHOWUPSTREAM="auto"
+
+GREEN="\[\e[0;32m\]"
+BLUE="\[\e[0;34m\]"
+RED="\[\e[0;31m\]"
+BRED="\e[1;31m\]"
+WHITE="\e[0;37m\]"
+BWHITE="\e[1;37m\]"
+COLOREND="\[\e[00m\]"
 
 parse_git_branch() { # {{{
   git_branch=`__git_ps1 "%s"`
@@ -259,13 +275,6 @@ working_directory() { # {{{
   echo -e "${GREEN}[${COLOREND}${BLUE}$workingdir${COLOREND}${GREEN}]${COLOREND} "
 } # }}}
 
-GREEN="\[\e[0;32m\]"
-BLUE="\[\e[0;34m\]"
-RED="\[\e[0;31m\]"
-BRED="\e[1;31m\]"
-WHITE="\e[0;37m\]"
-BWHITE="\e[1;37m\]"
-COLOREND="\[\e[00m\]"
 
 prompt() {
   if [[ $? -eq 0 ]]; then

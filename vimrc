@@ -274,6 +274,10 @@ endif
 
 " Nerdtree **************************************************************** {{{
 let g:nerdtree_tab_open_on_gui_startup=0
+let g:NERDTreeHijackNetrw=1
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeDirArrowExpandable = '→'
+let g:NERDTreeDirArrowCollapsible = '↓'
 "}}}
 
 " Dispatch **************************************************************** {{{
