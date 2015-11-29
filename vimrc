@@ -265,6 +265,7 @@ command! Q q
 " Airline ***************************************************************** {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#whitespace#symbol = '•'
 let g:airline_powerline_fonts = 1
 if exists('$TMUX')
     let g:airline#extensions#tmuxline#snapshot_file = "~/.tmux-statusline-colors.conf"
