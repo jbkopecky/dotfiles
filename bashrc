@@ -1,26 +1,8 @@
 # Variables ****************************************************************{{{
-#export TERM=xterm-256color
 export EDITOR=vim
 export LANG=en_US.UTF-8
-# }}}
-
-# Color_Management *********************************************************{{{
-
-# Set here default colors & bg
-export COLOR="gruvbox"
-export BG="dark"
-
-colo() {
-    export COLOR=$1
-}
-
-bg() {
-    export BG=$1
-}
-
-
-
-
+DEFAULT_BG="dark"
+DEFAULT_COLOR="gruvbox"
 # }}}
 
 # Aliases ******************************************************************{{{
@@ -84,6 +66,23 @@ HISTFILESIZE=2000
 shopt -s histappend
 shopt -s checkwinsize
 
+# Utility function
+command_exists() {
+      type "$1" &>/dev/null
+}
+
+# colors
+function colours() {
+    for i in {0..255}; do
+        printf "\x1b[38;5;${i}m colour${i}"
+        if (( $i % 5 == 0 )); then
+            printf "\n"
+        else
+            printf "\t"
+        fi
+    done
+}
+
 # Colored GCC
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
@@ -95,7 +94,96 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 #}}}
 
+# Color Management *********************************************************{{{
+
+# Must be in XTerm and have installed xtermcontrol to use this hack
+if command_exists xtermcontrol ; then
+
+    # Settings are stored in this file to be persistent across bash instances
+    CSH=~/.dotfiles/shell/colors/colors.sh
+    CXT=~/.dotfiles/shell/colors/colors.xrdb
+
+    # Colorscheme directories
+    COL=~/.dotfiles/shell/colors
+
+    colorscheme() { # {{{
+
+        if [ ! -f $CSH ]; then
+           echo "COLOR=$DEFAULT_COLOR" >> $CSH
+           echo "BG=$DEFAULT_BG" >> $CSH
+        fi
+
+        if [ ! -f $CXT ]; then
+           echo "#define colors \"/home/jb/.dotfiles/shell/colors/$DEFAULT_COLOR.$DEFAULT_BG.xrdb\"" >> $CXT
+        fi
+
+        source $CSH
+
+        if [ ! -f $COL/$1.$BG.sh ]; then
+            echo "[Error] $1 colorscheme not found"
+            return 1
+        else
+            sed -i "s/$COLOR/$1/g" $CSH
+            sed -i "s/$COLOR/$1/g" $CXT
+            xrdb merge  ~/.Xresources
+            source $CSH
+
+            export COLOR=$1
+
+            source $COL/$1.$BG.sh
+
+            # TODO: find a way to do this in loop
+            export TERM="xterm-256color"
+            xtermcontrol --bg=$bg # {{{
+            xtermcontrol --fg=$fg
+            xtermcontrol --color0=$color0 --color1=$color8
+            xtermcontrol --color1=$color1 --color2=$color9
+            xtermcontrol --color2=$color2 --color10=$color10
+            xtermcontrol --color3=$color3 --color11=$color11
+            xtermcontrol --color4=$color4 --color12=$color12
+            xtermcontrol --color5=$color5 --color13=$color13
+            xtermcontrol --color6=$color6 --color14=$color14
+            xtermcontrol --color7=$color7 --color15=$color15
+            export TERM="screen-256color"
+            # }}}
+        fi
+    } # }}}
+
+    background() { # {{{
+        source $CSH
+        sed -i "s/$BG/$1/g" $CSH
+        sed -i "s/$BG/$1/g" $CXT
+        xrdb merge  ~/.Xresources
+        source $CSH
+        export BG=$1
+        colorscheme $COLOR
+    } # }}}
+
+    c_up() { # {{{
+        if [ -f $CSH ]; then
+            source $CSH
+            export $COLOR
+            export $BG
+
+            colorscheme $COLOR
+            background $BG
+        else
+            colorscheme $DEFAULT_COLOR
+            background $BG
+        fi
+    } # }}}
+
+    alias colo=colorscheme
+    alias bg=background
+
+    c_up
+
+fi
+# }}}
+
 # Responsive Prompt ********************************************************{{{
+# ․ ‣ · ∘ ∙ • ⁕ ↓ → ∆ ∇〈〉《》
+
 source ~/.git-prompt.sh
 export GIT_PS1_SHOWUPSTREAM="auto"
 
@@ -132,18 +220,23 @@ parse_git_branch() { # {{{
 working_directory() { # {{{
   dir=`pwd`
   in_home=0
+
   if [[ `pwd` =~ ^"$HOME"(/|$) ]]; then
     dir="~${dir#$HOME}"
     in_home=1
   fi
 
   workingdir=""
+
   if [[ `tput cols` -lt 110 ]]; then
+
     first="/`echo $dir | cut -d / -f 2`"
     letter=${first:0:2}
+
     if [[ $in_home == 1 ]]; then
       letter="~$letter"
     fi
+
     proj=`echo $dir | cut -d / -f 3`
     beginning="$letter/$proj"
     end=`echo "$dir" | rev | cut -d / -f1 | rev`
@@ -173,8 +266,6 @@ BRED="\e[1;31m\]"
 WHITE="\e[0;37m\]"
 BWHITE="\e[1;37m\]"
 COLOREND="\[\e[00m\]"
-
-# ․ ‣ · ∘ ∙ • ⁕ ↓ → ∆ ∇〈〉《》
 
 prompt() {
   if [[ $? -eq 0 ]]; then

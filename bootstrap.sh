@@ -9,7 +9,7 @@
 #==============================================================================
 
 # Replace Existing Files
-REPLACE_FILES=true
+REPLACE_FILES=false
 
 # Functions and variables ************************************************* {{{
 #==============================================================================
@@ -223,6 +223,10 @@ echo -n "[ Xresources ]   "
 
 if ! command_exists xterm; then
   sudo apt-get install xterm -y
+fi
+
+if ! command_exists xtermcontrol; then
+  sudo apt-get install xtermcontrol -y
 fi
 
 if [ ! -f ~/.Xresources ]; then

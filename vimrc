@@ -123,15 +123,33 @@ endif
 
 " Colors ****************************************************************** {{{
 set t_Co=256
-set background=dark
+let g:seoul256_light_background = 255
+
 if has('gui_running')
   let g:airline_theme = 'seoul256'
-  let g:seoul256_light_background = 255
-  let g:seoul256_background = 237
+  set background=light
   silent! colorscheme seoul256-light
 else
-  silent! colorscheme gruvbox
+  if ($BG=='dark' || $BG=='light') && $COLOR!=''
+    " Color Sync with bash & term settings {{{
+    if $BG=='dark'
+        set background=dark
+        colo $COLOR
+    else
+        set background=light
+        if $COLOR=='seoul256'
+            let g:airline_theme = 'seoul256'
+            colo seoul256-light
+        else
+            colo $COLOR
+        endif
+    endif "}}}
+  else
+    set bg=dark
+    silent! colorscheme gruvbox
+  endif
 endif
+
 "}}}
 
 " Invisible Characters **************************************************** {{{
