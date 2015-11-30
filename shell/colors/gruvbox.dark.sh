@@ -6,8 +6,8 @@
 # hard contrast: #1d2021
 # soft contrast: #32302f
 
-bg='#262626'
 fg='#ebdbb2'
+bg='#262626'
 color0='#282828'
 color8='#928374'
 color1='#cc241d'

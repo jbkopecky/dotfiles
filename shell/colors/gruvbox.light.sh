@@ -3,10 +3,7 @@
 # GRUVBOX DARK
 # -----------------------------------------------------------------------------
 
-# hard contrast: #1d2021
-# soft contrast: #32302f
-
-bg='#fbf1c7'
+bg='#faebaf'
 fg='#3c3836'
 color0='#fdf4c1'
 color8='#928374'

@@ -100,11 +100,10 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 if command_exists xtermcontrol ; then
 
     # Settings are stored in this file to be persistent across bash instances
-    CSH=~/.dotfiles/shell/colors/colors.sh
-    CXT=~/.dotfiles/shell/colors/colors.xrdb
+    CSH=$HOME/.dotfiles/shell/colors/colors.sh
 
     # Colorscheme directories
-    COL=~/.dotfiles/shell/colors
+    COL=.dotfiles/shell/colors
 
     colorscheme() { # {{{
 
@@ -113,24 +112,19 @@ if command_exists xtermcontrol ; then
            echo "BG=$DEFAULT_BG" >> $CSH
         fi
 
-        if [ ! -f $CXT ]; then
-           echo "#define colors \"/home/jb/.dotfiles/shell/colors/$DEFAULT_COLOR.$DEFAULT_BG.xrdb\"" >> $CXT
-        fi
-
         source $CSH
 
-        if [ ! -f $COL/$1.$BG.sh ]; then
+        if [ ! -f $HOME/$COL/$1.$BG.sh ]; then
             echo "[Error] $1 colorscheme not found"
             return 1
         else
             sed -i "s/$COLOR/$1/g" $CSH
-            sed -i "s/$COLOR/$1/g" $CXT
-            xrdb merge  ~/.Xresources
+
             source $CSH
 
             export COLOR=$1
 
-            source $COL/$1.$BG.sh
+            source $HOME/$COL/$1.$BG.sh
 
             # echo "Using Colorscheme $1 $BG"
 
@@ -153,18 +147,34 @@ if command_exists xtermcontrol ; then
     } # }}}
 
     background() { # {{{
-        if  [[ ("$1" == "dark") || ("$1" == "light") ]]; then
-            source $CSH
-            sed -i "s/$BG/$1/g" $CSH
-            sed -i "s/$BG/$1/g" $CXT
-            xrdb merge  ~/.Xresources
-            source $CSH
-            export BG=$1
-            colorscheme $COLOR
-            return 0
-        else
+
+        if  [[ ! ( ("$1" == "dark") || ("$1" == "light") ) ]]; then
             echo "[ERROR] Background must be either dark or light"
             return 1
+        else
+
+            if [ ! -f $CSH ]; then
+            echo "COLOR=$DEFAULT_COLOR" >> $CSH
+            echo "BG=$DEFAULT_BG" >> $CSH
+            fi
+
+            source $CSH
+
+            if [ ! -f $HOME/$COL/$COLOR.$1.sh ]; then
+                echo "[Error] $COLOR.$1 colorscheme not found"
+                return 1
+            else
+
+                sed -i "s/$BG/$1/g" $CSH
+
+                source $CSH
+
+                export BG=$1
+
+                colorscheme $COLOR
+
+                return 0
+            fi
         fi
     } # }}}
 
@@ -201,6 +211,9 @@ RED="\[\e[0;31m\]"
 BRED="\e[1;31m\]"
 WHITE="\e[0;37m\]"
 BWHITE="\e[1;37m\]"
+GRAY="\e[1;30m\]"
+BGRAY="\e[0;37m\]"
+GGRAY="\e[0;30m\]"
 COLOREND="\[\e[00m\]"
 
 parse_git_branch() { # {{{
