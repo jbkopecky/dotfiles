@@ -123,7 +123,6 @@ endif
 
 " Colors ****************************************************************** {{{
 set t_Co=256
-let g:seoul256_light_background = 255
 
 if has('gui_running')
   let g:airline_theme = 'seoul256'
