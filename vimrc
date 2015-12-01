@@ -54,7 +54,8 @@ Plug 'AndrewRadev/splitjoin.vim'
 
 " Browsing
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+" Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'tpope/vim-vinegar'
 Plug 'kien/ctrlp.vim'
 Plug 'justinmk/vim-gtfo'
 Plug 'junegunn/vim-pseudocl'
