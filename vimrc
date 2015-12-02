@@ -41,10 +41,9 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-characterize'
+
 Plug 'ervandew/supertab'
 Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)', 'EasyAlign']}
-Plug 'AndrewRadev/splitjoin.vim'
 
 " snippets (first 2 plugins are dependencies)
 " Plug 'MarcWeber/vim-addon-mw-utils'
@@ -53,16 +52,15 @@ Plug 'AndrewRadev/splitjoin.vim'
 
 
 " Browsing
-Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
-" Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'tpope/vim-vinegar'
-Plug 'kien/ctrlp.vim'
-Plug 'justinmk/vim-gtfo'
-Plug 'junegunn/vim-pseudocl'
-Plug 'junegunn/vim-oblique'
+Plug 'justinmk/vim-gtfo' 
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
+Plug 'mbbill/undotree',              {'on': 'UndotreeToggle'}
+Plug 'ludovicchabant/vim-gutentags', {'for': ['tex','vim']}
 
 " Tmux
-Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch', {'on': 'Dispatch'}
 
 " Git
 Plug 'mhinz/vim-signify'
@@ -70,9 +68,8 @@ Plug 'tpope/vim-fugitive'
 
 " Lang
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'lervag/vimtex', {'for': 'tex'}
-Plug 'tpope/vim-markdown', {'for': ['mkd', 'md', 'markdown']}
-Plug 'vim-scripts/rainbow_csv.vim', {'for': 'csv'}
+Plug 'lervag/vimtex',        {'for': 'tex'}
+Plug 'tpope/vim-markdown',   {'for': ['mkd', 'md', 'markdown']}
 Plug 'junegunn/vim-journal'
 
 call plug#end()
@@ -366,7 +363,6 @@ autocmd User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 
 " vimtex ****************************************************************** {{{
-let g:vimtex_complete_enabled = 0
 "}}}
 
 " Markdown **************************************************************** {{{
