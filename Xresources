@@ -11,7 +11,7 @@ xterm*customization: -color
 xterm*termName: xterm-256color
 
 ! Font settings
-xterm*faceName: Monaco for Powerline:size=10
+xterm*faceName: Monaco for Powerline:size=12
 xterm*faceNameDoublesize:WenQuanYi Micro Hei Mono
 
 ! select URLS
