@@ -9,9 +9,11 @@ xterm*utf8: 1
 ! Color support
 xterm*customization: -color
 xterm*termName: xterm-256color
+/* xterm*letterspace: -8 */
+xterm*scaleHeight: 0.8
 
 ! Font settings
-xterm*faceName: Monaco for Powerline
+xterm*faceName: Monaco for Powerline Plus Nerd File Types:size=10
 xterm*faceNameDoublesize:WenQuanYi Micro Hei Mono
 
 ! select URLS
