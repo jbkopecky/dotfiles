@@ -32,7 +32,6 @@ Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
 Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'mhinz/vim-startify'
-Plug 'ryanoasis/vim-devicons'
 
 Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 
