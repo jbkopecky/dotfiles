@@ -53,7 +53,7 @@ Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)', 'EasyAlign']}
 
 " Browsing
 Plug 'tpope/vim-vinegar'
-Plug 'justinmk/vim-gtfo' 
+Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
 Plug 'mbbill/undotree',              {'on': 'UndotreeToggle'}
@@ -70,6 +70,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex',        {'for': 'tex'}
 Plug 'tpope/vim-markdown',   {'for': ['mkd', 'md', 'markdown']}
+Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-journal'
 
 call plug#end()
@@ -190,7 +191,7 @@ if has("autocmd")
 
     augroup FTCheck
         autocmd!
-        autocmd Bufread,BufNewFile *.csv,*.dat set ft=csv
+        " autocmd Bufread,BufNewFile *.csv,*.dat set ft=csv
         autocmd Bufread,BufNewFile *.journal set ft=journal
     augroup END
 endif
@@ -370,7 +371,7 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 "}}}
 
 " CSV ********************************************************************* {{{
-let g:rcsv_delimiters = ['	',';',',']
+let g:csv_headerline=0
 "}}}
 
 " journal ***************************************************************** {{{

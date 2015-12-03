@@ -9,7 +9,7 @@ let g:startify_bookmarks = [  {'g':'~\\Documents\\Github\\dotfiles\\gvimrc'}, {'
 " }}}
 
 " Tex **********************************************************************{{{
-autocmd FileType tex let b:dispatch = 'latex -interaction=nonstopmode %' | setlocal formatoptions+=l
+" autocmd FileType tex let b:dispatch = 'latex -interaction=nonstopmode %' | setlocal formatoptions+=l
 
 let g:vimtex_view_general_viewer = 'SumatraPDF'
 let g:vimtex_view_general_options = '-forward-search @tex @line @pdf'
