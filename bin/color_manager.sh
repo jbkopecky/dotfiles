@@ -115,8 +115,8 @@ if command_exists xtermcontrol ; then
         COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
     } # }}}
 
-    colo=$(colorscheme)
-    bg=$(background)
+    alias colo=colorscheme
+    alias bg=background
 
     complete -F _colorscheme colorscheme
     complete -F _background background
