@@ -30,7 +30,6 @@ Plug 'junegunn/goyo.vim',      {'on': 'Goyo'}
 Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
 
 Plug 'bling/vim-airline'
-Plug 'edkolev/tmuxline.vim'
 Plug 'mhinz/vim-startify'
 
 Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
@@ -49,7 +48,6 @@ Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)', 'EasyAlign']}
 " Plug 'MarcWeber/vim-addon-mw-utils'
 " Plug 'tomtom/tlib_vim'
 " Plug 'garbas/vim-snipmate'
-
 
 " Browsing
 Plug 'tpope/vim-vinegar'

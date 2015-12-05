@@ -154,6 +154,17 @@ if [ ! -e ~/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
+if [ ! -f ~/.tmux-default-colors.conf ]; then
+    echo -n "[ tmux ]        "
+    echo "    Creating Default Tmux status line !"
+    ln -sf ~/.tmux/colors/seoul256.dark.conf ~/.tmux-default-colors.conf
+fi
+
+if [ ! -f ~/.tmux-updated-colors.conf ]; then
+    echo -n "[ tmux ]        "
+    echo "    Creating Updated Tmux status line !"
+    ln -sf ~/.tmux/colors/seoul256.dark.conf ~/.tmux-updated-colors.conf
+fi
 # }}}
 
 # Vim ********************************************************************* {{{
@@ -247,23 +258,33 @@ fi
 # Misc ******************************************************************** {{{
 #==============================================================================
 echo -n "[ Bin ]         "
+
 if [ ! -d ~/Bin ]; then
     echo "    Creating Bin!"
     mkdir ~/Bin
-    for bin in $current_path/bin/*; do
-        ln -sf $bin ~/Bin
-    done
 elif  $REPLACE_FILES; then
     echo "    Replacing old Bin!"
     (cd ~/Bin && tar c .) | (cd $current_path/bak && tar xf -)
     cd $current_path
     rm -rf ~/Bin
     mkdir ~/Bin
-    for bin in $current_path/bin/*; do
-        ln -sf $bin ~/Bin
-    done
 else
     echo "    Keeping existing Bin!"
 fi
+
+for bin in $current_path/bin/*; do
+    echo -n "[ Bin ]         "
+    file=${bin##*/}
+    if [ ! -f ~/Bin/$file ]; then
+        ln -sf $bin ~/Bin/$file
+        echo "    Linking Missing $file" 
+    elif $REPLACE_FILES; then
+        echo "    Replacing $file !"
+        mv ~/Bin/$file $current_path/bak/ 
+        ln -sf $bin ~/Bin/$file
+    else 
+        echo "    Keeping $file"
+    fi
+done
 # }}}
 

@@ -1,5 +1,6 @@
 # Colorscheme directories
 COL=.dotfiles/shell/colors
+TCOL=.tmux/colors
 
 # Settings are stored in this file to be persistent across bash instances
 CSH=$HOME/$COL/colors.sh
@@ -10,6 +11,16 @@ command_exists() { # {{{
 } # }}}
 
 if command_exists xtermcontrol ; then
+
+    update_tmux_colors() { # {{{
+        local tmux_c=$1.$2.conf
+        if [ -f $HOME/$TCOL/$tmux_c ]; then
+            ln -sf $HOME/$TCOL/$tmux_c ~/.tmux-updated-colors.conf
+        fi
+        if [ -n "$TMUX" ]; then
+            tmux source-file ~/.tmux-updated-colors.conf &> /dev/null
+        fi
+    } # }}}
 
     colorscheme() { # {{{
 
@@ -46,6 +57,9 @@ if command_exists xtermcontrol ; then
             xtermcontrol --color7=$color7 --color15=$color15
             export TERM="screen-256color"
             # }}}
+
+            update_tmux_colors $1 $BG
+
             return 0
         fi
     } # }}}
