@@ -157,7 +157,7 @@ fi
 if [ ! -f ~/.tmux-default-colors.conf ]; then
     echo -n "[ tmux ]        "
     echo "    Creating Default Tmux status line !"
-    ln -sf ~/.tmux/colors/seoul256.dark.conf ~/.tmux-default-colors.conf
+    ln -sf ~/.tmux/colors/gruvbox.dark.conf ~/.tmux-default-colors.conf
 fi
 
 if [ ! -f ~/.tmux-updated-colors.conf ]; then
@@ -277,12 +277,12 @@ for bin in $current_path/bin/*; do
     file=${bin##*/}
     if [ ! -f ~/Bin/$file ]; then
         ln -sf $bin ~/Bin/$file
-        echo "    Linking Missing $file" 
+        echo "    Linking Missing $file"
     elif $REPLACE_FILES; then
         echo "    Replacing $file !"
-        mv ~/Bin/$file $current_path/bak/ 
+        mv ~/Bin/$file $current_path/bak/
         ln -sf $bin ~/Bin/$file
-    else 
+    else
         echo "    Keeping $file"
     fi
 done
