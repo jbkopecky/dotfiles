@@ -49,7 +49,8 @@ Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)', 'EasyAlign']}
 " Plug 'garbas/vim-snipmate'
 
 " Browsing
-Plug 'tpope/vim-vinegar'
+" Plug 'tpope/vim-vinegar'
+Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
