@@ -40,6 +40,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 
+" Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex']}
+
 Plug 'ervandew/supertab'
 Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)', 'EasyAlign']}
 
@@ -331,6 +333,10 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$',
   \}
 "}}}
+
+" Unicode ***************************************************************** {{{
+inoremap <expr> <C-K> BDG_GetDigraph()
+" }}}
 
 " Goyo & Limelight ******************************************************** {{{
 let g:limelight_paragraph_span = 1
