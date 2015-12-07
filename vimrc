@@ -1,15 +1,5 @@
 "=============================================================================="
-"
-"     ______/\\\\\\\\\\\___/\\\\\\\\\\\\\_____/\\\________/\\\_
-"      _____\/////\\\///___\/\\\/////////\\\__\/\\\_____/\\\//__
-"       _________\/\\\______\/\\\_______\/\\\__\/\\\__/\\\//_____
-"        _________\/\\\______\/\\\\\\\\\\\\\\___\/\\\\\\//\\\_____
-"         _________\/\\\______\/\\\/////////\\\__\/\\\//_\//\\\____
-"          _________\/\\\______\/\\\_______\/\\\__\/\\\____\//\\\___
-"           __/\\\___\/\\\______\/\\\_______\/\\\__\/\\\_____\//\\\__
-"            _\//\\\\\\\\\_______\/\\\\\\\\\\\\\/___\/\\\______\//\\\_
-"             __\/////////________\/////////////_____\///________\///__
-"
+"                                  VIMRC
 "=============================================================================="
 
 " Runtime Path ************************************************************ {{{
@@ -39,11 +29,10 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
+Plug 'ajh17/VimCompletesMe'
 
-" Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex']}
 
-Plug 'Shougo/neocomplete.vim'
-Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)', 'EasyAlign']}
+Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
 
 " snippets (first 2 plugins are dependencies)
 " Plug 'MarcWeber/vim-addon-mw-utils'
@@ -51,13 +40,14 @@ Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)', 'EasyAlign']}
 " Plug 'garbas/vim-snipmate'
 
 " Browsing
-" Plug 'tpope/vim-vinegar'
-Plug 'justinmk/vim-dirvish'
+Plug 'tpope/vim-vinegar'
 Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mbbill/undotree',     {'on': 'UndotreeToggle'}
+
+Plug 'ludovicchabant/vim-gutentags', {'for': ['vim', 'tex']}
+
 Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
-Plug 'mbbill/undotree',              {'on': 'UndotreeToggle'}
-Plug 'ludovicchabant/vim-gutentags', {'for': ['tex','vim']}
 
 " Tmux
 Plug 'tpope/vim-dispatch', {'on': 'Dispatch'}
@@ -70,6 +60,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex',        {'for': 'tex'}
 Plug 'tpope/vim-markdown',   {'for': ['mkd', 'md', 'markdown']}
+Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex']}
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-journal'
 
@@ -236,11 +227,12 @@ map <silent> <Leader>n :NERDTreeToggle<CR>
 map <silent> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 map <silent> <Leader>c :cd %:p:h<CR>
 map <Leader>i :set list!<CR>
-map <Leader>h <Plug>Howdoi
 nnoremap <silent> <Leader><Leader> :noh<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
 nnoremap <Leader>G :Goyo<CR>
+
 nnoremap U :UndotreeToggle<CR>
+
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
@@ -270,82 +262,21 @@ if exists('$TMUX')
 endif
 "}}}
 
-" Nerdtree **************************************************************** {{{
-let g:nerdtree_tab_open_on_gui_startup=0
-let g:NERDTreeHijackNetrw=1
-let g:NERDTreeQuitOnOpen=1
-let g:NERDTreeDirArrowExpandable = '→'
-let g:NERDTreeDirArrowCollapsible = '↓'
-"}}}
-
 " Dispatch **************************************************************** {{{
 autocmd FileType python let b:dispatch = 'python %'
 "}}}
 
-" Neocomplete ************************************************************* {{{
+" VimCompletesMe ********************************************************** {{{
+" TODO: Setup with neosnippets: 
+" https://github.com/ajh17/VimCompletesMe/issues/12#issuecomment-94115124
 
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+set dictionary=/usr/share/dict/words
 
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-
-function! s:my_cr_function() "{{{
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction "}}}
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=jedi#completions
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-
-let g:neocomplete#sources#omni#input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
+autocmd FileType journal       let b:vcm_tab_complete = 'dict'
+autocmd FileType vim           let b:vcm_tab_complete = 'tags'
+autocmd FileType python        let b:vcm_tab_complete = 'omni'
+autocmd FileType tex           let b:vcm_tab_complete = 'omni'
 
 " }}}
 
@@ -388,9 +319,6 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$',
   \}
 "}}}
-
-" Unicode ***************************************************************** {{{
-" }}}
 
 " Goyo & Limelight ******************************************************** {{{
 let g:limelight_paragraph_span = 1
