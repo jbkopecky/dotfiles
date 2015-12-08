@@ -1,5 +1,5 @@
 if has("win32")
-    set guifont=Consolas_for_Powerline_FixedD:h13:cANSI
+    set guifont=Consolas_for_Powerline_FixedD:h13
 else
     set guifont=Monaco\ for\ Powerline
 endif

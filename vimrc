@@ -236,6 +236,15 @@ nnoremap U :UndotreeToggle<CR>
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
+" F Mappings
+nnoremap <F2> :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
+
+nnoremap <F5> :w<CR> :Dispatch<CR>
+nnoremap <F6> :w<CR> :Make<CR>
+nnoremap <F7> :w<CR> :Start<CR>
+
+nnoremap <F8> :call <SID>rotate_colors()<cr>
+
 " Some Tpope's sweets
 inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%Y-%m-%d %H:%M:%S","%a, %d %b %Y %H:%M:%S %z","%Y %b %d","%d-%b-%y","%a %b %d %T %Z %Y"],'strftime(v:val)')+[localtime()]),0)<CR>
 
@@ -245,15 +254,6 @@ if (&t_Co > 2 || has("gui_running")) && has("syntax")
   noremap <M-,>        :Smaller<CR>
   noremap <M-.>        :Bigger<CR>
 endif
-
-" F Mappings
-nnoremap <F2> :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
-
-nnoremap <F5> :w<CR> :Dispatch<CR>
-nnoremap <F6> :w<CR> :Make<CR>
-nnoremap <F7> :w<CR> :Start<CR>
-
-nnoremap <F8> :call <SID>rotate_colors()<cr>
 
 "}}}
 
@@ -268,13 +268,12 @@ command! Q q
 " Plugins Settings ******************************************************** {{{
 
 " Airline ***************************************************************** {{{
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#whitespace#symbol = '•'
-let g:airline_powerline_fonts = 1
-if exists('$TMUX')
-    let g:airline#extensions#tmuxline#snapshot_file = "~/.tmux-statusline-colors.conf"
-endif
+let g:airline#extensions#csv#columns_display = 'Name'
 "}}}
 
 " Dispatch **************************************************************** {{{
