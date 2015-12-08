@@ -273,7 +273,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#whitespace#symbol = '•'
-let g:airline#extensions#csv#columns_display = 'Name'
+let g:airline#extensions#csv#column_display = 'Name'
 "}}}
 
 " Dispatch **************************************************************** {{{

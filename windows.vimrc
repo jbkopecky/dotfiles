@@ -8,6 +8,10 @@ set lines=43 columns=190
 let g:startify_bookmarks = [  {'g':'~\\Documents\\Github\\dotfiles\\gvimrc'}, {'vv':'~\\Documents\\Github\\dotfiles\\vimrc'}, {'l':'~\\Documents\\GitHub\\dotfiles\\windows.vimrc'} ]
 " }}}
 
+" Gutentags ****************************************************************{{{
+let g:gutentags_ctags_executable="C:\\Program\ files\\ctags58\ctags.exe"
+" }}}
+
 " Tex **********************************************************************{{{
 " autocmd FileType tex let b:dispatch = 'latex -interaction=nonstopmode %' | setlocal formatoptions+=l
 
