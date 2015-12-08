@@ -238,7 +238,7 @@ nnoremap <Leader>sv :source $MYVIMRC<cr>
 
 " Some Tpope's sweets
 inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%Y-%m-%d %H:%M:%S","%a, %d %b %Y %H:%M:%S %z","%Y %b %d","%d-%b-%y","%a %b %d %T %Z %Y"],'strftime(v:val)')+[localtime()]),0)<CR>
- 
+
 if (&t_Co > 2 || has("gui_running")) && has("syntax")
   command! -bar -nargs=0 Bigger  :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)+1','')
   command! -bar -nargs=0 Smaller :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)-1','')
@@ -247,7 +247,7 @@ if (&t_Co > 2 || has("gui_running")) && has("syntax")
 endif
 
 " F Mappings
-nnoremap <F2> :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR> 
+nnoremap <F2> :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
 
 nnoremap <F5> :w<CR> :Dispatch<CR>
 nnoremap <F6> :w<CR> :Make<CR>
@@ -282,7 +282,7 @@ autocmd FileType python let b:dispatch = 'python %'
 "}}}
 
 " VimCompletesMe ********************************************************** {{{
-" TODO: Setup with neosnippets: 
+" TODO: Setup with neosnippets:
 " https://github.com/ajh17/VimCompletesMe/issues/12#issuecomment-94115124
 
 set dictionary=/usr/share/dict/words
