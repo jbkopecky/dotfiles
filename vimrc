@@ -1,5 +1,5 @@
 "=============================================================================="
-"                                  VIMRC
+"                                JBK  VIMRC
 "=============================================================================="
 
 " Runtime Path ************************************************************ {{{
@@ -236,8 +236,23 @@ nnoremap U :UndotreeToggle<CR>
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
+" Some Tpope's sweets
+inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%Y-%m-%d %H:%M:%S","%a, %d %b %Y %H:%M:%S %z","%Y %b %d","%d-%b-%y","%a %b %d %T %Z %Y"],'strftime(v:val)')+[localtime()]),0)<CR>
+ 
+if (&t_Co > 2 || has("gui_running")) && has("syntax")
+  command! -bar -nargs=0 Bigger  :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)+1','')
+  command! -bar -nargs=0 Smaller :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)-1','')
+  noremap <M-,>        :Smaller<CR>
+  noremap <M-.>        :Bigger<CR>
+endif
+
 " F Mappings
+nnoremap <F2> :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR> 
+
 nnoremap <F5> :w<CR> :Dispatch<CR>
+nnoremap <F6> :w<CR> :Make<CR>
+nnoremap <F7> :w<CR> :Start<CR>
+
 nnoremap <F8> :call <SID>rotate_colors()<cr>
 
 "}}}
