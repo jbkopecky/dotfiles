@@ -61,6 +61,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex',        {'for': 'tex'}
 Plug 'tpope/vim-markdown',   {'for': ['mkd', 'md', 'markdown']}
 Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex']}
+Plug 'vimwiki/vimwiki', {'on': '<Plug>VimwikiIndex'}
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-journal'
 
@@ -184,6 +185,7 @@ if has("autocmd")
         autocmd!
         " autocmd Bufread,BufNewFile *.csv,*.dat set ft=csv
         autocmd Bufread,BufNewFile *.journal set ft=journal
+        autocmd Bufread,BufNewFile *.wiki set ft=wiki
     augroup END
 endif
 
@@ -278,6 +280,15 @@ let g:airline#extensions#csv#column_display = 'Name'
 
 " Dispatch **************************************************************** {{{
 autocmd FileType python let b:dispatch = 'python %'
+"}}}
+
+" Wiki ******************************************************************** {{{
+nmap <Leader>ww <Plug>VimwikiIndex
+let my_wiki = {}
+let my_wiki.path = '~/Dropbox/Wiki/'
+
+let g:vimwiki_hl_header=1
+let g:vimwiki_hl_cb_checked=1
 "}}}
 
 " VimCompletesMe ********************************************************** {{{
