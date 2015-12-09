@@ -34,10 +34,8 @@ Plug 'ajh17/VimCompletesMe'
 
 Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
 
-" snippets (first 2 plugins are dependencies)
-" Plug 'MarcWeber/vim-addon-mw-utils'
-" Plug 'tomtom/tlib_vim'
-" Plug 'garbas/vim-snipmate'
+" snippets
+Plug 'Shougo/neosnippet.vim'
 
 " Browsing
 Plug 'tpope/vim-vinegar'
@@ -46,6 +44,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mbbill/undotree',     {'on': 'UndotreeToggle'}
 
 Plug 'ludovicchabant/vim-gutentags', {'for': ['vim', 'tex']}
+Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex']}
 
 Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
 
@@ -58,9 +57,8 @@ Plug 'tpope/vim-fugitive'
 
 " Lang
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'lervag/vimtex',        {'for': 'tex'}
-Plug 'tpope/vim-markdown',   {'for': ['mkd', 'md', 'markdown']}
-Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex']}
+Plug 'lervag/vimtex'
+Plug 'tpope/vim-markdown'
 Plug 'vimwiki/vimwiki'
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-journal'
@@ -283,7 +281,6 @@ autocmd FileType python let b:dispatch = 'python %'
 "}}}
 
 " Wiki ******************************************************************** {{{
-nmap <Leader>ww <Plug>VimwikiIndex
 
 let my_wiki = {}
 let my_wiki.path = '~/Dropbox/Wiki/'
@@ -292,13 +289,26 @@ let g:vimwiki_list=[my_wiki]
 
 let g:vimwiki_hl_headers=1
 let g:vimwiki_hl_cb_checked=1
-let g:vimwiki_folding='list'
+let g:vimwiki_folding='section'
 
 "}}}
 
 " VimCompletesMe ********************************************************** {{{
-" TODO: Setup with neosnippets:
-" https://github.com/ajh17/VimCompletesMe/issues/12#issuecomment-94115124
+
+" Neosnippets Integration :                                                 {{{
+imap <expr><Tab> pumvisible() ?
+      \ "\<Plug>vim_completes_me_forward" :
+      \     neosnippet#expandable_or_jumpable() ?
+      \     "\<Plug>(neosnippet_expand_or_jump)" :
+      \ "\<Tab>"
+
+smap <expr><Tab> neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)"
+ \: "\<Tab>"
+
+let g:vcm_default_maps = 0
+imap <S-Tab> <Plug>vim_completes_me_backward
+" }}}
 
 set dictionary=/usr/share/dict/words
 
@@ -319,26 +329,13 @@ let g:jedi#usages_command = "<leader>u"
 " Startify **************************************************************** {{{
 let g:startify_files_number = 5
 
-" Current Header {{{
+" Header {{{
 let g:startify_custom_header = [
 \ '',
 \ '                              ~ 不作死就不会死 ~ ',
 \ '',
 \ '',
 \ ] "}}}
-
-" Old Header {{{
-" let g:startify_custom_header = [
-"             \ '                 __     __       ',
-"             \ '                /  \~~~/  \      ',
-"             \ '          ,----(     ..    )     ',
-"             \ '         /      \__     __/     << Celui qui abandonne un jour,',
-"             \ '        /|         (\  |(           Abandonnera toute sa vie ! >>',
-"             \ '       ^ \   /___\  /\ |                                         Marius',
-"             \ '          |__|   |__|-"           ',
-"             \ '',
-"             \ ]
-" }}}
 
 "}}}
 
@@ -383,7 +380,7 @@ autocmd User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 
 " Markdown **************************************************************** {{{
-let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
 "}}}
 
 " CSV ********************************************************************* {{{
