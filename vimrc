@@ -31,11 +31,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'ajh17/VimCompletesMe'
 
-
 Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
-
-" snippets
-Plug 'Shougo/neosnippet.vim'
 
 " Browsing
 Plug 'tpope/vim-vinegar'
@@ -294,21 +290,6 @@ let g:vimwiki_folding='section'
 "}}}
 
 " VimCompletesMe ********************************************************** {{{
-
-" Neosnippets Integration :                                                 {{{
-imap <expr><Tab> pumvisible() ?
-      \ "\<Plug>vim_completes_me_forward" :
-      \     neosnippet#expandable_or_jumpable() ?
-      \     "\<Plug>(neosnippet_expand_or_jump)" :
-      \ "\<Tab>"
-
-smap <expr><Tab> neosnippet#expandable_or_jumpable() ?
- \ "\<Plug>(neosnippet_expand_or_jump)"
- \: "\<Tab>"
-
-let g:vcm_default_maps = 0
-imap <S-Tab> <Plug>vim_completes_me_backward
-" }}}
 
 set dictionary=/usr/share/dict/words
 
