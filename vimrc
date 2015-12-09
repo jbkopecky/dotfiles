@@ -61,7 +61,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex',        {'for': 'tex'}
 Plug 'tpope/vim-markdown',   {'for': ['mkd', 'md', 'markdown']}
 Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex']}
-Plug 'vimwiki/vimwiki', {'on': '<Plug>VimwikiIndex'}
+Plug 'vimwiki/vimwiki'
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-journal'
 
@@ -284,11 +284,16 @@ autocmd FileType python let b:dispatch = 'python %'
 
 " Wiki ******************************************************************** {{{
 nmap <Leader>ww <Plug>VimwikiIndex
+
 let my_wiki = {}
 let my_wiki.path = '~/Dropbox/Wiki/'
 
-let g:vimwiki_hl_header=1
+let g:vimwiki_list=[my_wiki]
+
+let g:vimwiki_hl_headers=1
 let g:vimwiki_hl_cb_checked=1
+let g:vimwiki_folding='list'
+
 "}}}
 
 " VimCompletesMe ********************************************************** {{{
