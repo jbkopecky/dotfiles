@@ -29,29 +29,29 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'ajh17/VimCompletesMe'
+
 
 Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
+Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
 
 " Browsing
 Plug 'tpope/vim-vinegar'
 Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mbbill/undotree',     {'on': 'UndotreeToggle'}
+Plug 'ajh17/VimCompletesMe'
+Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 
-Plug 'ludovicchabant/vim-gutentags', {'for': ['vim', 'tex']}
-Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex']}
-
-Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
+Plug 'szw/vim-tags',         {'on': 'TagsGenerate'}
 
 " Tmux
-Plug 'tpope/vim-dispatch', {'on': 'Dispatch'}
+Plug 'tpope/vim-dispatch'
 
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 
 " Lang
+Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex'
 Plug 'tpope/vim-markdown'
@@ -71,6 +71,7 @@ set history=700                      " More cmd line history
 set undolevels=700                   " More undo
 set wildmenu                         " Cmd completion
 set wildmode=longest:full,full       " Cmd completion options
+set completeopt+=longest             " Start at the head of the popup menulist
 set incsearch                        " Show search result as I type
 set hlsearch                         " Highlight search results
 set ignorecase                       " Search for min and maj
@@ -299,6 +300,10 @@ autocmd FileType vim           let b:vcm_tab_complete = 'tags'
 autocmd FileType python        let b:vcm_tab_complete = 'omni'
 autocmd FileType tex           let b:vcm_tab_complete = 'omni'
 
+" }}}
+
+" VimTags ***************************************************************** {{{
+let g:vim_tags_use_vim_dispatch=1
 " }}}
 
 " Jedi-vim **************************************************************** {{{
