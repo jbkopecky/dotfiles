@@ -250,8 +250,8 @@ vmap <Up> [egv
 vmap <Down> ]egv
 
 " Leader Mappings
+map <silent> <Leader>- <Plug>VinegarUp
 map <silent> <Leader>q :ccl<CR>
-map <silent> <Leader>n :NERDTreeToggle<CR>
 map <silent> <Leader>c :cd %:p:h<CR>
 map <Leader>i :set list!<CR>
 nnoremap <silent> <Leader><Leader> :noh<CR>
@@ -323,7 +323,7 @@ let g:vimwiki_list=[my_wiki]
 
 let g:vimwiki_hl_headers=1
 let g:vimwiki_hl_cb_checked=1
-let g:vimwiki_folding='expr'
+let g:vimwiki_folding='list'
 
 let g:vimwiki_table_mappings = 0 "This steals my completion mapping on <Tab>
 

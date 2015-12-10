@@ -88,9 +88,9 @@ working_directory() { # {{{
 
 prompt() { # {{{
   if [[ $? -eq 0 ]]; then
-    exit_status="${BLUE}〉${COLOREND} "
+    exit_status="${BLUE}» ${COLOREND} "
   else
-    exit_status="${RED}〉${COLOREND} "
+    exit_status="${RED}» ${COLOREND} "
   fi
 
   PS1="$(working_directory)$(parse_git_branch)$exit_status"
