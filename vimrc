@@ -15,7 +15,7 @@ silent! call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 
-Plug 'junegunn/goyo.vim',      {'on': 'Goyo'}
+Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
 
 Plug 'bling/vim-airline'
@@ -39,9 +39,9 @@ Plug 'tpope/vim-vinegar'
 Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ajh17/VimCompletesMe'
-Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 
-Plug 'szw/vim-tags',         {'on': 'TagsGenerate'}
+Plug 'szw/vim-tags', {'on': 'TagsGenerate'}
 
 " Tmux
 Plug 'tpope/vim-dispatch'
@@ -71,7 +71,8 @@ set history=700                      " More cmd line history
 set undolevels=700                   " More undo
 set wildmenu                         " Cmd completion
 set wildmode=longest:full,full       " Cmd completion options
-set completeopt+=longest             " Start at the head of the popup menulist
+set completeopt+=longest,menuone     " Start at the head of the popup menulist
+set complete=.,w,b,t,kspell          " Completion scope
 set incsearch                        " Show search result as I type
 set hlsearch                         " Highlight search results
 set ignorecase                       " Search for min and maj
@@ -169,18 +170,25 @@ let g:tex_flavor="latex" "Recognise Latex files
 if has("autocmd")
     augroup FTOptions
         autocmd!
-        autocmd Filetype python setl nowrap
-        autocmd Filetype python setl foldmethod=indent
-        autocmd Filetype mail setl tw=76
-        autocmd Filetype mail setl fo+=aw
-        autocmd FileType help nnoremap <silent><buffer> q :q<CR>
+
+        autocmd Filetype python
+              \ setl nowrap |
+              \ setl foldmethod=indent |
+              \ map <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+        autocmd Filetype mail
+              \ setl tw=76 |
+              \ setl fo+=aw |
+
+        autocmd FileType help
+              \ setl ai fo+=2n | silent! setlocal nospell | 
+              \ nnoremap <silent><buffer> q :q<CR> |
     augroup END
 
     augroup FTCheck
         autocmd!
-        " autocmd Bufread,BufNewFile *.csv,*.dat set ft=csv
         autocmd Bufread,BufNewFile *.journal set ft=journal
-        autocmd Bufread,BufNewFile *.wiki set ft=wiki
+        autocmd Bufread,BufNewFile *.wiki set ft=vimwiki
     augroup END
 endif
 
@@ -221,7 +229,6 @@ vmap <Down> ]egv
 " Leader Mappings
 map <silent> <Leader>q :ccl<CR>
 map <silent> <Leader>n :NERDTreeToggle<CR>
-map <silent> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 map <silent> <Leader>c :cd %:p:h<CR>
 map <Leader>i :set list!<CR>
 nnoremap <silent> <Leader><Leader> :noh<CR>
@@ -286,7 +293,9 @@ let g:vimwiki_list=[my_wiki]
 
 let g:vimwiki_hl_headers=1
 let g:vimwiki_hl_cb_checked=1
-let g:vimwiki_folding='section'
+let g:vimwiki_folding='expr'
+
+let g:vimwiki_table_mappings = 0 "This steals my completion mapping on <Tab>
 
 "}}}
 
@@ -294,14 +303,14 @@ let g:vimwiki_folding='section'
 
 set dictionary=/usr/share/dict/words
 
-autocmd FileType journal       let b:vcm_tab_complete = 'dict'
+autocmd FileType journal         let b:vcm_tab_complete = 'dict'
 
+autocmd FileType vim             let b:vcm_tab_complete = 'tags'
 
-autocmd FileType vim           let b:vcm_tab_complete = 'tags'
-
-autocmd FileType md,markdown   let b:vcm_tab_complete = 'omni'
-autocmd FileType python        let b:vcm_tab_complete = 'omni'
-autocmd FileType tex           let b:vcm_tab_complete = 'omni'
+autocmd FileType md,markdown     let b:vcm_tab_complete = 'omni'
+autocmd FileType vimwiki,*.wiki  let b:vcm_tab_complete = 'omni'
+autocmd FileType python          let b:vcm_tab_complete = 'omni'
+autocmd FileType tex             let b:vcm_tab_complete = 'omni'
 
 " }}}
 
