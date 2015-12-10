@@ -51,7 +51,7 @@ Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 
 " Lang
-Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex']}
+Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex', 'vimwiki']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'lervag/vimtex'
 Plug 'tpope/vim-markdown'
@@ -181,7 +181,7 @@ if has("autocmd")
               \ setl fo+=aw |
 
         autocmd FileType help
-              \ setl ai fo+=2n | silent! setlocal nospell | 
+              \ setl ai fo+=2n | silent! setlocal nospell |
               \ nnoremap <silent><buffer> q :q<CR> |
     augroup END
 
