@@ -179,9 +179,11 @@ if has("autocmd")
               \ setlocal spell
 
         autocmd Filetype python
+              \ setlocal makeprg=python\ % |
+              \ setl efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
               \ setl nowrap |
               \ setl foldmethod=indent |
-              \ nnoremap <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+              \ nnoremap <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c> |
 
         autocmd Filetype mail
               \ setl tw=76 |
@@ -271,7 +273,7 @@ nnoremap <F7> :w<CR> :Start<CR>
 nnoremap <F8> :call <SID>rotate_colors()<cr>
 
 " Some Tpope's sweets
-inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map([ 
+inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map([
                                                                \ "%Y-%m-%d",
                                                                \ "%Y %b %d",
                                                                \ "%d-%b-%y",
