@@ -21,15 +21,12 @@ Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
 Plug 'bling/vim-airline'
 Plug 'mhinz/vim-startify'
 
-Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
-
 " Edit
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-
 
 Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
 Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
@@ -39,9 +36,9 @@ Plug 'tpope/vim-vinegar'
 Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ajh17/VimCompletesMe'
-Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 
-Plug 'szw/vim-tags', {'on': 'TagsGenerate'}
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
+Plug 'szw/vim-tags',    {'on': 'TagsGenerate'}
 
 " Tmux
 Plug 'tpope/vim-dispatch'
@@ -53,10 +50,10 @@ Plug 'tpope/vim-fugitive'
 " Lang
 Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex', 'vimwiki']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'tpope/vim-markdown',   {'for': ['md', 'mkd']}
 Plug 'lervag/vimtex'
-Plug 'tpope/vim-markdown'
-Plug 'vimwiki/vimwiki'
 Plug 'chrisbra/csv.vim'
+Plug 'vimwiki/vimwiki'
 Plug 'junegunn/vim-journal'
 
 call plug#end()
@@ -168,28 +165,52 @@ set foldtext=MyFoldText()
 let g:tex_flavor="latex" "Recognise Latex files
 
 if has("autocmd")
-    augroup FTOptions
+    augroup Misc "{{{
         autocmd!
+        autocmd FocusGained * if !has('win32') | silent! call fugitive#reload_status() | endif
+        autocmd BufReadPost * if getline(1) =~# '^#!' | let b:dispatch = getline(1)[2:-1] . ' %' | let b:start = b:dispatch | endif
+        autocmd BufReadPost ~/.Xdefaults,~/.Xresources let b:dispatch = 'xrdb -load %'
+    augroup END "}}}
+
+    augroup FTOptions "{{{
+        autocmd!
+
+        autocmd FileType gitcommit
+              \ setlocal spell
 
         autocmd Filetype python
               \ setl nowrap |
               \ setl foldmethod=indent |
-              \ map <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+              \ nnoremap <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
         autocmd Filetype mail
               \ setl tw=76 |
-              \ setl fo+=aw |
+              \ setl fo+=aw
 
         autocmd FileType help
               \ setl ai fo+=2n | silent! setlocal nospell |
-              \ nnoremap <silent><buffer> q :q<CR> |
-    augroup END
+              \ nnoremap <silent><buffer> q :q<CR>
 
-    augroup FTCheck
+        autocmd FileType netrw
+              \ nnoremap <silent><buffer> <Esc> :bprevious<CR>
+
+        autocmd FileType *
+              \ if exists("+omnifunc") && &omnifunc == "" |
+              \ setlocal omnifunc=syntaxcomplete#Complete |
+              \ endif
+
+        autocmd FileType *
+              \ if exists("+completefunc") && &completefunc == "" |
+              \ setlocal completefunc=syntaxcomplete#Complete |
+              \ endif
+
+    augroup END " }}}
+
+    augroup FTCheck "{{{
         autocmd!
         autocmd Bufread,BufNewFile *.journal set ft=journal
         autocmd Bufread,BufNewFile *.wiki set ft=vimwiki
-    augroup END
+    augroup END "}}}
 endif
 
 "}}}
@@ -250,7 +271,14 @@ nnoremap <F7> :w<CR> :Start<CR>
 nnoremap <F8> :call <SID>rotate_colors()<cr>
 
 " Some Tpope's sweets
-inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%Y-%m-%d %H:%M:%S","%a, %d %b %Y %H:%M:%S %z","%Y %b %d","%d-%b-%y","%a %b %d %T %Z %Y"],'strftime(v:val)')+[localtime()]),0)<CR>
+inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map([ 
+                                                               \ "%Y-%m-%d",
+                                                               \ "%Y %b %d",
+                                                               \ "%d-%b-%y",
+                                                               \ "%Y-%m-%d %H:%M:%S",
+                                                               \ "%a %b %d %T %Z %Y",
+                                                               \ "%a, %d %b %Y %H:%M:%S %z",
+                                                               \ ], 'strftime(v:val)')),0)<CR>
 
 if (&t_Co > 2 || has("gui_running")) && has("syntax")
   command! -bar -nargs=0 Bigger  :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)+1','')
