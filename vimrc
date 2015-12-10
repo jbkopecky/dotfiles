@@ -12,8 +12,8 @@ endif
 silent! call plug#begin('~/.vim/plugged')
 
 " Colors
-Plug 'junegunn/seoul256.vim'
 Plug 'morhetz/gruvbox'
+Plug 'junegunn/seoul256.vim'
 
 Plug 'junegunn/goyo.vim',      {'on': 'Goyo'}
 Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
@@ -294,9 +294,12 @@ let g:vimwiki_folding='section'
 
 set dictionary=/usr/share/dict/words
 
-autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
 autocmd FileType journal       let b:vcm_tab_complete = 'dict'
+
+
 autocmd FileType vim           let b:vcm_tab_complete = 'tags'
+
+autocmd FileType md,markdown   let b:vcm_tab_complete = 'omni'
 autocmd FileType python        let b:vcm_tab_complete = 'omni'
 autocmd FileType tex           let b:vcm_tab_complete = 'omni'
 

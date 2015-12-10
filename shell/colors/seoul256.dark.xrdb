@@ -21,8 +21,3 @@
 #define   Ansi_14_Color         #87d7d7
 #define   Ansi_7_Color          #d0d0d0
 #define   Ansi_15_Color         #e4e4e4
-#define   Bold_Color            #e4e4e4
-#define   Cursor_Color          #d0d0d0
-#define   Cursor_Text_Color     #3a3a3a
-#define   Selected_Text_Color   #f4f4f4
-#define   Selection_Color       #87afaf
