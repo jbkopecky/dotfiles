@@ -96,15 +96,6 @@ hyp=$PLUGGINS/hyperjump
 [ -f "$hyp" ] && source "$hyp"
 # }}}
 
-# Browse *******************************************************************{{{
-bro=$PLUGGINS/browse.sh
-Browse(){
-    if [ -f "$bro" ]; then
-        exec "$bro" "$@"
-    fi
-}
-# }}}
-
 # Extra Bashrc: to set some paths / variables ******************************{{{
 [ -f "$EXTRA" ] && source "$EXTRA"
 # }}}

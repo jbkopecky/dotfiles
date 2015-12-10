@@ -412,31 +412,6 @@ function! s:rotate_colors()
 endfunction "}}}
 "}}}
 
-" Browse ****************************************************************** {{{
-if has("eval")
-    function! OpenURL(url)
-        if has("win32")
-            exe "!start cmd /cstart /b ".a:url.""
-        elseif $DISPLAY !~ '^\w'
-            exe "silent !tpope browse \"".a:url."\""
-        elseif exists(':Start')
-            exe "Start Browse -T \"".a:url."\""
-        else 
-            exe "!Browse -T \"".a:url."\""
-        endif
-        redraw!
-    endfunction
-
-    command! -nargs=1 OpenURL :call OpenURL(<q-args>)
-
-    " open URL under cursor in browser
-    nnoremap gb :OpenURL <cfile><CR>
-    nnoremap gA :OpenURL http://www.answers.com/<cword><CR>
-    nnoremap gG :OpenURL http://www.google.com/search?q=<cword><CR>
-    nnoremap gW :OpenURL http://en.wikipedia.org/wiki/Special:Search?search=<cword><CR>
-endif
-"}}}
-
 " Local Vimrc ************************************************************* {{{
 if filereadable(glob("~/.local.vimrc"))
   so ~/.local.vimrc
