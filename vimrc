@@ -325,6 +325,7 @@ autocmd FileType python let b:dispatch = 'python %'
 
 let my_wiki = {}
 let my_wiki.path = '~/Dropbox/Wiki/'
+let my_wiki.nested_syntaxes = {'python': 'python', 'vim': 'vim'}
 
 let g:vimwiki_list=[my_wiki]
 
