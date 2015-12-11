@@ -56,6 +56,12 @@ Plug 'chrisbra/csv.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/vim-journal'
 
+" FzF
+if !has('win32')
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+endif
+
 call plug#end()
 "}}}
 

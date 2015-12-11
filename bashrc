@@ -11,6 +11,10 @@ DEFAULT_COLOR="gruvbox"
 
 # }}}
 
+# Extra Bashrc: to set some paths / variables ******************************{{{
+[ -f "$EXTRA" ] && source "$EXTRA"
+# }}}
+
 # Aliases ******************************************************************{{{
 # TMUX aliases
 alias tmux="tmux -2"
@@ -96,6 +100,7 @@ hyp=$PLUGGINS/hyperjump
 [ -f "$hyp" ] && source "$hyp"
 # }}}
 
-# Extra Bashrc: to set some paths / variables ******************************{{{
-[ -f "$EXTRA" ] && source "$EXTRA"
+# fzf **********************************************************************{{{
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/Bin/fzfrc.sh
 # }}}
