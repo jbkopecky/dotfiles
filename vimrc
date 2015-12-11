@@ -180,7 +180,7 @@ if has("autocmd")
 
         autocmd Filetype python
               \ setlocal makeprg=python\ % |
-              \ setl efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+              \ setl efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m |
               \ setl nowrap |
               \ setl foldmethod=indent |
               \ nnoremap <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c> |
@@ -356,6 +356,18 @@ let g:jedi#usages_command = "<leader>u"
 
 " Startify **************************************************************** {{{
 let g:startify_files_number = 5
+
+" Titles {{{
+let g:startify_list_order = [
+    \ ['   ---'],
+    \ 'files',
+    \ ['   ---'],
+    \ 'dir',
+    \ ['   ---'],
+    \ 'sessions',
+    \ ['   ---'],
+    \ 'bookmarks',
+    \ ] "}}}
 
 " Header {{{
 let g:startify_custom_header = [
