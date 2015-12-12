@@ -11,44 +11,34 @@ endif
 " Plugins ! *************************************************************** {{{
 silent! call plug#begin('~/.vim/plugged')
 
-" Colors
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 Plug 'jonathanfilip/vim-lucius'
 
-Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
-Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
-
 Plug 'bling/vim-airline'
 Plug 'mhinz/vim-startify'
 
-" Edit
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-
-Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
-Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
-
-" Browsing
-Plug 'tpope/vim-vinegar'
-Plug 'justinmk/vim-gtfo'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'ajh17/VimCompletesMe'
-
-Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
-Plug 'szw/vim-tags',    {'on': 'TagsGenerate'}
-
-" Tmux
 Plug 'tpope/vim-dispatch'
-
-" Git
-Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 
-" Lang
+Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
+Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
+Plug 'junegunn/limelight.vim',  {'on': 'Limelight'}
+Plug 'junegunn/goyo.vim',       {'on': 'Goyo'}
+
+Plug 'justinmk/vim-gtfo'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mhinz/vim-signify'
+Plug 'ajh17/VimCompletesMe'
+Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
+Plug 'szw/vim-tags',         {'on': 'TagsGenerate'}
+
 Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex', 'vimwiki']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tpope/vim-markdown',   {'for': ['md', 'mkd']}
@@ -57,10 +47,8 @@ Plug 'chrisbra/csv.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/vim-journal'
 
-" FzF
-if !has('win32')
+if has('unix')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
 endif
 
 call plug#end()
