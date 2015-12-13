@@ -3,9 +3,6 @@
 # SEOUL256 DARK
 # -----------------------------------------------------------------------------
 
-# hard contrast: #1d2021
-# soft contrast: #32302f
-
 bg='#3a3a3a'
 fg='#d0d0d0'
 color0='#4e4e4e'
@@ -28,4 +25,3 @@ cursor='#d0d0d0'
 cursor_text='#3a3a3a'
 selected_text='#f4f4f4'
 selection='#87afaf'
-                 

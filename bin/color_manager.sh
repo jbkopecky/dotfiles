@@ -22,17 +22,6 @@ if command_exists xtermcontrol ; then
         fi
     } # }}}
 
-    update_fzf_colors()  { # {{{
-        local FZF_OPTS=$FZF_DEFAULT_OPTS
-        local FZF_NEW_OPTS=""
-        for opt in $FZF_OPTS; do
-            if [ $opt == *"--color="* ]; then
-                echo "colors"
-            fi
-        done
-
-    } # }}}
-
     colorscheme() { # {{{
 
         if [ ! -f $CSH ]; then
@@ -56,8 +45,7 @@ if command_exists xtermcontrol ; then
 
             # TODO: find a way to do this in loop
             export TERM="xterm-256color"
-            xtermcontrol --bg=$bg # {{{
-            xtermcontrol --fg=$fg
+            xtermcontrol --bg=$bg --fg=$fg # {{{
             xtermcontrol --color0=$color0 --color1=$color8
             xtermcontrol --color1=$color1 --color2=$color9
             xtermcontrol --color2=$color2 --color10=$color10
