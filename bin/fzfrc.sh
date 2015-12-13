@@ -145,6 +145,7 @@ c() { # {{{
       end
     }.join + " " * (2 + cols - len) + "\x1b[m" + url' |
   fzf --ansi --multi --no-hscroll --tiebreak=index |
-  sed 's#.*\(https*://\)#\1#' | xargs open
+  sed 's#.*\(https*://\)#\1#' | sed -e 's/^/"/g' -e 's/$/"/g' |
+  xargs xdg-open &>/dev/null
 } # }}}
 
