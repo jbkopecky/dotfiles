@@ -40,21 +40,6 @@ alias how="howdoi -c"
 
 #}}}
 
-# Functions ****************************************************************{{{
-
-# Useful .. func
-..() {
-    for i in $(seq $1); do cd ..; done;
-}
-
-# The Fuck
-alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
-
-# Remove all *.pyc recursively
-alias clean='find . -name "*.pyc" -exec rm -rf {} \;'
-
-# }}}
-
 # Misc *********************************************************************{{{
 
 HISTCONTROL=ignoreboth
@@ -77,6 +62,35 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 #}}}
+
+# Functions ****************************************************************{{{
+
+# Useful .. func
+..() {
+    for i in $(seq $1); do cd ..; done;
+}
+
+# The Fuck
+alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
+
+# Remove all *.pyc recursively
+alias clean='find . -name "*.pyc" -exec rm -rf {} \;'
+
+# Fucking Open
+case "$OSTYPE" in
+cygwin*)
+    alias open="cmd /c start"
+    ;;
+linux*)
+    alias start="xdg-open &>/dev/null"
+    alias open="xdg-open &>/dev/null"
+    ;;
+darwin*)
+    alias start="open"
+    ;;
+esac
+
+# }}}
 
 # Color Management *********************************************************{{{
 
