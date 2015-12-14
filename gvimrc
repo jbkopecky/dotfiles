@@ -1,7 +1,7 @@
 if has("win32")
     set guifont=Consolas_for_Powerline_FixedD:h13
 else
-    set guifont=Monaco\ for\ Powerline
+    set guifont=Monaco\ for\ Powerline\ 9
 endif
 
 set guioptions-=m "No Menu
