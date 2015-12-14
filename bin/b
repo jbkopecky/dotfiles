@@ -3,7 +3,7 @@
 # b - browse Chrome bookmarks with fzf
 
 /usr/bin/ruby -x "$0"                                          |
-  fzf-tmux -u 30% --ansi --multi --no-hscroll --tiebreak=begin |
+  fzf-tmux -d 30% --ansi --multi --no-hscroll --tiebreak=begin |
   awk 'BEGIN { FS = "\t" } { print $2 }'                       |
   xargs xdg-open &>/dev/null
 
