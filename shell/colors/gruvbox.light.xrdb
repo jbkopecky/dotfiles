@@ -3,9 +3,6 @@
 ! GRUVBOX LIGHT 
 ! -----------------------------------------------------------------------------
 
-! hard contrast: *background: #f9f5d7
-! soft contrast: *background: #f2e5bc
-
 #define   Background_Color      #fbf1c7
 #define   Foreground_Color      #3c3836
 #define   Ansi_0_Color          #fdf4c1

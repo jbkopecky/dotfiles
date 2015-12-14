@@ -23,6 +23,4 @@ color7='#7c6f64'
 color15='#3c3836'
 cursor='#ffa560'
 cursor_text='#ffffff'
-selected_text='#f4f4f4'
-selection='#474e91'
                  

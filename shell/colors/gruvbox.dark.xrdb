@@ -3,9 +3,6 @@
 ! GRUVBOX DARK
 ! -----------------------------------------------------------------------------
 
-! hard contrast: #1d2021
-! soft contrast: #32302f
-!
 #define   Background_Color      #282828
 #define   Foreground_Color      #ebdbb2
 #define   Ansi_0_Color          #282828
