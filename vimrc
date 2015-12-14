@@ -1,5 +1,5 @@
 "=============================================================================="
-"                                JBK  VIMRC
+"                                JBK's  VIMRC
 "=============================================================================="
 
 " Runtime Path ************************************************************ {{{
@@ -313,6 +313,9 @@ autocmd FileType python let b:dispatch = 'python %'
 
 let my_wiki = {}
 let my_wiki.path = '~/Dropbox/Wiki/'
+let my_wiki.template_path='~/Dropbox/Wiki/templates/'
+let my_wiki.template_default='default'
+let my_wiki.template_ext='.html'
 let my_wiki.nested_syntaxes = {'python': 'python', 'vim': 'vim'}
 
 let g:vimwiki_list=[my_wiki]

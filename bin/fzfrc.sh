@@ -79,6 +79,7 @@ fo() { # {{{
   fi
 } # }}}
 
+# Tmux Helper Functions
 if [ -n "$TMUX_PANE" ]; then # {{{
 
   fzf_tmux_helper() { # {{{
