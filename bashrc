@@ -36,6 +36,9 @@ alias l='ls -CF'
 alias ll='ls -alF'
 alias la='ls -a'
 
+alias clear='clear; tmux clear-history'
+alias reset='reset; tmux clear-history'
+
 alias how="howdoi -c"
 
 #}}}
