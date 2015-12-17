@@ -36,6 +36,7 @@ Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ajh17/VimCompletesMe'
+Plug 'tommcdo/vim-exchange'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'szw/vim-tags',         {'on': 'TagsGenerate'}
 
