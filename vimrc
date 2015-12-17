@@ -435,6 +435,32 @@ let g:journal#dirs = ['Notes']
 
 "}}}
 
+" Todo ******************************************************************** {{{
+function! s:todo() abort
+  let entries = []
+  for cmd in ['git grep -n -e TODO -e FIXME -e XXX 2> /dev/null',
+            \ 'grep -rn -e TODO -e FIXME -e XXX * 2> /dev/null']
+    let lines = split(system(cmd), '\n')
+    if v:shell_error != 0 | continue | endif
+    for line in lines
+      let entry = matchlist(line, '^\([^:]*\):\([^:]*\):\(.*\)')
+      if len(entry)>3
+        let [fname, lno, text]=entry[1:3]
+        call add(entries, { 'filename': fname, 'lnum': lno, 'text': text })
+      endif
+    endfor
+    break
+  endfor
+
+  if !empty(entries)
+    call setqflist(entries)
+    copen
+  endif
+endfunction
+
+command! Todo call s:todo()
+" }}}
+
 " Color Toggle ************************************************************ {{{
 function! s:rotate_colors()
   "{{{
