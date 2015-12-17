@@ -382,6 +382,8 @@ let g:startify_custom_header = [
 
 " CtrlP ******************************************************************* {{{
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_extensions = ['buffertag', 'line', 'mru', 'dir']
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
