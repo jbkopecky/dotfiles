@@ -103,11 +103,11 @@ endif
 " Colors ****************************************************************** {{{
 set t_Co=256
 
-if has('gui_running')
+if has('gui_running') "{{{
   let g:airline_theme = 'seoul256'
   set background=light
-  silent! colorscheme seoul256-light
-else
+  silent! colorscheme seoul256-light "}}}
+else "{{{
   if ($BG=='dark' || $BG=='light') && $COLOR!=''
     " Color Sync with bash & term settings {{{
     if $BG=='dark'
@@ -126,7 +126,7 @@ else
     set bg=dark
     silent! colorscheme gruvbox
   endif
-endif
+endif "}}}
 
 "}}}
 
