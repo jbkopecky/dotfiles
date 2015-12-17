@@ -28,7 +28,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 
 Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
-Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
+Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
 Plug 'junegunn/limelight.vim',  {'on': 'Limelight'}
 Plug 'junegunn/goyo.vim',       {'on': 'Goyo'}
 
@@ -221,9 +221,10 @@ let g:maplocalleader = "\<Space>"
 " Escape shorcut
 inoremap kj <Esc>
 
-" Split Join
-nmap sj :SplitjoinSplit<cr>
-nmap sk :SplitjoinJoin<cr>
+" EasyAlign
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+nmap gaa ga_
 
 " Splits Navigation
 nnoremap <C-J> <C-W><C-J>
