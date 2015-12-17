@@ -19,6 +19,8 @@ let g:vimtex_view_general_viewer = 'SumatraPDF'
 let g:vimtex_view_general_options = '-forward-search @tex @line @pdf'
 let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 
+let g:vimtex_latexmk_progname='gvim'
+
 " }}}
 
 " Airline ******************************************************************{{{
