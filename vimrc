@@ -45,7 +45,6 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tpope/vim-markdown',   {'for': ['md', 'mkd']}
 Plug 'lervag/vimtex'
 Plug 'chrisbra/csv.vim'
-Plug 'vimwiki/vimwiki'
 Plug 'junegunn/vim-journal'
 
 if has('unix')
@@ -311,25 +310,6 @@ let g:airline#extensions#csv#column_display = 'Name'
 autocmd FileType python let b:dispatch = 'python %'
 "}}}
 
-" Wiki ******************************************************************** {{{
-
-let my_wiki = {}
-let my_wiki.path = '~/Dropbox/Wiki/'
-let my_wiki.template_path='~/Dropbox/Wiki/templates/'
-let my_wiki.template_default='default'
-let my_wiki.template_ext='.html'
-let my_wiki.nested_syntaxes = {'python': 'python', 'vim': 'vim'}
-
-let g:vimwiki_list=[my_wiki]
-
-let g:vimwiki_hl_headers=1
-let g:vimwiki_hl_cb_checked=1
-let g:vimwiki_folding='list'
-
-let g:vimwiki_table_mappings = 0 "This steals my completion mapping on <Tab>
-
-"}}}
-
 " VimCompletesMe ********************************************************** {{{
 
 set dictionary=/usr/share/dict/words
@@ -419,14 +399,8 @@ autocmd User GoyoEnter nested call <SID>goyo_enter()
 autocmd User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 
-" vimtex ****************************************************************** {{{
-"}}}
-
 " Markdown **************************************************************** {{{
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
-"}}}
-
-" CSV ********************************************************************* {{{
 "}}}
 
 " journal ***************************************************************** {{{

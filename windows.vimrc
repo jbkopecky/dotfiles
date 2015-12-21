@@ -5,7 +5,11 @@ set lines=43 columns=190
 " }}}
 
 " Startify bookmarks *******************************************************{{{
-let g:startify_bookmarks = [  {'g':'~\\Documents\\Github\\dotfiles\\gvimrc'}, {'vv':'~\\Documents\\Github\\dotfiles\\vimrc'}, {'l':'~\\Documents\\GitHub\\dotfiles\\windows.vimrc'} ]
+let g:startify_bookmarks = [ 
+                        \ {'g':'~\\Documents\\Github\\dotfiles\\gvimrc'},
+                        \ {'vv':'~\\Documents\\Github\\dotfiles\\vimrc'},
+                        \ {'l':'~\\Documents\\GitHub\\dotfiles\\windows.vimrc'},
+                        \  ]
 " }}}
 
 " Gutentags ****************************************************************{{{
