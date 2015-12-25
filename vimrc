@@ -304,6 +304,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#whitespace#symbol = '•'
 let g:airline#extensions#csv#column_display = 'Name'
+let g:airline#extensions#wordcount#filetypes = '*.journal|*.tex'
 "}}}
 
 " Dispatch **************************************************************** {{{
@@ -353,7 +354,7 @@ let g:startify_list_order = [
 " Header {{{
 let g:startify_custom_header = [
 \ '',
-\ '                              ~ 不作死就不会死 ~ ',
+\ '                               ~ 吃得苦中苦,方为人上人 ~ ',
 \ '',
 \ '',
 \ ] "}}}

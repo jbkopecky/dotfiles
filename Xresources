@@ -6,6 +6,8 @@
 xterm*utf8: 1
 /* xterm*locale:true */
 
+! Fix Alt key
+Xterm*metaSendsEscape: true
 ! Color support
 xterm*customization: -color
 xterm*termName: xterm-256color
@@ -33,7 +35,7 @@ xterm*scrollTtyOutput: false
 xterm*selectToClipboard: true
 
 ! Include default color scheme
-#include ".dotfiles/shell/colors/gruvbox.dark.xrdb"
+#include ".dotfiles/shell/colors/seoul256.dark.xrdb"
 
 ! Apply included colors
 xterm*color0:      Ansi_0_Color

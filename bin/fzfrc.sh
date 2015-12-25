@@ -121,7 +121,7 @@ fi # }}}
 # vinfo - open files in ~/.viminfo
 vf() { # {{{
   local files
-  files=$(grep '^>' ~/.viminfo | cut -c3- |
+  files=$(grep '^>' ~/.vim/info/viminfo\' | cut -c3- |
           while read line; do
             [ -f "${line/\~/$HOME}" ] && echo "$line"
           done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
