@@ -243,12 +243,16 @@ fi
 if [ ! -f ~/.Xresources ]; then
     echo "   Creating Xresources!"
     ln -sf $current_path/Xresources ~/.Xresources
-    xrdb -merge  ~/.Xresources
+    if command_exists xrdb; then
+        xrdb -merge  ~/.Xresources
+    fi
 elif $REPLACE_FILES; then
     echo "   Replacing old Xresources!"
     mv ~/.Xresources $current_path/bak/
     ln -sf $current_path/Xresources ~/.Xresources
-    xrdb -merge  ~/.Xresources
+    if command_exists xrdb; then
+        xrdb -merge  ~/.Xresources
+    fi
 else
     echo "   Keeping existing Xresources!"
 fi

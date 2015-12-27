@@ -6,8 +6,6 @@
 xterm*utf8: 1
 /* xterm*locale:true */
 
-! Fix Alt key
-Xterm*metaSendsEscape: true
 ! Color support
 xterm*customization: -color
 xterm*termName: xterm-256color
