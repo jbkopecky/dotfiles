@@ -412,9 +412,12 @@ let g:journal#dirs = ['Notes']
 
 " Todo ******************************************************************** {{{
 function! s:todo() abort
+  let cmds =  [
+             \ 'git grep -n -e TODO -e FIXME -e XXX 2> /dev/null',
+             \ 'grep -rn -e TODO -e FIXME -e XXX * 2> /dev/null',
+             \ ]
   let entries = []
-  for cmd in ['git grep -n -e TODO -e FIXME -e XXX 2> /dev/null',
-            \ 'grep -rn -e TODO -e FIXME -e XXX * 2> /dev/null']
+  for cmd in cmds
     let lines = split(system(cmd), '\n')
     if v:shell_error != 0 | continue | endif
     for line in lines
