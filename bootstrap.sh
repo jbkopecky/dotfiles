@@ -28,22 +28,22 @@ command_exists() {
 # Basic requirements check ************************************************ {{{
 #==============================================================================
 
-if ! command_exists apt-get; then
-  echo "This istaller is only comaptible with debian/ubuntu based Linux distributrions."
+if ! command_exists pacman; then
+  echo "This istaller is only comaptible with Arch based Linux distributrions."
   echo "Please install configuration files manually."
   exit
 fi
 
 if ! command_exists curl; then
-  sudo apt-get install -y curl
+  sudo pacman -S curl
 fi
 
 if ! command_exists git; then
-  sudo apt-get install -y git
+  sudo pacman -S git
 fi
 
 if ! command_exists wget; then
-  sudo apt-get install -y wget
+  sudo pacman -S wget
 fi
 
 # }}}
@@ -120,7 +120,7 @@ fi
 echo -n "[ tmux.conf ]   "
 
 if ! command_exists tmux; then
-    sudo apt-get install tmux -y
+    sudo pacman -S tmux
 fi
 
 if [ ! -f ~/.tmux.conf ]; then
@@ -233,11 +233,11 @@ fi
 echo -n "[ Xresources ]   "
 
 if ! command_exists xterm; then
-  sudo apt-get install xterm -y
+  sudo pacman -S xterm
 fi
 
 if ! command_exists xtermcontrol; then
-  sudo apt-get install xtermcontrol -y
+  sudo pacman -S xtermcontrol 
 fi
 
 if [ ! -f ~/.Xresources ]; then

@@ -1,7 +1,7 @@
 # Variables ****************************************************************{{{
 
 export EDITOR=vim
-export LANG=en_US.UTF-8
+export VISUAL=vim
 
 EXTRA=$HOME/.local.bashrc
 PLUGGINS=$HOME/Bin
@@ -25,7 +25,6 @@ alias tmk="tmux kill-session"
 alias tm="tmux new-session"
 
 # Vim aliases
-alias vim="vim --servername VIM"
 alias vi="vim"
 alias v="vim"
 
