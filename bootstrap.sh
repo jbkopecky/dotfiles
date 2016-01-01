@@ -261,31 +261,31 @@ fi
 
 # Misc ******************************************************************** {{{
 #==============================================================================
-echo -n "[ Bin ]         "
+echo -n "[ bin ]         "
 
-if [ ! -d ~/Bin ]; then
-    echo "    Creating Bin!"
-    mkdir ~/Bin
+if [ ! -d ~/bin ]; then
+    echo "    Creating bin!"
+    mkdir ~/bin
 elif  $REPLACE_FILES; then
-    echo "    Replacing old Bin!"
-    (cd ~/Bin && tar c .) | (cd $current_path/bak && tar xf -)
+    echo "    Replacing old bin!"
+    (cd ~/bin && tar c .) | (cd $current_path/bak && tar xf -)
     cd $current_path
-    rm -rf ~/Bin
-    mkdir ~/Bin
+    rm -rf ~/bin
+    mkdir ~/bin
 else
     echo "    Keeping existing Bin!"
 fi
 
 for bin in $current_path/bin/*; do
-    echo -n "[ Bin ]         "
+    echo -n "[ bin ]         "
     file=${bin##*/}
-    if [ ! -f ~/Bin/$file ]; then
-        ln -sf $bin ~/Bin/$file
+    if [ ! -f ~/bin/$file ]; then
+        ln -sf $bin ~/bin/$file
         echo "    Linking Missing $file"
     elif $REPLACE_FILES; then
         echo "    Replacing $file !"
-        mv ~/Bin/$file $current_path/bak/
-        ln -sf $bin ~/Bin/$file
+        mv ~/bin/$file $current_path/bak/
+        ln -sf $bin ~/bin/$file
     else
         echo "    Keeping $file"
     fi

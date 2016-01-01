@@ -31,7 +31,7 @@
 
 		<menu id="System Tools" label="System Tools">
 			<item label="urxvt">
-				<action name="Execute"><execute>urxvtc</execute></action>
+				<action name="Execute"><execute>urxvt</execute></action>
 			</item>
 		</menu> <!-- System Tools -->
 

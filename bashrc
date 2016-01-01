@@ -4,7 +4,9 @@ export EDITOR=vim
 export VISUAL=vim
 
 EXTRA=$HOME/.local.bashrc
-PLUGGINS=$HOME/Bin
+PLUGGINS=$HOME/bin
+
+export PATH="$PATH:$PLUGGINS"
 
 DEFAULT_BG="dark"
 DEFAULT_COLOR="gruvbox"
@@ -120,5 +122,5 @@ hyp=$PLUGGINS/hyperjump
 
 # fzf **********************************************************************{{{
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/.fzf.bash ] && source ~/Bin/fzfrc.sh
+[ -f ~/.fzf.bash ] && source ~/bin/fzfrc.sh
 # }}}
