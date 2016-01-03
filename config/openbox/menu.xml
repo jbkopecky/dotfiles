@@ -13,8 +13,8 @@
 		<separator />
 
 		<menu id="Internet" label="Internet">
-			<item label="Chrome">
-				<action name="Execute"><execute>chromium </execute></action>
+			<item label="Firefox">
+				<action name="Execute"><execute>iceweasel </execute></action>
 			</item>
 
 		</menu> <!-- Internet -->

@@ -1,4 +1,4 @@
 # Autostart programs with openbox
 
 # Start xterm
-xterm
+urxvt
