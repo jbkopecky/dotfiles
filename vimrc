@@ -102,7 +102,6 @@ endif
 
 " Colors ****************************************************************** {{{
 set t_Co=256
-
 if has('gui_running') "{{{
   let g:airline_theme = 'seoul256'
   set background=light
@@ -127,12 +126,10 @@ else "{{{
     silent! colorscheme gruvbox
   endif
 endif "}}}
-
 "}}}
 
 " Invisible Characters **************************************************** {{{
 " ․ ‣ · ∘ ∙ • ⁕ ↓ → ∆ ∇〈〉《》
-
 set listchars=tab:‣\ ,trail:∙,eol:¬,precedes:«,extends:»
 let &showbreak = '→ '
 "}}}
@@ -158,7 +155,6 @@ set foldtext=MyFoldText()
 
 " File Type *************************************************************** {{{
 let g:tex_flavor="latex" "Recognise Latex files
-
 if has("autocmd")
     augroup Misc "{{{
         autocmd!
@@ -166,7 +162,6 @@ if has("autocmd")
         autocmd BufReadPost * if getline(1) =~# '^#!' | let b:dispatch = getline(1)[2:-1] . ' %' | let b:start = b:dispatch | endif
         autocmd BufReadPost ~/.Xdefaults,~/.Xresources let b:dispatch = 'xrdb -load %'
     augroup END "}}}
-
     augroup FTOptions "{{{
         autocmd!
 
@@ -202,14 +197,12 @@ if has("autocmd")
               \ endif
 
     augroup END " }}}
-
     augroup FTCheck "{{{
         autocmd!
         autocmd Bufread,BufNewFile *.journal set ft=journal
         autocmd Bufread,BufNewFile *.wiki set ft=vimwiki
     augroup END "}}}
 endif
-
 "}}}
 
 " Mappings **************************************************************** {{{
@@ -296,23 +289,18 @@ command! Q q
 " }}}
 
 " Plugins Settings ******************************************************** {{{
-
 " Airline ***************************************************************** {{{
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#whitespace#symbol = '•'
 let g:airline#extensions#csv#column_display = 'Name'
 let g:airline#extensions#wordcount#filetypes = '*.journal|*.tex'
 "}}}
-
 " Dispatch **************************************************************** {{{
 autocmd FileType python let b:dispatch = 'python %'
 "}}}
-
 " VimCompletesMe ********************************************************** {{{
-
 set dictionary=/usr/share/dict/words
 
 autocmd FileType journal         let b:vcm_tab_complete = 'dict'
@@ -323,19 +311,15 @@ autocmd FileType md,markdown     let b:vcm_tab_complete = 'omni'
 autocmd FileType vimwiki,*.wiki  let b:vcm_tab_complete = 'omni'
 autocmd FileType python          let b:vcm_tab_complete = 'omni'
 autocmd FileType tex             let b:vcm_tab_complete = 'omni'
-
 " }}}
-
 " VimTags ***************************************************************** {{{
 let g:vim_tags_use_vim_dispatch=1
 " }}}
-
 " Jedi-vim **************************************************************** {{{
 let g:python_highlight_all = 1
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = "<leader>u"
 "}}}
-
 " Startify **************************************************************** {{{
 let g:startify_files_number = 5
 
@@ -360,7 +344,6 @@ let g:startify_custom_header = [
 \ ] "}}}
 
 "}}}
-
 " CtrlP ******************************************************************* {{{
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_cmd = 'CtrlPLastMode'
@@ -370,13 +353,12 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$',
   \}
 "}}}
-
 " Goyo & Limelight ******************************************************** {{{
 let g:limelight_paragraph_span = 1
 let g:limelight_conceal_ctermfg = 'DarkGray'
 let g:limelight_default_coefficient = 0.7
 
-function! s:goyo_enter()
+function! s:goyo_enter() "{{{
     if has('gui_running')
         silent !set fullscreen
         set linespace=7
@@ -384,9 +366,8 @@ function! s:goyo_enter()
         silent !tmux set status off
     endif
     Limelight
-endfunction
-
-function! s:goyo_leave()
+endfunction "}}}
+function! s:goyo_leave() "{{{
     if has('gui_running')
         silent !set nofullscreen
         set linespace=0
@@ -394,24 +375,21 @@ function! s:goyo_leave()
         silent !tmux set status on
     endif
     Limelight!
-endfunction
+endfunction "}}}
 
 autocmd User GoyoEnter nested call <SID>goyo_enter()
 autocmd User GoyoLeave nested call <SID>goyo_leave()
 "}}}
-
 " Markdown **************************************************************** {{{
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
 "}}}
-
 " journal ***************************************************************** {{{
 let g:journal#dirs = ['Notes']
 "}}}
-
 "}}}
 
 " Todo ******************************************************************** {{{
-function! s:todo() abort
+function! s:todo() abort "{{{
   let cmds =  [
              \ 'git grep -n -e TODO -e FIXME -e XXX 2> /dev/null',
              \ 'grep -rn -e TODO -e FIXME -e XXX * 2> /dev/null',
@@ -434,14 +412,12 @@ function! s:todo() abort
     call setqflist(entries)
     copen
   endif
-endfunction
-
+endfunction "}}}
 command! Todo call s:todo()
 " }}}
 
 " Color Toggle ************************************************************ {{{
-function! s:rotate_colors()
-  "{{{
+function! s:rotate_colors() "{{{
   if !exists('s:colors_list')
     let s:colors_list =
     \ sort(map(
