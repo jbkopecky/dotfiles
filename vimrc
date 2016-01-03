@@ -10,14 +10,14 @@ endif
 
 " Plugins ! *************************************************************** {{{
 silent! call plug#begin('~/.vim/plugged')
-
+" -----------------------------------------------------------------------------
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 Plug 'jonathanfilip/vim-lucius'
-
+" -----------------------------------------------------------------------------
 Plug 'bling/vim-airline'
 Plug 'mhinz/vim-startify'
-
+" -----------------------------------------------------------------------------
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
@@ -26,12 +26,12 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
-
+" -----------------------------------------------------------------------------
 Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
 Plug 'junegunn/limelight.vim',  {'on': 'Limelight'}
 Plug 'junegunn/goyo.vim',       {'on': 'Goyo'}
-
+" -----------------------------------------------------------------------------
 Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mhinz/vim-signify'
@@ -39,18 +39,17 @@ Plug 'ajh17/VimCompletesMe'
 Plug 'tommcdo/vim-exchange'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'szw/vim-tags',         {'on': 'TagsGenerate'}
-
+" -----------------------------------------------------------------------------
 Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex', 'vimwiki']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tpope/vim-markdown',   {'for': ['md', 'mkd']}
 Plug 'lervag/vimtex'
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-journal'
-
+" -----------------------------------------------------------------------------
 if has('unix')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 endif
-
 call plug#end()
 "}}}
 
@@ -80,7 +79,6 @@ set colorcolumn=80                   " Color 80 col
 set fo-=t                            " no automatic wrap text when typing
 set linebreak                        " Breaks fold at end of word
 set cursorline                       " Show cursor line
-set clipboard=unnamed                " Easier paste
 set tabstop=4                        " Four spaces tabs
 set shiftwidth=4                     " Four spaces shifts
 set shiftround                       " Round Shifts
@@ -438,7 +436,7 @@ endfunction "}}}
 "}}}
 
 " Local Vimrc ************************************************************* {{{
-if filereadable(glob("~/.local.vimrc"))
+if filereadable(glob("~/.local.vimrc")) "{{{
   so ~/.local.vimrc
-endif
+endif "}}}
 "}}}
