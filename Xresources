@@ -12,7 +12,7 @@ xterm*termName: xterm-256color
 
 ! Font settings
 xterm*faceName: Monaco for Powerline:size=12
-xterm*faceNameDoublesize:WenQuanYi Micro Hei Mono
+xterm*faceNameDoublesize: WenQuanYi Micro Hei Mono
 
 ! select URLS
 xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
