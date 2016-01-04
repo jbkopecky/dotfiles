@@ -86,6 +86,7 @@ set expandtab smarttab               " Smart tabs
 set fileformats=unix,dos,mac         " Freaking formats
 set encoding=utf-8 nobomb            " Freaking formats
 set noshowmode                       " dont show mode. airline does it
+set clipboard=unnamed
 set lazyredraw                       " Speed up things
 set splitright                       " More natural split opening
 set tags=./tags;/                    " ctags
