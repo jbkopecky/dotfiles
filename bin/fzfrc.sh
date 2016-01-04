@@ -81,6 +81,12 @@ fo() { # {{{
   fi
 } # }}}
 
+# flines - Search lines in file or * (all files in directory)
+flines() {
+    local files=$1
+    grep --line-buffered --color=never -r "" $files | fzf
+}
+
 # Tmux Helper Functions
 if [ -n "$TMUX_PANE" ]; then # {{{
 
