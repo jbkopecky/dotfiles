@@ -13,4 +13,4 @@ tmux/resurrect
 .netrwhist
 shell/colors/colors.sh
 shell/colors/colors.xrdb
-error.log
+*/error.log
