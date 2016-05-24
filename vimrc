@@ -13,9 +13,7 @@ silent! call plug#begin('~/.vim/plugged')
 " -----------------------------------------------------------------------------
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
-Plug 'jonathanfilip/vim-lucius'
 " -----------------------------------------------------------------------------
-Plug 'bling/vim-airline'
 Plug 'mhinz/vim-startify'
 " -----------------------------------------------------------------------------
 Plug 'tpope/vim-commentary'
@@ -25,20 +23,15 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-signify'
 " -----------------------------------------------------------------------------
-Plug 'junegunn/vim-oblique' | Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
-Plug 'junegunn/limelight.vim',  {'on': 'Limelight'}
-Plug 'junegunn/goyo.vim',       {'on': 'Goyo'}
 " -----------------------------------------------------------------------------
 Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ajh17/VimCompletesMe'
-Plug 'tommcdo/vim-exchange'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
-Plug 'szw/vim-tags',         {'on': 'TagsGenerate'}
 " -----------------------------------------------------------------------------
 Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex', 'vimwiki']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
@@ -89,7 +82,6 @@ set noshowmode                       " dont show mode. airline does it
 set clipboard=unnamed
 set lazyredraw                       " Speed up things
 set splitright                       " More natural split opening
-set tags=./tags;/                    " ctags
 if exists('+undofile')               " If possible
   set undofile                       " Set Undo file
   set undodir=~/.vim/undo//          " Specify undodir
@@ -101,30 +93,7 @@ endif
 
 " Colors ****************************************************************** {{{
 set t_Co=256
-if has('gui_running') "{{{
-  let g:airline_theme = 'seoul256'
-  set background=light
-  silent! colorscheme seoul256-light "}}}
-else "{{{
-  if ($BG=='dark' || $BG=='light') && $COLOR!=''
-    " Color Sync with bash & term settings {{{
-    if $BG=='dark'
-        set background=dark
-        colo $COLOR
-    else
-        set background=light
-        if $COLOR=='seoul256'
-            let g:airline_theme = 'seoul256'
-            colo seoul256-light
-        else
-            colo $COLOR
-        endif
-    endif "}}}
-  else
-    set bg=dark
-    silent! colorscheme gruvbox
-  endif
-endif "}}}
+colo seoul256
 "}}}
 
 " Invisible Characters **************************************************** {{{
@@ -150,6 +119,53 @@ function! MyFoldText() " {{{
     return line . ' ' . repeat("-",fillcharcount) . ' ' . foldedlinecount . ' ' . '  '
 endfunction " }}}
 set foldtext=MyFoldText()
+"}}}
+
+" StatusLine  ************************************************************* {{{
+function! StatusLineHi() "{{{
+    hi clear StatusLine
+    hi clear StatusLineNC
+    hi! def link StatusLine NonText
+    hi! def link StatusLineNC SpecialKey
+    hi def link User1 Identifier
+    hi def link User2 Statement
+    hi def link User3 Error
+    hi def link User4 Special
+    hi def link User5 Comment
+    hi def link User6 WarningMsg
+endfunction "}}}
+function! WindowNumber() "{{{
+  return tabpagewinnr(tabpagenr())
+endfunction "}}}
+function! TrailingSpaceWarning() "{{{
+  if !exists("b:statline_trailing_space_warning")
+    let lineno = search('\s$', 'nw')
+    if lineno != 0
+      let b:statline_trailing_space_warning = '∙ '.lineno.' ∙'
+    else
+      let b:statline_trailing_space_warning = ''
+    endif
+  endif
+  return b:statline_trailing_space_warning
+endfunction "}}}
+augroup statline_trail "{{{
+  " recalculate when idle, and after saving
+  autocmd!
+  autocmd cursorhold,bufwritepost * unlet! b:statline_trailing_space_warning
+augroup END "}}}
+
+call StatusLineHi()
+
+set statusline=
+set statusline+=%6*%m%r%*                            " modified, readonly
+set statusline+=\ %5*%{expand('%:h')}/               " relative path to file's directory
+set statusline+=%1*%t%*                              " file name
+set statusline+=\ \ %3*%{TrailingSpaceWarning()}%*   " trailing whitespace
+set statusline+=%=                                   " switch to RHS
+set statusline+=\ %4*%y%*
+set statusline+=\ \ %5*%L%*                   " number of lines
+set statusline+=\ \ \ %2*win:%-3.3{WindowNumber()}%* " window number
+
 "}}}
 
 " File Type *************************************************************** {{{
@@ -224,6 +240,18 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Windowing.
+" Use | and _ to split windows (while preserving original behaviour of [count]bar and [count]_).
+nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>normal! 0".v:count."<Bar><CR>"
+nnoremap <expr><silent> _     v:count == 0 ? "<C-W>s<C-W><Down>"  : ":<C-U>normal! ".v:count."_<CR>"
+
+" Jump to window <n>:
+" http://stackoverflow.com/a/6404246/151007
+let i = 1
+while i <= 9
+  execute 'nnoremap <Leader>'.i.' :'.i.'wincmd w<CR>'
+  let i = i + 1
+endwhile
 " Motions
 noremap H ^
 noremap L g_
@@ -244,7 +272,6 @@ map <silent> <Leader>c :cd %:p:h<CR>
 map <Leader>i :set list!<CR>
 nnoremap <silent> <Leader><Leader> :noh<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
-nnoremap <Leader>G :Goyo<CR>
 
 nnoremap U :UndotreeToggle<CR>
 
@@ -260,23 +287,6 @@ nnoremap <F7> :w<CR> :Start<CR>
 
 nnoremap <F8> :call <SID>rotate_colors()<cr>
 
-" Some Tpope's sweets
-inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map([
-                                                               \ "%Y-%m-%d",
-                                                               \ "%Y %b %d",
-                                                               \ "%d-%b-%y",
-                                                               \ "%Y-%m-%d %H:%M:%S",
-                                                               \ "%a %b %d %T %Z %Y",
-                                                               \ "%a, %d %b %Y %H:%M:%S %z",
-                                                               \ ], 'strftime(v:val)')),0)<CR>
-
-if (&t_Co > 2 || has("gui_running")) && has("syntax")
-  command! -bar -nargs=0 Bigger  :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)+1','')
-  command! -bar -nargs=0 Smaller :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)-1','')
-  noremap <M-,>        :Smaller<CR>
-  noremap <M-.>        :Bigger<CR>
-endif
-
 "}}}
 
 " Abbreviations *********************************************************** {{{
@@ -288,14 +298,6 @@ command! Q q
 " }}}
 
 " Plugins Settings ******************************************************** {{{
-" Airline ***************************************************************** {{{
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline#extensions#whitespace#symbol = '•'
-let g:airline#extensions#csv#column_display = 'Name'
-let g:airline#extensions#wordcount#filetypes = '*.journal|*.tex'
-"}}}
 " Dispatch **************************************************************** {{{
 autocmd FileType python let b:dispatch = 'python %'
 "}}}
@@ -310,9 +312,6 @@ autocmd FileType md,markdown     let b:vcm_tab_complete = 'omni'
 autocmd FileType vimwiki,*.wiki  let b:vcm_tab_complete = 'omni'
 autocmd FileType python          let b:vcm_tab_complete = 'omni'
 autocmd FileType tex             let b:vcm_tab_complete = 'omni'
-" }}}
-" VimTags ***************************************************************** {{{
-let g:vim_tags_use_vim_dispatch=1
 " }}}
 " Jedi-vim **************************************************************** {{{
 let g:python_highlight_all = 1
@@ -331,7 +330,6 @@ let g:startify_list_order = [
     \ ['   ---'],
     \ 'sessions',
     \ ['   ---'],
-    \ 'bookmarks',
     \ ] "}}}
 
 " Header {{{
@@ -351,33 +349,6 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
   \}
-"}}}
-" Goyo & Limelight ******************************************************** {{{
-let g:limelight_paragraph_span = 1
-let g:limelight_conceal_ctermfg = 'DarkGray'
-let g:limelight_default_coefficient = 0.7
-
-function! s:goyo_enter() "{{{
-    if has('gui_running')
-        silent !set fullscreen
-        set linespace=7
-    elseif exists('$TMUX')
-        silent !tmux set status off
-    endif
-    Limelight
-endfunction "}}}
-function! s:goyo_leave() "{{{
-    if has('gui_running')
-        silent !set nofullscreen
-        set linespace=0
-    elseif exists('$TMUX')
-        silent !tmux set status on
-    endif
-    Limelight!
-endfunction "}}}
-
-autocmd User GoyoEnter nested call <SID>goyo_enter()
-autocmd User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 " Markdown **************************************************************** {{{
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
@@ -430,7 +401,7 @@ function! s:rotate_colors() "{{{
   let name = s:colors_list[s:colors_index]
   set bg=dark
   execute 'colorscheme' name
-  silent! execute 'AirlineTheme' name
+  call StatusLineHi()
   redraw
   echo name
 endfunction "}}}
