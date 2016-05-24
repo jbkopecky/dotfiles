@@ -152,7 +152,7 @@ function! Fugitive() "{{{
     let head = fugitive#head()
     return head
 endfunction "}}}
-function! Signify() "{{
+function! Signify() "{{{
     let symbols = ['+', '-', '~']
     let [added, modified, removed] = sy#repo#get_stats()
     let stats = [added, removed, modified]  " reorder
