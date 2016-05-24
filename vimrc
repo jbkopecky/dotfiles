@@ -15,6 +15,7 @@ Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 " -----------------------------------------------------------------------------
 Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-signify'
 " -----------------------------------------------------------------------------
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -23,13 +24,12 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-signify'
+Plug 'tpope/vim-fugitive'
 " -----------------------------------------------------------------------------
 Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
 " -----------------------------------------------------------------------------
 Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mhinz/vim-signify'
 Plug 'ajh17/VimCompletesMe'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 " -----------------------------------------------------------------------------
@@ -134,9 +134,6 @@ function! StatusLineHi() "{{{
     hi def link User5 Comment
     hi def link User6 WarningMsg
 endfunction "}}}
-function! WindowNumber() "{{{
-  return tabpagewinnr(tabpagenr())
-endfunction "}}}
 function! TrailingSpaceWarning() "{{{
   if !exists("b:statline_trailing_space_warning")
     let lineno = search('\s$', 'nw')
@@ -148,11 +145,37 @@ function! TrailingSpaceWarning() "{{{
   endif
   return b:statline_trailing_space_warning
 endfunction "}}}
+function! Fugitive() "{{{
+    if !exists('g:loaded_fugitive')
+        return ''
+    endif
+    let head = fugitive#head()
+    return head
+endfunction "}}}
+function! Signify() "{{
+    let symbols = ['+', '-', '~']
+    let [added, modified, removed] = sy#repo#get_stats()
+    let stats = [added, removed, modified]  " reorder
+    let hunkline = ''
+
+    for i in range(3)
+    if stats[i] > 0
+        let hunkline .= printf('%s%s ', symbols[i], stats[i])
+    endif
+    endfor
+
+    if !empty(hunkline)
+    let hunkline = printf('[%s]', hunkline[:-2])
+    endif
+
+    return hunkline
+endfunction "}}}
 augroup statline_trail "{{{
   " recalculate when idle, and after saving
   autocmd!
   autocmd cursorhold,bufwritepost * unlet! b:statline_trailing_space_warning
 augroup END "}}}
+
 
 call StatusLineHi()
 
@@ -160,11 +183,12 @@ set statusline=
 set statusline+=%6*%m%r%*                            " modified, readonly
 set statusline+=\ %5*%{expand('%:h')}/               " relative path to file's directory
 set statusline+=%1*%t%*                              " file name
-set statusline+=\ \ %3*%{TrailingSpaceWarning()}%*   " trailing whitespace
+set statusline+=\ %2*%{Fugitive()}                 " fugitive
+set statusline+=\ %4*%{Signify()}                 " fugitive
 set statusline+=%=                                   " switch to RHS
-set statusline+=\ %4*%y%*
-set statusline+=\ \ %5*%L%*                   " number of lines
-set statusline+=\ \ \ %2*win:%-3.3{WindowNumber()}%* " window number
+set statusline+=\ %3*%{TrailingSpaceWarning()}%*   " trailing whitespace
+set statusline+=\ %2*%y%*
+set statusline+=\ %5*%L\ %*                          " number of lines
 
 "}}}
 
@@ -240,18 +264,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Windowing.
-" Use | and _ to split windows (while preserving original behaviour of [count]bar and [count]_).
-nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>normal! 0".v:count."<Bar><CR>"
-nnoremap <expr><silent> _     v:count == 0 ? "<C-W>s<C-W><Down>"  : ":<C-U>normal! ".v:count."_<CR>"
-
-" Jump to window <n>:
-" http://stackoverflow.com/a/6404246/151007
-let i = 1
-while i <= 9
-  execute 'nnoremap <Leader>'.i.' :'.i.'wincmd w<CR>'
-  let i = i + 1
-endwhile
 " Motions
 noremap H ^
 noremap L g_
