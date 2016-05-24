@@ -1,0 +1,15 @@
+
+pid_file "/home/jb/.mpd/pid"
+db_file "/home/jb/.mpd/tag_cache"
+state_file "/home/jb/.mpd/state"
+playlist_directory "~/.mpd/playlists"
+music_directory "/home/jb/Music"
+
+user "jb"
+
+audio_output {
+	name "My ALSA Device"
+	type "alsa"
+	mixer_type "software"
+	mixer_control "PCM"
+}
