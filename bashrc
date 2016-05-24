@@ -1,22 +1,16 @@
-# Variables ****************************************************************{{{
+#
+# ~/.bashrc
+#
 
-export EDITOR=vim
-export LANG=en_US.UTF-8
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-EXTRA=$HOME/.local.bashrc
-PLUGGINS=$HOME/Bin
+# source my own .dircolors file
+if [ -f $HOME/.dircolors ]; then
+    eval $(dircolors -b $HOME/.dircolors)
+fi
 
-DEFAULT_BG="dark"
-DEFAULT_COLOR="gruvbox"
-
-# }}}
-
-# Extra Bashrc: to set some paths / variables ******************************{{{
-[ -f "$EXTRA" ] && source "$EXTRA"
-# }}}
-
-# Aliases ******************************************************************{{{
-# TMUX aliases
+# aliases
 alias tmux="tmux -2"
 alias tml="tmux list-sessions"
 alias tma="tmux attach-session"
@@ -29,97 +23,44 @@ alias vim="vim --servername VIM"
 alias vi="vim"
 alias v="vim"
 
-# Aliases
-alias cd.='cd ..'
-alias cd..='cd ..'
-alias l='ls -CF'
-alias ll='ls -alF'
+alias ls='ls --color=auto --group-directories-first -h'
 alias la='ls -a'
+alias grep='grep --color=auto'
+alias ..='cd ..'
+alias ...='cd ../..'
 
-if ! [ -z "$TMUX" ]; then
-    alias clear='clear; tmux clear-history'
-    alias reset='reset; tmux clear-history'
-fi
 
-alias how="howdoi -c"
+# PS1 with error, and git info
+__set_ps1 (){
+    local err="\[\033[1;31m\]"   # error -- red
+    local nor="\[\033[1;30m\]"   # normal -- white
+    local por="\[\033[1;30m\]"   # prompt char
+    local dirty="\[\033[0;33m\]" # dirty git
+    local rst="\[\033[0m\]"      # Text Reset
 
-#}}}
-
-# Misc *********************************************************************{{{
-
-HISTCONTROL=ignoreboth
-HISTSIZE=1000
-HISTFILESIZE=2000
-shopt -s histappend
-shopt -s checkwinsize
-
-# Colored ls
-if [ -x /usr/bin/dircolors ]; then
-  eval "`dircolors -b`"
-  alias ls='ls --color=auto'
-  alias grep='grep --color=auto'
-fi
-
-# Colored GCC
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# friendly less
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-#}}}
-
-# Functions ****************************************************************{{{
-
-# Useful .. func
-..() {
-    for i in $(seq $1); do cd ..; done;
+    # git info
+    local gitinfo=
+    local branch=$(git symbolic-ref HEAD --short 2> /dev/null)
+    if [[ $branch ]]; then
+        local x=$(git status --porcelain)
+        if [[ $x ]]; then
+            gitinfo="${nor}(${dirty}${branch}${nor}) "
+        else
+            gitinfo="${nor}(${branch}) "
+        fi
+    fi
+    #
+    # generate prompt
+    PS1="\n \$([[ \$? != 0 ]] && echo \"$err\" || echo \"$nor\")\W ${gitinfo}${por}» $rst"
 }
+# set PS1
+PROMPT_COMMAND="__set_ps1"
 
-# The Fuck
-alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
+# history settings
+export HISTSIZE=2000
+export HISTFILESIZE=2000
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE="cd *:ls:ls *:history*:cat *:clear:pwd:..:..."
 
-# Remove all *.pyc recursively
-alias clean='find . -name "*.pyc" -exec rm -rf {} \;'
-
-# Fucking Open
-case "$OSTYPE" in
-cygwin*)
-    alias open="cmd /c start"
-    ;;
-linux*)
-    alias start="xdg-open &>/dev/null"
-    alias open="xdg-open &>/dev/null"
-    ;;
-darwin*)
-    alias start="open"
-    ;;
-esac
-
-# }}}
-
-# Color Management *********************************************************{{{
-
-# Must be in XTerm and have installed xtermcontrol to use this hack
-cl=$PLUGGINS/color_manager.sh
-[ -f "$cl" ] && source "$cl"
-
-# }}}
-
-# Responsive Prompt ********************************************************{{{
-
-prpt=$PLUGGINS/my_prompt.sh
-[ -f "$prpt" ] && source "$prpt"
-
-PROMPT_COMMAND=prompt
-
-# }}}
-
-# Hyperjump ****************************************************************{{{
-hyp=$PLUGGINS/hyperjump
-[ -f "$hyp" ] && source "$hyp"
-# }}}
-
-# fzf **********************************************************************{{{
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/.fzf.bash ] && source ~/Bin/fzfrc.sh
-# }}}
+# disable flow control
+stty -ixon
