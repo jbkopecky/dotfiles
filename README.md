@@ -1,4 +1,1 @@
 # dotfiles
-
-## Install
-`./bootstrap.sh`

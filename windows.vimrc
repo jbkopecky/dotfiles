@@ -12,10 +12,6 @@ let g:startify_bookmarks = [
                         \  ]
 " }}}
 
-" Gutentags ****************************************************************{{{
-let g:gutentags_ctags_executable="C:\\Program\ files\\ctags58\ctags.exe"
-" }}}
-
 " Tex **********************************************************************{{{
 " autocmd FileType tex let b:dispatch = 'latex -interaction=nonstopmode %' | setlocal formatoptions+=l
 
@@ -26,22 +22,6 @@ let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 let g:vimtex_latexmk_progname='gvim'
 
 " }}}
-
-" Airline ******************************************************************{{{
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" old vim-powerline symbols
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep = '⮂'
-let g:airline_right_alt_sep = '⮃'
-let g:airline_symbols.branch = '⭠'
-let g:airline_symbols.readonly = '⭤'
-let g:airline_symbols.linenr = '⭡'
-
-"}}}
 
 " Python Path **************************************************************{{{
 " Using Anaconda Distro for Dispatch

@@ -1,10 +1,63 @@
-! =============================================================================
-! ============================== XTERM CONFIG =================================
-! =============================================================================
+!----------------------------------------------------
+! color settings
+!----------------------------------------------------
+
+#include "/home/jb/.scripts/termcolors"
+
+!---------------------------------------------------
+! urxvt config settings
+!---------------------------------------------------
+
+URxvt*geometry:         80x21
+
+! URxvt*font:              xft:monospace:size=8:antialias=false:hinting=false:autohint=false
+! URxvt*boldFont:          xft:monospace:bold:size=8:antialias=false:hinting=false:autohint=false
+
+! URxvt*font:              xft:monaco:regular:size=10:antialias=true:hinting=false:autohint=false
+! URxvt*boldFont:          xft:monaco:bold:size=10:antialias=true:hinting=false:autohint=false
+
+! URxvt*font:              xft:monaco:medium:size=10
+! URxvt*boldFont:          xft:monaco:medium:size=10
+
+! URxvt*font:              xft:fira mono:regular:size=8:antialias=false:hinting=false:autohint=false
+! URxvt*boldFont:          xft:fira mono:bold:size=8:antialias=false:hinting=false:autohint=false
+
+URxvt*font:              -ypn-envypn-medium-r-normal--13-130-75-75-c-90-iso8859-1
+URxvt*boldFont:          -ypn-envypn-medium-r-normal--13-130-75-75-c-90-iso8859-1
+
+URxvt*letterSpace:      -1
+URxvt.savelines:        500
+URxvt*scrollBar:        false
+
+! do not scroll with output
+URxvt*scrollTtyOutput:  false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+! scroll a single line
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+
+! clipboard management
+URxvt.perl-ext-common:  default,clipboard
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+
+! dzen2
+dzen2.font:       monospace:pixelsize=10
+dzen2.foreground: #a0a0a0
+dzen2.background: #262626
+
+!---------------------------------------------------
+! xterm config settings
+!---------------------------------------------------
 
 ! Unicode support
 xterm*utf8: 1
-/* xterm*locale:true */
 
 ! Color support
 xterm*customization: -color
@@ -31,30 +84,3 @@ xterm*scrollTtyOutput: false
 
 ! Save selections to clipboard
 xterm*selectToClipboard: true
-
-! Include default color scheme
-#include ".dotfiles/shell/colors/seoul256.dark.xrdb"
-
-! Apply included colors
-xterm*color0:      Ansi_0_Color
-xterm*color1:      Ansi_1_Color
-xterm*color2:      Ansi_2_Color
-xterm*color3:      Ansi_3_Color
-xterm*color4:      Ansi_4_Color
-xterm*color5:      Ansi_5_Color
-xterm*color6:      Ansi_6_Color
-xterm*color7:      Ansi_7_Color
-xterm*color8:      Ansi_8_Color
-xterm*color9:      Ansi_9_Color
-xterm*color10:     Ansi_10_Color
-xterm*color11:     Ansi_11_Color
-xterm*color12:     Ansi_12_Color
-xterm*color13:     Ansi_13_Color
-xterm*color14:     Ansi_14_Color
-xterm*color15:     Ansi_15_Color
-xterm*colorBD:     Bold_Color
-xterm*colorIT:     Italic_Color
-xterm*colorUL:     Underline_Color
-xterm*foreground:  Foreground_Color
-xterm*background:  Background_Color
-xterm*cursorColor: Cursor_Color

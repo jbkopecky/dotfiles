@@ -1,0 +1,36 @@
+# Shadow
+shadow-opacity = 0.4;
+shadow-red = 0.0;
+shadow-green = 0.0;
+shadow-blue = 0.0;
+
+# Border Transparency
+frame-opacity = 0.8;
+
+# Tight Shadows
+shadow = true;
+shadow-radius = 1;
+shadow-offset-x = 1;
+shadow-offset-y = 1;
+no-dock-shadow = false;
+no-dnd-shadow = true;
+shadow-exclude = [
+	"name = 'noshadow'"
+];
+
+# Soften Windows
+fading = true;
+fade-in-step = 0.18;
+fade-out-step = 0.18;
+fade-exclude = [
+	"name='lemonbar'"
+];
+
+# Extras
+detect-client-opacity = true;
+sw-opti = true;
+detect-transiant = true;
+detect-client-leader = true;
+shadow-ignore-shape = true;
+detect-rounded-corners = true;
+
