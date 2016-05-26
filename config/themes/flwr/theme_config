@@ -6,13 +6,13 @@
 ##         Colors       ##
 ##########################
 
-FG="#9b8582"
-BG="#1c1616"
-ylw="#a47951"
-red="#ab6d4e"
-green="#beb880"
-grey1="#645240"
-grey2="#a0a0a0"
+FG="c8c8c8"
+BG="#3a3a3a"
+ylw="#ffd787"
+red="#d68787"
+green="#5f865f"
+grey1="#757575"
+grey2="#bfbfbf"
 
 ##########################
 ##      dzen popups     ##
@@ -67,7 +67,7 @@ U_BG="#FF${grey2:1}"
 ##########################
 
 focused_border_color=${FG}
-normal_border_color="#3b3228"
+normal_border_color="#3a3a3a"
 active_border_color=${BG}
 presel_border_color=${red}
 

@@ -64,3 +64,5 @@ export HISTIGNORE="cd *:ls:ls *:history*:cat *:clear:pwd:..:..."
 
 # disable flow control
 stty -ixon
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

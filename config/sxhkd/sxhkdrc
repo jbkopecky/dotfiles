@@ -137,7 +137,7 @@ super + space
     gmrun
 
 super + q
-    qutebrowser
+    firefox
 
 super + z
     thunar
