@@ -49,8 +49,8 @@ URxvt.keysym.M-v:   perl:clipboard:paste
 
 ! dzen2
 dzen2.font:       monospace:pixelsize=10
-dzen2.foreground: #a0a0a0
-dzen2.background: #262626
+dzen2.foreground: base05
+dzen2.background: base00
 
 !---------------------------------------------------
 ! xterm config settings
@@ -84,3 +84,22 @@ xterm*scrollTtyOutput: false
 
 ! Save selections to clipboard
 xterm*selectToClipboard: true
+
+! =========
+! ROFI
+! =========
+
+rofi.width:		50
+rofi.padding:	300
+rofi.fullscreen: true
+rofi.fixed-num-lines: true
+rofi.bw:		0
+rofi.location:	0
+rofi.terminal:	urxvt
+rofi.lines:		5
+rofi.eh:		1
+rofi.font:		monaco 14
+rofi.color-window: argb:aa263238, argb:aa263238, base0B
+rofi.color-normal: argb:0263238, base05, argb:0263238, base0D, base07
+rofi.color-active: base07, base0D, 268bd2, base0E, base0D, 268bd2, base07
+rofi.color-urgent: base07, base0F, base0E, base0F, base07

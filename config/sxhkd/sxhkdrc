@@ -134,7 +134,7 @@ super + x
     urxvt
 
 super + space
-    gmrun
+    rofi -show run
 
 super + q
     firefox
