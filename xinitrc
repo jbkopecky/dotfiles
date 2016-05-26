@@ -16,7 +16,7 @@ graphics() {
 	        # xrandr --output DVI-I-1 --mode 1920x1080 --rate 144
 	fi
 
-	hsetroot -tile 'Pictures/Wallpapers/firewatch.jpg'
+	hsetroot -tile 'Pictures/Wallpapers/sea_sunrise.jpg'
 	xsetroot -cursor_name left_ptr
 	# extra ctrl key
 	setxkbmap -option ctrl:nocaps
