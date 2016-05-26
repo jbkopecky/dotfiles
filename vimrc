@@ -34,6 +34,7 @@ Plug 'ajh17/VimCompletesMe'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 " -----------------------------------------------------------------------------
 Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex', 'vimwiki']}
+Plug 'chrisbra/colorizer'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tpope/vim-markdown',   {'for': ['md', 'mkd']}
 Plug 'lervag/vimtex'
@@ -138,7 +139,7 @@ function! TrailingSpaceWarning() "{{{
   if !exists("b:statline_trailing_space_warning")
     let lineno = search('\s$', 'nw')
     if lineno != 0
-      let b:statline_trailing_space_warning = '∙ '.lineno.' ∙'
+      let b:statline_trailing_space_warning = '∙ '.lineno.' '
     else
       let b:statline_trailing_space_warning = ''
     endif

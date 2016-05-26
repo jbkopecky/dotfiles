@@ -1,1 +1,1 @@
-../config/themes/flwr/panel.sh
+../config/themes/seoul/panel.sh
