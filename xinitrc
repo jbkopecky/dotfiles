@@ -13,16 +13,15 @@ graphics() {
 		xrandr --output Virtual1 --mode 1920x1080
 	else
 		xrdb -merge ~/.Xresources
-	        # xrandr --output DVI-I-1 --mode 1920x1080 --rate 144
+	    # xrandr --output DVI-I-1 --mode 1920x1080 --rate 144
 	fi
-
-	hsetroot -tile 'Pictures/Wallpapers/sea_sunrise.jpg'
 	xsetroot -cursor_name left_ptr
-	# extra ctrl key
-	setxkbmap -option ctrl:nocaps
+    wall.sh
 }
 
 env() {
+	# extra ctrl key
+	setxkbmap -option ctrl:nocaps
 	sxhkd &
 }
 run() {
