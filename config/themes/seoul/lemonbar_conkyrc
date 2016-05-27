@@ -32,16 +32,16 @@ ${if_existing /tmp/bartoggle 1}%{F\#FF645240 A:toggleinfo.sh:} » %{A}\
 # Cpu and RAM
 #
 %{F\#FF886f6d A:dzen_popup_toggle.sh sysinfo:} %{F-} ${cpu cpu0}%%{A} \
-%{F\#FFa0a0a0}| \
+%{F\#FF645240}| \
 %{F\#FF886f6d A:dzen_popup_toggle.sh diskinfo:} %{F-} ${mem} %{A}\
-%{F\#FFa0a0a0}| \
+%{F\#FF645240}| \
 #
 # Wired
 #
 %{F- A:dzen_popup_toggle.sh netinfo:}\
 ${texeci 4 ping -c1 -w1 8.8.8.8 > /dev/null 2>&1 || echo "%{F#FF645240}"} \
 %{A}\
-%{F\#FFa0a0a0}| \
+%{F\#FF645240}| \
 ######
 # The Condensed part
 ######
