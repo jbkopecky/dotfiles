@@ -19,11 +19,11 @@ alias tmk="tmux kill-session"
 alias tm="tmux new-session"
 
 # Vim aliases
-alias vim="vim --servername VIM"
 alias vi="vim"
 alias v="vim"
 
 alias ls='ls --color=auto --group-directories-first -h'
+alias ll='ls -la'
 alias la='ls -a'
 alias grep='grep --color=auto'
 alias ..='cd ..'
@@ -32,10 +32,10 @@ alias ...='cd ../..'
 
 # PS1 with error, and git info
 __set_ps1 (){
-    local err="\[\033[1;31m\]"   # error -- red
-    local nor="\[\033[1;30m\]"   # normal -- white
-    local por="\[\033[1;30m\]"   # prompt char
-    local dirty="\[\033[0;33m\]" # dirty git
+    local err="\[\033[1;37m\]"   # error -- red
+    local nor="\[\033[0;33m\]"   # normal -- white
+    local por="\[\033[0;34m\]"   # prompt char
+    local dirty="\[\033[1;33m\]" # dirty git
     local rst="\[\033[0m\]"      # Text Reset
 
     # git info
@@ -64,5 +64,7 @@ export HISTIGNORE="cd *:ls:ls *:history*:cat *:clear:pwd:..:..."
 
 # disable flow control
 stty -ixon
+set bell-style none
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.local.bashrc ] && source ~/.local.bashrc

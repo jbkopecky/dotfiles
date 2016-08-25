@@ -94,7 +94,8 @@ endif
 
 " Colors ****************************************************************** {{{
 set t_Co=256
-colo seoul256
+set bg=dark
+colo shblah
 "}}}
 
 " Invisible Characters **************************************************** {{{
@@ -124,10 +125,10 @@ set foldtext=MyFoldText()
 
 " StatusLine  ************************************************************* {{{
 function! StatusLineHi() "{{{
-    hi clear StatusLine
-    hi clear StatusLineNC
-    hi! def link StatusLine NonText
-    hi! def link StatusLineNC SpecialKey
+    " hi clear StatusLine
+    " hi clear StatusLineNC
+    " hi! def link StatusLine NonText
+    " hi! def link StatusLineNC SpecialKey
     hi def link User1 Identifier
     hi def link User2 Statement
     hi def link User3 Error
@@ -177,19 +178,18 @@ augroup statline_trail "{{{
   autocmd cursorhold,bufwritepost * unlet! b:statline_trailing_space_warning
 augroup END "}}}
 
-
 call StatusLineHi()
 
 set statusline=
-set statusline+=%6*%m%r%*                            " modified, readonly
-set statusline+=\ %5*%{expand('%:h')}/               " relative path to file's directory
-set statusline+=%1*%t%*                              " file name
-set statusline+=\ %2*%{Fugitive()}                 " fugitive
-set statusline+=\ %4*%{Signify()}                 " fugitive
-set statusline+=%=                                   " switch to RHS
-set statusline+=\ %3*%{TrailingSpaceWarning()}%*   " trailing whitespace
+set statusline+=%6*%m%r%*                        " modified, readonly
+set statusline+=\ %5*%{expand('%:h')}/           " relative path to file's directory
+set statusline+=%1*%t%*                          " file name
+set statusline+=\ %2*%{Fugitive()}               " fugitive
+set statusline+=\ %4*%{Signify()}                " fugitive
+set statusline+=%=                               " switch to RHS
+set statusline+=\ %3*%{TrailingSpaceWarning()}%* " trailing whitespace
 set statusline+=\ %2*%y%*
-set statusline+=\ %5*%L\ %*                          " number of lines
+set statusline+=\ %5*%L\ %*                      " number of lines
 
 "}}}
 
