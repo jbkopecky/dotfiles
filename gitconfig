@@ -58,3 +58,8 @@
     # - git up to bring master up to speed
     # - deletes all branches already merged into master
     bdone = "!f() { git checkout ${1-master} $$ git up && git bclean ${1-master}; }; f"
+
+[color "status"]
+    added = magenta bold
+    changed = white bold
+    untracked = green bold
