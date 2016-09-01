@@ -63,6 +63,7 @@ let g:colors_name="jbco"
     highlight! link TabLineFill     StatusLineNC
     highlight! link TabLineSel      StatusLine
     highlight! link VimHiGroup      VimGroup
+    highlight! link MatchParen      Visual
 
 " Test the actual colorscheme
 syn match Comment      "__Comment.*"
