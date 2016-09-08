@@ -300,6 +300,10 @@ nnoremap <F7> :w<CR> :Start<CR>
 
 nnoremap <F8> :call <SID>rotate_colors()<cr>
 
+nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' 
+            \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+            \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 "}}}
 
 " Abbreviations *********************************************************** {{{
