@@ -13,6 +13,7 @@ silent! call plug#begin('~/.vim/plugged')
 " -----------------------------------------------------------------------------
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
+Plug 'cocopon/iceberg.vim'
 " -----------------------------------------------------------------------------
 Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-signify'
@@ -99,8 +100,11 @@ colo jbco
 "}}}
 
 " Invisible Characters **************************************************** {{{
-" ․ ‣ · ∘ ∙ • ⁕ ↓ → ∆ ∇〈〉《》
-set listchars=tab:‣\ ,trail:∙,eol:¬,precedes:«,extends:»
+if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8') && version >= 700
+    let &listchars = "tab:\u21e5\u00b7,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u26ad"
+else
+    set listchars=tab:>\ ,trail:-,extends:>,precedes:<
+endif
 let &showbreak = '→ '
 "}}}
 
@@ -155,41 +159,50 @@ function! Fugitive() "{{{
     return head
 endfunction "}}}
 function! Signify() "{{{
-    let symbols = ['+', '-', '~']
-    let [added, modified, removed] = sy#repo#get_stats()
-    let stats = [added, removed, modified]  " reorder
-    let hunkline = ''
+    if !get(g:, 'loaded_signify', 0)
+        return ''
+    else
+        let symbols = ['+', '-', '~']
+        let [added, modified, removed] = sy#repo#get_stats()
+        let stats = [added, removed, modified]  " reorder
+        let hunkline = ''
 
-    for i in range(3)
-    if stats[i] > 0
-        let hunkline .= printf('%s%s ', symbols[i], stats[i])
+        for i in range(3)
+        if stats[i] > 0
+            let hunkline .= printf('%s%s ', symbols[i], stats[i])
+        endif
+        endfor
+
+        if !empty(hunkline)
+        let hunkline = printf('[%s]', hunkline[:-2])
+        endif
+
+        return hunkline
     endif
-    endfor
-
-    if !empty(hunkline)
-    let hunkline = printf('[%s]', hunkline[:-2])
-    endif
-
-    return hunkline
 endfunction "}}}
 augroup statline_trail "{{{
   " recalculate when idle, and after saving
   autocmd!
   autocmd cursorhold,bufwritepost * unlet! b:statline_trailing_space_warning
 augroup END "}}}
+let g:filetype_overrides = ['gundo', 'startify', 'vim-plug']
 
 call StatusLineHi()
 
 set statusline=
-set statusline+=%6*%m%r%*                        " modified, readonly
-set statusline+=\ %5*%{expand('%:h')}/           " relative path to file's directory
-set statusline+=%1*%t%*                          " file name
-set statusline+=\ %2*%{Fugitive()}               " fugitive
-set statusline+=\ %4*%{Signify()}                " fugitive
-set statusline+=%=                               " switch to RHS
-set statusline+=\ %3*%{TrailingSpaceWarning()}%* " trailing whitespace
-set statusline+=\ %2*%y%*
-set statusline+=\ %5*%L\ %*                      " number of lines
+if (index(g:filetype_overrides, &ft) <= 0)
+    set statusline+=%6*%m%r%*                        " modified, readonly
+    set statusline+=\ %5*%{expand('%:h')}/           " relative path to file's directory
+    set statusline+=%1*%t%*                          " file name
+    set statusline+=\ %2*%{Fugitive()}               " fugitive
+    set statusline+=\ %5*%{Signify()}                " fugitive
+    set statusline+=%=                               " switch to RHS
+    set statusline+=\ %3*%{TrailingSpaceWarning()}%* " trailing whitespace
+    set statusline+=\ %2*%y%*
+    set statusline+=\ %5*%L\ %*                      " number of lines
+else
+    set statusline+=%=
+endif
 
 "}}}
 
@@ -320,11 +333,8 @@ autocmd FileType python let b:dispatch = 'python %'
 "}}}
 " VimCompletesMe ********************************************************** {{{
 set dictionary=/usr/share/dict/words
-
 autocmd FileType journal         let b:vcm_tab_complete = 'dict'
-
 autocmd FileType vim             let b:vcm_tab_complete = 'tags'
-
 autocmd FileType md,markdown     let b:vcm_tab_complete = 'omni'
 autocmd FileType vimwiki,*.wiki  let b:vcm_tab_complete = 'omni'
 autocmd FileType python          let b:vcm_tab_complete = 'omni'
@@ -337,26 +347,6 @@ let g:jedi#usages_command = "<leader>u"
 "}}}
 " Startify **************************************************************** {{{
 let g:startify_files_number = 5
-
-" Titles {{{
-let g:startify_list_order = [
-    \ ['   ---'],
-    \ 'files',
-    \ ['   ---'],
-    \ 'dir',
-    \ ['   ---'],
-    \ 'sessions',
-    \ ['   ---'],
-    \ ] "}}}
-
-" Header {{{
-let g:startify_custom_header = [
-\ '',
-\ '                               ~ 吃得苦中苦,方为人上人 ~ ',
-\ '',
-\ '',
-\ ] "}}}
-
 "}}}
 " CtrlP ******************************************************************* {{{
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
