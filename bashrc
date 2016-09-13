@@ -22,6 +22,7 @@ alias tm="tmux new-session"
 alias vi="vim"
 alias v="vim"
 
+alias l='ls'
 alias ls='ls --color=auto --group-directories-first -h'
 alias ll='ls -la'
 alias la='ls -a'

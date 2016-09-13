@@ -39,7 +39,7 @@ highlight Statement    term=NONE cterm=bold ctermfg=2    ctermbg=NONE
 highlight StatusLine   term=NONE cterm=NONE ctermfg=7    ctermbg=NONE
 highlight String       term=NONE cterm=bold ctermfg=5    ctermbg=NONE
 highlight StatusLineNC term=NONE cterm=NONE ctermfg=2    ctermbg=NONE
-highlight Todo         term=NONE cterm=underline,bold ctermfg=7    ctermbg=NONE
+highlight Todo         term=NONE cterm=underline,bold ctermfg=7 ctermbg=NONE
 highlight Type         term=NONE cterm=NONE ctermfg=3    ctermbg=NONE
 highlight VertSplit    term=NONE cterm=bold ctermfg=4    ctermbg=NONE
 highlight Visual       term=NONE cterm=bold ctermfg=NONE ctermbg=4
@@ -52,6 +52,7 @@ highlight DiffDelete   term=NONE cterm=bold ctermfg=7    ctermbg=NONE
 highlight SignColumn   term=NONE cterm=NONE ctermfg=1    ctermbg=NONE
 highlight ColorColumn  term=NONE cterm=NONE ctermfg=NONE ctermbg=1
 highlight Pmenu        term=NONE cterm=NONE ctermfg=NONE ctermbg=2
+highlight SpellBad     term=NONE cterm=underline,bold ctermfg=7 ctermbg=NONE
 
 
 "
