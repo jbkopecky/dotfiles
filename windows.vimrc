@@ -2,6 +2,8 @@
 cd ~/Documents
 let &showbreak = '»'
 set lines=43 columns=190
+colo seoul256-light
+call StatusLineHi()
 " }}}
 
 " Startify bookmarks *******************************************************{{{

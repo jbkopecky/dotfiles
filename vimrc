@@ -128,7 +128,7 @@ set foldtext=MyFoldText()
 "}}}
 
 " StatusLine  ************************************************************* {{{
-function! StatusLineHi() "{{{
+function! g:StatusLineHi() "{{{
     hi clear StatusLine
     hi clear StatusLineNC
     hi! def link StatusLine NonText
@@ -187,7 +187,7 @@ augroup statline_trail "{{{
 augroup END "}}}
 let g:filetype_overrides = ['gundo', 'startify', 'vim-plug']
 
-call StatusLineHi()
+call g:StatusLineHi()
 
 set statusline=
 if (index(g:filetype_overrides, &ft) <= 0)
