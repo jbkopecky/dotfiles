@@ -96,7 +96,7 @@ endif
 " Colors ****************************************************************** {{{
 set t_Co=256
 set bg=dark
-colo jbco
+colo seoul256-light
 "}}}
 
 " Invisible Characters **************************************************** {{{
@@ -129,10 +129,10 @@ set foldtext=MyFoldText()
 
 " StatusLine  ************************************************************* {{{
 function! StatusLineHi() "{{{
-    " hi clear StatusLine
-    " hi clear StatusLineNC
-    " hi! def link StatusLine NonText
-    " hi! def link StatusLineNC SpecialKey
+    hi clear StatusLine
+    hi clear StatusLineNC
+    hi! def link StatusLine NonText
+    hi! def link StatusLineNC SpecialKey
     hi def link User1 Identifier
     hi def link User2 Statement
     hi def link User3 Error
