@@ -26,6 +26,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
+" Plug 'justinmk/vim-dirvish'
 " -----------------------------------------------------------------------------
 Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
 " -----------------------------------------------------------------------------
@@ -33,11 +34,13 @@ Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ajh17/VimCompletesMe'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
+Plug 'ap/vim-buftabline'
 " -----------------------------------------------------------------------------
-Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex', 'vimwiki']}
-Plug 'chrisbra/colorizer'
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
+" Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex', 'vimwiki', 'txt']}
+Plug 'reedes/vim-wordy', {'for': ['journal', 'md', 'tex', 'txt', 'yml']}
 Plug 'tpope/vim-markdown',   {'for': ['md', 'mkd']}
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'chrisbra/colorizer'
 Plug 'lervag/vimtex'
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/vim-journal'
@@ -100,11 +103,7 @@ colo jbco
 "}}}
 
 " Invisible Characters **************************************************** {{{
-if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8') && version >= 700
-    let &listchars = "tab:\u21e5\u00b7,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u26ad"
-else
-    set listchars=tab:>\ ,trail:-,extends:>,precedes:<
-endif
+set listchars=tab:★\ ,trail:●,extends:»,precedes:«,eol:¬
 let &showbreak = '→ '
 "}}}
 
@@ -253,7 +252,6 @@ if has("autocmd")
     augroup FTCheck "{{{
         autocmd!
         autocmd Bufread,BufNewFile *.journal set ft=journal
-        autocmd Bufread,BufNewFile *.wiki set ft=vimwiki
     augroup END "}}}
 endif
 "}}}
@@ -263,9 +261,6 @@ endif
 " Leader
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\<Space>"
-
-" Escape shorcut
-inoremap kj <Esc>
 
 " EasyAlign
 xmap ga <Plug>(EasyAlign)
@@ -362,6 +357,9 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
 "}}}
 " journal ***************************************************************** {{{
 let g:journal#dirs = ['Notes']
+"}}}
+" buftabline ************************************************************** {{{
+let g:buftabline_show = 1
 "}}}
 "}}}
 

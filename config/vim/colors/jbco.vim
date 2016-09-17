@@ -30,13 +30,16 @@ highlight Identifier   term=NONE cterm=bold ctermfg=1    ctermbg=NONE
 highlight IncSearch    term=NONE cterm=NONE ctermfg=0    ctermbg=NONE
 highlight NonText      term=NONE cterm=NONE ctermfg=2    ctermbg=NONE
 highlight Normal       term=NONE cterm=NONE ctermfg=7    ctermbg=NONE
-highlight Pmenu        term=NONE cterm=NONE ctermfg=0    ctermbg=NONE
 highlight PreProc      term=NONE cterm=bold ctermfg=3    ctermbg=NONE
 highlight Search       term=NONE cterm=bold ctermfg=7    ctermbg=1
 highlight Special      term=NONE cterm=bold ctermfg=8    ctermbg=NONE
 highlight SpecialKey   term=NONE cterm=NONE ctermfg=2    ctermbg=NONE
 highlight Statement    term=NONE cterm=bold ctermfg=2    ctermbg=NONE
 highlight StatusLine   term=NONE cterm=NONE ctermfg=7    ctermbg=NONE
+highlight StatusLine   term=NONE cterm=NONE ctermfg=7    ctermbg=NONE
+highlight TabLineSel   term=NONE cterm=bold ctermfg=7    ctermbg=2
+highlight TabLine      term=NONE cterm=NONE ctermfg=4    ctermbg=1
+highlight TabLineFill  term=NONE cterm=NONE ctermfg=7    ctermbg=1
 highlight String       term=NONE cterm=bold ctermfg=5    ctermbg=NONE
 highlight StatusLineNC term=NONE cterm=NONE ctermfg=2    ctermbg=NONE
 highlight Todo         term=NONE cterm=underline,bold ctermfg=7 ctermbg=NONE
@@ -51,7 +54,8 @@ highlight DiffAdd      term=NONE cterm=bold ctermfg=5    ctermbg=NONE
 highlight DiffDelete   term=NONE cterm=bold ctermfg=7    ctermbg=NONE
 highlight SignColumn   term=NONE cterm=NONE ctermfg=1    ctermbg=NONE
 highlight ColorColumn  term=NONE cterm=NONE ctermfg=NONE ctermbg=1
-highlight Pmenu        term=NONE cterm=NONE ctermfg=NONE ctermbg=2
+highlight Pmenu        term=NONE cterm=NONE ctermfg=5    ctermbg=1
+highlight PmenuSel     term=NONE cterm=NONE ctermfg=6    ctermbg=2
 highlight SpellBad     term=NONE cterm=underline,bold ctermfg=7 ctermbg=NONE
 
 
@@ -60,9 +64,6 @@ highlight SpellBad     term=NONE cterm=underline,bold ctermfg=7 ctermbg=NONE
 "
 highlight! link Title           Normal
 highlight! link LineNr          NonText
-highlight! link TabLine         StatusLineNC
-highlight! link TabLineFill     StatusLineNC
-highlight! link TabLineSel      StatusLine
 highlight! link VimHiGroup      VimGroup
 highlight! link MatchParen      Visual
 highlight! link CSVDelimiter    Comment
@@ -73,3 +74,4 @@ highlight! link StartifyHeader  Comment
 highlight! link StartifyPath    Comment
 highlight! link StartifySection Preproc
 highlight! link StartifySlash   Statement
+
