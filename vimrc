@@ -38,7 +38,7 @@ Plug 'ap/vim-buftabline'
 " -----------------------------------------------------------------------------
 " Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex', 'vimwiki', 'txt']}
 Plug 'reedes/vim-wordy', {'for': ['journal', 'md', 'tex', 'txt', 'yml']}
-Plug 'tpope/vim-markdown',   {'for': ['md', 'mkd']}
+Plug 'tpope/vim-markdown',   {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'chrisbra/colorizer'
 Plug 'lervag/vimtex'
