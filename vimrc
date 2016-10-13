@@ -205,7 +205,7 @@ else
 endif
 
 "}}}
-" File Type *************************************************************** {{{
+" FileType **************************************************************** {{{
 let g:tex_flavor='latex' "Recognise Latex files
 if has('autocmd')
     augroup Misc "{{{
@@ -225,11 +225,11 @@ if has('autocmd')
 
         autocmd Filetype python
               \ setlocal makeprg=python\ % |
+              \ let b:dispatch = 'python %'|
               \ setl efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m |
               \ setl nowrap |
               \ setl foldmethod=indent |
               \ nnoremap <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c> |
-              \ setl b:dispatch = 'python %'
 
         autocmd Filetype mail
               \ setl tw=76 |
