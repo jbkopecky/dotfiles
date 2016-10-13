@@ -107,4 +107,55 @@ folder-hook +INBOX 'macro index,pager y "<save-message>=[Gmail]/All Mail<enter><
 folder-hook +[Gmail]/Trash macro index,pager y <save-message>=INBOX<enter> "Move to inbox"
 folder-hook +[Gmail]/Starred bind  index,pager y flag-message #"Toggle star"
 
-source ~/.colors.muttrc
+# Default colour definitions
+color normal     cyan          black
+color error      brightwhite   black
+color tilde      brightmagenta black
+color message    white         black
+color markers    cyan          black
+color attachment brightwhite   black
+color search     brightwhite   black
+color tree       brightred     black
+color signature  blue          black
+color indicator  brightblue    red
+color status     brightgreen         black
+color bold       white         black
+
+color quoted      magenta        black
+color quoted1     yellow         black
+color quoted2     green          black
+color quoted3     red            black
+color quoted4     red            black
+
+# Colour definitions when on a mono screen
+mono bold      bold
+mono underline underline
+mono indicator reverse
+
+# Colours for items in the reader
+color header brightwhite black "^(From):"
+color header brightyellow black "^(Subject):"
+color header blue black "^(To|Cc|Date):"
+
+# Colours for items in the index
+color index brightred   red   ~N
+color index white       black ~F
+color index white       black ~T
+color index red         black ~D
+mono  index bold              ~N
+mono  index bold              ~F
+mono  index bold              ~T
+mono  index bold              ~D
+
+ # Highlights inside the body of a message.
+# URLs
+color body brightmagenta black "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+
+# Email
+color body white black "((@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]),)*@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]):)?[0-9a-z_.+%$-]+@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\])"
+
+ # Various smilies and the like
+color body brightgreen black " [;:]-*[)>(<|]"                                    # :-) etc...
+color body brightmagenta  black "(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$)" # *Bold* text.
+color body brightmagenta  black "(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)"     # _Underlined_ text.
+color body brightmagenta  black "(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)"     # /Italic/ text.

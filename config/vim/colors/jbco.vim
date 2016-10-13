@@ -57,7 +57,7 @@ highlight ColorColumn  term=NONE cterm=NONE ctermfg=NONE ctermbg=1
 highlight Pmenu        term=NONE cterm=NONE ctermfg=5    ctermbg=1
 highlight PmenuSel     term=NONE cterm=NONE ctermfg=6    ctermbg=2
 highlight SpellBad     term=NONE cterm=underline,bold ctermfg=7 ctermbg=NONE
-
+highlight MatchParen   term=NONE cterm=NONE ctermfg=NONE ctermbg=2
 
 "
 " General highlighting group links.
@@ -65,7 +65,6 @@ highlight SpellBad     term=NONE cterm=underline,bold ctermfg=7 ctermbg=NONE
 highlight! link Title           Normal
 highlight! link LineNr          NonText
 highlight! link VimHiGroup      VimGroup
-highlight! link MatchParen      Visual
 highlight! link CSVDelimiter    Comment
 highlight! link Conceal         Comment
 highlight! link StartifyBracket Comment

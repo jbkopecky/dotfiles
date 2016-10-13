@@ -7,7 +7,6 @@ if has("win32")
     let &runtimepath = substitute(&runtimepath,'\(Documents and Settings\|Users\)[\\/][^\\/,]*[\\/]\zsvimfiles\>','.vim','g')
 endif
 " }}}
-
 " Plugins ! *************************************************************** {{{
 silent! call plug#begin('~/.vim/plugged')
 " -----------------------------------------------------------------------------
@@ -26,7 +25,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
-" Plug 'justinmk/vim-dirvish'
 " -----------------------------------------------------------------------------
 Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
 " -----------------------------------------------------------------------------
@@ -35,8 +33,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ajh17/VimCompletesMe'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'ap/vim-buftabline'
+Plug 'w0rp/Ale', {'for': ['python', 'vim', 'bash', 'html', 'json']}
 " -----------------------------------------------------------------------------
-" Plug 'chrisbra/unicode.vim', {'for': ['journal', 'md', 'tex', 'vimwiki', 'txt']}
 Plug 'reedes/vim-wordy', {'for': ['journal', 'md', 'tex', 'txt', 'yml']}
 Plug 'tpope/vim-markdown',   {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
@@ -50,7 +48,6 @@ if has('unix')
 endif
 call plug#end()
 "}}}
-
 " Preamble **************************************************************** {{{
 set nocompatible                     " Get rid of Vi compatibility
 set laststatus=2                     " Always show status bar
@@ -95,18 +92,15 @@ if exists('+viminfo')
   set viminfo='100,n$HOME/.vim/info/viminfo' "set viminfodir for startify
 endif
 "}}}
-
 " Colors ****************************************************************** {{{
 set t_Co=256
 set bg=dark
 colo jbco
 "}}}
-
 " Invisible Characters **************************************************** {{{
 set listchars=tab:★\ ,trail:●,extends:»,precedes:«,eol:¬
 let &showbreak = '→ '
 "}}}
-
 " Folding ***************************************************************** {{{
 function! MyFoldText() " {{{
     let line = getline(v:foldstart)
@@ -125,13 +119,12 @@ function! MyFoldText() " {{{
 endfunction " }}}
 set foldtext=MyFoldText()
 "}}}
-
 " StatusLine  ************************************************************* {{{
 function! g:StatusLineHi() "{{{
     hi clear StatusLine
     hi clear StatusLineNC
     hi! def link StatusLine NonText
-    hi! def link StatusLineNC SpecialKey
+    hi! def link StatusLineNC Comment
     hi def link User1 Identifier
     hi def link User2 Statement
     hi def link User3 Error
@@ -179,6 +172,13 @@ function! Signify() "{{{
         return hunkline
     endif
 endfunction "}}}
+function! Ale() "{{{
+    if !get(g:, 'loaded_ale', 0)
+        return ''
+    else
+        return ALEGetStatusLine()
+    endif
+endfunction "}}}
 augroup statline_trail "{{{
   " recalculate when idle, and after saving
   autocmd!
@@ -196,6 +196,7 @@ if (index(g:filetype_overrides, &ft) <= 0)
     set statusline+=\ %2*%{Fugitive()}               " fugitive
     set statusline+=\ %5*%{Signify()}                " fugitive
     set statusline+=%=                               " switch to RHS
+    set statusline+=\ %3*%{Ale()}%*
     set statusline+=\ %3*%{TrailingSpaceWarning()}%* " trailing whitespace
     set statusline+=\ %2*%y%*
     set statusline+=\ %5*%L\ %*                      " number of lines
@@ -204,7 +205,6 @@ else
 endif
 
 "}}}
-
 " File Type *************************************************************** {{{
 let g:tex_flavor="latex" "Recognise Latex files
 if has("autocmd")
@@ -220,6 +220,9 @@ if has("autocmd")
         autocmd FileType gitcommit
               \ setlocal spell
 
+        autocmd FileType text
+              \ setlocal spell
+
         autocmd Filetype python
               \ setlocal makeprg=python\ % |
               \ setl efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m |
@@ -229,6 +232,7 @@ if has("autocmd")
 
         autocmd Filetype mail
               \ setl tw=76 |
+              \ setl spell |
               \ setl fo+=aw
 
         autocmd FileType help
@@ -255,7 +259,6 @@ if has("autocmd")
     augroup END "}}}
 endif
 "}}}
-
 " Mappings **************************************************************** {{{
 
 " Leader
@@ -308,12 +311,11 @@ nnoremap <F7> :w<CR> :Start<CR>
 
 nnoremap <F8> :call <SID>rotate_colors()<cr>
 
-nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' 
+nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
             \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
             \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 "}}}
-
 " Abbreviations *********************************************************** {{{
 command! WQ wq
 command! Wq wq
@@ -321,7 +323,6 @@ command! Wqa wqa
 command! W w
 command! Q q
 " }}}
-
 " Plugins Settings ******************************************************** {{{
 " Dispatch **************************************************************** {{{
 autocmd FileType python let b:dispatch = 'python %'
@@ -361,8 +362,12 @@ let g:journal#dirs = ['Notes']
 " buftabline ************************************************************** {{{
 let g:buftabline_show = 1
 "}}}
+" Ale ********************************************************************* {{{
+let g:ale_sign_column_always = 1
+" ✿
+let g:ale_statusline_format = ['★ %d', '☆ %d', '✔']
 "}}}
-
+"}}}
 " Todo ******************************************************************** {{{
 function! s:todo() abort "{{{
   let cmds =  [
@@ -390,7 +395,6 @@ function! s:todo() abort "{{{
 endfunction "}}}
 command! Todo call s:todo()
 " }}}
-
 " Color Toggle ************************************************************ {{{
 function! s:rotate_colors() "{{{
   if !exists('s:colors_list')
@@ -411,7 +415,6 @@ function! s:rotate_colors() "{{{
   echo name
 endfunction "}}}
 "}}}
-
 " Local Vimrc ************************************************************* {{{
 if filereadable(glob("~/.local.vimrc")) "{{{
   so ~/.local.vimrc
