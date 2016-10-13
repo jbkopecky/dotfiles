@@ -3,7 +3,7 @@
 "=============================================================================="
 
 " Runtime Path ************************************************************ {{{
-if has("win32")
+if has('win32')
     let &runtimepath = substitute(&runtimepath,'\(Documents and Settings\|Users\)[\\/][^\\/,]*[\\/]\zsvimfiles\>','.vim','g')
 endif
 " }}}
@@ -49,44 +49,44 @@ endif
 call plug#end()
 "}}}
 " Preamble **************************************************************** {{{
-set nocompatible                     " Get rid of Vi compatibility
-set laststatus=2                     " Always show status bar
-set mouse=a                          " Enable Mouse
-set bs=2                             " Normal backspace
-set history=700                      " More cmd line history
-set undolevels=700                   " More undo
-set wildmenu                         " Cmd completion
-set wildmode=longest:full,full       " Cmd completion options
-set completeopt+=longest,menuone     " Start at the head of the popup menulist
-set complete=.,w,b,t,kspell          " Completion scope
-set incsearch                        " Show search result as I type
-set hlsearch                         " Highlight search results
-set ignorecase                       " Search for min and maj
-set smartcase                        " If maj asked, only look for maj
-set ttimeoutlen=100                  " Faster Escape
-set scrolloff=3                      " Leave 3 l bellow cursos when scrolling
-set foldmethod=marker                " Fold on markers
-set backupdir=~/.vim/backups//       " Specify backup dir
-set directory=~/.vim/swaps//         " Specify swap dir
-set number                           " Show line number
-set tw=79                            " No more than 80 col
-set colorcolumn=80                   " Color 80 col
-set fo-=t                            " no automatic wrap text when typing
-set linebreak                        " Breaks fold at end of word
-set cursorline                       " Show cursor line
-set tabstop=4                        " Four spaces tabs
-set shiftwidth=4                     " Four spaces shifts
-set shiftround                       " Round Shifts
-set expandtab smarttab               " Smart tabs
-set fileformats=unix,dos,mac         " Freaking formats
-set encoding=utf-8 nobomb            " Freaking formats
-set noshowmode                       " dont show mode. airline does it
+" set nocompatible                     " Get rid of Vi compatibility
+set laststatus=2                 " Always show status bar
+set mouse=a                      " Enable Mouse
+set backspace=2                  " Normal backspace
+set history=700                  " More cmd line history
+set undolevels=700               " More undo
+set wildmenu                     " Cmd completion
+set wildmode=longest             " Cmd completion options
+set completeopt+=longest,menuone " Start at the head of the popup menulist
+set complete=.,w,b,t,kspell      " Completion scope
+set incsearch                    " Show search result as I type
+set hlsearch                     " Highlight search results
+set ignorecase                   " Search for min and maj
+set smartcase                    " If maj asked, only look for maj
+set ttimeoutlen=100              " Faster Escape
+set scrolloff=3                  " Leave 3 l bellow cursos when scrolling
+set foldmethod=marker            " Fold on markers
+set backupdir=~/.vim/backups//   " Specify backup dir
+set directory=~/.vim/swaps//     " Specify swap dir
+set number                       " Show line number
+set textwidth=79                 " No more than 80 col
+set colorcolumn=80               " Color 80 col
+set formatoptions-=t             " no automatic wrap text when typing
+set linebreak                    " Breaks fold at end of word
+set cursorline                   " Show cursor line
+set tabstop=4                    " Four spaces tabs
+set shiftwidth=4                 " Four spaces shifts
+set shiftround                   " Round Shifts
+set expandtab smarttab           " Smart tabs
+set fileformats=unix,dos,mac     " Freaking formats
+set encoding=utf-8 nobomb        " Freaking formats
+set noshowmode                   " dont show mode. airline does it
 set clipboard=unnamed
-set lazyredraw                       " Speed up things
-set splitright                       " More natural split opening
-if exists('+undofile')               " If possible
-  set undofile                       " Set Undo file
-  set undodir=~/.vim/undo//          " Specify undodir
+set lazyredraw                   " Speed up things
+set splitright                   " More natural split opening
+if exists('+undofile')           " If possible
+  set undofile                   " Set Undo file
+  set undodir=~/.vim/undo//      " Specify undodir
 endif
 if exists('+viminfo')
   set viminfo='100,n$HOME/.vim/info/viminfo' "set viminfodir for startify
@@ -94,7 +94,7 @@ endif
 "}}}
 " Colors ****************************************************************** {{{
 set t_Co=256
-set bg=dark
+set background=dark
 colo jbco
 "}}}
 " Invisible Characters **************************************************** {{{
@@ -103,19 +103,19 @@ let &showbreak = '→ '
 "}}}
 " Folding ***************************************************************** {{{
 function! MyFoldText() " {{{
-    let line = getline(v:foldstart)
+    let l:line = getline(v:foldstart)
 
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 5
-    let foldedlinecount = v:foldend - v:foldstart
+    let l:nucolwidth = &foldcolumn + &number * &numberwidth
+    let l:windowwidth = winwidth(0) - l:nucolwidth - 5
+    let l:foldedlinecount = v:foldend - v:foldstart
 
     " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
+    let l:onetab = strpart('          ', 0, &tabstop)
+    let l:line = substitute(l:line, '\t', l:onetab, 'g')
 
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . ' ' . repeat("-",fillcharcount) . ' ' . foldedlinecount . ' ' . '  '
+    let l:line = strpart(l:line, 0, l:windowwidth - 2 -len(l:foldedlinecount))
+    let l:fillcharcount = l:windowwidth - len(l:line) - len(l:foldedlinecount)
+    return l:line . ' ' . repeat('-',l:fillcharcount) . ' ' . l:foldedlinecount . ' ' . '  '
 endfunction " }}}
 set foldtext=MyFoldText()
 "}}}
@@ -133,10 +133,10 @@ function! g:StatusLineHi() "{{{
     hi def link User6 WarningMsg
 endfunction "}}}
 function! TrailingSpaceWarning() "{{{
-  if !exists("b:statline_trailing_space_warning")
-    let lineno = search('\s$', 'nw')
-    if lineno != 0
-      let b:statline_trailing_space_warning = '∙ '.lineno.' '
+  if !exists('b:statline_trailing_space_warning')
+    let l:lineno = search('\s$', 'nw')
+    if l:lineno != 0
+      let b:statline_trailing_space_warning = '∙ '.l:lineno.' '
     else
       let b:statline_trailing_space_warning = ''
     endif
@@ -147,29 +147,29 @@ function! Fugitive() "{{{
     if !exists('g:loaded_fugitive')
         return ''
     endif
-    let head = fugitive#head()
-    return head
+    let l:head = fugitive#head()
+    return l:head
 endfunction "}}}
 function! Signify() "{{{
     if !get(g:, 'loaded_signify', 0)
         return ''
     else
-        let symbols = ['+', '-', '~']
-        let [added, modified, removed] = sy#repo#get_stats()
-        let stats = [added, removed, modified]  " reorder
-        let hunkline = ''
+        let l:symbols = ['+', '-', '~']
+        let [l:added, l:modified, l:removed] = sy#repo#get_stats()
+        let l:stats = [l:added, l:removed, l:modified]  " reorder
+        let l:hunkline = ''
 
         for i in range(3)
         if stats[i] > 0
-            let hunkline .= printf('%s%s ', symbols[i], stats[i])
+            let hunkline .= printf('%s%s ', l:symbols[i], l:stats[i])
         endif
         endfor
 
-        if !empty(hunkline)
-        let hunkline = printf('[%s]', hunkline[:-2])
+        if !empty(l:hunkline)
+        let l:hunkline = printf('[%s]', l:hunkline[:-2])
         endif
 
-        return hunkline
+        return l:hunkline
     endif
 endfunction "}}}
 function! Ale() "{{{
@@ -189,14 +189,14 @@ let g:filetype_overrides = ['gundo', 'startify', 'vim-plug']
 call g:StatusLineHi()
 
 set statusline=
-if (index(g:filetype_overrides, &ft) <= 0)
+if (index(g:filetype_overrides, &filetype) <= 0)
     set statusline+=%6*%m%r%*                        " modified, readonly
     set statusline+=\ %5*%{expand('%:h')}/           " relative path to file's directory
     set statusline+=%1*%t%*                          " file name
     set statusline+=\ %2*%{Fugitive()}               " fugitive
     set statusline+=\ %5*%{Signify()}                " fugitive
     set statusline+=%=                               " switch to RHS
-    set statusline+=\ %3*%{Ale()}%*
+    set statusline+=\ %3*%{Ale()}%*                  " Linting
     set statusline+=\ %3*%{TrailingSpaceWarning()}%* " trailing whitespace
     set statusline+=\ %2*%y%*
     set statusline+=\ %5*%L\ %*                      " number of lines
@@ -206,8 +206,8 @@ endif
 
 "}}}
 " File Type *************************************************************** {{{
-let g:tex_flavor="latex" "Recognise Latex files
-if has("autocmd")
+let g:tex_flavor='latex' "Recognise Latex files
+if has('autocmd')
     augroup Misc "{{{
         autocmd!
         autocmd FocusGained * if !has('win32') | silent! call fugitive#reload_status() | endif
@@ -229,6 +229,7 @@ if has("autocmd")
               \ setl nowrap |
               \ setl foldmethod=indent |
               \ nnoremap <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c> |
+              \ setl b:dispatch = 'python %'
 
         autocmd Filetype mail
               \ setl tw=76 |
@@ -325,21 +326,23 @@ command! Q q
 " }}}
 " Plugins Settings ******************************************************** {{{
 " Dispatch **************************************************************** {{{
-autocmd FileType python let b:dispatch = 'python %'
+
 "}}}
 " VimCompletesMe ********************************************************** {{{
 set dictionary=/usr/share/dict/words
-autocmd FileType journal         let b:vcm_tab_complete = 'dict'
-autocmd FileType vim             let b:vcm_tab_complete = 'tags'
-autocmd FileType md,markdown     let b:vcm_tab_complete = 'omni'
-autocmd FileType vimwiki,*.wiki  let b:vcm_tab_complete = 'omni'
-autocmd FileType python          let b:vcm_tab_complete = 'omni'
-autocmd FileType tex             let b:vcm_tab_complete = 'omni'
+augroup VimCompletesMe
+    autocmd FileType journal         let b:vcm_tab_complete = 'dict'
+    autocmd FileType vim             let b:vcm_tab_complete = 'tags'
+    autocmd FileType md,markdown     let b:vcm_tab_complete = 'omni'
+    autocmd FileType vimwiki,*.wiki  let b:vcm_tab_complete = 'omni'
+    autocmd FileType python          let b:vcm_tab_complete = 'omni'
+    autocmd FileType tex             let b:vcm_tab_complete = 'omni'
+augroup END
 " }}}
 " Jedi-vim **************************************************************** {{{
 let g:python_highlight_all = 1
 let g:jedi#popup_on_dot = 0
-let g:jedi#usages_command = "<leader>u"
+let g:jedi#usages_command = '<leader>u'
 "}}}
 " Startify **************************************************************** {{{
 let g:startify_files_number = 5
@@ -366,30 +369,32 @@ let g:buftabline_show = 1
 let g:ale_sign_column_always = 1
 " ✿
 let g:ale_statusline_format = ['★ %d', '☆ %d', '✔']
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
 "}}}
 "}}}
 " Todo ******************************************************************** {{{
 function! s:todo() abort "{{{
-  let cmds =  [
+  let l:cmds =  [
              \ 'git grep -n -e TODO -e FIXME -e XXX 2> /dev/null',
              \ 'grep -rn -e TODO -e FIXME -e XXX * 2> /dev/null',
              \ ]
-  let entries = []
-  for cmd in cmds
-    let lines = split(system(cmd), '\n')
+  let l:entries = []
+  for l:cmd in l:cmds
+    let l:lines = split(system(l:cmd), '\n')
     if v:shell_error != 0 | continue | endif
-    for line in lines
-      let entry = matchlist(line, '^\([^:]*\):\([^:]*\):\(.*\)')
-      if len(entry)>3
-        let [fname, lno, text]=entry[1:3]
-        call add(entries, { 'filename': fname, 'lnum': lno, 'text': text })
+    for l:line in l:lines
+      let l:entry = matchlist(l:line, '^\([^:]*\):\([^:]*\):\(.*\)')
+      if len(l:entry)>3
+        let [l:fname, l:lno, l:text]=l:entry[1:3]
+        call add(l:entries, { 'filename': l:fname, 'lnum': l:lno, 'text': l:text })
       endif
     endfor
     break
   endfor
 
-  if !empty(entries)
-    call setqflist(entries)
+  if !empty(l:entries)
+    call setqflist(l:entries)
     copen
   endif
 endfunction "}}}
@@ -400,23 +405,23 @@ function! s:rotate_colors() "{{{
   if !exists('s:colors_list')
     let s:colors_list =
     \ sort(map(
-    \   filter(split(globpath(&rtp, "colors/*.vim"), "\n"), 'v:val !~ "^/usr/"'),
+    \   filter(split(globpath(&runtimepath, 'colors/*.vim'), '\n'), 'v:val !~ "^/usr/"'),
     \   "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"))
   endif
   if !exists('s:colors_index')
     let s:colors_index = index(s:colors_list, g:colors_name)
   endif
   let s:colors_index = (s:colors_index + 1) % len(s:colors_list)
-  let name = s:colors_list[s:colors_index]
-  set bg=dark
-  execute 'colorscheme' name
+  let l:name = s:colors_list[s:colors_index]
+  set background=dark
+  execute 'colorscheme' l:name
   call StatusLineHi()
   redraw
-  echo name
+  echo l:name
 endfunction "}}}
 "}}}
 " Local Vimrc ************************************************************* {{{
-if filereadable(glob("~/.local.vimrc")) "{{{
+if filereadable(glob('~/.local.vimrc')) "{{{
   so ~/.local.vimrc
 endif "}}}
 "}}}
