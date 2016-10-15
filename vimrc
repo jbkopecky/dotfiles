@@ -98,7 +98,7 @@ set background=dark
 colo jbco
 "}}}
 " Invisible Characters **************************************************** {{{
-set listchars=tab:★\ ,trail:●,extends:»,precedes:«,eol:¬
+set listchars=tab:►\ ,trail:●,extends:»,precedes:«,eol:¬
 let &showbreak = '→ '
 "}}}
 " Folding ***************************************************************** {{{
