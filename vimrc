@@ -56,7 +56,7 @@ set backspace=2                  " Normal backspace
 set history=700                  " More cmd line history
 set undolevels=700               " More undo
 set wildmenu                     " Cmd completion
-set wildmode=longest             " Cmd completion options
+set wildmode=longest,full:full   " Cmd completion options
 set completeopt+=longest,menuone " Start at the head of the popup menulist
 set complete=.,w,b,t,kspell      " Completion scope
 set incsearch                    " Show search result as I type
