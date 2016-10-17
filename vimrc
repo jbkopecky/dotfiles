@@ -49,7 +49,7 @@ endif
 call plug#end()
 "}}}
 " Preamble **************************************************************** {{{
-" set nocompatible                     " Get rid of Vi compatibility
+set nocompatible                     " Get rid of Vi compatibility
 set laststatus=2                 " Always show status bar
 set mouse=a                      " Enable Mouse
 set backspace=2                  " Normal backspace
@@ -95,7 +95,7 @@ endif
 " Colors ****************************************************************** {{{
 set t_Co=256
 set background=dark
-colo jbco
+colo jbco16
 "}}}
 " Invisible Characters **************************************************** {{{
 set listchars=tab:►\ ,trail:●,extends:»,precedes:«,eol:¬
@@ -425,3 +425,4 @@ if filereadable(glob('~/.local.vimrc')) "{{{
   so ~/.local.vimrc
 endif "}}}
 "}}}
+

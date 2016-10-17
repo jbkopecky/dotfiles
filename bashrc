@@ -33,10 +33,10 @@ alias ...='cd ../..'
 
 # PS1 with error, and git info
 __set_ps1 (){
-    local err="\[\033[1;37m\]"   # error -- red
-    local nor="\[\033[0;33m\]"   # normal -- white
-    local por="\[\033[1;34m\]"   # prompt char
-    local dirty="\[\033[1;33m\]" # dirty git
+    local err="\[\033[0;31m\]"   # error -- red
+    local nor="\[\033[1;36m\]"   # normal -- white
+    local por="\[\033[0;35m\]"   # prompt char
+    local dirty="\[\033[0;33m\]" # dirty git
     local rst="\[\033[0m\]"      # Text Reset
 
     # git info
