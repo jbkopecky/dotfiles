@@ -93,8 +93,8 @@ if exists('+viminfo')
 endif
 "}}}
 " Colors ****************************************************************** {{{
-set t_Co=256
-set background=dark
+" set t_Co=256
+" set background=dark
 colo jbco16
 "}}}
 " Invisible Characters **************************************************** {{{

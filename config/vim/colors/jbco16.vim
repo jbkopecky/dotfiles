@@ -17,21 +17,21 @@ let s:gui0E = "b294bb"
 let s:gui0F = "a3685a"
 
 " Terminal color definitions
-let s:cterm00 = "0"
+let s:cterm00 = "00"
 let s:cterm01 = "10"
 let s:cterm02 = "11"
-let s:cterm03 = "8"
+let s:cterm03 = "08"
 let s:cterm04 = "12"
-let s:cterm05 = "7"
+let s:cterm05 = "07"
 let s:cterm06 = "13"
 let s:cterm07 = "15"
-let s:cterm08 = "1"
-let s:cterm09 = "9"
-let s:cterm0A = "3"
-let s:cterm0B = "2"
-let s:cterm0C = "6"
-let s:cterm0D = "4"
-let s:cterm0E = "5"
+let s:cterm08 = "01"
+let s:cterm09 = "09"
+let s:cterm0A = "03"
+let s:cterm0B = "02"
+let s:cterm0C = "06"
+let s:cterm0D = "04"
+let s:cterm0E = "05"
 let s:cterm0F = "14"
 
 " Theme setup
@@ -91,7 +91,7 @@ call <sid>hi("Conceal",       s:gui0D, s:gui00, s:cterm0D, s:cterm00, "", "")
 call <sid>hi("Cursor",        s:gui00, s:gui05, s:cterm00, s:cterm05, "", "")
 call <sid>hi("NonText",       s:gui03, "", s:cterm03, "", "", "")
 call <sid>hi("Normal",        s:gui05, s:gui00, s:cterm05, s:cterm00, "", "")
-call <sid>hi("LineNr",        s:gui03, s:gui01, s:cterm03, s:cterm01, "", "")
+call <sid>hi("LineNr",        s:gui03, s:gui01, s:cterm03, s:cterm01, "none", "")
 call <sid>hi("SignColumn",    s:gui03, s:gui01, s:cterm03, s:cterm01, "", "")
 call <sid>hi("StatusLine",    s:gui05, s:gui00, s:cterm05, s:cterm00, "none", "")
 call <sid>hi("StatusLineNC",  "", s:gui00, "", s:cterm00, "none", "")
@@ -109,7 +109,7 @@ call <sid>hi("TabLineSel",    s:gui0B, s:gui01, s:cterm0B, s:cterm01, "none", ""
 " Standard syntax highlighting
 call <sid>hi("Boolean",      s:gui09, "", s:cterm09, "", "", "")
 call <sid>hi("Character",    s:gui08, "", s:cterm08, "", "", "")
-call <sid>hi("Comment",      s:gui03, "", s:cterm03, "", "", "")
+call <sid>hi("Comment",      s:gui03, "", s:cterm03, "", "none", "")
 call <sid>hi("Conditional",  s:gui0E, "", s:cterm0E, "", "", "")
 call <sid>hi("Constant",     s:gui09, "", s:cterm09, "", "", "")
 call <sid>hi("Define",       s:gui0E, "", s:cterm0E, "", "none", "")

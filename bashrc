@@ -52,7 +52,7 @@ __set_ps1 (){
     fi
     #
     # generate prompt »
-    PS1="\n \$([[ \$? != 0 ]] && echo \"$err\" || echo \"$nor\")\W ${gitinfo}${por}✿ $rst"
+    PS1="\n $nor\W ${gitinfo}\$([[ \$? != 0 ]] && echo \"$err\" || echo \"$por\")✿ $rst"
 }
 # set PS1
 PROMPT_COMMAND="__set_ps1"
