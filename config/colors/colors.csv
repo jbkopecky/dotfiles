@@ -1,0 +1,17 @@
+TERM,NAME,TomorrowNight,Iceberg,Solarized,SolarizedLight,GrayScale,GrayScaleLight,Gitghub
+*.color00,base00,#1d1f21,#161821,#002b36,#fdf6e3,#101010,#f7f7f7,#ffffff
+*.color01,base08,#cc6666,#e27878,#dc322f,#dc322f,#7c7c7c,#7c7c7c,#ed6a43
+*.color02,base0B,#b5bd68,#b4be82,#859900,#859900,#8e8e8e,#8e8e8e,#183691
+*.color03,base0A,#f0c674,#f0c674,#b58900,#b58900,#a0a0a0,#a0a0a0,#795da3
+*.color04,base0D,#81a2be,#84a0c6,#268bd2,#268bd2,#686868,#686868,#795da3
+*.color05,base0E,#b294bb,#a093c7,#6c71c4,#6c71c4,#747474,#747474,#a71d5d
+*.color06,base0C,#8abeb7,#89b8c2,#2aa198,#2aa198,#868686,#868686,#183691
+*.color07,base05,#c5c8c6,#9fa4bf,#93a1a1,#586e75,#b9b9b9,#464646,#333333
+*.color08,base03,#969896,#5d658b,#657b83,#839496,#525252,#ababab,#969896
+*.color09,base09,#de935f,#e4aa80,#cb4b16,#cb4b16,#999999,#999999,#0086b3
+*.color10,base01,#282a2e,#2e3244,#073642,#eee8d5,#252525,#e3e3e3,#f5f5f5
+*.color11,base02,#373b41,#454b68,#586e75,#93a1a1,#464646,#b9b9b9,#c8c8fa
+*.color12,base04,#b4b7b4,#7b83a7,#839496,#657b83,#ababab,#525252,#e8e8e8
+*.color13,base06,#e0e0e0,#c2c6d6,#eee8d5,#073642,#e3e3e3,#252525,#ffffff
+*.color14,base0F,#a3685a,#597bc5,#d33682,#d33682,#5e5e5e,#5e5e5e,#333333
+*.color15,base07,#ffffff,#e5e7ee,#fdf6e3,#002b36,#f7f7f7,#101010,#ffffff
