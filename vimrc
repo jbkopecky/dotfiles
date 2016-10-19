@@ -10,6 +10,7 @@ endif
 " Plugins ! *************************************************************** {{{
 silent! call plug#begin('~/.vim/plugged')
 " -----------------------------------------------------------------------------
+Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 Plug 'cocopon/iceberg.vim'
