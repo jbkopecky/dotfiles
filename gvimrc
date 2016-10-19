@@ -1,11 +1,3 @@
-if has("win32")
-    set guifont=Consolas_for_Powerline_FixedD:h11
-    set printfont=Consolas_for_Powerline_FixedD:h11
-else
-    set guifont=Monaco\ for\ Powerline\ 9
-    set printfont=Monaco\ for\ Powerline\ 9
-endif
-
 set guioptions-=m "No Menu
 set guioptions-=T "No toolbar
 set guioptions-=r "No scrollbar

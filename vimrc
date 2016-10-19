@@ -96,7 +96,7 @@ endif
 " Colors ****************************************************************** {{{
 " set t_Co=256
 " set background=dark
-colo jbco16
+colo base16-default-light
 "}}}
 " Invisible Characters **************************************************** {{{
 set listchars=tab:►\ ,trail:●,extends:»,precedes:«,eol:¬
