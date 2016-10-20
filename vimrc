@@ -37,7 +37,8 @@ Plug 'ap/vim-buftabline'
 Plug 'w0rp/Ale', {'for': ['python', 'vim', 'bash', 'html', 'json']}
 " -----------------------------------------------------------------------------
 Plug 'reedes/vim-wordy', {'for': ['journal', 'md', 'tex', 'txt', 'yml']}
-Plug 'tpope/vim-markdown',   {'for': ['md', 'mkd', 'markdown']}
+Plug 'godlygeek/tabular',   {'for': ['md', 'mkd', 'markdown']}
+Plug 'plasticboy/vim-markdown',   {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'chrisbra/colorizer'
 Plug 'lervag/vimtex'
@@ -359,6 +360,10 @@ let g:ctrlp_custom_ignore = {
 "}}}
 " Markdown **************************************************************** {{{
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
+let g:vim_markdown_toml_frontmatter = 1
+" let g:vim_markdown_math = 1
+let g:vim_markdown_toc_autofit = 1
+" let g:vim_markdown_folding_disabled = 1
 "}}}
 " journal ***************************************************************** {{{
 let g:journal#dirs = ['Notes']
