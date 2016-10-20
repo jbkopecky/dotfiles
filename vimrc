@@ -192,10 +192,10 @@ call g:StatusLineHi()
 set statusline=
 if (index(g:filetype_overrides, &filetype) <= 0)
     set statusline+=%6*%m%r%*                        " modified, readonly
-    set statusline+=\ %5*%{expand('%:h')}/           " relative path to file's directory
+    set statusline+=\ %5*%{expand('%:h')}/%*         " relative path to file's directory
     set statusline+=%1*%t%*                          " file name
-    set statusline+=\ %2*%{Fugitive()}               " fugitive
-    set statusline+=\ %5*%{Signify()}                " fugitive
+    set statusline+=\ %2*%{Fugitive()}%*             " fugitive
+    set statusline+=\ %5*%{Signify()}%*              " fugitive
     set statusline+=%=                               " switch to RHS
     set statusline+=\ %3*%{Ale()}%*                  " Linting
     set statusline+=\ %3*%{TrailingSpaceWarning()}%* " trailing whitespace
