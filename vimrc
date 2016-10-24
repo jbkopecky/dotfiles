@@ -34,7 +34,8 @@ Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
 " -----------------------------------------------------------------------------
 Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'ajh17/VimCompletesMe'
+" Plug 'ajh17/VimCompletesMe'
+Plug 'lifepillar/vim-mucomplete'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'ap/vim-buftabline'
 Plug 'w0rp/Ale', {'for': ['python', 'vim', 'bash', 'html', 'json']}
