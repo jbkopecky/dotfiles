@@ -1,6 +1,9 @@
-"=============================================================================="
-"                                JBK's  VIMRC
-"=============================================================================="
+" -----------------------------------------------------------------------------
+" File: vimrc
+" Author: JB Kopecky <jb.kopecky@gmail.com>
+" Source: https://github.com/jbkopecky/dotfiles
+" Last Modified: 20-10-2016
+" -----------------------------------------------------------------------------
 
 " Runtime Path ************************************************************ {{{
 if has('win32')
@@ -125,11 +128,11 @@ set foldtext=MyFoldText()
 function! g:StatusLineHi() "{{{
     hi clear StatusLine
     hi clear StatusLineNC
-    hi! def link StatusLine NonText
-    hi! def link StatusLineNC Comment
+    hi def link StatusLine Ignore
+    hi def link StatusLineNC Comment
     hi def link User1 Identifier
-    hi def link User2 Statement
-    hi def link User3 Error
+    hi def link User2 String
+    hi def link User3 Statement
     hi def link User4 Special
     hi def link User5 Comment
     hi def link User6 WarningMsg
@@ -194,7 +197,7 @@ set statusline=
 if (index(g:filetype_overrides, &filetype) <= 0)
     set statusline+=%6*%m%r%*                        " modified, readonly
     set statusline+=\ %5*%{expand('%:h')}/%*         " relative path to file's directory
-    set statusline+=%1*%t%*                          " file name
+    set statusline+=%1*%t                          " file name
     set statusline+=\ %2*%{Fugitive()}%*             " fugitive
     set statusline+=\ %5*%{Signify()}%*              " fugitive
     set statusline+=%=                               " switch to RHS
@@ -360,10 +363,9 @@ let g:ctrlp_custom_ignore = {
 "}}}
 " Markdown **************************************************************** {{{
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
-let g:vim_markdown_toml_frontmatter = 1
-" let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_folding_level = 2
 let g:vim_markdown_toc_autofit = 1
-" let g:vim_markdown_folding_disabled = 1
 "}}}
 " journal ***************************************************************** {{{
 let g:journal#dirs = ['Notes']
