@@ -34,7 +34,6 @@ Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
 " -----------------------------------------------------------------------------
 Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'ajh17/VimCompletesMe'
 Plug 'lifepillar/vim-mucomplete'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'ap/vim-buftabline'
@@ -47,6 +46,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'chrisbra/colorizer'
 Plug 'lervag/vimtex'
 Plug 'chrisbra/csv.vim'
+Plug 'freitass/todo.txt-vim'
 Plug 'junegunn/vim-journal'
 " -----------------------------------------------------------------------------
 if has('unix')
@@ -303,6 +303,7 @@ map <silent> <Leader>c :cd %:p:h<CR>
 map <Leader>i :set list!<CR>
 nnoremap <silent> <Leader><Leader> :noh<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
+nnoremap <silent> <Leader>T :tabe ~/Dropbox/todo/todo.txt<CR>
 
 nnoremap U :UndotreeToggle<CR>
 
@@ -334,17 +335,6 @@ command! Q q
 " Dispatch **************************************************************** {{{
 
 "}}}
-" VimCompletesMe ********************************************************** {{{
-set dictionary=/usr/share/dict/words
-augroup VimCompletesMe
-    autocmd FileType journal         let b:vcm_tab_complete = 'dict'
-    autocmd FileType vim             let b:vcm_tab_complete = 'tags'
-    autocmd FileType md,markdown     let b:vcm_tab_complete = 'omni'
-    autocmd FileType vimwiki,*.wiki  let b:vcm_tab_complete = 'omni'
-    autocmd FileType python          let b:vcm_tab_complete = 'omni'
-    autocmd FileType tex             let b:vcm_tab_complete = 'omni'
-augroup END
-" }}}
 " Jedi-vim **************************************************************** {{{
 let g:python_highlight_all = 1
 let g:jedi#popup_on_dot = 0
