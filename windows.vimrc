@@ -1,7 +1,15 @@
 " Misc *********************************************************************{{{
+set guifont=Consolas_for_Powerline_FixedD:h11
+set printfont=Consolas_for_Powerline_FixedD:h11
+
 cd ~/Documents
 let &showbreak = '»'
+
 set lines=43 columns=190
+
+colo seoul256-light
+call StatusLineHi()
+
 " }}}
 
 " Startify bookmarks *******************************************************{{{

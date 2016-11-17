@@ -1,5 +1,5 @@
 # FZF See: https://github.com/junegunn/fzf
-export FZF_DEFAULT_OPTS="--color=bg:-1,bg+:-1,fg:-1,fg+:-1,hl:4,hl+:4"
+# export FZF_DEFAULT_OPTS="--color=bg:-1,bg+:-1,fg:-1,fg+:-1,hl:4,hl+:4"
 
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 
