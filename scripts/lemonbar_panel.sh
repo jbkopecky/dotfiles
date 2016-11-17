@@ -1,1 +1,0 @@
-../config/themes/seoul/lemonbar_panel.sh

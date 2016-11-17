@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # source .xresources
-xrdb -merge ~/.xresources
+xrdb -merge ~/.Xresources
 
 # Disable caps lock
 setxkbmap -option ctrl:nocaps

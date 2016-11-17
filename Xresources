@@ -1,12 +1,6 @@
-! Dylans Xresources
-
-<<<<<<< HEAD
 ! Set the font
 URxvt*font: xft:lemon:pixelsize=10:antialias=false
 URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
-=======
-#include "/home/jky/.scripts/termcolors"
->>>>>>> 7bb61879d5153825483989c99d0ec2f1abe6fe6b
 
 ! Increase line spacing
 ! URxvt*lineSpace: 1
@@ -14,7 +8,6 @@ URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
 ! Terminal window size
 URxvt*geometry: 85x25
 
-<<<<<<< HEAD
 ! Disable scrollbar
 URxvt.scrollBar: false
 
@@ -33,22 +26,6 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 ! Size of cursor
 Xcursor.size: 16
-=======
-/* URxvt*font:              xft:monospace:size=8:antialias=false:hinting=false:autohint=false */
-/* URxvt*boldFont:          xft:monospace:bold:size=8:antialias=false:hinting=false:autohint=false */
-
-/* URxvt*font:              xft:monaco:regular:size=10:antialias=true:hinting=false:autohint=false */
-/* URxvt*boldFont:          xft:monaco:bold:size=10:antialias=true:hinting=false:autohint=false */
-
-/* URxvt*font:              xft:monaco:medium:size=10 */
-/* URxvt*boldFont:          xft:monaco:medium:size=10 */
-
-/* URxvt*font:              xft:fira mono:regular:size=8:antialias=false:hinting=false:autohint=false */
-/* URxvt*boldFont:          xft:fira mono:bold:size=8:antialias=false:hinting=false:autohint=false */
-
-/* URxvt*font:              -ypn-envypn-medium-r-normal--13-130-75-75-c-90-iso8859-1 */
-/* URxvt*boldFont:          -ypn-envypn-medium-r-normal--13-130-75-75-c-90-iso8859-1 */
->>>>>>> 7bb61879d5153825483989c99d0ec2f1abe6fe6b
 
 ! Colors {{{
 
