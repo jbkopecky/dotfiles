@@ -20,7 +20,7 @@ feh  --bg-fill ~/Pictures/Wallpapers/mist_mountain.jpg &
 urxvtd -q -f -o &
 
 # bar
-clock &
+clock.sh &
 
 # mpd
 # mpd &

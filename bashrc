@@ -17,6 +17,8 @@ alias tma="tmux attach-session"
 alias tmc="clear && tmux clear-history"
 alias tmk="tmux kill-session"
 alias tm="tmux new-session"
+alias urxvt="urxvtc"
+alias sxiv="sxiv -b"
 
 # Vim aliases
 alias vi="vim"
@@ -29,6 +31,11 @@ alias la='ls -a'
 alias grep='grep --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'
+
+# other aliases
+alias cleandeps='sudo pacman -Rns $(pacman -Qtdq)'
+alias mp3dl="cd $HOME/Music && youtube-dl --extract-audio -f bestaudio --audio-format mp3 --no-playlist"
+alias fixtime="sudo ntpd -qg"
 
 
 # PS1 with error, and git info
