@@ -1,3 +1,5 @@
+#1 bin/sh
+
 DEFAULT_WALL="$HOME/Pictures/Wallpapers/sea_sunrise.jpg"
 WALL="/home/jb/Pictures/Wallpapers/sea_sunrise.jpg"
 

@@ -1,4 +1,4 @@
-#!/bin/mksh
+#!/bin/sh
 # Script to easily map commands to keys in openbox
 #
 # Created by Dylan Araps

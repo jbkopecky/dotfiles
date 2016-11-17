@@ -242,6 +242,10 @@ if has('autocmd')
         autocmd FileType netrw
               \ nnoremap <silent><buffer> <Esc> :bprevious<CR>
 
+        autocmd FileType xml
+              \ setlocal foldmethod=indent |
+              \ setlocal foldlevelstart=999 |
+              \ setlocal foldminlines=0 |
         autocmd FileType *
               \ if exists("+omnifunc") && &omnifunc == "" |
               \ setlocal omnifunc=syntaxcomplete#Complete |

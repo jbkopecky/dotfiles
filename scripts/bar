@@ -1,8 +1,7 @@
 #!/bin/sh
-# Dylan's Lemonbar Clock
 
 # Source colors
-source ~/Downloads/dynalaraps/scripts/colors/output/colors.sh
+source ~/.scripts/colors/output/colors.sh
 
 while :; do
     echo "       $(neofetch --stdout memory) %{c}$(date "+%a %d %b %l:%M %p")%{r}$(mpc current | cut -c 1-25)      %{r}"

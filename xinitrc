@@ -14,16 +14,16 @@ xrandr --addmode Virtual1 1920x1080
 xrandr --output Virtual1 --mode 1920x1080
 
 # Set wallpaper
-feh  --bg-fill ~/Pictures/Wallpapers/mist_mountain.jpg &
+wallpaper &
 
 # urxvt daemon
 urxvtd -q -f -o &
 
 # bar
-clock.sh &
+bar &
 
 # mpd
-# mpd &
+mpd &
 
 # Devmon
 # udiskie &
