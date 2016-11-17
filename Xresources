@@ -1,105 +1,72 @@
-!----------------------------------------------------
-! color settings
-!----------------------------------------------------
+! Dylans Xresources
 
-#include "/home/jb/.scripts/termcolors"
+! Set the font
+URxvt*font: xft:lemon:pixelsize=10:antialias=false
+URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
 
-!---------------------------------------------------
-! urxvt config settings
-!---------------------------------------------------
+! Increase line spacing
+! URxvt*lineSpace: 1
 
-URxvt*geometry:         80x21
+! Terminal window size
+URxvt*geometry: 85x25
 
-! URxvt*font:              xft:monospace:size=8:antialias=false:hinting=false:autohint=false
-! URxvt*boldFont:          xft:monospace:bold:size=8:antialias=false:hinting=false:autohint=false
+! Disable scrollbar
+URxvt.scrollBar: false
 
-! URxvt*font:              xft:monaco:regular:size=10:antialias=true:hinting=false:autohint=false
-! URxvt*boldFont:          xft:monaco:bold:size=10:antialias=true:hinting=false:autohint=false
+! Set urxvt as login shell
+URxvt*loginShell: true
 
-! URxvt*font:              xft:monaco:medium:size=10
-! URxvt*boldFont:          xft:monaco:medium:size=10
+! Set terminal padding
+URxvt.internalBorder: 15
 
-! URxvt*font:              xft:fira mono:regular:size=8:antialias=false:hinting=false:autohint=false
-! URxvt*boldFont:          xft:fira mono:bold:size=8:antialias=false:hinting=false:autohint=false
+! Enables copy/paste with Ctrl-Shift-C/V
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.perl-ext-common: default,clipboard
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
-URxvt*font:              -ypn-envypn-medium-r-normal--13-130-75-75-c-90-iso8859-1
-URxvt*boldFont:          -ypn-envypn-medium-r-normal--13-130-75-75-c-90-iso8859-1
+! Size of cursor
+Xcursor.size: 16
 
-URxvt*letterSpace:      -1
-URxvt.savelines:        500
-URxvt*scrollBar:        false
+! Colors {{{
 
-! do not scroll with output
-URxvt*scrollTtyOutput:  false
+! special
+*.foreground:   #f0f0f0
+*.background:   #232c33
+*.cursorColor:  #f0f0f0
 
-! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
-URxvt*scrollWithBuffer: true
+! black
+! Second black is grey
+*.color0:       #232c33
+*.color8:       #70838c
 
-! scroll back to the bottom on keypress
-URxvt*scrollTtyKeypress: true
+! red
+*.color1:       #99736e
+*.color9:       #99736e
 
-! scroll a single line
-URxvt.keysym.Shift-Up: command:\033]720;1\007
-URxvt.keysym.Shift-Down: command:\033]721;1\007
+! green
+*.color2:       #78a090
+*.color10:      #78a090
 
-! clipboard management
-URxvt.perl-ext-common:  default,clipboard
-URxvt.keysym.M-c:   perl:clipboard:copy
-URxvt.keysym.M-v:   perl:clipboard:paste
+! yellow
+*.color3:       #bfb7a1
+*.color11:      #bfb7a1
 
-! dzen2
-dzen2.font:       monospace:pixelsize=10
-dzen2.foreground: base05
-dzen2.background: base00
+! blue
+*.color4:       #7c9fa6
+*.color12:      #7c9fa6
 
-!---------------------------------------------------
-! xterm config settings
-!---------------------------------------------------
+! magenta
+*.color5:       #BF9C86
+*.color13:      #BF9C86
 
-! Unicode support
-xterm*utf8: 1
+! cyan
+*.color6:       #99BFBA
+*.color14:      #99BFBA
 
-! Color support
-xterm*customization: -color
-xterm*termName: xterm-256color
+! white
+*.color7:       #f0f0f0
+*.color15:      #f0f0f0
 
-! Font settings
-xterm*faceName: Monaco for Powerline:size=12
-xterm*faceNameDoublesize:WenQuanYi Micro Hei Mono
-
-! select URLS
-xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
-
-! For inclusion of all necessary environment variables
-xterm*loginShell: true
-
-! Scrollback setting
-xterm*savelines: 10000
-
-! Disable right scrollbar
-xterm*ScrollBar: false
-
-! Stop output to terminal from jumping down to bottom of scroll again
-xterm*scrollTtyOutput: false
-
-! Save selections to clipboard
-xterm*selectToClipboard: true
-
-! =========
-! ROFI
-! =========
-
-rofi.width:		50
-rofi.padding:	300
-rofi.fullscreen: true
-rofi.fixed-num-lines: true
-rofi.bw:		0
-rofi.location:	0
-rofi.terminal:	urxvt
-rofi.lines:		5
-rofi.eh:		1
-rofi.font:		monaco 14
-rofi.color-window: argb:aa263238, argb:aa263238, base0B
-rofi.color-normal: argb:0263238, base05, argb:0263238, base0D, base07
-rofi.color-active: base07, base0D, 268bd2, base0E, base0D, 268bd2, base07
-rofi.color-urgent: base07, base0F, base0E, base0F, base07
+! }}}
