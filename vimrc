@@ -14,9 +14,7 @@ endif
 silent! call plug#begin('~/.vim/plugged')
 " -----------------------------------------------------------------------------
 Plug 'chriskempson/base16-vim'
-Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
-Plug 'cocopon/iceberg.vim'
 " -----------------------------------------------------------------------------
 Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-signify'
@@ -37,17 +35,17 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'lifepillar/vim-mucomplete'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'ap/vim-buftabline'
-Plug 'w0rp/Ale', {'for': ['python', 'vim', 'bash', 'html', 'json']}
 " -----------------------------------------------------------------------------
+Plug 'w0rp/Ale', {'for': ['python', 'vim', 'bash', 'html', 'json', 'yaml']}
 Plug 'reedes/vim-wordy', {'for': ['journal', 'md', 'tex', 'txt', 'yml']}
-Plug 'godlygeek/tabular',   {'for': ['md', 'mkd', 'markdown']}
-Plug 'plasticboy/vim-markdown',   {'for': ['md', 'mkd', 'markdown']}
+Plug 'godlygeek/tabular', {'for': ['md', 'mkd', 'markdown']}
+Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'chrisbra/colorizer'
-Plug 'lervag/vimtex'
-Plug 'chrisbra/csv.vim'
-Plug 'freitass/todo.txt-vim'
-Plug 'junegunn/vim-journal'
+Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
+Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'chrisbra/csv.vim', {'for': 'csv'}
+Plug 'freitass/todo.txt-vim', {'for': 'todo'}
+Plug 'junegunn/vim-journal', {'for': 'journal'}
 " -----------------------------------------------------------------------------
 if has('unix')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -55,7 +53,7 @@ endif
 call plug#end()
 "}}}
 " Preamble **************************************************************** {{{
-set nocompatible                     " Get rid of Vi compatibility
+set nocompatible                 " Get rid of Vi compatibility
 set laststatus=2                 " Always show status bar
 set mouse=a                      " Enable Mouse
 set backspace=2                  " Normal backspace
@@ -99,8 +97,6 @@ if exists('+viminfo')
 endif
 "}}}
 " Colors ****************************************************************** {{{
-" set t_Co=256
-" set background=dark
 colo base16-default-light
 "}}}
 " Invisible Characters **************************************************** {{{
@@ -195,7 +191,7 @@ let g:filetype_overrides = ['gundo', 'startify', 'vim-plug']
 call g:StatusLineHi()
 
 set statusline=
-if (index(g:filetype_overrides, &filetype) <= 0)
+if index(g:filetype_overrides, &filetype)<=0
     set statusline+=%6*%m%r%*                        " modified, readonly
     set statusline+=\ %5*%{expand('%:h')}/%*         " relative path to file's directory
     set statusline+=%1*%t                          " file name
@@ -224,9 +220,6 @@ if has('autocmd')
         autocmd!
 
         autocmd FileType gitcommit
-              \ setlocal spell
-
-        autocmd FileType text
               \ setlocal spell
 
         autocmd Filetype python
