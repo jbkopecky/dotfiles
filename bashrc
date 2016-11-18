@@ -41,7 +41,7 @@ alias fixtime="sudo ntpd -qg"
 # PS1 with error, and git info
 __set_ps1 (){
     local err="\[\033[0;31m\]"   # error -- red
-    local nor="\[\033[1;36m\]"   # normal -- white
+    local nor="\[\033[1;30m\]"   # normal -- white
     local por="\[\033[0;35m\]"   # prompt char
     local dirty="\[\033[0;33m\]" # dirty git
     local rst="\[\033[0m\]"      # Text Reset

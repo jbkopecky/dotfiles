@@ -2,6 +2,7 @@
 
 # source .xresources
 xrdb -merge ~/.Xresources
+xrdb -merge ~/.scripts/colors/output/colors.Xresources
 
 # Disable caps lock
 setxkbmap -option ctrl:nocaps
