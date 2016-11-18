@@ -296,6 +296,9 @@
     <keybind key="W-a">
       <action name="ToggleAlwaysOnTop"/>
     </keybind>
+    <keybind key="W-BackSpace">
+        <action name="ToggleDecorations"/>
+    </keybind>
     <!-- Fullscreen -->
     <keybind key="W-f">
       <action name="ToggleFullscreen"/>
@@ -329,6 +332,11 @@
     <keybind key="W-Return">
       <action name="Execute">
         <command>urxvtc</command>
+      </action>
+    </keybind>
+    <keybind key="W-t">
+      <action name="Execute">
+        <command>thunar</command>
       </action>
     </keybind>
     <keybind key="W-d">
@@ -365,6 +373,12 @@
         <command>keybinds nextsong</command>
       </action>
     </keybind>
+    <keybind key="W-Space">
+      <action name="Execute">
+        <name>Next Song</name>
+        <command>keybinds togglesong</command>
+      </action>
+    </keybind>
     <keybind key="W-P">
       <action name="Execute">
         <name>Take Screenshot</name>
@@ -380,7 +394,7 @@
     <keybind key="W-w">
       <action name="Execute">
         <name>Change to random wallpaper</name>
-        <command>wall</command>
+        <command>wallpaper</command>
       </action>
     </keybind>
   </keyboard>

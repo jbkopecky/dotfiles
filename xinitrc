@@ -26,6 +26,9 @@ bar &
 # mpd
 mpd &
 
+# Pulseaudio
+pulseaudio --start &
+
 # Devmon
 # udiskie &
 

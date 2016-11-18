@@ -32,6 +32,12 @@
 			<item label="urxvt">
 				<action name="Execute"><execute>urxvtc</execute></action>
 			</item>
+
+            <separator />
+
+			<item label="thunar">
+				<action name="Execute"><execute>thunar</execute></action>
+			</item>
 		</menu> <!-- System Tools -->
 
 		<separator />
