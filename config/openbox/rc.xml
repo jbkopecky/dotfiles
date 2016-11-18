@@ -339,7 +339,7 @@
         <command>thunar</command>
       </action>
     </keybind>
-    <keybind key="W-d">
+    <keybind key="W-space">
       <action name="Execute">
         <name>dmenu</name>
         <command>keybinds dmenu</command>
@@ -349,46 +349,34 @@
       <action name="MoveToCenter"/>
       <action name="Lower"/>
     </keybind>
-    <keybind key="W-Up">
+    <keybind key="W-k">
       <action name="Execute">
         <name>Vol Up</name>
         <command>keybinds volup</command>
       </action>
     </keybind>
-    <keybind key="W-Down">
+    <keybind key="W-j">
       <action name="Execute">
         <name>Vol Down</name>
         <command>keybinds voldown</command>
       </action>
     </keybind>
-    <keybind key="W-Left">
+    <keybind key="W-h">
       <action name="Execute">
         <name>Prev Song</name>
         <command>keybinds prevsong</command>
       </action>
     </keybind>
-    <keybind key="W-Right">
+    <keybind key="W-l">
       <action name="Execute">
         <name>Next Song</name>
         <command>keybinds nextsong</command>
       </action>
     </keybind>
-    <keybind key="W-Space">
+    <keybind key="W-p">
       <action name="Execute">
         <name>Next Song</name>
         <command>keybinds togglesong</command>
-      </action>
-    </keybind>
-    <keybind key="W-P">
-      <action name="Execute">
-        <name>Take Screenshot</name>
-        <command>keybinds screenshot</command>
-      </action>
-    </keybind>
-    <keybind key="W-U">
-      <action name="Execute">
-        <name>Take Screenshot</name>
-        <command>scrot</command>
       </action>
     </keybind>
     <keybind key="W-w">
