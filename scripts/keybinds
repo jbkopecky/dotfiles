@@ -44,7 +44,7 @@ togglesong () {
 }
 
 dmenu () {
-    dmenu_recent_aliases -s 0 -nb "#$white" -nf "#$black" -sb "#$white" -sf "#$gray" -i -h 30 -w 120 -q -x 30 -y 30 -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -p ">" -l 1
+    dmenu -s 0 -i -h 30 -w 120 -q -x 30 -y 30 -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -p ">" -l 1
 }
 
 screenshot () {
@@ -59,10 +59,6 @@ screenshot () {
 
     # Crop out the surrounding monitors
     convert -crop 1920x1080+0+0 "$dir/$img" "$dir/$img"
-}
-
-minify () {
-    wrs -a 355 270 $(pfw)
 }
 
 case $1 in

@@ -6,6 +6,7 @@
     <strength>10</strength>
     <screen_edge_strength>20</screen_edge_strength>
   </resistance>
+
   <focus>
     <focusNew>yes</focusNew>
     <!-- always try to focus new windows when they appear. other rules do
@@ -24,6 +25,7 @@
     <!-- when followMouse is enabled, and a window is given focus by moving the
        mouse into it, also raise the window -->
   </focus>
+
   <placement>
     <policy>UnderMouse</policy>
     <!-- 'Smart' or 'UnderMouse' -->
@@ -41,6 +43,7 @@
        following: 'Mouse' - where the mouse is, or
                   'Active' - where the active window is -->
   </placement>
+
   <theme>
     <name>yellow</name>
     <titleLayout>LIMC</titleLayout>
@@ -53,7 +56,7 @@
       C: close
       S: shade (roll up/down)
       D: omnipresent (on all desktops).
-  -->
+    -->
     <keepBorder>no</keepBorder>
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
@@ -111,6 +114,7 @@
       <!-- 'italic' or 'normal' -->
     </font>
   </theme>
+
   <desktops>
     <!-- this stuff is only used at startup, pagers allow you to change them
        during a session
@@ -135,6 +139,7 @@
     <!-- The number of milliseconds to show the popup for when switching
        desktops.  Set this to 0 to disable the popup. -->
   </desktops>
+
   <resize>
     <drawContents>yes</drawContents>
     <popupShow>Never</popupShow>
@@ -151,6 +156,7 @@
          distance from bottom edge, or 'Center' -->
     </popupFixedPosition>
   </resize>
+
   <!-- You can reserve a portion of your screen where windows will not cover when
      they are maximized, or when they are initially placed.
      Many programs reserve space automatically, but you can use this in other
@@ -161,6 +167,7 @@
     <left>0</left>
     <right>0</right>
   </margins>
+
   <dock>
     <position>Top</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
@@ -179,6 +186,7 @@
     <moveButton>Middle</moveButton>
     <!-- 'Left', 'Middle', 'Right' -->
   </dock>
+
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
     <!-- Prev/Next Desktop -->
@@ -357,100 +365,16 @@
         <command>keybinds nextsong</command>
       </action>
     </keybind>
-    <keybind key="W-End">
-      <action name="Execute">
-        <name>Next Song</name>
-        <command>keybinds togglesong</command>
-      </action>
-    </keybind>
     <keybind key="W-P">
       <action name="Execute">
         <name>Take Screenshot</name>
         <command>keybinds screenshot</command>
       </action>
     </keybind>
-    <keybind key="A-Return">
-      <action name="Execute">
-        <name>Minify window</name>
-        <command>keybinds minify</command>
-      </action>
-    </keybind>
     <keybind key="W-U">
       <action name="Execute">
         <name>Take Screenshot</name>
         <command>scrot</command>
-      </action>
-    </keybind>
-    <keybind key="A-1">
-      <action name="Execute">
-        <name>Move window to corner</name>
-        <command>corner tl</command>
-      </action>
-    </keybind>
-    <keybind key="A-2">
-      <action name="Execute">
-        <name>Move window to corner</name>
-        <command>corner mml</command>
-      </action>
-    </keybind>
-    <keybind key="A-3">
-      <action name="Execute">
-        <name>Move window to corner</name>
-        <command>corner ml</command>
-      </action>
-    </keybind>
-    <keybind key="A-4">
-      <action name="Execute">
-        <name>Move window to corner</name>
-        <command>corner mmml</command>
-      </action>
-    </keybind>
-    <keybind key="A-5">
-      <action name="Execute">
-        <name>Move window to corner</name>
-        <command>corner bl</command>
-      </action>
-    </keybind>
-    <keybind key="A-6">
-      <action name="Execute">
-        <name>Move window to corner</name>
-        <command>corner mmm</command>
-      </action>
-    </keybind>
-    <keybind key="A-7">
-      <action name="Execute">
-        <name>Move window to corner</name>
-        <command>corner mmmm</command>
-      </action>
-    </keybind>
-    <keybind key="A-8">
-      <action name="Execute">
-        <name>Move window to corner</name>
-        <command>corner tr</command>
-      </action>
-    </keybind>
-    <keybind key="A-9">
-      <action name="Execute">
-        <name>Move window to corner</name>
-        <command>corner mmr</command>
-      </action>
-    </keybind>
-    <keybind key="A-0">
-      <action name="Execute">
-        <name>Move window to corner</name>
-        <command>corner mr</command>
-      </action>
-    </keybind>
-    <keybind key="A-minus">
-      <action name="Execute">
-        <name>Move window to corner</name>
-        <command>corner mmmr</command>
-      </action>
-    </keybind>
-    <keybind key="A-equal">
-      <action name="Execute">
-        <name>Move window to corner</name>
-        <command>corner br</command>
       </action>
     </keybind>
     <keybind key="W-w">
@@ -460,6 +384,7 @@
       </action>
     </keybind>
   </keyboard>
+
   <mouse>
     <dragThreshold>1</dragThreshold>
     <!-- number of pixels the mouse must move before a drag begins -->
@@ -704,6 +629,7 @@
       </mousebind>
     </context>
   </mouse>
+
   <menu>
     <!-- You can specify more than one menu file in here and they are all loaded,
        just don't make menu ids clash or, well, it'll be kind of pointless -->
@@ -729,6 +655,7 @@
     <manageDesktops>yes</manageDesktops>
     <!-- show the manage desktops section in the client-list-(combined-)menu -->
   </menu>
+
   <applications>
     <application name="mpv">
       <desktop>all</desktop>
@@ -758,4 +685,5 @@
     <!--   <decor>no</decor> -->
     <!-- </application> -->
   </applications>
+
 </openbox_config>

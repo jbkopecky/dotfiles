@@ -13,8 +13,8 @@
 		<separator />
 
 		<menu id="Internet" label="Internet">
-			<item label="Firefox">
-				<action name="Execute"><execute>iceweasel </execute></action>
+			<item label="Vivaldi">
+				<action name="Execute"><execute>vivaldi-stable </execute></action>
 			</item>
 		</menu> <!-- Internet -->
 
