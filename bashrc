@@ -39,6 +39,7 @@ alias fixtime="sudo ntpd -qg"
 
 
 # PS1 with error, and git info
+export PROMPT_CHAR=✿
 __set_ps1 (){
     local err="\[\033[0;31m\]"   # error -- red
     local nor="\[\033[1;30m\]"   # normal -- white
@@ -59,7 +60,7 @@ __set_ps1 (){
     fi
     #
     # generate prompt »
-    PS1="\n $nor\W ${gitinfo}\$([[ \$? != 0 ]] && echo \"$err\" || echo \"$por\")✿ $rst"
+    PS1="\n $nor\W ${gitinfo}\$([[ \$? != 0 ]] && echo \"$err\" || echo \"$por\")$PROMPT_CHAR $rst"
 }
 # set PS1
 PROMPT_COMMAND="__set_ps1"

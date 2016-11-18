@@ -36,8 +36,6 @@ Plug 'lifepillar/vim-mucomplete'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'ap/vim-buftabline'
 " -----------------------------------------------------------------------------
-Plug 'w0rp/Ale', {'for': ['python', 'vim', 'bash', 'html', 'json', 'yaml']}
-Plug 'reedes/vim-wordy', {'for': ['journal', 'md', 'tex', 'txt', 'yml']}
 Plug 'godlygeek/tabular', {'for': ['md', 'mkd', 'markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
@@ -174,13 +172,6 @@ function! Signify() "{{{
         return l:hunkline
     endif
 endfunction "}}}
-function! Ale() "{{{
-    if !get(g:, 'loaded_ale', 0)
-        return ''
-    else
-        return ALEGetStatusLine()
-    endif
-endfunction "}}}
 augroup statline_trail "{{{
   " recalculate when idle, and after saving
   autocmd!
@@ -188,23 +179,19 @@ augroup statline_trail "{{{
 augroup END "}}}
 let g:filetype_overrides = ['gundo', 'startify', 'vim-plug']
 
-call g:StatusLineHi()
+call g:StatusLineHi() 
 
 set statusline=
-if index(g:filetype_overrides, &filetype)<=0
-    set statusline+=%6*%m%r%*                        " modified, readonly
-    set statusline+=\ %5*%{expand('%:h')}/%*         " relative path to file's directory
-    set statusline+=%1*%t                          " file name
-    set statusline+=\ %2*%{Fugitive()}%*             " fugitive
-    set statusline+=\ %5*%{Signify()}%*              " fugitive
-    set statusline+=%=                               " switch to RHS
-    set statusline+=\ %3*%{Ale()}%*                  " Linting
-    set statusline+=\ %3*%{TrailingSpaceWarning()}%* " trailing whitespace
-    set statusline+=\ %2*%y%*
-    set statusline+=\ %5*%L\ %*                      " number of lines
-else
-    set statusline+=%=
-endif
+set statusline+=%6*%m%r%*                        " modified, readonly
+set statusline+=\ %5*%{expand('%:h')}/%*         " relative path to file's directory
+set statusline+=%1*%t                          " file name
+set statusline+=\ %2*%{Fugitive()}%*             " fugitive
+set statusline+=\ %5*%{Signify()}%*              " fugitive
+set statusline+=%=                               " switch to RHS
+set statusline+=\ %3*%{TrailingSpaceWarning()}%* " trailing whitespace
+set statusline+=\ %2*%y%*
+set statusline+=\ %5*%L\ %*                      " number of lines
+
 
 "}}}
 " FileType **************************************************************** {{{
@@ -213,6 +200,7 @@ if has('autocmd')
     augroup Misc "{{{
         autocmd!
         autocmd FocusGained * if !has('win32') | silent! call fugitive#reload_status() | endif
+        autocmd FocusGained * call StatusLineHi()
         autocmd BufReadPost * if getline(1) =~# '^#!' | let b:dispatch = getline(1)[2:-1] . ' %' | let b:start = b:dispatch | endif
         autocmd BufReadPost ~/.Xdefaults,~/.Xresources let b:dispatch = 'xrdb -load %'
     augroup END "}}}
@@ -361,13 +349,6 @@ let g:journal#dirs = ['Notes']
 " buftabline ************************************************************** {{{
 let g:buftabline_show = 1
 "}}}
-" Ale ********************************************************************* {{{
-let g:ale_sign_column_always = 1
-" ✿
-let g:ale_statusline_format = ['★ %d', '☆ %d', '✔']
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-"}}}
 "}}}
 " Todo ******************************************************************** {{{
 function! s:todo() abort "{{{
@@ -421,4 +402,3 @@ if filereadable(glob('~/.local.vimrc')) "{{{
   so ~/.local.vimrc
 endif "}}}
 "}}}
-
