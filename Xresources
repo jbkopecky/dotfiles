@@ -2,8 +2,11 @@
 /* URxvt*font: xft:lemon:pixelsize=10:antialias=false */
 /* URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false */
 
-URxvt*font: xft:envypn:pixelsize=12:antialias=false
-URxvt*boldFont: xft:envypn:pixelsize=12:antialias=false
+URxvt*font: xft:uushi:pixelsize=10:antialias=false
+URxvt*boldFont: xft:uushi:pixelsize=10:antialias=false
+
+/* URxvt*font: xft:envypn:pixelsize=12:antialias=false */
+/* URxvt*boldFont: xft:envypn:pixelsize=12:antialias=false */
 
 ! Increase line spacing
 ! URxvt*lineSpace: 1
