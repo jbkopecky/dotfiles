@@ -4,6 +4,8 @@ state_file "~/.mpd/state"
 playlist_directory "~/.mpd/playlists"
 music_directory "~/Music"
 
+user "jb"
+
 audio_output {
 	name "My ALSA Device"
 	type "alsa"

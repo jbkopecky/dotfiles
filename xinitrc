@@ -12,9 +12,9 @@ setxkbmap -option caps:none
 setx b off
 
 # Set up multi mon
-xrandr --newmode "1920x1080" 173.00 1920 2048 2248 2576 1080 1083 1088 1120 -hsync +vsync
-xrandr --addmode Virtual1 1920x1080
-xrandr --output Virtual1 --mode 1920x1080
+# xrandr --newmode "1920x1080" 173.00 1920 2048 2248 2576 1080 1083 1088 1120 -hsync +vsync
+# xrandr --addmode Virtual1 1920x1080
+# xrandr --output Virtual1 --mode 1920x1080
 
 # Set wallpaper
 wallpaper &
@@ -25,14 +25,14 @@ urxvtd -q -f -o &
 # bar
 bar &
 
-# mpd
-mpd &
-
 # Pulseaudio
 pulseaudio --start &
 
+# mpd
+mpd &
+
 # Devmon
-# udiskie &
+udiskie &
 
 #  Start openbox
 exec openbox-session
