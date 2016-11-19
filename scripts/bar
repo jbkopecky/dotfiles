@@ -8,5 +8,5 @@ while :; do
 	sleep 2s
 done |
 
-lemonbar -b -g "500x33+710+33" -f "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -B "#$white" -F "#$gray"
+lemonbar -b -g "500x33+710+33" -f "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -f"-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1" -B "#$white" -F "#$gray"
 

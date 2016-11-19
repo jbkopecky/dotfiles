@@ -9,7 +9,7 @@ URxvt*boldFont: xft:envypn:pixelsize=12:antialias=false
 ! URxvt*lineSpace: 1
 
 ! Terminal window size
-URxvt*geometry: 85x25
+URxvt*geometry: 85x40
 
 ! Disable scrollbar
 URxvt.scrollBar: false
@@ -18,14 +18,14 @@ URxvt.scrollBar: false
 URxvt*loginShell: true
 
 ! Set terminal padding
-URxvt.internalBorder: 15
+URxvt.internalBorder: 10
 
 ! Enables copy/paste with Ctrl-Shift-C/V
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-URxvt.perl-ext-common: default,clipboard
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+! URxvt.iso14755: false
+! URxvt.iso14755_52: false
+! URxvt.perl-ext-common: default,clipboard
+! URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+! URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 ! Size of cursor
 Xcursor.size: 16
