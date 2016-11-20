@@ -6,6 +6,7 @@ function! s:gui_mode() "{{{
         \ || has('gui_running') || (has("termtruecolor") && &guicolors == 1) || (has("termguicolors") && &termguicolors == 1)) ?
         \ 'gui' : 'cterm'
 endfunction "}}}
+
 function! s:get_syn(group, what) "{{{
   let g:gui_mode = s:gui_mode()
   let color = synIDattr(synIDtrans(hlID(a:group)), a:what, g:gui_mode)
@@ -17,16 +18,19 @@ function! s:get_syn(group, what) "{{{
   endif
   return color
 endfunction "}}}
+
 function! s:get_array(fg, bg, opts) "{{{
   return g:gui_mode ==# 'gui'
         \ ? [ a:fg, a:bg, '', '', join(a:opts, ',') ]
         \ : [ '', '', a:fg, a:bg, join(a:opts, ',') ]
 endfunction "}}}
+
 function! GetHighlight(fg, bg, ...) "{{{
   let fg = s:get_syn(a:fg[0], a:fg[1])
   let bg = s:get_syn(a:bg[0], a:bg[1])
   return s:get_array(fg, bg, a:000)
 endfunction "}}}
+
 function! StatHighlight(group, colors) "{{{
   let colors=a:colors
   if len(colors) == 4
@@ -39,6 +43,7 @@ function! StatHighlight(group, colors) "{{{
       \ s:Get(colors, 4, 'term=', ''))
   exe cmd
 endfunction "}}}
+
 function! s:Get(dict, key, prefix, default) "{{{
   if get(a:dict, a:key, a:default) isnot# a:default
     return a:prefix. get(a:dict, a:key)
@@ -46,24 +51,33 @@ function! s:Get(dict, key, prefix, default) "{{{
     return ''
   endif
 endfunction "}}}
-function! StatusLineHi() "{{{
-    let s:base = 'LineNr'
-    let s:FG = [s:base, 'fg']
-    let s:BG = [s:base, 'bg']
 
-    let s:U0 = GetHighlight(s:FG, s:BG)
-    let s:U1 = GetHighlight(['Identifier', 'fg'], s:BG)
-    let s:U2 = GetHighlight(['String',     'fg'], s:BG)
-    let s:U3 = GetHighlight(['Statement',  'fg'], s:BG)
-    let s:U4 = GetHighlight(['Special',    'fg'], s:BG)
-    let s:U5 = GetHighlight(['Comment',    'fg'], s:BG)
-    let s:U6 = GetHighlight(['Warning',    'fg'], s:BG)
+function! StatusLineHi() "{{{
+
+    let s:base0 = 'Normal'
+    let s:base1 = 'LineNr'
+
+    let s:notext = 'Ignore' 
+
+    let s:FG = [s:notext, 'fg']
+    let s:BG0 = [s:base0, 'bg']
+    let s:BG1 = [s:base1, 'bg']
+
+    let s:N0 = GetHighlight(s:FG, s:BG0)
+    let s:N1 = GetHighlight(s:FG, s:BG1)
+
+    let s:U1 = GetHighlight(['Identifier', 'fg'], s:BG1)
+    let s:U2 = GetHighlight(['String',     'fg'], s:BG1)
+    let s:U3 = GetHighlight(['Statement',  'fg'], s:BG1)
+    let s:U4 = GetHighlight(['Special',    'fg'], s:BG1)
+    let s:U5 = GetHighlight(['Comment',    'fg'], s:BG1)
+    let s:U6 = GetHighlight(['Warning',    'fg'], s:BG1)
     
     hi! clear StatusLine
     hi! clear StatusLineNC
 
-    call StatHighlight('StatusLine', s:U0) 
-    call StatHighlight('StatusLineNC', s:U0)
+    call StatHighlight('StatusLine', s:N1) 
+    call StatHighlight('StatusLineNC', s:N0)
 
     call StatHighlight('User1', s:U1)
     call StatHighlight('User2', s:U2)
@@ -72,6 +86,7 @@ function! StatusLineHi() "{{{
     call StatHighlight('User5', s:U5)
     call StatHighlight('User6', s:U6)
 endfunction "}}}
+
 function! TrailingSpaceWarning() "{{{
   if !exists('b:statline_trailing_space_warning')
     let l:lineno = search('\s$', 'nw')
@@ -83,6 +98,7 @@ function! TrailingSpaceWarning() "{{{
   endif
   return b:statline_trailing_space_warning
 endfunction "}}}
+
 function! Fugitive() "{{{
     if !exists('g:loaded_fugitive')
         return ''
@@ -90,6 +106,7 @@ function! Fugitive() "{{{
     let l:head = fugitive#head()
     return l:head
 endfunction "}}}
+
 function! Signify() "{{{
     if !get(g:, 'loaded_signify', 0)
         return ''
@@ -112,6 +129,7 @@ function! Signify() "{{{
         return l:hunkline
     endif
 endfunction "}}}
+
 augroup statline_trail "{{{
   " recalculate when idle, and after saving
   autocmd!
