@@ -1,10 +1,21 @@
 ! Set the font
-URxvt*font: xft:lemon:pixelsize=10:antialias=false
-URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
+/* URxvt*font: xft:lemon:pixelsize=10:antialias=false */
+/* URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false */
 
-/* URxvt*font: xft:envypn:pixelsize=12:antialias=false, xft:siji */
-/* URxvt*boldFont: xft:envypn:pixelsize=12:antialias=false, xft:siji */
-/* URxvt*boldFont: xft:siji:pixelsize=12:antialias=false */
+URxvt*font: xft:tewi:pixelsize=11:antialias=false
+URxvt*boldFont: xft:tewi:pixelsize=11:antialias=false
+
+/* URxvt*font: xft:ttyp0:pixelsize=10:antialias=false */
+/* URxvt*boldFont: xft:ttyp0:pixelsize=10:antialias=false */
+
+/* URxvt*font: xft:termsyn:pixelsize=14:antialias=false */
+/* URxvt*boldFont: xft:termsyn:pixelsize=14:antialias=false */
+
+/* URxvt*font: xft:lime:pixelsize=10:antialias=false */
+/* URxvt*boldFont: xft:lime:pixelsize=10:antialias=false */
+
+/* URxvt*font: xft:envypn:pixelsize=10:antialias=false,xft:siji,pizelsize=10:antialias=false */
+/* URxvt*boldFont: xft:envypn:pixelsize=10:antialias=false,xft:siji,pizelsize=10:antialias=false */
 
 ! Increase line spacing
 ! URxvt*lineSpace: 1
