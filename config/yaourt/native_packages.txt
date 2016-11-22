@@ -1,10 +1,13 @@
 alsa-utils 1.1.2-1
+artwiz-fonts 1.3-8
 autoconf 2.69-4
 automake 1.15-2
 bison 3.0.4-2
+dina-font 2.92-5
 fakeroot 1.21-2
 feh 2.18-1
 flex 2.6.1-1
+gnu-netcat 0.7.1-6
 grub 1:2.02.beta3-4
 iputils 20160308.0db72a4-1
 jfsutils 1.1.15-4
@@ -46,4 +49,5 @@ xfsprogs 4.8.0-1
 xorg-server 1.18.4-1
 xorg-server-utils 7.6-4
 xorg-xinit 1.3.4-4
+xorg-xlsfonts 1.0.5-1
 yaourt 1.8.1-1
