@@ -17,13 +17,13 @@ setx b off
 # xrandr --output Virtual1 --mode 1920x1080
 
 # Set wallpaper
-wallpaper &
+# wallpaper &
 
 # urxvt daemon
 urxvtd -q -f -o &
 
 # bar
-bar &
+barre &
 
 # Pulseaudio
 pulseaudio --start &

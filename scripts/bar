@@ -3,10 +3,22 @@
 # Source colors
 source ~/.scripts/colors/output/colors.sh
 
+icon() {
+    echo -n -e "\u$1"
+}
+
+ram () {
+    free="$(egrep 'MemFree' /proc/meminfo | egrep -o '[0-9]*')"
+    total="$(egrep 'MemTotal' /proc/meminfo | egrep -o '[0-9]*')"
+    used=$((total-free))
+    percent=$(echo "100*$used/$total" | bc)
+    echo "         $(icon e0c5) $percent %"
+}
+
 while :; do
-    echo "       $(neofetch --stdout memory) %{c}$(date "+%a %d %b %l:%M %p")%{r}$(mpc current | cut -c 1-25)      %{r}"
+    echo "$(ram) %{c}$(icon e015) $(date "+%a %d %b %l:%M %p")%{r}$(icon e0ec) $(mpc current | cut -c 1-25)  %{r}"
 	sleep 2s
 done |
 
-lemonbar -b -g "500x33+710+33" -f "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -f"-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1" -B "#$white" -F "#$gray"
+lemonbar -p -b -g "500x33+710+33" -f '-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1' -f '-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1' -B "#$white" -F "#$gray"
 
