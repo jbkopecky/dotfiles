@@ -45,6 +45,7 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'freitass/todo.txt-vim', {'for': 'todo'}
 Plug 'junegunn/vim-journal', {'for': 'journal'}
+Plug 'metakirby5/codi.vim'
 " -----------------------------------------------------------------------------
 if has('unix')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
