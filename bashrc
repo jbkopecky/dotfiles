@@ -53,14 +53,18 @@ __set_ps1 (){
     if [[ $branch ]]; then
         local x=$(git status --porcelain)
         if [[ $x ]]; then
-            gitinfo="${nor}(${dirty}${branch}${nor}) "
+            gitinfo="${nor}(${dirty}${branch}${nor})"
         else
-            gitinfo="${nor}(${branch}) "
+            gitinfo="${nor}(${branch})"
         fi
+    fi
+    local venv=
+    if [[ $VIRTUAL_ENV != "" ]]; then
+        venv="${nor}(${dirty}${VIRTUAL_ENV##*/}${nor})${rst}"
     fi
     #
     # generate prompt »
-    PS1="\n $nor\W ${gitinfo}\$([[ \$? != 0 ]] && echo \"$err\" || echo \"$por\")$PROMPT_CHAR $rst"
+    PS1="\n $nor\W ${venv}${gitinfo}\$([[ \$? != 0 ]] && echo \"$err\" || echo \"$por\") $PROMPT_CHAR $rst"
 }
 # set PS1
 PROMPT_COMMAND="__set_ps1"

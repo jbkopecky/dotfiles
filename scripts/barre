@@ -16,7 +16,7 @@ ram () {
 }
 
 while :; do
-    echo "$(ram) %{c}$(icon e015) $(date "+%a %d %b %l:%M %p")%{r}$(icon e0ec) $(mpc current | cut -c 1-25)  %{r}"
+    echo "$(ram) %{c}$(date "+%a %d %b %l:%M %p")%{r}$(icon e0ec) $(mpc current | cut -c 1-25)  %{r}"
 	sleep 2s
 done |
 
