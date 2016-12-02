@@ -1,6 +1,8 @@
 " Misc *********************************************************************{{{
-set guifont=Consolas_for_Powerline_FixedD:h11
-set printfont=Consolas_for_Powerline_FixedD:h11
+" set guifont=Consolas_for_Powerline_FixedD:h11
+" set printfont=Consolas_for_Powerline_FixedD:h11
+set guifont=Dina:h11
+set printfont=Dina:h11
 
 cd ~/Documents
 let &showbreak = '»'
@@ -13,9 +15,9 @@ colo seoul256-light
 
 " Startify bookmarks *******************************************************{{{
 let g:startify_bookmarks = [ 
-                        \ {'g':'~\\Documents\\Github\\dotfiles\\gvimrc'},
-                        \ {'vv':'~\\Documents\\Github\\dotfiles\\vimrc'},
-                        \ {'l':'~\\Documents\\GitHub\\dotfiles\\windows.vimrc'},
+                        \ {'g':'~\\.dotfiles\\gvimrc'},
+                        \ {'vv':'~\\.dotfiles\\vimrc'},
+                        \ {'l':'~\\.dotfiles\\windows.vimrc'},
                         \  ]
 " }}}
 

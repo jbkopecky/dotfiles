@@ -2,7 +2,6 @@
 " File: vimrc
 " Author: JB Kopecky <jb.kopecky@gmail.com>
 " Source: https://github.com/jbkopecky/dotfiles
-" Last Modified: 20-10-2016
 " -----------------------------------------------------------------------------
 
 " Runtime Path ************************************************************ {{{
@@ -45,7 +44,7 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'freitass/todo.txt-vim', {'for': 'todo'}
 Plug 'junegunn/vim-journal', {'for': 'journal'}
-Plug 'metakirby5/codi.vim'
+Plug 'Pseewald/vim-anyfold'
 " -----------------------------------------------------------------------------
 if has('unix')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -105,22 +104,27 @@ set listchars=tab:►\ ,trail:●,extends:»,precedes:«,eol:¬
 let &showbreak = '→ '
 "}}}
 " Folding ***************************************************************** {{{
-function! MyFoldText() " {{{
-    let l:line = getline(v:foldstart)
+fu! CustomFoldText() "{{{
+    "get first non-blank line
+    let fs = v:foldstart
+    while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
+    endwhile
+    if fs > v:foldend
+        let line = getline(v:foldstart)
+    else
+        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+    endif
 
-    let l:nucolwidth = &foldcolumn + &number * &numberwidth
-    let l:windowwidth = winwidth(0) - l:nucolwidth - 5
-    let l:foldedlinecount = v:foldend - v:foldstart
-
-    " expand tabs into spaces
-    let l:onetab = strpart('          ', 0, &tabstop)
-    let l:line = substitute(l:line, '\t', l:onetab, 'g')
-
-    let l:line = strpart(l:line, 0, l:windowwidth - 2 -len(l:foldedlinecount))
-    let l:fillcharcount = l:windowwidth - len(l:line) - len(l:foldedlinecount)
-    return l:line . ' ' . repeat('-',l:fillcharcount) . ' ' . l:foldedlinecount . ' ' . '  '
-endfunction " }}}
-set foldtext=MyFoldText()
+    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+    let foldSize = 1 + v:foldend - v:foldstart
+    let foldSizeStr = " " . foldSize . " lines "
+    let foldLevelStr = repeat("+--", v:foldlevel)
+    let lineCount = line("$")
+    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+    return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+endf "}}}
+set foldtext=CustomFoldText()
 "}}}
 " FileType **************************************************************** {{{
 let g:tex_flavor='latex' "Recognise Latex files
