@@ -15,8 +15,12 @@ ram () {
     echo "         $(icon e0c5) $percent %"
 }
 
+mpc_title () {
+    echo $(mpc current -f "%artist%[ - %title%]" | cut -c 1-25)
+}
+
 while :; do
-    echo "$(ram) %{c}$(date "+%a %d %b %l:%M %p")%{r}$(icon e0ec) $(mpc current | cut -c 1-25)  %{r}"
+    echo "$(ram) %{c}$(date "+%a %d %b %l:%M %p")%{r}$(icon e0ec) $(mpc_title)  %{r}"
 	sleep 2s
 done |
 

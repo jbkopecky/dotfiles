@@ -4,11 +4,12 @@ local/envypn-font 1.7.1-3
 local/lemonbar-git v1.2.r4.g50fe7d2-1
 local/monaco-powerline-font-git r16.616d338-3
 local/ncmpcpp-git 1:2046.6d313a2-1
+local/pepper-flash 23.0.0.207-1
 local/phallus-fonts-git 156.46f2957-1
 local/pulseaudio-ctl 1.63-1
 local/siji-git r21.95369af-1
 local/termsyn-font 1.8.7-1
 local/txtw-git 13-1
 local/uw-ttyp0-font 1.3-4
-local/vivaldi 1.4.589.41-1
+local/vivaldi 1.5.658.44-1
 local/yltra-flat-icons-git 2.6-4
