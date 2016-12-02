@@ -1,8 +1,8 @@
 " Misc *********************************************************************{{{
 " set guifont=Consolas_for_Powerline_FixedD:h11
 " set printfont=Consolas_for_Powerline_FixedD:h11
-set guifont=Dina:h8
-set printfont=Dina:h8
+set guifont=Dina:h11
+set printfont=Dina:h11
 
 cd ~/Documents
 let &showbreak = '»'
