@@ -118,11 +118,13 @@ fu! CustomFoldText() "{{{
     let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
     let foldSize = 1 + v:foldend - v:foldstart
     let foldSizeStr = " " . foldSize . " lines "
-    let foldLevelStr = repeat("+--", v:foldlevel)
+    let foldLevelStr = repeat("+  ", v:foldlevel)
     let lineCount = line("$")
-    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
-    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-    return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+    " let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+    " let expansionString = repeat(" ", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+    " return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+    let expansionString = repeat(" ", w - strwidth(foldSizeStr.line.foldLevelStr))
+    return line . expansionString . foldSizeStr . foldLevelStr
 endf "}}}
 set foldtext=CustomFoldText()
 "}}}
@@ -252,6 +254,10 @@ command! Q q
 " Plugins Settings ******************************************************** {{{
 " Dispatch **************************************************************** {{{
 
+"}}}
+" Anyfold ***************************************************************** {{{
+let anyfold_activate=1
+set foldlevel=0
 "}}}
 " Jedi-vim **************************************************************** {{{
 let g:python_highlight_all = 1
