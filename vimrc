@@ -254,8 +254,9 @@ command! Q q
 
 "}}}
 " Anyfold ***************************************************************** {{{
-autocmd Filetype python let b:anyfold_activate=1
-autocmd Filetype bash   let b:anyfold_activate=1
+autocmd Filetype python     let b:anyfold_activate=1
+autocmd Filetype conf       let b:anyfold_activate=1
+autocmd Filetype javascript let b:anyfold_activate=1
 "}}}
 " Jedi-vim **************************************************************** {{{
 let g:python_highlight_all = 1
