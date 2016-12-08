@@ -140,10 +140,8 @@ if has('autocmd')
     augroup END "}}}
     augroup FTOptions "{{{
         autocmd!
-
         autocmd FileType gitcommit
               \ setlocal spell
-
         autocmd Filetype python
               \ setlocal makeprg=python\ % |
               \ let b:dispatch = 'python %'|
@@ -256,8 +254,8 @@ command! Q q
 
 "}}}
 " Anyfold ***************************************************************** {{{
-let anyfold_activate=1
-set foldlevel=0
+autocmd Filetype python let b:anyfold_activate=1
+autocmd Filetype bash   let b:anyfold_activate=1
 "}}}
 " Jedi-vim **************************************************************** {{{
 let g:python_highlight_all = 1
