@@ -1,4 +1,4 @@
-#!/bin/mksh
+#!/bin/sh
 # Grab Xresources colors and ouput them in various formats
 # The script is a huge clusterfuck atm, i'm going to rewrite it from scratch
 # soon.
@@ -153,15 +153,6 @@ openbox () {
     echo
 }
 
-# Neovim colorscheme
-# How it works:  colors.erbvim + theme.erbvim + tui.erbvim > ryuuko.erb
-# On launch neovim converts the erb to a vim theme.
-erbgen () {
-    themedir="$HOME/dotfiles/colorschemes/ryuuko"
-
-    # Combine the three files
-    cat "$themedir/gen/colors.erbvim" "$themedir/gen/theme.erbvim" "$themedir/gen/tui.erbvim" > "$themedir/ryuuko.erb"
-}
 
 # Generate css
 # Use sass to preproccess css
@@ -172,7 +163,7 @@ gencss () {
 
 # Generate openbox theme
 obthemegen () {
-    themedir="$HOME/dotfiles/themes/yellow/openbox-3"
+    themedir="/home/jb/.dotfiles/themes/yellow/openbox-3"
     cat "$themedir/gen/colors.openbox" "$themedir/gen/themerc.openbox" > "$themedir/themerc"
 
     # Send signal to openbox to reload config files
@@ -206,10 +197,9 @@ all () {
     echo
     echo "Doing other generation"
     echo
-    erbgen; echo "Generated Vim colorscheme template"
     gencss; echo "Generated css file using sass"
     obthemegen; echo "Generated openbox themerc"
-    bar & echo "Restarted lemonbar"
+    barre & echo "Restarted lemonbar"
 }
 
 xrdb "$HOME/.Xresources"

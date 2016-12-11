@@ -52,6 +52,12 @@
 			<item label="Reconfigure Openbox">
 				<action name="Reconfigure" />
 			</item>
+
+            <separator />
+
+			<item label="Sound Config">
+                <action name="Execute"><execute>pavucontrol</execute></action>
+			</item>
 		</menu>
 	</menu>
 
