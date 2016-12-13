@@ -149,4 +149,6 @@ set statusline+=\ %5*%L\ %*                      " number of lines
 
 call StatusLineHi() 
 
+command! STH call StatusLineHi()
+
 let &cpo = s:save_cpo

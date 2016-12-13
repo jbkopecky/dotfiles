@@ -98,7 +98,6 @@ endif
 "}}}
 " Colors ****************************************************************** {{{
 colo base16-default-light
-" colo seoul256
 "}}}
 " Invisible Characters **************************************************** {{{
 set listchars=tab:►\ ,trail:●,extends:»,precedes:«,eol:¬

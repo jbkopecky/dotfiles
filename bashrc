@@ -79,6 +79,5 @@ export HISTIGNORE="cd *:ls:ls *:history*:cat *:clear:pwd:..:..."
 stty -ixon
 set bell-style none
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.local.bashrc ] && source ~/.local.bashrc
 [ -f ~/.scripts/hyperjump ] && source ~/.scripts/hyperjump
