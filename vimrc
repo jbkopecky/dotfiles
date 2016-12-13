@@ -14,7 +14,7 @@ silent! call plug#begin('~/.vim/plugged')
 " -----------------------------------------------------------------------------
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
-Plug 'nanotech/jellybean.vim'
+Plug 'nanotech/jellybeans.vim'
 " -----------------------------------------------------------------------------
 Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-signify'
