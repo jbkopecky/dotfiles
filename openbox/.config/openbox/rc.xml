@@ -374,7 +374,7 @@
     <keybind key="W-w">
       <action name="Execute">
         <name>Change to random wallpaper</name>
-        <command>wallpaper</command>
+        <command>wal -i ~/Pictures/Wallpapers</command>
       </action>
     </keybind>
   </keyboard>

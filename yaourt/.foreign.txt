@@ -5,6 +5,7 @@ local/i3-gaps 4.13-2 (i3)
 local/lemonbar-git v1.2.r4.g50fe7d2-1
 local/monaco-powerline-font-git r16.616d338-3
 local/ncmpcpp-git 1:2046.6d313a2-1
+local/neofetch 2.0.2-1
 local/pepper-flash 23.0.0.207-1
 local/phallus-fonts-git 156.46f2957-1
 local/pulseaudio-ctl 1.63-1
