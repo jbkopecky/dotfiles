@@ -41,8 +41,8 @@ pkg-config 0.29.1-2
 procps-ng 3.3.12-1
 python-virtualenv 15.0.3-1
 reiserfsprogs 3.6.25-1
-rxvt-unicode 9.22-2
 sassc 3.3.6-1
+stow 2.2.2-2
 texlive-bibtexextra 2016.42278-1
 texlive-fontsextra 2016.42286-1
 texlive-formatsextra 2016.41438-3

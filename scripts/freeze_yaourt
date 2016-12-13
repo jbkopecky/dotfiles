@@ -1,6 +1,6 @@
 #! /bin/sh
 
-EXPORT_DIR="$HOME/.dotfiles/config/yaourt"
+EXPORT_DIR="/home/jb/.dotfiles/yaourt/"
 
-yaourt -Qent > $EXPORT_DIR/native_packages.txt
-yaourt -Qemt > $EXPORT_DIR/foreign_packages.txt
+yaourt -Qent > $EXPORT_DIR/.native.txt
+yaourt -Qemt > $EXPORT_DIR/.foreign.txt
