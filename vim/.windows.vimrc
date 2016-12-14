@@ -15,9 +15,9 @@ colo seoul256-light
 
 " Startify bookmarks *******************************************************{{{
 let g:startify_bookmarks = [ 
-                        \ {'g':'~\\.dotfiles\\gvimrc'},
-                        \ {'vv':'~\\.dotfiles\\vimrc'},
-                        \ {'l':'~\\.dotfiles\\windows.vimrc'},
+                        \ {'g':'~\\.dotfiles\\vim\\.gvimrc'},
+                        \ {'vv':'~\\.dotfiles\\vim\\.vimrc'},
+                        \ {'l':'~\\.dotfiles\\vim\\.windows.vimrc'},
                         \  ]
 " }}}
 
