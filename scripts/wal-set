@@ -19,7 +19,7 @@ reload_dunst() {
 
 set_bar() {
     pkill bar
-    bar "$color15" "$color0" 2>/dev/null &
+    bar "$color15" "$color0" #2>/dev/null &
 }
 
 # set_scss() {

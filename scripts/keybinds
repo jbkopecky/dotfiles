@@ -41,8 +41,8 @@ togglesong () {
 }
 
 dmenu () {
-    source ~/.scripts/colors/output/colors.sh
-    dmenu_run -s 0 -i -h 30 -w 120 -q -x 30 -y 30 -sb "#$white" -sf "#$gray" -nb "#$white" -nf "#$black" -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -p ">" -l 1
+    source ~/.cache/wal/colors.sh
+    dmenu_run -s 0 -i -h 30 -w 120 -q -x 30 -y 30 -sb "$color15" -sf "$color0" -nb "$color15" -nf "$color0" -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -p ">" -l 1
 }
 
 screenshot () {
