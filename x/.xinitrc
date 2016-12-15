@@ -2,7 +2,6 @@
 
 # source .xresources
 xrdb -merge ~/.Xresources
-xrdb -merge ~/.scripts/colors/output/colors.Xresources
 
 # Disable caps lock
 setxkbmap -option ctrl:nocaps
@@ -21,8 +20,7 @@ setx b off
 urxvtd -q -f -o &
 
 # bar
-wal -i "$HOME/Pictures/Wallpapers"
-wal-set
+wal -i "$HOME/Pictures/Wallpapers" -o wal-set
 
 # Pulseaudio
 pulseaudio --start &
