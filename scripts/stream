@@ -1,9 +1,0 @@
-#!/bin/sh
-# No need to remember stream urls anymore !
-
-fip-rock () {
-}
-
-case $1 in
-    fip-rock) fip-rock ;;
-esac

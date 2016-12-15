@@ -2,7 +2,7 @@
 # Notifications using lemonbar
 
 # Source colors
-source ~/.scripts/colors/output/colors.sh
+source ~/.cache/wal/colors.sh
 
 # Variables
 
