@@ -30,7 +30,7 @@ URxvt.scrollBar: false
 URxvt*loginShell: true
 
 ! Set terminal padding
-URxvt.internalBorder: 10
+URxvt.internalBorder: 15
 
 ! Enables copy/paste with Ctrl-Shift-C/V
 ! URxvt.iso14755: false
