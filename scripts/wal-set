@@ -22,14 +22,18 @@ set_bar() {
     bar "$color15" "$color0" #2>/dev/null &
 }
 
-# set_scss() {
-#     sassc --style expanded "$HOME/projects/startpage/scss/style.scss" > "$HOME/projects/startpage/style.css"
-# }
+set_scss() {
+    sassc --style expanded "$HOME/projects/startpage/scss/style.scss" > "$HOME/projects/startpage/style.css"
+}
+
+set_openbox() {
+    obco >&2
+}
 
 main() {
     reload_dunst &
     set_bar &
-    # set_scss &
+    set_openbox &
 }
 
 main >/dev/null 2>&1

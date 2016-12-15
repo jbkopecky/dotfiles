@@ -42,7 +42,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>yellow</name>
+    <name>mad</name>
     <titleLayout>LC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -374,7 +374,7 @@
     <keybind key="W-w">
       <action name="Execute">
         <name>Change to random wallpaper</name>
-        <command>wal -i ~/Pictures/Wallpapers</command>
+        <command>wal -i ~/Pictures/Wallpapers -o wal-set</command>
       </action>
     </keybind>
   </keyboard>

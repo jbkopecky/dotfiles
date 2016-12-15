@@ -81,3 +81,4 @@ set bell-style none
 
 [ -f ~/.local.bashrc ] && source ~/.local.bashrc
 [ -f ~/.scripts/hyperjump ] && source ~/.scripts/hyperjump
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
