@@ -8,6 +8,7 @@ bison 3.0.4-2
 dina-font 2.92-5
 dunst 1.1.0-1
 fakeroot 1.21-2
+firefox 50.1.0-1
 flex 2.6.1-1
 gimp 2.8.18-3
 gnu-netcat 0.7.1-6
