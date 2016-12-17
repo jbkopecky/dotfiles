@@ -56,7 +56,7 @@ display: none !important;
     transition: all .1s !important;
     margin-left: 0px !important;
     color: rgb(100,100,100) !important;
-    font-family: 'Dina' !important;
+    font-family: montecarlo !important;
     font-size: 11px !important;
     min-height: 14px !important;
 }
@@ -154,7 +154,7 @@ display: none !important;
     margin-bottom: 6px;
     padding: 2px !important;
     color: rgb(130,130,130) !important;
-    font-family: tewi !important;
+    font-family: montecarlo !important;
     font-size: 11px !important;
     height: 15px !important;
 }

@@ -20,7 +20,8 @@ setx b off
 urxvtd -q -f -o &
 
 # bar
-wal -i "$HOME/Pictures/Wallpapers" -o wal-set
+wal -i "$HOME/Pictures/Wallpapers"
+wal-set
 
 # Pulseaudio
 pulseaudio --start &

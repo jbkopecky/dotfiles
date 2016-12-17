@@ -5,6 +5,7 @@ local/flattastic-theme 20140311-1
 local/i3-gaps 4.13-2 (i3)
 local/lemonbar-git v1.2.r4.g50fe7d2-1
 local/monaco-powerline-font-git r16.616d338-3
+local/montecarlo-font 1-2
 local/ncmpcpp-git 1:2067.30830e3-1
 local/neofetch 2.0.2-1
 local/pepper-flash 23.0.0.207-1
