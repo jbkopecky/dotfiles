@@ -275,6 +275,7 @@ let g:dispatch_tmux_height=20
 let g:dispatch_quickfix_height=20
 "}}}
 " Anyfold ***************************************************************** {{{
+let anyfold_fold_display=0
 autocmd Filetype python     let b:anyfold_activate=1
 autocmd Filetype conf       let b:anyfold_activate=1
 autocmd Filetype javascript let b:anyfold_activate=1
