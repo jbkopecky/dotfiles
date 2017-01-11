@@ -40,6 +40,7 @@ Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'lifepillar/vim-mucomplete'
+Plug 'Pseewald/vim-anyfold'
 Plug 'ap/vim-buftabline'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
@@ -52,7 +53,6 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'freitass/todo.txt-vim', {'for': 'todo'}
 Plug 'junegunn/vim-journal', {'for': 'journal'}
-Plug 'Pseewald/vim-anyfold'
 " -----------------------------------------------------------------------------
 if has('unix')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -121,6 +121,7 @@ fu! CustomFoldText() "{{{
     let fs = v:foldstart
     while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
     endwhile
+
     if fs > v:foldend
         let line = getline(v:foldstart)
     else
@@ -132,10 +133,7 @@ fu! CustomFoldText() "{{{
     let foldSizeStr = " " . foldSize . " lines "
     let foldLevelStr = repeat("+--", v:foldlevel)
     let lineCount = line("$")
-    " let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
-    " let expansionString = repeat(" ", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-    " return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
-    let expansionString = repeat("·", w - strwidth(foldSizeStr.line.foldLevelStr))
+    let expansionString = " " . repeat("-", w - strwidth(foldSizeStr.line.foldLevelStr) - 1)
     return line . expansionString . foldSizeStr . foldLevelStr
 endf "}}}
 set foldtext=CustomFoldText()
