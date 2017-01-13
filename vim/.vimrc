@@ -22,6 +22,7 @@ silent! call plug#begin('~/.vim/plugged')
 " -----------------------------------------------------------------------------
 Plug 'dylanaraps/wal'
 Plug 'junegunn/seoul256.vim'
+Plug 'zefei/cake16'
 " -----------------------------------------------------------------------------
 Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-signify'
@@ -380,7 +381,7 @@ endfunction "}}}
 "}}}
 
 " Local Vimrc ************************************************************* {{{
-if filereadable(glob('~/.local.vimrc')) "{{{
+if filereadable(glob('~/.local.vimrc'))
   so ~/.local.vimrc
-endif "}}}
+endif
 "}}}

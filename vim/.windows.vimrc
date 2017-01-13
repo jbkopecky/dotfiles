@@ -9,7 +9,7 @@ let &showbreak = '»'
 
 set lines=43 columns=190
 
-colo seoul256-light
+colo cake16
 
 " }}}
 
