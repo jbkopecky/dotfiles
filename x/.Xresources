@@ -1,9 +1,11 @@
 ! Set the font
 /* URxvt*font: xft:lemon:pixelsize=10:antialias=false */
 /* URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false */
+URxvt*font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
+URxvt*boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
 
-URxvt*font: xft:tewi:pixelsize=11:antialias=false
-URxvt*boldFont: xft:tewi:pixelsize=11:antialias=false
+/* URxvt*font: xft:tewi:pixelsize=11:antialias=false */
+/* URxvt*boldFont: xft:tewi:pixelsize=11:antialias=false */
 
 /* URxvt*font: xft:ttyp0:pixelsize=10:antialias=false */
 /* URxvt*boldFont: xft:ttyp0:pixelsize=10:antialias=false */

@@ -4,28 +4,25 @@
 volup () {
     # amixer set Master 5+
     pulseaudio-ctl up
-    popup -e "$(pulseaudio-ctl | egrep -o '[0-9][0-9] \%')" -w 150 -x 1670 &
+    notify-send -t 1 -r 112 "$(pulseaudio-ctl | grep -o -E '[0-9][0-9] \%')"
 }
 
 voldown () {
     # amixer set Master 5-
     pulseaudio-ctl down
-    popup -e "$(pulseaudio-ctl | egrep -o '[0-9][0-9] \%')" -w 150 -x 1670 &
+    notify-send -t 1 -r 112 "$(pulseaudio-ctl | grep -o -E '[0-9][0-9] \%')"
 }
 
 prevsong () {
     mpc prev
     current="$(mpc current)"
-    width=$(txtw "$current")
-    popup -e "$current" -w $width -x $((1820 - width)) &
+    notify-send -t 1 -r 112 "$current"
 }
 
 nextsong () {
     mpc next
-
     current="$(mpc current)"
-    width=$(txtw "$current")
-    popup -e "$current" -w $width -x $((1820 - width)) &
+    notify-send -t 1 -r 112 "$current"
 }
 
 togglesong () {
@@ -34,9 +31,9 @@ togglesong () {
     current="$(mpc current)"
     width=$(txtw "$current")
     if [ "$(mpc | awk -F '\\[|\\]' '/\[/ {printf $2}' 2>/dev/null)" == "playing" ]; then
-        popup -e "$current" -w $width -x $((1820 - width)) &
+        notify-send -t 1 -r 112 "$current"
     else
-        popup -e "Paused" -w 150 -x 1670 &
+        notify-send -t 1 -r 112 "Pause"
     fi
 }
 
@@ -45,19 +42,6 @@ dmenu () {
     dmenu_run -s 0 -i -h 30 -w 120 -q -x 30 -y 30 -sb "$color15" -sf "$color0" -nb "$color15" -nf "$color0" -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -p ">" -l 1
 }
 
-screenshot () {
-    popup -e "Saved Screenshot" -s 4 -w 150 -x 1670 & sleep 1; \
-
-    # What to name the image and where to save it
-    img="scrot-$(date "+%d%b")-$RANDOM.png"
-    dir="$HOME/Pictures/scrots"
-
-    # Take the scrot
-    scrot -q 100 "$img" -e "mv $img $dir"
-
-    # Crop out the surrounding monitors
-    convert -crop 1920x1080+0+0 "$dir/$img" "$dir/$img"
-}
 
 case $1 in
     volup) volup ;;
@@ -66,7 +50,5 @@ case $1 in
     nextsong) nextsong ;;
     togglesong) togglesong ;;
     dmenu) dmenu ;;
-    screenshot) screenshot ;;
-    minify) minify ;;
 esac
 
