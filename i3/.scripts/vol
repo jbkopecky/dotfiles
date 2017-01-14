@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# Change pulseaudio volume and send a notification.
+#
+
+case "$1" in
+    "up")   pulseaudio-ctl up & ;;
+    "down") pulseaudio-ctl down & ;;
+    *) printf "%s\n" "Usage: ./vol up, ./vol down"; exit ;;
+esac
+
+current_vol=$(pulseaudio-ctl | grep -o -E '[0-9][0-9] \%')
+
+# The '-r' flag is from a patched version of 'libnotify'.
+# '-r' lets you replace notifications using the same id.
+notify-send -t 1 -r 112 "Volume: ${current_vol/$'\n'*}"
+

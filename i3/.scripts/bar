@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+#
+# Dylan's Lemonbar script
+#
+# Created by Dylan Araps.
+#
+# Depends on: xorg-xrandr, lemonbar, date
+
+# Options
+width="200"
+height="30"
+font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9"
+
+# Get monitor width so we can center the bar.
+resolution="$(xrandr --nograb --current | awk '/\*/ {printf $1; exit}')"
+monitor_width="${resolution/x*}"
+offset="$((monitor_width / 2 - width / 2))"
+geometry="${width}x${height}+${offset:-860}+${height}"
+
+# Kill previous instances.
+killall -q lemonbar
+
+# Loop and print the info.
+while :; do
+    echo "%{c}$(date "+%a %d %b %l:%M %p")"
+    sleep 30s
+done |\
+
+# Launch lemonbar.
+lemonbar -b -d -g "$geometry" -f "$font" -B "${1:-#f0f0f0}" -F "${2:-#000000}" -n "bar" # &
+
+# Move lemonbar down a layer since '-d' on i3 has an always on top side-effect.
+sleep 1
+xdo lower -a "bar"
