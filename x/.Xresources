@@ -1,47 +1,14 @@
-! Set the font
-/* URxvt*font: xft:lemon:pixelsize=10:antialias=false */
-/* URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false */
 URxvt*font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
 URxvt*boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
 
-/* URxvt*font: xft:tewi:pixelsize=11:antialias=false */
-/* URxvt*boldFont: xft:tewi:pixelsize=11:antialias=false */
-
-/* URxvt*font: xft:ttyp0:pixelsize=10:antialias=false */
-/* URxvt*boldFont: xft:ttyp0:pixelsize=10:antialias=false */
-
-/* URxvt*font: xft:termsyn:pixelsize=14:antialias=false */
-/* URxvt*boldFont: xft:termsyn:pixelsize=14:antialias=false */
-
-/* URxvt*font: xft:lime:pixelsize=10:antialias=false */
-/* URxvt*boldFont: xft:lime:pixelsize=10:antialias=false */
-
-/* URxvt*font: xft:envypn:pixelsize=10:antialias=false,xft:siji,pizelsize=10:antialias=false */
-/* URxvt*boldFont: xft:envypn:pixelsize=10:antialias=false,xft:siji,pizelsize=10:antialias=false */
-
-! Increase line spacing
-! URxvt*lineSpace: 1
-
-! Terminal window size
 URxvt*geometry: 85x40
 
-! Disable scrollbar
 URxvt.scrollBar: false
 
-! Set urxvt as login shell
 URxvt*loginShell: true
 
-! Set terminal padding
-URxvt.internalBorder: 15
+URxvt.internalBorder: 20
 
-! Enables copy/paste with Ctrl-Shift-C/V
-! URxvt.iso14755: false
-! URxvt.iso14755_52: false
-! URxvt.perl-ext-common: default,clipboard
-! URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-! URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-
-! Size of cursor
 Xcursor.size: 16
 
 ! Colors {{{
