@@ -3,42 +3,42 @@ fip-groove () {
     mpc clear
     mpc add http://aifae8cah8.lb.vip.cdn.dvmr.fr/fip-webradio3.mp3 
     mpc play
-    popup -e "fip groove"
+    notify-send -t 1 "fip groove"
 }
 
 fip-jazz () {
     mpc clear
     mpc add http://aifae8cah8.lb.vip.cdn.dvmr.fr/fip-webradio2.mp3 
     mpc play
-    popup -e "fip jazz"
+    notify-send -t 1 "fip jazz"
 }
 
 fip-rock () {
     mpc clear
     mpc add http://aifae8cah8.lb.vip.cdn.dvmr.fr/fip-webradio1.mp3 
     mpc play
-    popup -e "fip rock"
+    notify-send -t 1 "fip rock"
 }
 
 fip-monde () {
     mpc clear
     mpc add http://aifae8cah8.lb.vip.cdn.dvmr.fr/fip-webradio4.mp3 
     mpc play
-    popup -e "fip monde"
+    notify-send -t 1 "fip monde"
 }
 
 fip-nouveau () {
     mpc clear
     mpc add http://aifae8cah8.lb.vip.cdn.dvmr.fr/fip-webradio5.mp3 
     mpc play
-    popup -e "fip nouveau"
+    notify-send -t 1 "fip nouveau"
 }
 
 bfm () {
     mpc clear
     mpc add http://aifae8cah8.lb.vip.cdn.dvmr.fr/bfmbusiness
     mpc play
-    popup -e "BFM"
+    notify-send -t 1 "BFM"
 }
 
 case $1 in
