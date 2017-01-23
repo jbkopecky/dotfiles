@@ -1,13 +1,36 @@
 # fzf (https://github.com/junegunn/fzf)
 # --------------------------------------------------------------------
+#
+
+alias fzf='fzf --color=bg:0,bg+:0'
+alias fzf-tmux='fzf-tmux --color=bg:0,bg+:0'
+
+pcsi() {
+  echo -en "\x1b[$@"
+}
+fzf-down() {
+  fzf --height 50% "$@"
+}
+review_file() {
+  local mime="$(file --mime "$1")"
+  if [[ "$mime" =~ directory ]]; then
+    tree -C "$1"
+  elif [[ ! "$mime" =~ binary ]]; then
+    highlight -O ansi -l "$1" 2> /dev/null || cat "$1"
+  else
+    echo "$1 is a binary file"
+  fi
+}
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_CTRL_T_OPTS="--preview 'preview_file {} | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview' --bind 'ctrl-y:execute(echo -n {2..} | pbcopy)' --header 'Press CTRL-Y to copy command into clipboard'"
-
 command -v blsd > /dev/null && export FZF_ALT_C_COMMAND='blsd'
 command -v tree > /dev/null && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+
+
+
 
 fzf-down() {
   fzf --height 50% "$@"
@@ -74,6 +97,18 @@ fo() {
       ${EDITOR:-vim} "$file"
     fi
   fi
+}
+fco() {
+  local tags branches target
+  tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
+  branches=$(
+    git branch --all | grep -v HEAD             |
+    sed "s/.* //"    | sed "s#remotes/[^/]*/##" |
+    sort -u          | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
+  target=$(
+    (echo "$tags"; echo "$branches") | sed '/^$/d' |
+    fzf-down --no-hscroll --reverse --ansi +m -d "\t" -n 2 -q "$*") || return
+  git checkout $(echo "$target" | awk '{print $2}')
 }
 
 
