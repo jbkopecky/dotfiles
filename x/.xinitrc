@@ -1,10 +1,10 @@
 #!/bin/sh
-xrdb -merge ~/.Xresources
 setx b off
+compton &
+xrdb -merge ~/.Xresources
 urxvtd -q -f -o &
 pulseaudio --start &
-compton &
+mpd &
 udiskie &
 dunst &
-mopidy &
 exec i3
