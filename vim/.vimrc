@@ -111,8 +111,7 @@ colo wal
 "}}}
 
 " Invisible Characters **************************************************** {{{
-set listchars=tab:►\ ,trail:●,extends:»,precedes:«,eol:¬
-let &showbreak = '→ '
+set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 "}}}
 
 " Folding ***************************************************************** {{{
