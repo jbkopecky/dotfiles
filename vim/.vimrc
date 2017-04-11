@@ -22,7 +22,6 @@ silent! call plug#begin('~/.vim/plugged')
 " -----------------------------------------------------------------------------
 Plug 'dylanaraps/wal'
 Plug 'junegunn/seoul256.vim'
-Plug 'zefei/cake16'
 " -----------------------------------------------------------------------------
 Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-signify'
@@ -41,7 +40,6 @@ Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'justinmk/vim-gtfo'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'lifepillar/vim-mucomplete'
-Plug 'Pseewald/vim-anyfold'
 Plug 'ap/vim-buftabline'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
@@ -52,7 +50,6 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
-Plug 'freitass/todo.txt-vim', {'for': 'todo'}
 Plug 'junegunn/vim-journal', {'for': 'journal'}
 " -----------------------------------------------------------------------------
 if has('unix')
