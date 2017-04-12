@@ -229,7 +229,6 @@ map <silent> <Leader>c :cd %:p:h<CR>
 map <Leader>i :set list!<CR>
 nnoremap <silent> <Leader><Leader> :noh<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
-nnoremap <silent> <Leader>T :tabe ~/Dropbox/todo/todo.txt<CR>
 
 nnoremap U :UndotreeToggle<CR>
 
@@ -237,8 +236,6 @@ nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
 " F Mappings
-nnoremap <F2> :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
-
 nnoremap <F5> :w<CR> :Dispatch<CR>
 nnoremap <F6> :w<CR> :Make<CR>
 nnoremap <F7> :w<CR> :Start<CR>
