@@ -7,7 +7,7 @@ URxvt.scrollBar: false
 
 URxvt*loginShell: true
 
-URxvt.internalBorder: 20
+URxvt.internalBorder: 10
 
 Xcursor.size: 16
 

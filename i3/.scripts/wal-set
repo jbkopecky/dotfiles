@@ -6,6 +6,12 @@
 # Source generated colors.
 source "${HOME}/.cache/wal/colors.sh"
 
+set_firefox() {
+    cp "${HOME}/.cache/wal/firefox.css" "${HOME}/Dropbox/StartPage/css/wal.css"
+    pict=`grep -F "feh"  ~/.fehbg | cut -d "'" -f 2`
+    cp $pict ${HOME}/Dropbox/StartPage/img/m1.gif
+}
+
 reload_dunst() {
     pkill dunst && \
         dunst \
@@ -25,6 +31,7 @@ set_bar() {
 main() {
     reload_dunst &
     set_bar &
+    set_firefox &
 }
 
-main >/dev/null 2>&1
+main #>/dev/null 2>&1
