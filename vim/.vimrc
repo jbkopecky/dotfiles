@@ -236,6 +236,9 @@ nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
 " F Mappings
+map <silent> <F2> "<Esc>:silent setlocal spell! spelllang=en<CR>"
+map <silent> <F3> "<Esc>:silent setlocal spell! spelllang=fr<CR>"
+
 nnoremap <F5> :w<CR> :Dispatch<CR>
 nnoremap <F6> :w<CR> :Make<CR>
 nnoremap <F7> :w<CR> :Start<CR>

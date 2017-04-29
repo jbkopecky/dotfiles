@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bar="██████"
+bar="######"
 
 declare -A colors
 while read -r num hex; do
