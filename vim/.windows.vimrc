@@ -1,11 +1,12 @@
 " Misc *********************************************************************{{{
 " set guifont=Consolas_for_Powerline_FixedD:h11
 " set printfont=Consolas_for_Powerline_FixedD:h11
-set guifont=Dina:h11
+" set guifont=Dina:h11
+set guifont=Tamsyn8x16
 set printfont=Dina:h11
 
 cd ~/Documents
-let &showbreak = '»'
+" let &showbreak = '»'
 
 set lines=43 columns=190
 
@@ -25,10 +26,10 @@ let g:startify_bookmarks = [
 " autocmd FileType tex let b:dispatch = 'latex -interaction=nonstopmode %' | setlocal formatoptions+=l
 
 let g:vimtex_view_general_viewer = 'SumatraPDF'
-let g:vimtex_view_general_options = '-forward-search @tex @line @pdf'
+let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
 let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 
-let g:vimtex_latexmk_progname='gvim'
+let g:vimtex_latexmk_progname='GVIM'
 
 " }}}
 
