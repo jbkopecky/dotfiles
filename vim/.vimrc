@@ -78,7 +78,7 @@ set scrolloff=3                  " Leave 3 l bellow cursos when scrolling
 set foldmethod=marker            " Fold on markers
 set backupdir=~/.vim/backups//   " Specify backup dir
 set directory=~/.vim/swaps//     " Specify swap dir
-set number                       " Show line number
+" set number                       " Show line number
 set textwidth=79                 " No more than 80 col
 " set colorcolumn=80               " Color 80 col
 set formatoptions-=t             " no automatic wrap text when typing
