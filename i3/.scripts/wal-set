@@ -6,12 +6,6 @@
 # Source generated colors.
 source "${HOME}/.cache/wal/colors.sh"
 
-set_firefox() {
-    cp "${HOME}/.cache/wal/firefox.css" "${HOME}/Dropbox/StartPage/css/wal.css"
-    pict=`grep -F "feh"  ~/.fehbg | cut -d "'" -f 2`
-    cp $pict ${HOME}/Dropbox/StartPage/img/m1.gif
-}
-
 reload_dunst() {
     pkill dunst && \
         dunst \
@@ -21,6 +15,14 @@ reload_dunst() {
             -lf "$color0"  \
             -bf "$color0"  \
             -cf "$color9" &
+            -fn "${DUNST_FONT:-Artwiz Lemon 7}" \
+            -geometry "${DUNST_SIZE:-300x30-40+40}" &
+}
+
+set_firefox() {
+    cp "${HOME}/.cache/wal/firefox.css" "${HOME}/Dropbox/StartPage/css/wal.css"
+    pict=`grep -F "feh"  ~/.fehbg | cut -d "'" -f 2`
+    cp $pict ${HOME}/Dropbox/StartPage/img/m1.gif
 }
 
 set_bar() {
@@ -34,4 +36,4 @@ main() {
     set_firefox &
 }
 
-main #>/dev/null 2>&1
+main >/dev/null 2>&1
