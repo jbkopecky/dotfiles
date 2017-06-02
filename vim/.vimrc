@@ -22,6 +22,7 @@ silent! call plug#begin('~/.vim/plugged')
 " -----------------------------------------------------------------------------
 Plug 'dylanaraps/wal'
 Plug 'junegunn/seoul256.vim'
+Plug 'rhysd/vim-color-spring-night'
 " -----------------------------------------------------------------------------
 Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-signify'
@@ -51,6 +52,7 @@ Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'junegunn/vim-journal', {'for': 'journal'}
+Plug 'itchyny/vim-cursorword', {'for': 'python'}
 " -----------------------------------------------------------------------------
 if has('unix')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -109,6 +111,7 @@ colo wal
 
 " Invisible Characters **************************************************** {{{
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
+silent! let [&t_SI,&t_EI] = exists('$TMUX') ? ["\ePtmux;\e\e[5 q\e\\","\ePtmux;\e\e[2 q\e\\"] : ["\e]50;CursorShape=1\x7","\e]50;CursorShape=0\x7"]
 "}}}
 
 " Folding ***************************************************************** {{{
