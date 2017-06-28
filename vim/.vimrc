@@ -144,7 +144,6 @@ if has('autocmd')
     augroup Misc "{{{
         autocmd!
         autocmd FocusGained * if !has('win32') | silent! call fugitive#reload_status() | endif
-        " autocmd FocusGained * call StatusLineHi()
         autocmd BufReadPost * if getline(1) =~# '^#!' | let b:dispatch = getline(1)[2:-1] . ' %' | let b:start = b:dispatch | endif
         autocmd BufReadPost ~/.Xdefaults,~/.Xresources let b:dispatch = 'xrdb -load %'
     augroup END "}}}
@@ -226,7 +225,6 @@ vmap <Up> [egv
 vmap <Down> ]egv
 
 " Leader Mappings
-map <silent> <Leader>- <Plug>VinegarUp
 map <silent> <Leader>q :ccl<CR>
 map <silent> <Leader>c :cd %:p:h<CR>
 map <Leader>i :set list!<CR>
@@ -245,8 +243,6 @@ map <silent> <F3> "<Esc>:silent setlocal spell! spelllang=fr<CR>"
 nnoremap <F5> :w<CR> :Dispatch<CR>
 nnoremap <F6> :w<CR> :Make<CR>
 nnoremap <F7> :w<CR> :Start<CR>
-
-nnoremap <F8> :call <SID>rotate_colors()<cr>
 
 nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
             \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -357,27 +353,6 @@ function! s:todo() abort "{{{
 endfunction "}}}
 command! Todo call s:todo()
 " }}}
-
-" Color Toggle ************************************************************ {{{
-function! s:rotate_colors() "{{{
-  if !exists('s:colors_list')
-    let s:colors_list =
-    \ sort(map(
-    \   filter(split(globpath(&runtimepath, 'colors/*.vim'), '\n'), 'v:val !~ "^/usr/"'),
-    \   "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"))
-  endif
-  if !exists('s:colors_index')
-    let s:colors_index = index(s:colors_list, g:colors_name)
-  endif
-  let s:colors_index = (s:colors_index + 1) % len(s:colors_list)
-  let l:name = s:colors_list[s:colors_index]
-  set background=dark
-  execute 'colorscheme' l:name
-  call StatusLineHi()
-  redraw
-  echo l:name
-endfunction "}}}
-"}}}
 
 " Local Vimrc ************************************************************* {{{
 if filereadable(glob('~/.local.vimrc'))
