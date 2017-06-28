@@ -10,7 +10,8 @@ cd ~/Documents
 
 set lines=43 columns=190
 
-colo seoul256
+" colo seoul256
+colo spring-night
 
 " }}}
 
