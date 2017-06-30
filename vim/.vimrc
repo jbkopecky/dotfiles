@@ -22,7 +22,6 @@ silent! call plug#begin('~/.vim/plugged')
 " -----------------------------------------------------------------------------
 Plug 'dylanaraps/wal'
 Plug 'junegunn/seoul256.vim'
-Plug 'rhysd/vim-color-spring-night'
 " -----------------------------------------------------------------------------
 Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-signify'
