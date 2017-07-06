@@ -25,8 +25,6 @@ background = ${colors.bg}
 foreground = ${colors.fg}
 
 font-0 = "artwiz lemon"
-font-1 = "Wincon Siji"
-font-3 = "FontAwesome:size=10"
 
 modules-left =  bspwm
 modules-center = date time
@@ -41,8 +39,8 @@ tray-detached = false
 underline-size = 0
 
 spacing = 1 
-padding-left = 10
-padding-right = 10
+padding-left = 2
+padding-right = 2
 module-margin-left = 2
 module-margin-right = 2
 
@@ -64,6 +62,8 @@ label-muted = muted
 type = internal/bspwm
 label-focused-foreground = ${colors.red}
 label-occupied-foreground = ${colors.hi}
+
+; ∙
 
 label-focused = " ·"
 label-occupied = " ·"
