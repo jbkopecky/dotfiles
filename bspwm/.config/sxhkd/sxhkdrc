@@ -23,6 +23,8 @@ XF86Audio{Raise,Lower}Volume
     vol {up,down} &
 XF86Audio{Play,Next,Prev}
     song {toggle,next,prev}
+super + {z,x}
+    vol {down,up} &
 
 # wal
 super + w
