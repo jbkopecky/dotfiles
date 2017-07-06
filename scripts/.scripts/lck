@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# icon=$HOME/Pictures/locks/rmlock.png
 tmpbg='/tmp/screen.png'
 
 (( $# )) && { icon=$1; }

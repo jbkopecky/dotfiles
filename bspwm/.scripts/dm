@@ -1,3 +1,0 @@
-#! /bin/sh
-dmenu_run -i -q -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9" -w 200 -l 3 -x 25 -y 25 -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
-
