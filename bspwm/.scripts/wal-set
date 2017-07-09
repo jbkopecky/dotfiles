@@ -26,7 +26,6 @@ set_bspwm() {
 }
 
 set_bar() {
-    killall polybar
     bar
 }
 
