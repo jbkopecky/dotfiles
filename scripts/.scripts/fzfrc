@@ -1,3 +1,4 @@
+#! /bin/bash
 # fzf (https://github.com/junegunn/fzf)
 # --------------------------------------------------------------------
 #
@@ -8,9 +9,11 @@ alias fzf-tmux='fzf-tmux --color=bg:0,bg+:0'
 pcsi() {
   echo -en "\x1b[$@"
 }
+
 fzf-down() {
   fzf --height 50% "$@"
 }
+
 review_file() {
   local mime="$(file --mime "$1")"
   if [[ "$mime" =~ directory ]]; then
@@ -27,10 +30,6 @@ export FZF_CTRL_T_OPTS="--preview 'preview_file {} | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview' --bind 'ctrl-y:execute(echo -n {2..} | pbcopy)' --header 'Press CTRL-Y to copy command into clipboard'"
 command -v blsd > /dev/null && export FZF_ALT_C_COMMAND='blsd'
 command -v tree > /dev/null && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
-
-
-
-
 
 fzf-down() {
   fzf --height 50% "$@"
@@ -98,6 +97,7 @@ fo() {
     fi
   fi
 }
+
 fco() {
   local tags branches target
   tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
@@ -152,5 +152,3 @@ gr() {
     --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
   cut -d$'\t' -f1
 }
-
-

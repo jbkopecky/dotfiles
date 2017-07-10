@@ -1,0 +1,54 @@
+URxvt*font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
+URxvt*boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
+
+URxvt*geometry: 85x40
+
+URxvt.scrollBar: false
+
+URxvt*loginShell: true
+
+URxvt.internalBorder: 10
+
+Xcursor.size: 16
+
+! Colors {{{
+
+! special
+*foreground:   #fffeeb
+*background:   #334152
+*cursorColor:  #8090a0
+
+! black
+! Second black is grey
+*color0:       #334152
+*color8:       #8090a0
+
+! red
+*color1:       #fd8489
+*color9:       #8090a0
+
+! green
+*color2:       #a9dd9d
+*color10:      #a9dd9d
+
+! yellow
+*color3:       #fedf81
+*color11:      #fedf81
+
+! blue
+*color4:       #a8d2eb
+*color12:      #a8d2eb
+
+! magenta
+*color5:       #e7d5ff
+*color13:      #e7d5ff
+
+! cyan
+*color6:       #a9667a
+*color14:      #a9667a
+
+! white
+*color7:       #fffeeb
+*color15:      #fffeeb
+
+! }}}
