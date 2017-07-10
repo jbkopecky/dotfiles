@@ -18,7 +18,7 @@ alias tmc="clear && tmux clear-history"
 alias tmk="tmux kill-session"
 alias tm="tmux new-session"
 alias urxvt="urxvtc"
-alias sxiv="sxiv -b"
+alias rg="ranger"
 
 # Vim aliases
 alias vi="vim"
