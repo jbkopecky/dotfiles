@@ -20,24 +20,18 @@ height = 12
 offset-x = 0%
 offset-y= 0%
 wm-restack = bspwm
-
 background = ${colors.bg}
 foreground = ${colors.fg}
-
 font-0 = "artwiz lemon"
-
 modules-left =  bspwm
 modules-center = date time
 modules-right = volume 
-
 tray-position = right
 tray-padding = 2
 tray-background = ${colors.bg}
 tray-transparent = false
 tray-detached = false
-
 underline-size = 0
-
 spacing = 1 
 padding-left = 2
 padding-right = 2
@@ -46,25 +40,17 @@ module-margin-right = 2
 
 [module/volume]
 type = internal/volume
-
+; master-mixer = IEC958 
 format-volume = <label-volume>
 module-margin-right = 1
-; ramp-volume-0 =
-; ramp-volume-1 =
-; ramp-volume-2 =
-
 format-volume-foreground = ${colors.fg}
 format-volume-background = ${colors.bg}
-
-label-muted = muted 
 
 [module/bspwm]
 type = internal/bspwm
 label-focused-foreground = ${colors.red}
 label-occupied-foreground = ${colors.hi}
-
 ; ∙
-
 label-focused = " ·"
 label-occupied = " ·"
 label-empty = " ·"

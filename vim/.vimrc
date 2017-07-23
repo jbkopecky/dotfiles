@@ -158,6 +158,9 @@ if has('autocmd')
               \ setl foldmethod=indent |
               \ nnoremap <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c> |
 
+        autocmd Filetype markdown
+              \ let b:dispatch = 'pandoc % --latex-engine=xelatex --highlight-style pygments -o output.pdf'
+
         autocmd Filetype mail
               \ setl tw=76 |
               \ setl spell |
@@ -263,12 +266,6 @@ command! Q q
 " Dispatch **************************************************************** {{{
 let g:dispatch_tmux_height=20
 let g:dispatch_quickfix_height=20
-"}}}
-" Anyfold ***************************************************************** {{{
-let anyfold_fold_display=0
-autocmd Filetype python     let b:anyfold_activate=1
-autocmd Filetype conf       let b:anyfold_activate=1
-autocmd Filetype javascript let b:anyfold_activate=1
 "}}}
 " Jedi-vim **************************************************************** {{{
 let g:python_highlight_all = 1
