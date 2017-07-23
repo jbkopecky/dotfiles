@@ -43,6 +43,7 @@ Plug 'lifepillar/vim-mucomplete'
 Plug 'ap/vim-buftabline'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
+Plug 'chrisbra/vim-diff-enhanced', {'on': 'EnhancedDiff'}
 " -----------------------------------------------------------------------------
 Plug 'godlygeek/tabular', {'for': ['md', 'mkd', 'markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
@@ -51,7 +52,6 @@ Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'junegunn/vim-journal', {'for': 'journal'}
-Plug 'itchyny/vim-cursorword', {'for': 'python'}
 " -----------------------------------------------------------------------------
 if has('unix')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
