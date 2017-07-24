@@ -110,7 +110,6 @@ colo wal
 
 " Invisible Characters **************************************************** {{{
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
-silent! let [&t_SI,&t_EI] = exists('$TMUX') ? ["\ePtmux;\e\e[5 q\e\\","\ePtmux;\e\e[2 q\e\\"] : ["\e]50;CursorShape=1\x7","\e]50;CursorShape=0\x7"]
 "}}}
 
 " Folding ***************************************************************** {{{
