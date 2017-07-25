@@ -23,6 +23,7 @@ silent! call plug#begin('~/.vim/plugged')
 Plug 'dylanaraps/wal'
 Plug 'junegunn/seoul256.vim'
 " -----------------------------------------------------------------------------
+Plug 'jbkopecky/statusline.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ap/vim-buftabline'
 Plug 'lifepillar/vim-mucomplete'
