@@ -43,6 +43,7 @@ Plug 'lifepillar/vim-mucomplete'
 Plug 'ap/vim-buftabline'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
+Plug 'chrisbra/vim-diff-enhanced', {'on': 'EnhancedDiff'}
 " -----------------------------------------------------------------------------
 Plug 'godlygeek/tabular', {'for': ['md', 'mkd', 'markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
@@ -51,7 +52,6 @@ Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'junegunn/vim-journal', {'for': 'journal'}
-Plug 'itchyny/vim-cursorword', {'for': 'python'}
 " -----------------------------------------------------------------------------
 if has('unix')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -110,7 +110,6 @@ colo wal
 
 " Invisible Characters **************************************************** {{{
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
-silent! let [&t_SI,&t_EI] = exists('$TMUX') ? ["\ePtmux;\e\e[5 q\e\\","\ePtmux;\e\e[2 q\e\\"] : ["\e]50;CursorShape=1\x7","\e]50;CursorShape=0\x7"]
 "}}}
 
 " Folding ***************************************************************** {{{
@@ -157,6 +156,9 @@ if has('autocmd')
               \ setl nowrap |
               \ setl foldmethod=indent |
               \ nnoremap <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c> |
+
+        autocmd Filetype markdown
+              \ let b:dispatch = 'pandoc % --latex-engine=xelatex --highlight-style pygments -o output.pdf'
 
         autocmd Filetype mail
               \ setl tw=76 |
@@ -263,12 +265,6 @@ command! Q q
 " Dispatch **************************************************************** {{{
 let g:dispatch_tmux_height=20
 let g:dispatch_quickfix_height=20
-"}}}
-" Anyfold ***************************************************************** {{{
-let anyfold_fold_display=0
-autocmd Filetype python     let b:anyfold_activate=1
-autocmd Filetype conf       let b:anyfold_activate=1
-autocmd Filetype javascript let b:anyfold_activate=1
 "}}}
 " Jedi-vim **************************************************************** {{{
 let g:python_highlight_all = 1

@@ -15,6 +15,13 @@ alias tma="tmux attach-session"
 alias tmc="clear && tmux clear-history"
 alias tmk="tmux kill-session"
 alias tm="tmux new-session"
+<<<<<<< HEAD
+=======
+alias urxvt="urxvtc"
+alias rg="ranger"
+
+# Vim aliases
+>>>>>>> 07e6addfaf14818858ce236fc7b9a89611083241
 alias vi="vim"
 alias v="vim"
 alias l='ls --color=auto --group-directories-first -h'
