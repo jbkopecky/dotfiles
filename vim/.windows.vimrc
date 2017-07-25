@@ -5,10 +5,7 @@
 set guifont=Tamsyn8x16
 set printfont=Dina:h11
 
-cd ~/Documents
-" let &showbreak = '»'
-
-set lines=43 columns=190
+set lines=58 columns=112
 
 colo seoul256
 
