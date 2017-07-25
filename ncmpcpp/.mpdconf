@@ -1,0 +1,19 @@
+pid_file "~/.mpd/pid"
+db_file "~/.mpd/tag_cache"
+state_file "~/.mpd/state"
+playlist_directory "~/.mpd/playlists"
+music_directory "~/Music"
+
+user "jb"
+
+audio_output {
+    type "pulse"
+    name "My Pulse Output"
+}
+
+audio_output {
+    type "fifo"
+    name "FIFO"
+    path "/tmp/mpd.fifo"
+    format "44100:16:2"
+}
