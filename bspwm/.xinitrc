@@ -1,11 +1,18 @@
 #!/bin/sh
-setx b off
+
+export DUNST_FONT="Artwiz Lemon 7"
+export DUNST_SIZE="300x30-40+70"
+
 xsetroot -cursor_name left_ptr
-xrdb -merge ~/.Xresources
-urxvtd -q -f -o &
+
 pulseaudio --start &
+dunst -fn "$DUNST_FONT" -geometry "$DUNST_SIZE" &
+urxvtd -q -f &
 mpd &
 udiskie &
-dunst &
 sxkhd &
+dropbox &
+
+xrdb -merge ~/.Xresources
+
 exec bspwm
