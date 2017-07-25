@@ -58,7 +58,8 @@ call plug#end()
 
 " Preamble **************************************************************** {{{
 set nocompatible                 " Get rid of Vi compatibility
-set laststatus=2                 " Always show status bar
+set laststatus=0                " Always show status bar
+set noshowmode                   " dont show mode. airline does it
 set mouse=a                      " Enable Mouse
 set backspace=2                  " Normal backspace
 set history=700                  " More cmd line history
@@ -83,7 +84,6 @@ set shiftround                   " Round Shifts
 set expandtab smarttab           " Smart tabs
 set fileformats=unix,dos,mac     " Freaking formats
 set encoding=utf-8 nobomb        " Freaking formats
-set noshowmode                   " dont show mode. airline does it
 set clipboard=unnamed
 set lazyredraw                   " Speed up things
 set splitright                   " More natural split opening
