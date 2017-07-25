@@ -15,13 +15,7 @@ alias tma="tmux attach-session"
 alias tmc="clear && tmux clear-history"
 alias tmk="tmux kill-session"
 alias tm="tmux new-session"
-<<<<<<< HEAD
-=======
 alias urxvt="urxvtc"
-alias rg="ranger"
-
-# Vim aliases
->>>>>>> 07e6addfaf14818858ce236fc7b9a89611083241
 alias vi="vim"
 alias v="vim"
 alias l='ls --color=auto --group-directories-first -h'
@@ -73,6 +67,6 @@ PROMPT_COMMAND="__set_ps1"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.local.bashrc ] && source ~/.local.bashrc
 [ -f ~/.scripts/fzfrc ] && source ~/.scripts/fzfrc
-[ -f ~/.scripts/hyperjump ] && source ~/.scripts/hyperjump
+[ -f ~/.hyperjump ] && source ~/.hyperjump
 [ -f $HOME/.dircolors ] && eval $(dircolors -b $HOME/.dircolors)
 
