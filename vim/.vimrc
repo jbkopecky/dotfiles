@@ -23,8 +23,10 @@ silent! call plug#begin('~/.vim/plugged')
 Plug 'dylanaraps/wal'
 Plug 'junegunn/seoul256.vim'
 " -----------------------------------------------------------------------------
-Plug 'mhinz/vim-startify'
+Plug 'jbkopecky/statusline.vim'
 Plug 'mhinz/vim-signify'
+Plug 'ap/vim-buftabline'
+Plug 'lifepillar/vim-mucomplete'
 " -----------------------------------------------------------------------------
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -37,10 +39,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 " -----------------------------------------------------------------------------
-Plug 'justinmk/vim-gtfo'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'lifepillar/vim-mucomplete'
-Plug 'ap/vim-buftabline'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
 Plug 'chrisbra/vim-diff-enhanced', {'on': 'EnhancedDiff'}
@@ -61,7 +59,8 @@ call plug#end()
 
 " Preamble **************************************************************** {{{
 set nocompatible                 " Get rid of Vi compatibility
-set laststatus=2                 " Always show status bar
+set laststatus=2                " Always show status bar
+set noshowmode                   " dont show mode. airline does it
 set mouse=a                      " Enable Mouse
 set backspace=2                  " Normal backspace
 set history=700                  " More cmd line history
@@ -77,39 +76,38 @@ set smartcase                    " If maj asked, only look for maj
 set ttimeoutlen=100              " Faster Escape
 set scrolloff=3                  " Leave 3 l bellow cursos when scrolling
 set foldmethod=marker            " Fold on markers
-set backupdir=~/.vim/backups//   " Specify backup dir
-set directory=~/.vim/swaps//     " Specify swap dir
-" set number                       " Show line number
 set textwidth=79                 " No more than 80 col
-" set colorcolumn=80               " Color 80 col
 set formatoptions-=t             " no automatic wrap text when typing
 set linebreak                    " Breaks fold at end of word
-" set cursorline                   " Show cursor line
 set tabstop=4                    " Four spaces tabs
 set shiftwidth=4                 " Four spaces shifts
 set shiftround                   " Round Shifts
 set expandtab smarttab           " Smart tabs
 set fileformats=unix,dos,mac     " Freaking formats
 set encoding=utf-8 nobomb        " Freaking formats
-set noshowmode                   " dont show mode. airline does it
 set clipboard=unnamed
 set lazyredraw                   " Speed up things
 set splitright                   " More natural split opening
+set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set backupdir=~/.vim/backups/
+
 if exists('+undofile')           " If possible
   set undofile                   " Set Undo file
-  set undodir=~/.vim/undo//      " Specify undodir
+  set undolevels=500
+  set undoreload=500
+  set undodir=~/.vim/undo/    " Specify undodir
 endif
-if exists('+viminfo')
-  set viminfo='100,n$HOME/.vim/info/viminfo' "set viminfodir for startify
+
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), 'p')
 endif
-"}}}
 
-" Colors ****************************************************************** {{{
-colo wal
-"}}}
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), 'p')
+endif
 
-" Invisible Characters **************************************************** {{{
-set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
+silent! colo wal
+
 "}}}
 
 " Folding ***************************************************************** {{{
@@ -251,51 +249,38 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 
 nnoremap <F11> :NERDTreeToggle<cr>
 
-"}}}
-
-" Abbreviations *********************************************************** {{{
+" Abbreviations
 command! WQ wq
 command! Wq wq
 command! Wqa wqa
 command! W w
 command! Q q
-" }}}
+
+"}}}
 
 " Plugins Settings ******************************************************** {{{
-" Dispatch **************************************************************** {{{
+" Dispatch
 let g:dispatch_tmux_height=20
 let g:dispatch_quickfix_height=20
-"}}}
-" Jedi-vim **************************************************************** {{{
+
+" Jedi-vim
 let g:python_highlight_all = 1
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = '<leader>u'
-"}}}
-" Startify **************************************************************** {{{
-let g:startify_files_number = 5
-"}}}
-" CtrlP ******************************************************************* {{{
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_cmd = 'CtrlPLastMode'
-let g:ctrlp_extensions = ['buffertag', 'line', 'mru', 'dir']
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \}
-"}}}
-" Markdown **************************************************************** {{{
+
+" Markdown
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_level = 2
 let g:vim_markdown_toc_autofit = 1
-"}}}
-" journal ***************************************************************** {{{
+
+" journal
 let g:journal#dirs = ['Notes']
-"}}}
-" buftabline ************************************************************** {{{
+
+" buftabline
 let g:buftabline_show=1
-"}}}
-" goyo ******************************************************************** {{{
+
+" goyo
 function! s:goyo_enter()
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
@@ -319,35 +304,6 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 "}}}
-"}}}
-
-" Todo ******************************************************************** {{{
-function! s:todo() abort "{{{
-  let l:cmds =  [
-             \ 'git grep -n -e TODO -e FIXME -e XXX 2> /dev/null',
-             \ 'grep -rn -e TODO -e FIXME -e XXX * 2> /dev/null',
-             \ ]
-  let l:entries = []
-  for l:cmd in l:cmds
-    let l:lines = split(system(l:cmd), '\n')
-    if v:shell_error != 0 | continue | endif
-    for l:line in l:lines
-      let l:entry = matchlist(l:line, '^\([^:]*\):\([^:]*\):\(.*\)')
-      if len(l:entry)>3
-        let [l:fname, l:lno, l:text]=l:entry[1:3]
-        call add(l:entries, { 'filename': l:fname, 'lnum': l:lno, 'text': l:text })
-      endif
-    endfor
-    break
-  endfor
-
-  if !empty(l:entries)
-    call setqflist(l:entries)
-    copen
-  endif
-endfunction "}}}
-command! Todo call s:todo()
-" }}}
 
 " Local Vimrc ************************************************************* {{{
 if filereadable(glob('~/.local.vimrc'))

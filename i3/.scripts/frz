@@ -1,6 +1,0 @@
-#! /bin/sh
-
-EXPORT_DIR="/home/jb/Dropbox/Projects/yaourt"
-
-yaourt -Qent > $EXPORT_DIR/native.txt
-yaourt -Qemt > $EXPORT_DIR/foreign.txt
