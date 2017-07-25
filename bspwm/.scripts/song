@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# Change mpd song and display a notification.
+#
+# Created by Dylan Araps.
+#
+# Depends on: playerctl or mpc, libnotify (patched with id support)
+
+# Get the player.
+case "$1" in
+    "next") playerctl next ;;
+    "prev") playerctl prev ;;
+    "toggle")
+        playerctl play-pause
+
+        # The '-r' flag is from a patched version of 'libnotify'.
+        # '-r' lets you replace notifications using the same id.
+        notify-send -t 1 -r 114 "Song: $(playerctl status)"
+    ;;
+
+    *) printf "%s\n" "Usage: ./song next, ./song prev, ./song toggle"; exit ;;
+esac

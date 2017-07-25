@@ -1,0 +1,65 @@
+# vim: filetype=gitconfig:
+[user]
+    email = jb.kopecky@gmail.com
+	name = jbkopecky
+[github]
+    email = jb.kopecky@gmail.com
+	name = JB KOPECKY
+    username = jbkopecky
+[merge]
+    tool = fugitive
+[mergetool "fugitive"]
+    cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+    keepBackup = false
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[color]
+    ui = auto
+[push]
+    default = simple
+[alias]
+	d = difftool
+    ec = config --global -e
+    co = checkout
+    dh1 = diff HEAD~1
+    l = log --graph --pretty="tformat:%C(yellow)%h%Creset\\ %Cgreen(%ar)%Creset\\ %C(blue)<%an>%Creset\\ %C(red)%d%Creset\\ %s"
+
+    # make sure working directory is up to date with the origin
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+
+    # check out a new branch
+    cob = checkout -b
+
+    # add everything and commit the work
+    cm = !git add -A && git commit -m
+
+    # add all change including untracked files and creates a savepoint commit
+    save = !git add -A && git commit -m 'SAVEPOINT'
+
+    # only commits tracked changes
+    wip = commit -am "WIP"
+
+    # resets previous commit and keep changes from this commit
+    undo = reset HEAD~1 --mixed
+
+    # only commits changes and ammend commit message
+    amend = commit -a --amend
+
+    # commits everything & hard resets to remove that commit
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+
+    # Deletes all branch merged in master
+    bclean = "!f() {git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+
+    # When work is done:
+    # - Switch to master branch
+    # - git up to bring master up to speed
+    # - deletes all branches already merged into master
+    bdone = "!f() { git checkout ${1-master} $$ git up && git bclean ${1-master}; }; f"
+
+[color "status"]
+    added = magenta bold
+    changed = white bold
+    untracked = green bold
