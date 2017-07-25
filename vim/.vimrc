@@ -59,7 +59,7 @@ call plug#end()
 
 " Preamble **************************************************************** {{{
 set nocompatible                 " Get rid of Vi compatibility
-set laststatus=0                " Always show status bar
+set laststatus=2                " Always show status bar
 set noshowmode                   " dont show mode. airline does it
 set mouse=a                      " Enable Mouse
 set backspace=2                  " Normal backspace
