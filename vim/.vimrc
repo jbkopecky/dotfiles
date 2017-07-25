@@ -87,27 +87,26 @@ set noshowmode                   " dont show mode. airline does it
 set clipboard=unnamed
 set lazyredraw                   " Speed up things
 set splitright                   " More natural split opening
+set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set backupdir=~/.vim/backups/
+
 if exists('+undofile')           " If possible
   set undofile                   " Set Undo file
   set undolevels=500
   set undoreload=500
   set undodir=~/.vim/undo/    " Specify undodir
 endif
+
 if !isdirectory(expand(&backupdir))
     call mkdir(expand(&backupdir), 'p')
 endif
+
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), 'p')
 endif
-"}}}
 
-" Colors ****************************************************************** {{{
 silent! colo wal
-"}}}
 
-" Invisible Characters **************************************************** {{{
-set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 "}}}
 
 " Folding ***************************************************************** {{{
@@ -249,39 +248,38 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 
 nnoremap <F11> :NERDTreeToggle<cr>
 
-"}}}
-
-" Abbreviations *********************************************************** {{{
+" Abbreviations
 command! WQ wq
 command! Wq wq
 command! Wqa wqa
 command! W w
 command! Q q
-" }}}
+
+"}}}
 
 " Plugins Settings ******************************************************** {{{
-" Dispatch **************************************************************** {{{
+" Dispatch
 let g:dispatch_tmux_height=20
 let g:dispatch_quickfix_height=20
-"}}}
-" Jedi-vim **************************************************************** {{{
+
+" Jedi-vim
 let g:python_highlight_all = 1
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = '<leader>u'
-"}}}
-" Markdown **************************************************************** {{{
+
+" Markdown
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_level = 2
 let g:vim_markdown_toc_autofit = 1
-"}}}
-" journal ***************************************************************** {{{
+
+" journal
 let g:journal#dirs = ['Notes']
-"}}}
-" buftabline ************************************************************** {{{
+
+" buftabline
 let g:buftabline_show=1
-"}}}
-" goyo ******************************************************************** {{{
+
+" goyo
 function! s:goyo_enter()
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
@@ -304,7 +302,6 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-"}}}
 "}}}
 
 " Local Vimrc ************************************************************* {{{
