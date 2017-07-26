@@ -7,17 +7,12 @@ set printfont=Dina:h11
 
 set lines=58 columns=112
 
+cd ~/Documents
+
 colo seoul256
 
 " }}}
 
-" Startify bookmarks *******************************************************{{{
-let g:startify_bookmarks = [ 
-                        \ {'g':'~\\.dotfiles\\vim\\.gvimrc'},
-                        \ {'vv':'~\\.dotfiles\\vim\\.vimrc'},
-                        \ {'l':'~\\.dotfiles\\vim\\.windows.vimrc'},
-                        \  ]
-" }}}
 
 " Tex **********************************************************************{{{
 " autocmd FileType tex let b:dispatch = 'latex -interaction=nonstopmode %' | setlocal formatoptions+=l
