@@ -19,15 +19,15 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 silent! call plug#begin('~/.vim/plugged')
-" -----------------------------------------------------------------------------
+
 Plug 'dylanaraps/wal'
 Plug 'junegunn/seoul256.vim'
-" -----------------------------------------------------------------------------
+
 Plug 'jbkopecky/statusline.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ap/vim-buftabline'
 Plug 'lifepillar/vim-mucomplete'
-" -----------------------------------------------------------------------------
+
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
@@ -35,14 +35,13 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
-" -----------------------------------------------------------------------------
+
 Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
-" -----------------------------------------------------------------------------
+
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
-Plug 'chrisbra/vim-diff-enhanced', {'on': 'EnhancedDiff'}
-" -----------------------------------------------------------------------------
+
 Plug 'godlygeek/tabular', {'for': ['md', 'mkd', 'markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
@@ -50,7 +49,7 @@ Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'junegunn/vim-journal', {'for': 'journal'}
-" -----------------------------------------------------------------------------
+
 if has('unix')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 endif
