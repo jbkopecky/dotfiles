@@ -280,6 +280,9 @@ let g:journal#dirs = ['Notes']
 let g:buftabline_show=1
 
 " goyo
+let g:goyo_width = "80%"
+let g:goyo_height = "90%"
+
 function! s:goyo_enter()
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
