@@ -34,7 +34,7 @@ get_workspaces() {
 
 get_window() {
     # Get title of focused window.
-    printf "%s\\n" "$(xdotool getwindowfocus getwindowname)"
+    printf "%.75s\\n" "$(xdotool getwindowfocus getwindowname)"
 }
 
 
@@ -46,23 +46,22 @@ get_date() {
 
 get_song() {
     # Get the current song from mopidy/mpd.
-    printf "%.100s\\n" "$(mpc current)"
+    printf "%.100s\\n" "$(mpc current -f '%albumartist% - %title%')"
 }
 
 
 get_volume() {
     # Get the system volume.
-    local icon
     volume="$(amixer sget Master | grep -o -m 1 -E "[[:digit:]]+%")"
 
     case "$volume" in
-        0%|[0-9]%)   icon=" " ;;
-        1?%|2?%|3?%) icon="" ;;
-        4?%|5?%|6?%) icon="" ;;
-        *) icon="" ;;
+        0%|[0-9]%)   vol_icon=" " ;;
+        1?%|2?%|3?%) vol_icon="" ;;
+        4?%|5?%|6?%) vol_icon="" ;;
+        *) vol_icon="" ;;
     esac
 
-    printf "%s\\n" "$(icon "$icon") ${volume}"
+    printf "%s\\n" "$(icon "$vol_icon") ${volume}"
 
 }
 
@@ -110,7 +109,6 @@ main() {
     lemonbar -g "${width}x${height}" \
              -B "${color0:-#000000}" -F "${color15:-#F0F0F0}"\
              -n "bar" -f "$font" -f "$icon"
-
 }
 
 
