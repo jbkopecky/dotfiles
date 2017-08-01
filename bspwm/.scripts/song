@@ -4,19 +4,20 @@
 #
 # Created by Dylan Araps.
 #
-# Depends on: playerctl or mpc, libnotify (patched with id support)
-
-# Get the player.
+# Depends on: mpc, libnotify (patched with id support)
 case "$1" in
-    "next") playerctl next ;;
-    "prev") playerctl prev ;;
+    "next") mpc next ;;
+    "prev") mpc prev ;;
+    "toggle") mpc toggle ;;
+    *) printf "%s\n" "Usage: ./song next, ./song prev"; exit ;;
+esac
+
+# The '-r' flag is from a patched version of 'libnotify'.
+# '-r' lets you replace notifications using the same id.
+case "$1" in
+    "next" | "prev") notify-send -t 1 -r 113 "Song: $(mpc current)" ;;
     "toggle")
-        playerctl play-pause
-
-        # The '-r' flag is from a patched version of 'libnotify'.
-        # '-r' lets you replace notifications using the same id.
-        notify-send -t 1 -r 114 "Song: $(playerctl status)"
+        mpc status | grep -F "[playing]" && status="Playing"
+        notify-send -t 1 -r 114 "Song: ${status:-Paused}"
     ;;
-
-    *) printf "%s\n" "Usage: ./song next, ./song prev, ./song toggle"; exit ;;
 esac
