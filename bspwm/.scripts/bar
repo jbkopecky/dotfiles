@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 # vim: set ft=sh:
 #
-# Dylan's bar script
-#
-# Created by Dylan Araps.
-#
-# Depends on: xorg-xrandr, wmctrl, mpc, lemonbar, ip, xdotool
+# Depends on: xorg-xrandr, mpc, lemonbar, ip
 
 font="${BAR_FONT:-"-*-lemon-*"}"
 icon="${BAR_ICON:-"-*-siji-*"}"
@@ -29,12 +25,6 @@ get_workspaces() {
                                    $2=="-"{printf "  %{F"fg"}" $NF "  %{F}"}
                                    $2=="*"{printf "  " $NF "  "}')"
     printf "%s\\n" "$workspaces"
-}
-
-
-get_window() {
-    # Get title of focused window.
-    printf "%.75s\\n" "$(xdotool getwindowfocus getwindowname)"
 }
 
 
@@ -66,13 +56,6 @@ get_volume() {
 }
 
 
-get_local_ip() {
-    # Get the local IP address.
-    local_ip="$(ip route get 1 | awk -F 'src | uid' '{print $2; exit}')"
-    printf "%b\\n" "$local_ip"
-}
-
-
 icon() {
     # Format an icon.
     printf "%s\\n" "%{F${color3:-#F0F0F0}}${1}%{F}"
@@ -90,10 +73,11 @@ main() {
     width="$(get_mon_width)"
     local_ip="$(icon "") $(get_local_ip)"
 
+    bspc config top_padding "${height}"
+
     # Loop and print the info.
     while :; do
         workspaces="$(get_workspaces)"
-        window="$(icon "") $(get_window)"
         date="$(get_date)"
         song="$(icon "") $(get_song)"
         volume="$(get_volume)"
@@ -101,7 +85,7 @@ main() {
         printf "%s%s%s\\n" \
                "%{l}   ${workspaces} |  ${window}" \
                "%{c}${date}" \
-               "%{r}${song}  |  ${volume}  |  ${local_ip}    "
+               "%{r}${song}  |  ${volume}    "
         sleep .1s
     done |\
 
