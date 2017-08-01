@@ -11,8 +11,8 @@ servers = (
     autoconnect = "no";
   },
   {
-    address = "irc.nixers.net";
-    chatnet = "nixers";
+    address = "irc.rizon.net";
+    chatnet = "rizon";
     port = "6697";
     use_ssl = "yes";
     autoconnect = "no";
@@ -31,6 +31,7 @@ chatnets = {
   freenode = { type = "IRC"; };
   nixers = { type = "IRC"; };
   freenode2 = { type = "IRC"; };
+  rizon = { type = "IRC"; };
 };
 
 
