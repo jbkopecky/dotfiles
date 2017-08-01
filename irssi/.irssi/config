@@ -18,30 +18,24 @@ servers = (
     autoconnect = "no";
   },
   {
-    address = "irc.rizon.net";
-    chatnet = "rizon";
+    address = "chat.freenode.net";
+    chatnet = "freenode2";
     port = "6697";
-    use_tls = "yes";
-    tls_verify = "yes";
-    tls_capath = "/etc/ssl/certs";
+    use_ssl = "yes";
+    autoconnect = "no";
   }
 );
 
 
 chatnets = {
   freenode = { type = "IRC"; };
-  rizon = {
-    type = "IRC";
-    sasl_mechanism = "plain";
-    sasl_username = "";
-    sasl_password = "";
-  };
   nixers = { type = "IRC"; };
+  freenode2 = { type = "IRC"; };
 };
 
 
 settings = {
-  core = { real_name = "~"; user_name = "jbkop"; nick = "jbkop"; };
+  core = { real_name = "~"; user_name = "jbkp"; nick = "jbkp"; };
   "fe-text" = {
     actlist_sort = "refnum";
     indent = "10";
@@ -99,7 +93,9 @@ aliases = {
   soff = "statusbar window disable";
   afk = "away afk";
 };
+
 logs = { };
+
 keyboard = (
   { key = "^O"; id = "command"; data = "son "; },
   { key = "^P"; id = "command"; data = "soff "; }

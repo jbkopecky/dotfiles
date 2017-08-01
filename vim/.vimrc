@@ -225,6 +225,7 @@ vmap <Down> ]egv
 " Leader Mappings
 map <silent> <Leader>q :ccl<CR>
 map <silent> <Leader>c :cd %:p:h<CR>
+map <silent> <Leader>1 z=
 map <Leader>i :set list!<CR>
 nnoremap <silent> <Leader><Leader> :noh<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
