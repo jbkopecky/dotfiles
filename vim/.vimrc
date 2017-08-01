@@ -248,6 +248,7 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
             \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 nnoremap <F11> :NERDTreeToggle<cr>
+nnoremap <F12> :call ToggleHiddenAll()<cr>
 
 " Abbreviations
 command! WQ wq
@@ -305,6 +306,24 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+"}}}
+
+" Toggle StatusLine ******************************************************* {{{
+let s:hidden_all=0
+function! ToggleHiddenAll()
+    if s:hidden_all == 0
+        let s:hidden_all = 1
+        set laststatus=0
+        set noruler
+        set noshowcmd
+    else
+        let s:hidden_all = 0
+        set laststatus=2
+        set ruler
+        set showcmd
+    endif
+endfunction
 
 "}}}
 
