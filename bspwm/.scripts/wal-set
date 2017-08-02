@@ -7,7 +7,7 @@
 source "${HOME}/.cache/wal/colors.sh"
 
 reload_dunst() {
-    pkill dunst
+    pkill -1 -f dunst
     dunst \
         -lb "${color0:=#F0F0F0}" \
         -nb "$color0" \
@@ -27,7 +27,7 @@ set_bspwm() {
 }
 
 reload_bar() {
-    pkill bar
+    pkill -1 -f bar
     bar 2>/dev/null &
 }
 

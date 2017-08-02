@@ -19,15 +19,15 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 silent! call plug#begin('~/.vim/plugged')
-" -----------------------------------------------------------------------------
+
 Plug 'dylanaraps/wal'
 Plug 'junegunn/seoul256.vim'
-" -----------------------------------------------------------------------------
+
 Plug 'jbkopecky/statusline.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ap/vim-buftabline'
 Plug 'lifepillar/vim-mucomplete'
-" -----------------------------------------------------------------------------
+
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
@@ -35,14 +35,13 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
-" -----------------------------------------------------------------------------
+
 Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
-" -----------------------------------------------------------------------------
+
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
-Plug 'chrisbra/vim-diff-enhanced', {'on': 'EnhancedDiff'}
-" -----------------------------------------------------------------------------
+
 Plug 'godlygeek/tabular', {'for': ['md', 'mkd', 'markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
@@ -50,7 +49,7 @@ Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'junegunn/vim-journal', {'for': 'journal'}
-" -----------------------------------------------------------------------------
+
 if has('unix')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 endif
@@ -59,7 +58,6 @@ call plug#end()
 
 " Preamble **************************************************************** {{{
 set nocompatible                 " Get rid of Vi compatibility
-set laststatus=2                " Always show status bar
 set noshowmode                   " dont show mode. airline does it
 set mouse=a                      " Enable Mouse
 set backspace=2                  " Normal backspace
@@ -88,8 +86,12 @@ set encoding=utf-8 nobomb        " Freaking formats
 set clipboard=unnamed
 set lazyredraw                   " Speed up things
 set splitright                   " More natural split opening
+set laststatus=0                " Always show status bar
+set noruler
+set noshowcmd
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set backupdir=~/.vim/backups/
+set noswapfile
 
 if exists('+undofile')           " If possible
   set undofile                   " Set Undo file
@@ -226,6 +228,7 @@ vmap <Down> ]egv
 " Leader Mappings
 map <silent> <Leader>q :ccl<CR>
 map <silent> <Leader>c :cd %:p:h<CR>
+map <silent> <Leader>1 z=
 map <Leader>i :set list!<CR>
 nnoremap <silent> <Leader><Leader> :noh<CR>
 nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
@@ -248,6 +251,7 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
             \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 nnoremap <F11> :NERDTreeToggle<cr>
+nnoremap <F12> :call ToggleHiddenAll()<cr>
 
 " Abbreviations
 command! WQ wq
@@ -281,6 +285,9 @@ let g:journal#dirs = ['Notes']
 let g:buftabline_show=1
 
 " goyo
+let g:goyo_width = "80%"
+let g:goyo_height = "90%"
+
 function! s:goyo_enter()
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
@@ -302,6 +309,24 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+"}}}
+
+" Toggle StatusLine ******************************************************* {{{
+let s:hidden_all=1
+function! ToggleHiddenAll()
+    if s:hidden_all == 0
+        let s:hidden_all = 1
+        set laststatus=0
+        set noruler
+        set noshowcmd
+    else
+        let s:hidden_all = 0
+        set laststatus=2
+        set ruler
+        set showcmd
+    endif
+endfunction
 
 "}}}
 

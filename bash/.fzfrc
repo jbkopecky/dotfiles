@@ -3,8 +3,8 @@
 # --------------------------------------------------------------------
 #
 
-alias fzf='fzf --color=bg:0,bg+:0'
-alias fzf-tmux='fzf-tmux --color=bg:0,bg+:0'
+alias fzf='fzf --color=bg:0,bg+:8'
+alias fzf-tmux='fzf-tmux --color=bg:0,bg+:8'
 
 pcsi() {
   echo -en "\x1b[$@"

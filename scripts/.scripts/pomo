@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# Pomodoro script.
+#
+# Displays a notification after 25 minutes.
+#
+# Dependencies: libnotify-bin
+
+echo 'Go go go!'
+notify-send  'Go go go!'
+
+for i in $(seq 25 -1 1); do
+  echo $i
+  sleep 1m
+done
+
+echo 'End of Pomodoro!'
+notify-send -t 10 'End of Pomodoro!'
