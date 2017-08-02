@@ -58,7 +58,6 @@ call plug#end()
 
 " Preamble **************************************************************** {{{
 set nocompatible                 " Get rid of Vi compatibility
-set laststatus=2                " Always show status bar
 set noshowmode                   " dont show mode. airline does it
 set mouse=a                      " Enable Mouse
 set backspace=2                  " Normal backspace
@@ -87,8 +86,12 @@ set encoding=utf-8 nobomb        " Freaking formats
 set clipboard=unnamed
 set lazyredraw                   " Speed up things
 set splitright                   " More natural split opening
+set laststatus=0                " Always show status bar
+set noruler
+set noshowcmd
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set backupdir=~/.vim/backups/
+set noswapfile
 
 if exists('+undofile')           " If possible
   set undofile                   " Set Undo file
@@ -310,7 +313,7 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 
 " Toggle StatusLine ******************************************************* {{{
-let s:hidden_all=0
+let s:hidden_all=1
 function! ToggleHiddenAll()
     if s:hidden_all == 0
         let s:hidden_all = 1
