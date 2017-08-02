@@ -19,13 +19,37 @@ get_mon_width() {
 
 
 get_workspaces() {
-    # Create a dynamic workspace switcher.
-    workspaces="$(wmctrl -d | awk -v fg="${color8:-#F0F0F0}" \
-                                  '$6!="0,0"{next}
-                                   $2=="-"{printf "  %{F"fg"}" $NF "  %{F}"}
-                                   $2=="*"{printf "  " $NF "  "}')"
+    bar=$(bspc wm -g | tr ":" "\n")
+    workspaces=""
+    empty_icon=""
+    occup_icon=""
+    urgen_icon=""
+    for part in $bar; do
+        case ${part:0:1} in
+            "M")
+                workspaces="$workspaces  $empty_icon "
+                ;;
+            "O")
+                workspaces="$workspaces  $occup_icon  "
+                ;;
+            "F")
+                workspaces="$workspaces  $empty_icon  "
+                ;;
+            "o")
+                workspaces="$workspaces  %{F${color8:-#F0F0F0}}$occup_icon%{F}  "
+                ;;
+            "f")
+                workspaces="$workspaces  %{F${color8:-#F0F0F0}}$empty_icon%{F}  "
+                ;;
+            "U")
+                workspaces="$workspaces  %{F${color2:-#F0F0F0}}$urgen_icon%{F}  "
+                ;;
+            *) ;;
+        esac
+    done
     printf "%s\\n" "$workspaces"
 }
+
 
 
 get_date() {
@@ -58,7 +82,7 @@ get_volume() {
 
 icon() {
     # Format an icon.
-    printf "%s\\n" "%{F${color3:-#F0F0F0}}${1}%{F}"
+    printf "%s\\n" "%{F${color8:-#F0F0F0}}${1}%{F}"
 }
 
 
