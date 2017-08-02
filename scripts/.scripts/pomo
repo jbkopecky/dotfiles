@@ -7,7 +7,7 @@
 # Dependencies: libnotify-bin
 
 echo 'Go go go!'
-notify-send -i face-cool 'Go go go!'
+notify-send  'Go go go!'
 
 for i in $(seq 25 -1 1); do
   echo $i
@@ -15,4 +15,4 @@ for i in $(seq 25 -1 1); do
 done
 
 echo 'End of Pomodoro!'
-notify-send -i face-cool -t 0 'End of Pomodoro!'
+notify-send -t 10 'End of Pomodoro!'
