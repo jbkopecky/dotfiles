@@ -27,7 +27,7 @@ set_bspwm() {
 }
 
 reload_bar() {
-    pkill -1 -f bar
+    pkill bar
     bar 2>/dev/null &
 }
 

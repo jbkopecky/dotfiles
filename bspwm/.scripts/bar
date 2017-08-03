@@ -5,7 +5,7 @@
 
 font="${BAR_FONT:-"-*-lemon-*"}"
 icon="${BAR_ICON:-"-*-siji-*"}"
-height="${BAR_HEIGHT:-25}"
+height="${BAR_HEIGHT:-30}"
 
 
 get_mon_width() {
