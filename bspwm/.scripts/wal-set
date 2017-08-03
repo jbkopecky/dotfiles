@@ -7,7 +7,7 @@
 source "${HOME}/.cache/wal/colors.sh"
 
 reload_dunst() {
-    pkill -1 -f dunst
+    killall dunst
     dunst \
         -lb "${color0:=#F0F0F0}" \
         -nb "$color0" \
