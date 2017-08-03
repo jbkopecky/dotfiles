@@ -25,8 +25,6 @@ alias grep='grep --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias clean='sudo pacman -Rns $(pacman -Qtdq)'
-alias album="youtube-dl --extract-audio --audio-format mp3 \
-    -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
 
 
 # PS1 with error, and git info
