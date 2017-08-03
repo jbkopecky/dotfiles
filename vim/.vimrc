@@ -20,7 +20,7 @@ endif
 
 silent! call plug#begin('~/.vim/plugged')
 
-Plug 'dylanaraps/wal'
+Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/seoul256.vim'
 
 Plug 'jbkopecky/statusline.vim'
