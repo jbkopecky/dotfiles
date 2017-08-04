@@ -2,7 +2,10 @@
 
 main() {
     cd ~/Music
-    youtube-dl --extract-audio --audio-format mp3 "$1"
+    notify-send -t 5 "Starting MP3 Download !"
+    url="$1"
+    youtube-dl --extract-audio --audio-format mp3 $url
+    notify-send -t 5 "Downloaded mp3: $url"
 }
 
 main "$@"
