@@ -1,7 +1,7 @@
 # General
 external_editor = "/usr/bin/vim"
 use_console_editor = "yes"
-song_list_format = " $0%n $0• $0%t $R$0%A "
+song_list_format = " $0• $0%t $R$0%A "
 song_columns_list_format = "(3)[]{}(92)[white]{t} (4)[yellow]{l}"
 song_status_format = " $4%t $0"
 mpd_music_dir="~/Music"
