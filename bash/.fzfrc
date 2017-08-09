@@ -3,9 +3,6 @@
 # --------------------------------------------------------------------
 #
 
-alias fzf='fzf --color=bg:0,bg+:8'
-alias fzf-tmux='fzf-tmux --color=bg:0,bg+:8'
-
 pcsi() {
   echo -en "\x1b[$@"
 }
@@ -25,6 +22,10 @@ review_file() {
   fi
 }
 
+export FZF_DEFAULT_OPTS='
+--color fg:8,bg:0,hl:1,fg+:7,bg+:0,hl+:1
+--color info:8,prompt:7,spinner:1,pointer:1,marker:1
+'
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_OPTS="--preview 'preview_file {} | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview' --bind 'ctrl-y:execute(echo -n {2..} | pbcopy)' --header 'Press CTRL-Y to copy command into clipboard'"
