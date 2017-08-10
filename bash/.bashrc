@@ -25,8 +25,8 @@ alias grep='grep --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias clean='sudo pacman -Rns $(pacman -Qtdq)'
-alias met='curl wttr.in?0'
-alias meteo='curl wttr.in'
+alias met='curl wttr.in/paris?0'
+alias meteo='curl wttr.in/paris'
 
 # PS1 with error, and git info
 export PROMPT_CHAR=✿
