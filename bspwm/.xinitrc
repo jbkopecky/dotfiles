@@ -10,9 +10,9 @@ dunst -fn "$DUNST_FONT" -geometry "$DUNST_SIZE" &
 urxvtd -q -f &
 mpd &
 udiskie &
-sxkhd &
 dropbox &
 
 xrdb -merge ~/.Xresources
 
+sxkhd &
 exec bspwm
