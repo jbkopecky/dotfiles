@@ -27,6 +27,7 @@ reload_bar() {
 }
 
 main() {
+    reload_wm &
     reload_dunst &
     reload_bar &
 }

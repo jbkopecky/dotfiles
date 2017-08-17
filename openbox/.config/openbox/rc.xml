@@ -177,9 +177,9 @@
       <action name="ToggleAlwaysOnTop"/>
     </keybind>
     <keybind key="W-f">
-      <!-- <action name="Execute"> -->
-      <!--   <command>wal-set</command> -->
-      <!-- </action> -->
+      <action name="Execute">
+        <command>wal-set</command>
+      </action>
       <action name="ToggleMaximize"/>
       <action name="ToggleDecorations"/>
     </keybind>
