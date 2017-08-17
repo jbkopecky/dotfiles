@@ -177,9 +177,9 @@
       <action name="ToggleAlwaysOnTop"/>
     </keybind>
     <keybind key="W-f">
-      <action name="Execute">
-        <command>wal-set</command>
-      </action>
+      <!-- <action name="Execute"> -->
+      <!--   <command>wal-set</command> -->
+      <!-- </action> -->
       <action name="ToggleMaximize"/>
       <action name="ToggleDecorations"/>
     </keybind>
@@ -464,7 +464,7 @@
     </application>
   </applications>
   <dock>
-    <position>Top</position>
+    <position>Bottom</position>
     <floatingX>0</floatingX>
     <floatingY>0</floatingY>
     <stacking>Above</stacking>

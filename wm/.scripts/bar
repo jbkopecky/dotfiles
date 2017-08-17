@@ -109,7 +109,7 @@ main() {
     done |\
 
     # Launch lemonbar.
-    lemonbar -d -g "x${height}" \
+    lemonbar -g "x${height}" \
              -B "${color0:-#000000}" -F "${color15:-#F0F0F0}"\
              -n "bar" -f "$font" -f "$icon"
 }
