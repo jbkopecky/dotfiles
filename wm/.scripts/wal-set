@@ -11,12 +11,12 @@ reload_dunst() {
     killall dunst
     dunst \
         -lb "${color0:=#F0F0F0}" \
-        -nb "$color0" \
-        -cb "$color0" \
+        -nb "${color0:=#F0F0F0}" \
+        -cb "${color0:=#F0F0F0}" \
         -lf "${color15:=#000000}" \
-        -bf "$color15" \
-        -cf "$color15" \
-        -nf "$color15" \
+        -lf "${color15:=#000000}" \
+        -bf "${color15:=#000000}" \
+        -cf "${color15:=#000000}" \
         -fn "${DUNST_FONT:-Artwiz Lemon 7}" \
         -geometry "${DUNST_SIZE:-300x30-40+70}" &
 }

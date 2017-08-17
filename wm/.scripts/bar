@@ -93,8 +93,6 @@ main() {
     # https://github.com/dylanaraps/pywal
     . "${HOME}/.cache/wal/colors.sh"
 
-    # Info that doesn't need to grabbed more than once.
-    bspc config top_padding "${height}"
 
     # Loop and print the info.
     while :; do

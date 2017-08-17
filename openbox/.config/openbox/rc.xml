@@ -186,6 +186,9 @@
     <keybind key="W-q">
       <action name="Close"/>
     </keybind>
+    <keybind key="W-d">
+        <action name="ToggleDecorations"/>
+    </keybind>
     <keybind key="A-Tab">
       <action name="NextWindow">
         <dialog>none</dialog>
@@ -450,7 +453,7 @@
       <desktop>4</desktop>
       <focus>no</focus>
     </application>
-    <application title="bum" class="mpv">
+    <application title="bum">
       <decor>no</decor>
     </application>
     <application title="qiv*">
