@@ -211,6 +211,12 @@
         <command>rof</command>
       </action>
     </keybind>
+    <keybind key="W-e">
+      <action name="Execute">
+        <name>ranger</name>
+        <command>urxvtc -e ranger</command>
+      </action>
+    </keybind>
     <keybind key="W-c">
       <action name="MoveToCenter"/>
     </keybind>
@@ -453,7 +459,10 @@
       <desktop>4</desktop>
       <focus>no</focus>
     </application>
-    <application title="bum">
+    <application class="mpv">
+      <decor>no</decor>
+    </application>
+    <application class="feh">
       <decor>no</decor>
     </application>
     <application title="qiv*">
