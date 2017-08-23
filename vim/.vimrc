@@ -32,7 +32,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 
@@ -49,10 +48,8 @@ Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'junegunn/vim-journal', {'for': 'journal'}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-if has('unix')
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-endif
 call plug#end()
 "}}}
 
@@ -260,7 +257,41 @@ command! Wqa wqa
 command! W w
 command! Q q
 
+" Unimpaired
+" Quickfix
+nnoremap ]q :cnext<cr>zz
+nnoremap [q :cprev<cr>zz
+nnoremap ]l :lnext<cr>zz
+nnoremap [l :lprev<cr>zz
+
+" Buffers
+nnoremap ]b :bnext<cr>
+nnoremap [b :bprev<cr>
+
+
+"Zoom
+function! s:zoom()
+    if winnr('$') > 1
+        tab split
+    elseif len(filter(map(range(tabpagenr('$')), 'tabpagebuflist(v:val + 1)'),
+                    \ 'index(v:val, '.bufnr('').') >= 0')) > 1
+        tabclose
+    endif
+endfunction
+nnoremap <silent> <leader>z :call <sid>zoom()<cr>
 "}}}
+
+" Toggle options ********************************************************** {{{
+function! s:map_change_option(...)
+  let [key, opt] = a:000[0:1]
+  let op = get(a:, 3, 'set '.opt.'!')
+  execute printf("nnoremap co%s :%s<bar>set %s?<cr>", key, op, opt)
+endfunction
+
+call s:map_change_option('p', 'paste')
+call s:map_change_option('n', 'number')
+call s:map_change_option('w', 'wrap')
+" }}}
 
 " Plugins Settings ******************************************************** {{{
 " Dispatch
