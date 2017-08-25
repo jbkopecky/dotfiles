@@ -7,10 +7,6 @@ pcsi() {
   echo -en "\x1b[$@"
 }
 
-fzf-down() {
-  fzf --height 50% "$@"
-}
-
 review_file() {
   local mime="$(file --mime "$1")"
   if [[ "$mime" =~ directory ]]; then
@@ -111,6 +107,33 @@ fco() {
     fzf-down --no-hscroll --reverse --ansi +m -d "\t" -n 2 -q "$*") || return
   git checkout $(echo "$target" | awk '{print $2}')
 }
+
+# Hyperjump fzf !!
+function _hyperjumpdatabase() {
+    local dbdir="$HOME"/.local/lib
+    local db="$dbdir"/hyperjumpdb
+    local db_old="$HOME"/.hyperjumpdb
+    if [[ ! -f "$db" ]]; then
+        # Create ~/.local/lib directory if it fors not exists
+        if [[ ! -d "$dbdir" ]]; then
+            mkdir -p "$dbdir" >> /dev/null
+        fi
+        # If old DB exists, move it to the new location
+        if [[ -f "$db_old" ]]; then
+            mv "$db_old" "$db"
+        else
+            touch "$db"
+            echo "home:$HOME" >> "$db"
+        fi
+    fi
+    echo "$db"
+}
+
+fjj() {
+    local db=$(_hyperjumpdatabase)
+    dir=$(cat "$db" | sed 's/.*://g' | fzf-down) && cd "$dir"
+}
+
 
 
 # GIT heart FZF
