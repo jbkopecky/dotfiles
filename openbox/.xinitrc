@@ -14,4 +14,6 @@ dropbox &
 
 xrdb -merge ~/.Xresources
 
+wal -R -o wal-set
+
 exec openbox

@@ -14,5 +14,7 @@ dropbox &
 
 xrdb -merge ~/.Xresources
 
+wal -R -o wal-set
+
 sxkhd &
 exec bspwm
