@@ -170,24 +170,24 @@
         <follow>no</follow>
       </action>
     </keybind>
-    <keybind key="W-e">
+    <keybind key="W-o">
       <action name="ToggleOmnipresent"/>
     </keybind>
     <keybind key="W-a">
       <action name="ToggleAlwaysOnTop"/>
     </keybind>
     <keybind key="W-f">
-      <!-- <action name="Execute"> -->
-      <!--   <command>wal-set</command> -->
-      <!-- </action> -->
+      <action name="Execute">
+        <command>wal-set</command>
+      </action>
       <action name="ToggleMaximize"/>
+      <action name="ToggleDecorations"/>
+    </keybind>
+    <keybind key="W-BackSpace">
       <action name="ToggleDecorations"/>
     </keybind>
     <keybind key="W-q">
       <action name="Close"/>
-    </keybind>
-    <keybind key="W-d">
-        <action name="ToggleDecorations"/>
     </keybind>
     <keybind key="A-Tab">
       <action name="NextWindow">
