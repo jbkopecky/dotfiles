@@ -12,9 +12,7 @@ urxvtd -q -f &
 mpd &
 udiskie &
 dropbox &
-bar &
 wa &
-wal-set &
 
 sxkhd &
 exec bspwm

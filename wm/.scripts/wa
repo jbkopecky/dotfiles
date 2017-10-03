@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DEFAULT=~/.scripts/.tile.xbm
+DEFAULT=~/.tile.xbm
 
 main(){
     tile=${1:-$DEFAULT}

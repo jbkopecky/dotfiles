@@ -6,6 +6,7 @@
 # Source generated colors.
 color0="#$(xrdb -query | grep "^\*color0:" | cut -d '#' -f2)"
 color1="#$(xrdb -query | grep "^\*color1:" | cut -d '#' -f2)"
+color7="#$(xrdb -query | grep "^\*color8:" | cut -d '#' -f2)"
 color8="#$(xrdb -query | grep "^\*color8:" | cut -d '#' -f2)"
 color15="#$(xrdb -query | grep "^\*color15:" | cut -d '#' -f2)"
 
