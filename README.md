@@ -6,7 +6,7 @@ Use `stow` to install
 ![Screenshot BSPWM](https://i.imgur.com/ABbgz6V.png)
 
 ## Openbox
-![Screenshot Openbox](https://i.imgur.com/UmjGM90.png)
+![Screenshot Openbox](https://i.imgur.com/UmjGM9O.png)
 
 Heavily influenced by [dylanaraps](https://github.com/dylanaraps) and
 [junegunn](https://github.com/junegunn)
