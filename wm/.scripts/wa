@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+DEFAULT=~/.scripts/.tile.xbm
+
+main(){
+    tile=${1:-$DEFAULT}
+    bg="#$(xrdb -query | grep "^\*color0:" | cut -d '#' -f2)"
+    fg="#$(xrdb -query | grep "^\*color8:" | cut -d '#' -f2)"
+    xsetroot -bitmap $tile -bg $bg -fg $fg
+    wal-set &
+}
+
+main $@
+
+

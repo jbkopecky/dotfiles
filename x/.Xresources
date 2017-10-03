@@ -18,7 +18,7 @@ URxvt.internalBorder: 15
 
 ! red
 *color1:       #fd8489
-*color9:       #8090a0
+*color9:       #fd8489
 
 ! green
 *color2:       #a9dd9d
