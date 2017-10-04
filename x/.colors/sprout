@@ -2,8 +2,8 @@
 ! -- Author:  dkeg
 ! -- Created: 2016
 
-*foreground:  #2d3144
-*background:  #cfccbe
+*background:  #2d3144
+*foreground:  #cfccbe
 *color0:      #2d3144
 *color8:      #525a69
 *color1:      #8d6d5c

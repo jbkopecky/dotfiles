@@ -1,0 +1,24 @@
+! -- Title:     bluetype
+! -- Author:    dkeg
+! -- Created:   ???
+! -- Modified:  2017
+
+
+*background:   #272a2a
+*foreground:   #eaeaed
+*color0:       #272a2a
+*color8:       #484c4e
+*color1:       #b05f5f
+*color9:       #b05f5f
+*color2:       #88aa55
+*color10:      #88aa55
+*color3:       #ccb05f
+*color11:      #ccb05f
+*color4:       #556973
+*color12:      #556973
+*color5:       #80807e
+*color13:      #80807e
+*color6:       #558888
+*color14:      #558888
+*color7:       #eaeaed
+*color15:      #f6f7f8
