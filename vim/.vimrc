@@ -43,6 +43,7 @@ Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
 
 Plug 'godlygeek/tabular', {'for': ['md', 'mkd', 'markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
+Plug 'beloglazov/vim-online-thesaurus', {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 Plug 'lervag/vimtex', {'for': 'tex'}
