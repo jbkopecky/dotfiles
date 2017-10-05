@@ -2,7 +2,9 @@
 #
 # rofi with flags for my PC/Laptop.
 
-source "${HOME}/.cache/wal/colors.sh"
+bg="#$(xrdb -query | grep "^\*color0:" | cut -d '#' -f2)"
+red="#$(xrdb -query | grep "^\*color1:" | cut -d '#' -f2)"
+fg="#$(xrdb -query | grep "^\*color7:" | cut -d '#' -f2)"
 
 [[ "$HOSTNAME" == "bonez" ]] && \
     font="Roboto 25"
@@ -11,10 +13,11 @@ rofi -show run \
      -font "${font:-Artwiz Lemon 7}" \
      -separator-style none \
      -scrollbar-width 0 \
-     # -location 1 \
-     # -yoffset 30 \
      -lines 10 \
      -width 20 \
-     -bw 10 \
+     -bw 3 \
      -padding 10 \
-     -color-window "$color0" "$color1" "$color0"\
+     -color-window "$bg, $red, $bg"\
+     -color-normal "$bg, $fg, $bg, $fg, $bg"\
+     -color-urgent "$bg, $fg, $bg, $red, $bg"\
+     -color-active "$bg, $fg, $bg, $fg, $bg"\

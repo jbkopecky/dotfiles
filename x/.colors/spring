@@ -1,11 +1,9 @@
-URxvt*font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
-URxvt*boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
+! -- Title:   spring
+! -- Author:  jbk
+! -- Created: 2017
 
-URxvt.scrollBar: false
-URxvt.internalBorder: 15
-
-*background:   #334152
 *foreground:   #fffeeb
+*background:   #334152
 *color0:       #334152
 *color8:       #8090a0
 *color1:       #fd8489

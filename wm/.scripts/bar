@@ -7,8 +7,36 @@ font="${BAR_FONT:-"-*-lemon-*"}"
 icon="${BAR_ICON:-"-*-siji-*"}"
 height="${BAR_HEIGHT:-36}"
 
+## glyphs
+glymem=""
+glyvol=""
+glymute=""
+glynote=""
+glylistn=""
+glypause=""
+glyplay=""
+glystop=""
+glychrg=""
+glybatt=""
+glybattlower=""
+glybattlow=""
+glybattmid=""
+glybatt34=""
+glybattclose=""
+glybattfull=""
+glybattalert=""
+glybattpanic=""
+glyclock=""
+glycal=""
+glywifi=""
+glywifi2=""
+glywifi3=""
+gnc=""
+glycrnt=""
+glyinfo=""
+glytemp=""
 
-get_workspaces2(){
+get_workspaces(){
     # Create a dynamic workspace switcher.
     workspaces="$(wmctrl -d | awk -v fg="${color8:-#F0F0F0}" \
                                   '$6!="0,0"{next}
@@ -16,40 +44,6 @@ get_workspaces2(){
                                    $2=="*"{printf "  " $NF "  "}')"
     printf "%s\\n" "$workspaces"
 }
-
-
-get_workspaces() {
-    bar=$(bspc wm -g | tr ":" "\n")
-    workspaces=""
-    empty_icon=""
-    occup_icon=""
-    urgen_icon=""
-    for part in $bar; do
-        case ${part:0:1} in
-            "M")
-                workspaces="$workspaces  $empty_icon "
-                ;;
-            "O")
-                workspaces="$workspaces  $occup_icon  "
-                ;;
-            "F")
-                workspaces="$workspaces  $empty_icon  "
-                ;;
-            "o")
-                workspaces="$workspaces  %{F${color8:-#F0F0F0}}$occup_icon%{F}  "
-                ;;
-            "f")
-                workspaces="$workspaces  %{F${color8:-#F0F0F0}}$empty_icon%{F}  "
-                ;;
-            "U")
-                workspaces="$workspaces  %{F${color2:-#F0F0F0}}$urgen_icon%{F}  "
-                ;;
-            *) ;;
-        esac
-    done
-    printf "%s\\n" "$workspaces"
-}
-
 
 
 get_date() {
@@ -60,7 +54,7 @@ get_date() {
 
 get_song() {
     # Get the current song from mopidy/mpd.
-    printf "%.100s\\n" "$(mpc current -f '%title%')"
+    printf "%.100s\\n" "$(mpc current)"
 }
 
 
@@ -89,22 +83,23 @@ icon() {
 main() {
     # Main script function.
 
-    # Import colors from 'wal'.
-    # https://github.com/dylanaraps/pywal
-    . "${HOME}/.cache/wal/colors.sh"
+    # Import colors from xrdb
+    color8="#$(xrdb -query | grep "^\*color8:" | cut -d '#' -f2)"
+    color0="#$(xrdb -query | grep "^\*color0:" | cut -d '#' -f2)"
+    color15="#$(xrdb -query | grep "^\*color15:" | cut -d '#' -f2)"
 
 
     # Loop and print the info.
     while :; do
-        workspaces="$(get_workspaces2)"
+        workspaces="$(get_workspaces)"
         date="$(get_date)"
-        song="$(icon "") $(get_song)"
+        song="$(icon $glylistn) $(get_song)"
         volume="$(get_volume)"
 
         printf "%s%s%s\\n" \
                "%{l}   ${workspaces}" \
                "%{c}${date}" \
-               "%{r}${song}  |  ${volume}    "
+               "%{r}${song}   ${volume}    "
         sleep .1s
     done |\
 

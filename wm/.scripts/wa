@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+DEFAULT=~/.tile.xbm
+
+get_colors(){
+    color0="#$(xrdb -query | grep "^\*color0:" | cut -d '#' -f2)"
+    color1="#$(xrdb -query | grep "^\*color1:" | cut -d '#' -f2)"
+    color2="#$(xrdb -query | grep "^\*color2:" | cut -d '#' -f2)"
+    color3="#$(xrdb -query | grep "^\*color3:" | cut -d '#' -f2)"
+    color4="#$(xrdb -query | grep "^\*color4:" | cut -d '#' -f2)"
+    color5="#$(xrdb -query | grep "^\*color5:" | cut -d '#' -f2)"
+    color6="#$(xrdb -query | grep "^\*color6:" | cut -d '#' -f2)"
+    color7="#$(xrdb -query | grep "^\*color7:" | cut -d '#' -f2)"
+    color8="#$(xrdb -query | grep "^\*color8:" | cut -d '#' -f2)"
+    color9="#$(xrdb -query | grep "^\*color9:" | cut -d '#' -f2)"
+    color10="#$(xrdb -query | grep "^\*color10:" | cut -d '#' -f2)"
+    color11="#$(xrdb -query | grep "^\*color11:" | cut -d '#' -f2)"
+    color12="#$(xrdb -query | grep "^\*color12:" | cut -d '#' -f2)"
+    color13="#$(xrdb -query | grep "^\*color13:" | cut -d '#' -f2)"
+    color14="#$(xrdb -query | grep "^\*color14:" | cut -d '#' -f2)"
+    color15="#$(xrdb -query | grep "^\*color15:" | cut -d '#' -f2)"
+}
+
+set_color(){
+    sequences+="\033]4;${1};${2}\007"
+}
+
+set_special() {
+    sequences+="\033]${1};${2}\007"
+}
+
+update_colors(){
+
+    sequences=""
+    
+    set_special 10  $color15
+    set_special 11  $color0
+    set_special 12  $color15
+    set_special 13  $color15
+    set_special 14  $color0
+
+    set_special 708 $color0
+
+    set_color 0 $color0
+
+    set_color 1 $color1
+    set_color 2 $color2
+    set_color 3 $color3
+    set_color 4 $color4
+    set_color 5 $color5
+    set_color 6 $color6
+    set_color 7 $color7
+
+    set_color 8 $color8
+    set_color 9 $color9
+    set_color 10 $color10
+    set_color 11 $color11
+    set_color 12 $color12
+    set_color 13 $color13
+    set_color 14 $color14
+    set_color 15 $color15
+
+    set_color 66 $color0
+
+    for term in /dev/pts/[0-9]*; do
+        [[ -w "$term" ]] && printf "%b" "$sequences" > "$term" &
+    done
+}
+
+main(){
+    tile=${1:-$DEFAULT}
+    get_colors
+    update_colors
+    xsetroot -bitmap $tile -bg $color0 -fg $color8
+    wal-set &
+}
+
+main $@
+
+

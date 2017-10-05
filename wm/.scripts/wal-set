@@ -4,19 +4,24 @@
 # https://github.com/dylanaraps/wal
 
 # Source generated colors.
-source "${HOME}/.cache/wal/colors.sh"
+color0="#$(xrdb -query | grep "^\*color0:" | cut -d '#' -f2)"
+color1="#$(xrdb -query | grep "^\*color1:" | cut -d '#' -f2)"
+color7="#$(xrdb -query | grep "^\*color8:" | cut -d '#' -f2)"
+color8="#$(xrdb -query | grep "^\*color8:" | cut -d '#' -f2)"
+color15="#$(xrdb -query | grep "^\*color15:" | cut -d '#' -f2)"
+
 source "${HOME}/.scripts/wm-set"
 
 reload_dunst() {
     killall dunst
     dunst \
-        -lb "${color0:=#F0F0F0}" \
-        -nb "${color0:=#F0F0F0}" \
-        -cb "${color0:=#F0F0F0}" \
-        -lf "${color15:=#000000}" \
-        -lf "${color15:=#000000}" \
-        -bf "${color15:=#000000}" \
-        -cf "${color15:=#000000}" \
+        -lb "$color0" \
+        -nb "$color0" \
+        -cb "$color0" \
+        -lf "$color15" \
+        -lf "$color15" \
+        -bf "$color15" \
+        -cf "$color15" \
         -fn "${DUNST_FONT:-Artwiz Lemon 7}" \
         -geometry "${DUNST_SIZE:-300x30-40+70}" &
 }
