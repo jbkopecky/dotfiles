@@ -1,0 +1,22 @@
+! -- Title:   tealights
+! -- Author:  dkeg
+! -- Created: 2016
+
+*background:  #25231b
+*foreground:  #c4c1b0
+*color0:      #26241c
+*color8:      #423f31
+*color1:      #8e2f34
+*color9:      #8e2f34
+*color2:      #55654a
+*color10:     #55654a
+*color3:      #988871
+*color11:     #988871
+*color4:      #848f89
+*color12:     #848f89
+*color5:      #9f8c7c
+*color13:     #9f8c7c
+*color6:      #9cb4a6
+*color14:     #9cb4a6
+*color7:      #c4c1b0
+*color15:     #d8d4c5
