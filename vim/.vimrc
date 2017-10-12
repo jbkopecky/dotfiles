@@ -147,6 +147,7 @@ if has('autocmd')
         autocmd!
         autocmd FileType gitcommit
               \ setlocal spell
+
         autocmd Filetype python
               \ setlocal makeprg=python\ % |
               \ let b:dispatch = 'python %'|
@@ -156,7 +157,10 @@ if has('autocmd')
               \ nnoremap <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c> |
 
         autocmd Filetype markdown
-              \ let b:dispatch = 'pandoc % --latex-engine=xelatex --highlight-style pygments -o output.pdf'
+              \ setl conceallevel=2 |
+              \ setl spell |
+              \ let b:dispatch = "pandoc % --latex-engine=xelatex --highlight-style pygments -o output.pdf" |
+              \ syn match comment /^-\s\[x\].*$/
 
         autocmd Filetype mail
               \ setl tw=76 |
@@ -309,6 +313,7 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_level = 2
 let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_conceal = 1
 
 " journal
 let g:journal#dirs = ['Notes']
@@ -336,7 +341,6 @@ function! s:goyo_leave()
   set showcmd
   set scrolloff=5
   set showtabline=1
-  call StatusLineHi()
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
