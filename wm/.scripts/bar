@@ -61,6 +61,7 @@ get_song() {
 get_volume() {
     # Get the system volume.
     volume="$(amixer sget Master | grep -o -m 1 -E "[[:digit:]]+%")"
+    off="$(amixer sget Master | grep -o -m 1 -E "\[off\]")"
 
     case "$volume" in
         0%|[0-9]%)   vol_icon=" " ;;
@@ -69,7 +70,14 @@ get_volume() {
         *) vol_icon="" ;;
     esac
 
-    printf "%s\\n" "$(icon "$vol_icon") ${volume}"
+    if [ "$off" = "[off]" ]; then
+        printf "%s\\n" "%{A:mute:}$(icon "$glymute")%{A}"
+    else
+        printf "%s\\n" "%{A:mute:}$(icon "$vol_icon")%{A} ${volume}"
+    fi
+
+
+
 
 }
 
@@ -93,7 +101,7 @@ main() {
     while :; do
         workspaces="$(get_workspaces)"
         date="$(get_date)"
-        song="$(icon $glylistn) $(get_song)"
+        song="%{A:toggle:}$(icon $glylistn)%{A} $(get_song)"
         volume="$(get_volume)"
 
         printf "%s%s%s\\n" \
@@ -106,7 +114,16 @@ main() {
     # Launch lemonbar.
     lemonbar -g "x${height}" \
              -B "${color0:-#000000}" -F "${color15:-#F0F0F0}"\
-             -n "bar" -f "$font" -f "$icon"
+             -n "bar" -f "$font" -f "$icon" |\
+
+    # get commands and run them
+    while read line; do
+        IFS=$'\t' read -ra cmd <<< "${line}"
+        case "${cmd[0]}" in
+            toggle) mpc toggle ;;
+            mute) vol mute;;
+        esac
+    done
 }
 
 
