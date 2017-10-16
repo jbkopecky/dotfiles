@@ -48,7 +48,6 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
-Plug 'junegunn/vim-journal', {'for': 'journal'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 call plug#end()
@@ -160,7 +159,7 @@ if has('autocmd')
               \ setl conceallevel=2 |
               \ setl spell |
               \ let b:dispatch = "pandoc % --latex-engine=xelatex --highlight-style pygments -o output.pdf" |
-              \ syn match comment /^-\s\[x\].*$/
+              \ syn match comment /^\s*-\s\[x\].*$/
 
         autocmd Filetype mail
               \ setl tw=76 |
@@ -179,21 +178,7 @@ if has('autocmd')
               \ setlocal foldlevelstart=999 |
               \ setlocal foldminlines=0 |
 
-        autocmd FileType *
-              \ if exists("+omnifunc") && &omnifunc == "" |
-              \ setlocal omnifunc=syntaxcomplete#Complete |
-              \ endif
-
-        autocmd FileType *
-              \ if exists("+completefunc") && &completefunc == "" |
-              \ setlocal completefunc=syntaxcomplete#Complete |
-              \ endif
-
     augroup END " }}}
-    augroup FTCheck "{{{
-        autocmd!
-        autocmd Bufread,BufNewFile *.journal set ft=journal
-    augroup END "}}}
 endif
 "}}}
 
@@ -314,9 +299,6 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_level = 2
 let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_conceal = 1
-
-" journal
-let g:journal#dirs = ['Notes']
 
 " buftabline
 let g:buftabline_show=1
