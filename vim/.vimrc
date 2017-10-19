@@ -335,7 +335,6 @@ function! s:goyo_leave()
   set showcmd
   set scrolloff=5
   set showtabline=1
-  call StatusLineHi()
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()

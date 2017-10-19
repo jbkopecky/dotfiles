@@ -19,6 +19,7 @@ let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line 
 let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 let g:vimtex_latexmk_progname='GVIM'
 " }}}
+"
 
 " }} Python Path **************************************************************{{{
 " Using Anaconda Distro for Dispatch
