@@ -43,12 +43,14 @@ Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
 
 Plug 'godlygeek/tabular', {'for': ['md', 'mkd', 'markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
+Plug 'beloglazov/vim-online-thesaurus', {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
-Plug 'junegunn/vim-journal', {'for': 'journal'}
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 "}}}
@@ -146,6 +148,7 @@ if has('autocmd')
         autocmd!
         autocmd FileType gitcommit
               \ setlocal spell
+
         autocmd Filetype python
               \ setlocal makeprg=python\ % |
               \ let b:dispatch = 'python %'|
@@ -155,7 +158,10 @@ if has('autocmd')
               \ nnoremap <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c> |
 
         autocmd Filetype markdown
-              \ let b:dispatch = 'pandoc % --latex-engine=xelatex --highlight-style pygments -o output.pdf'
+              \ setl conceallevel=2 |
+              \ setl spell |
+              \ let b:dispatch = "pandoc % --latex-engine=xelatex --highlight-style pygments -o output.pdf" |
+              \ syn match comment /^\s*-\s\[x\].*$/
 
         autocmd Filetype mail
               \ setl tw=76 |
@@ -174,21 +180,7 @@ if has('autocmd')
               \ setlocal foldlevelstart=999 |
               \ setlocal foldminlines=0 |
 
-        autocmd FileType *
-              \ if exists("+omnifunc") && &omnifunc == "" |
-              \ setlocal omnifunc=syntaxcomplete#Complete |
-              \ endif
-
-        autocmd FileType *
-              \ if exists("+completefunc") && &completefunc == "" |
-              \ setlocal completefunc=syntaxcomplete#Complete |
-              \ endif
-
     augroup END " }}}
-    augroup FTCheck "{{{
-        autocmd!
-        autocmd Bufread,BufNewFile *.journal set ft=journal
-    augroup END "}}}
 endif
 "}}}
 
@@ -308,9 +300,7 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_level = 2
 let g:vim_markdown_toc_autofit = 1
-
-" journal
-let g:journal#dirs = ['Notes']
+let g:vim_markdown_conceal = 1
 
 " buftabline
 let g:buftabline_show=1
