@@ -220,7 +220,7 @@ map <silent> <Leader>c :cd %:p:h<CR>
 map <silent> <Leader>1 z=
 map <Leader>i :set list!<CR>
 nnoremap <silent> <Leader><Leader> :noh<CR>
-nnoremap <silent> <Leader>N :CtrlP ~/Dropbox/Notes<CR>
+nnoremap <silent> <Leader>N :Files ~/Dropbox/Notes<CR>
 
 nnoremap U :UndotreeToggle<CR>
 
@@ -259,6 +259,10 @@ nnoremap [l :lprev<cr>zz
 " Buffers
 nnoremap ]b :bnext<cr>
 nnoremap [b :bprev<cr>
+
+" Files
+nnoremap <Leader>; :Files<cr>
+nnoremap ; :Buffers<cr>
 
 
 "Zoom
