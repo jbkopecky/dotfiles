@@ -15,9 +15,9 @@ esac
 # The '-r' flag is from a patched version of 'libnotify'.
 # '-r' lets you replace notifications using the same id.
 case "$1" in
-    "next" | "prev") notify-send -t 1 -r 113 "Song: $(mpc current)" ;;
+    "next" | "prev") notify-send -t 1 "Song: $(mpc current)" ;;
     "toggle")
         mpc status | grep -F "[playing]" && status="Playing"
-        notify-send -t 1 -r 114 "Song: ${status:-Paused}"
+        notify-send -t 1 Song: ${status:-Paused}"
     ;;
 esac

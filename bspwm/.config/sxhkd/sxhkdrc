@@ -1,10 +1,10 @@
 # terminal
 super + Return
-        urxvtc
+    urxvtc
 
 # file explorer
 super + e
-        urxvtc -e "ranger"
+    urxvtc -e "ranger"
 
 # program launcher
 super + space
@@ -18,11 +18,17 @@ super + button{4,5}
 super + Escape
     pkill -USR1 -x sxhkd
 
+# ThinkVantage
+XF86Launch1
+    lck
+
 # volume
 XF86Audio{Raise,Lower}Volume 
     vol {up,down} &
 XF86Audio{Play,Next,Prev}
-    song {toggle,next,prev}
+    song {toggle,next,prev} &
+XF86AudioMute
+    vol mute &
 super + {z,x}
     vol {down,up} &
 

@@ -62,15 +62,13 @@
     </font>
   </theme>
   <desktops>
-    <number>6</number>
+    <number>4</number>
     <firstdesk>1</firstdesk>
     <names>
       <name>1</name>
       <name>2</name>
       <name>3</name>
       <name>4</name>
-      <name>5</name>
-      <name>6</name>
     </names>
     <popupTime>0</popupTime>
   </desktops>
@@ -170,12 +168,12 @@
         <follow>no</follow>
       </action>
     </keybind>
-    <keybind key="W-o">
-      <action name="ToggleOmnipresent"/>
-    </keybind>
-    <keybind key="W-a">
-      <action name="ToggleAlwaysOnTop"/>
-    </keybind>
+    <!-- <keybind key="W-o"> -->
+    <!--   <action name="ToggleOmnipresent"/> -->
+    <!-- </keybind> -->
+    <!-- <keybind key="W-a"> -->
+    <!--   <action name="ToggleAlwaysOnTop"/> -->
+    <!-- </keybind> -->
     <keybind key="W-f">
       <action name="Execute">
         <command>wal-set</command>
@@ -249,12 +247,12 @@
         <name>Next Song</name>
         <command>song toggle</command>
       </action>
-    </keybind>
-    <keybind key="W-P">
+    <keybind key="XF86AudioMute">
       <action name="Execute">
-        <name>Take Screenshot</name>
-        <command>scr</command>
+        <name>Mute</name>
+        <command>vol mute</command>
       </action>
+    </keybind>
     </keybind>
     <keybind key="W-w">
       <action name="Execute">

@@ -48,15 +48,14 @@ get_workspaces(){
 
 get_date() {
     # Get the date and time.
-    printf "%s\\n" "$(date +"%a %d %b - %l:%M %p")"
+    printf "%s\\n" "$(date +"%a %d %b") $(icon "$glyclock") $(date +"%l:%M %p")"
 }
 
 
 get_song() {
     # Get the current song from mopidy/mpd.
-    printf "%.100s\\n" "$(mpc current)"
+    printf "%.100s\\n" "$(mpc current -f %title%)"
 }
-
 
 get_volume() {
     # Get the system volume.
@@ -75,11 +74,28 @@ get_volume() {
     else
         printf "%s\\n" "%{A:mute:}$(icon "$vol_icon")%{A} ${volume}"
     fi
-
-
-
-
 }
+
+
+battery() {
+    percent=$(cat /sys/class/power_supply/BAT0/capacity)
+    power=$(cat /sys/class/power_supply/BAT0/status)
+	
+	if [[ $power == "Charging" || $power == "Unknown" ]]; then
+        printf "%s\\n" "$(icon "$glychrg") ${percent}%"
+	else
+		if [ $percent -eq 100 ]; then
+                printf "%s\\n" "$(icon "$glybattfull") ${percent}%"
+		elif [ $percent -gt 70 ] ; then
+            printf "%s\\n" "$(icon "$glybattmid") ${percent}%"
+		elif [ $percent -gt 30 ]; then
+            printf "%s\\n" "$(icon "$glybattlow") ${percent}%"
+		else 
+            printf "%s\\n" "$(icon "$glybattlower") ${percent}%"
+		fi
+	fi
+}
+
 
 
 icon() {
@@ -101,13 +117,14 @@ main() {
     while :; do
         workspaces="$(get_workspaces)"
         date="$(get_date)"
-        song="%{A:toggle:}$(icon $glylistn)%{A} $(get_song)"
+        # song="%{A:toggle:}$(icon $glylistn)%{A} $(get_song)"
         volume="$(get_volume)"
+        bat="$(battery)"
 
         printf "%s%s%s\\n" \
-               "%{l}   ${workspaces}" \
+               "%{l}   ${workspaces}"\
                "%{c}${date}" \
-               "%{r}${song}   ${volume}    "
+               "%{r}  ${volume}  ${bat}   "
         sleep .1s
     done |\
 

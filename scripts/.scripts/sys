@@ -85,6 +85,12 @@ ram=`free | awk '/Mem:/ {print int($3/$2 * 100.0)}'`
 printf "${redf}%-4s ${bluef}%-5s %-25s \n" " ram" "$ram%" `draw $ram 15` 
 }
 
+#█▓▒░ temp
+show_temp(){
+    tem=$(sensors | grep -oP 'Package.*?\+\K[0-9]+')
+    printf "${redf}%-4s ${bluef}%-5s %-25s \n" " tem" "$tem " `draw $tem 15` 
+}
+
 #█▓▒░ main
 main() {
     initializeANSI
@@ -97,6 +103,7 @@ main() {
     new_line
     show_cpu
     show_ram
+    show_temp
 }
 
 main
