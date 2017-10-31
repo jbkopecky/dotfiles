@@ -5,7 +5,7 @@
 
 font="${BAR_FONT:-"-*-lemon-*"}"
 icon="${BAR_ICON:-"-*-siji-*"}"
-height="${BAR_HEIGHT:-36}"
+height="${BAR_HEIGHT:-30}"
 
 ## glyphs
 glymem=""
@@ -124,7 +124,7 @@ main() {
         printf "%s%s%s\\n" \
                "%{l}   ${workspaces}"\
                "%{c}${date}" \
-               "%{r}  ${volume}  ${bat}   "
+               "%{r}  ${volume}  ${battery}   "
         sleep .1s
     done |\
 
