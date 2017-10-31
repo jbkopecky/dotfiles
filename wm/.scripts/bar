@@ -77,18 +77,18 @@ get_volume() {
 }
 
 
-battery() {
+get_battery() {
     percent=$(cat /sys/class/power_supply/BAT0/capacity)
     power=$(cat /sys/class/power_supply/BAT0/status)
 	
 	if [[ $power == "Charging" || $power == "Unknown" ]]; then
         printf "%s\\n" "$(icon "$glychrg") ${percent}%"
 	else
-		if [ $percent -eq 100 ]; then
+		if [ $percent -gt 80 ]; then
                 printf "%s\\n" "$(icon "$glybattfull") ${percent}%"
-		elif [ $percent -gt 70 ] ; then
+        elif [ $percent -gt 65 ] ; then
             printf "%s\\n" "$(icon "$glybattmid") ${percent}%"
-		elif [ $percent -gt 30 ]; then
+		elif [ $percent -gt 35 ]; then
             printf "%s\\n" "$(icon "$glybattlow") ${percent}%"
 		else 
             printf "%s\\n" "$(icon "$glybattlower") ${percent}%"
@@ -119,7 +119,7 @@ main() {
         date="$(get_date)"
         # song="%{A:toggle:}$(icon $glylistn)%{A} $(get_song)"
         volume="$(get_volume)"
-        bat="$(battery)"
+        battery="$(get_battery)"
 
         printf "%s%s%s\\n" \
                "%{l}   ${workspaces}"\

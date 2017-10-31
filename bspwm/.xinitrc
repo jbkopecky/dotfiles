@@ -11,8 +11,8 @@ xrdb -merge ~/.Xresources
 pulseaudio --start &
 urxvtd -q -f &
 mpd &
-# udiskie &
-# dropbox &
+udiskie &
+dropbox &
 wa &
 
 sxkhd &

@@ -32,6 +32,10 @@ XF86AudioMute
 super + {z,x}
     vol {down,up} &
 
+# Brightness
+XF86MonBrightness{Up,Down}
+    xbacklight -{inc,dec} 20
+
 # wal
 super + w
     wal -i $HOME/Pictures/Wallpapers -o wal-set
