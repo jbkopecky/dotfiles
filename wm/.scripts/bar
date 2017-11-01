@@ -8,6 +8,7 @@ icon="${BAR_ICON:-"-*-siji-*"}"
 height="${BAR_HEIGHT:-30}"
 
 ## glyphs
+glylamp=""
 glymem=""
 glyvol=""
 glymute=""
@@ -58,7 +59,7 @@ get_song() {
 }
 
 get_light() {
-    printf "%s\\n" "$(icon "$glycrnt") $(xbacklight | cut -f1 -d '.')%"
+    printf "%s\\n" "$(icon "$glylamp") $(xbacklight | cut -f1 -d '.')%"
 }
 
 get_volume() {
