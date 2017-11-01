@@ -1,6 +1,6 @@
 #! /bin/sh
 
-height="${BAR_HEIGHT:-36}"
+height="${BAR_HEIGHT:-30}"
 
 sxhkd &
 
