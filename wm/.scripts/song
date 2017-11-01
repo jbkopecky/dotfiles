@@ -12,12 +12,4 @@ case "$1" in
     *) printf "%s\n" "Usage: ./song next, ./song prev"; exit ;;
 esac
 
-# The '-r' flag is from a patched version of 'libnotify'.
-# '-r' lets you replace notifications using the same id.
-case "$1" in
-    "next" | "prev") notify-send -t 1 "Song: $(mpc current)" ;;
-    "toggle")
-        mpc status | grep -F "[playing]" && status="Playing"
-        notify-send -t 1 Song: ${status:-Paused}"
-    ;;
-esac
+notify-send -t 1 "Song: $(mpc current)"
