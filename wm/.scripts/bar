@@ -105,7 +105,7 @@ get_battery() {
 
 icon() {
     # Format an icon.
-    printf "%s\\n" "%{F${color8:-#F0F0F0}}${1}%{F}"
+    printf "%s\\n" "%{F${color3:-#F0F0F0}}${1}%{F}"
 }
 
 
@@ -114,6 +114,7 @@ main() {
 
     # Import colors from xrdb
     color8="#$(xrdb -query | grep "^\*color8:" | cut -d '#' -f2)"
+    color3="#$(xrdb -query | grep "^\*color3:" | cut -d '#' -f2)"
     color0="#$(xrdb -query | grep "^\*color0:" | cut -d '#' -f2)"
     color15="#$(xrdb -query | grep "^\*color15:" | cut -d '#' -f2)"
 
