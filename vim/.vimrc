@@ -43,13 +43,10 @@ Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
 
 Plug 'godlygeek/tabular', {'for': ['md', 'mkd', 'markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
-Plug 'beloglazov/vim-online-thesaurus', {'for': ['md', 'mkd', 'markdown']}
-Plug 'tweekmonster/spellrotate.vim', {'for': ['md', 'mkd', 'markdown', 'txt']}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
-Plug 'dbmrq/vim-redacted'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -88,6 +85,7 @@ set clipboard=unnamed
 set lazyredraw                   " Speed up things
 set splitright                   " More natural split opening
 set laststatus=0                " Always show status bar
+set fillchars=
 set noruler
 set noshowcmd
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
@@ -339,18 +337,18 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 
 " Toggle StatusLine ******************************************************* {{{
-function! s:statusline_expr()
-  let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
-  let ro  = "%{&readonly ? '[RO] ' : ''}"
-  let ft  = "%{len(&filetype) ? '['.&filetype.'] ' : ''}"
-  let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : ''}"
-  let sep = ' %= '
-  let pos = ' %-12(%l : %c%V%) '
-  let pct = ' %P'
-  return '[%n] %F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
-endfunction
+" function! s:statusline_expr()
+"   let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
+"   let ro  = "%{&readonly ? '[RO] ' : ''}"
+"   let ft  = "%{len(&filetype) ? '['.&filetype.'] ' : ''}"
+"   let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : ''}"
+"   let sep = ' %= '
+"   let pos = ' %-12(%l : %c%V%) '
+"   let pct = ' %P'
+"   return '[%n] %F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
+" endfunction
 
-let &statusline = s:statusline_expr()
+" let &statusline = s:statusline_expr()
 
 let s:hidden_all=1
 function! ToggleHiddenAll()
