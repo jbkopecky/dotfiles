@@ -29,6 +29,8 @@ reload_dunst() {
 reload_bar() {
     pkill bar
     bar 2>/dev/null &
+    sleep 1
+    xdo lower -a bar
 }
 
 main() {
