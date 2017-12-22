@@ -1,154 +1,65 @@
 #!/usr/bin/env bash
-# vim: set ft=sh:
-#
-# Depends on: xorg-xrandr, mpc, lemonbar, ip, wmctrl
 
 font="${BAR_FONT:-"-*-lemon-*"}"
 icon="${BAR_ICON:-"-*-siji-*"}"
-height="${BAR_HEIGHT:-30}"
+height="${BAR_HEIGHT:-40}"
 
-## glyphs
-glylamp=""
-glymem=""
-glyvol=""
-glymute=""
-glynote=""
-glylistn=""
-glypause=""
-glyplay=""
-glystop=""
-glychrg=""
-glybatt=""
-glybattlower=""
-glybattlow=""
-glybattmid=""
-glybatt34=""
-glybattclose=""
-glybattfull=""
-glybattalert=""
-glybattpanic=""
-glyclock=""
-glycal=""
-glywifi=""
-glywifi2=""
-glywifi3=""
-gnc=""
-glycrnt=""
-glyinfo=""
-glytemp=""
+vol() {
+    cur="$(amixer get Master -n |
+           awk -F '\\[|\\]' '/[0-9]{1,3}%/ {print $2" "$6}')"
 
-get_workspaces(){
-    # Create a dynamic workspace switcher.
-    workspaces="$(wmctrl -d | awk -v fg="${color8:-#F0F0F0}" \
-                                  '$6!="0,0"{next}
-                                   $2=="-"{printf "  %{F"fg"}" $NF "  %{F}"}
-                                   $2=="*"{printf "  " $NF "  "}')"
-    printf "%s\\n" "$workspaces"
-}
-
-
-get_date() {
-    # Get the date and time.
-    printf "%s\\n" "$(date +"%a %d %b") $(icon "$glyclock") $(date +"%l:%M %p")"
-}
-
-
-get_song() {
-    # Get the current song from mopidy/mpd.
-    printf "%.100s\\n" "$(mpc current -f %title%)"
-}
-
-get_light() {
-    printf "%s\\n" "$(icon "$glylamp") $(xbacklight | cut -f1 -d '.')%"
-}
-
-get_volume() {
-    # Get the system volume.
-    volume="$(amixer sget Master | grep -o -m 1 -E "[[:digit:]]+%")"
-    off="$(amixer sget Master | grep -o -m 1 -E "\[off\]")"
-
-    case "$volume" in
-        0%|[0-9]%)   vol_icon=" " ;;
-        1?%|2?%|3?%) vol_icon="" ;;
-        4?%|5?%|6?%) vol_icon="" ;;
-        *) vol_icon="" ;;
+    case "$cur" in
+        [0-9]%*|*f*) vol_icon="\\ue0e3" ;;
+        [1-4]?%*)    vol_icon="\\ue0e1" ;;
+        [5-6]?%*|*)  vol_icon="\\ue0e0" ;;
     esac
 
-    if [ "$off" = "[off]" ]; then
-        printf "%s\\n" "%{A:mute:}$(icon "$glymute")%{A}"
-    else
-        printf "%s\\n" "%{A:mute:}$(icon "$vol_icon")%{A} ${volume}"
-    fi
+    printf "%b" "  $vol_icon ${cur/ *}%"
 }
 
-
-get_battery() {
-    percent=$(cat /sys/class/power_supply/BAT0/capacity)
-    power=$(cat /sys/class/power_supply/BAT0/status)
-	
-	if [[ $power == "Charging" || $power == "Unknown" ]]; then
-        printf "%s\\n" "$(icon "$glychrg") ${percent}%"
-	else
-		if [ $percent -gt 80 ]; then
-                printf "%s\\n" "$(icon "$glybattfull") ${percent}%"
-        elif [ $percent -gt 65 ] ; then
-            printf "%s\\n" "$(icon "$glybattmid") ${percent}%"
-		elif [ $percent -gt 35 ]; then
-            printf "%s\\n" "$(icon "$glybattlow") ${percent}%"
-		else 
-            printf "%s\\n" "$(icon "$glybattlower") ${percent}%"
-		fi
-	fi
+tim() {
+    printf "%(%a %d %b  - %l:%M %p)T"
 }
 
-
-
-icon() {
-    # Format an icon.
-    printf "%s\\n" "%{F${color3:-#F0F0F0}}${1}%{F}"
+bri() {
+    cur="$(< /sys/class/backlight/intel_backlight/brightness)"
+    printf "%b" "$((cur / 30))% \\uf0eb"
 }
 
+bat() {
+    cur="$(< /sys/class/power_supply/BAT0/capacity)"
+    sta="$(< /sys/class/power_supply/BAT0/status)"
 
-main() {
-    # Main script function.
+    case "$cur" in
+        [0-9])  bat_icon="\\ue243" ;;
+        [1-3]?) bat_icon="\\ue245" ;;
+        [4-5]?) bat_icon="\\ue247" ;;
+        [6-7]?) bat_icon="\\ue249" ;;
+        *)      bat_icon="\\ue24b" ;;
+    esac
 
+    [[ "$sta" != Discharging ]] && bat_icon+="  \\ue20e"
+
+
+    printf "%s%%  %b" "$cur" "$bat_icon"
+}
+
+main(){
     # Import colors from xrdb
-    color8="#$(xrdb -query | grep "^\*color8:" | cut -d '#' -f2)"
-    color3="#$(xrdb -query | grep "^\*color3:" | cut -d '#' -f2)"
     color0="#$(xrdb -query | grep "^\*color0:" | cut -d '#' -f2)"
     color15="#$(xrdb -query | grep "^\*color15:" | cut -d '#' -f2)"
 
+    for((;;)) {
+        printf "   %s   \\n" " %{l}$(vol) %{c}$(tim)%{r} $(bat)"
+        sleep 2
+    } |\
 
-    # Loop and print the info.
-    while :; do
-        workspaces="$(get_workspaces)"
-        date="$(get_date)"
-        # song="%{A:toggle:}$(icon $glylistn)%{A} $(get_song)"
-        volume="$(get_volume)"
-        battery="$(get_battery)"
-        light="$(get_light)"
-
-        printf "%s%s%s\\n" \
-               "%{l}   ${workspaces}"\
-               "%{c}${date}" \
-               "%{r}  ${volume}  ${battery}  ${light}  "
-        sleep .5s
-    done |\
-
-    # Launch lemonbar.
-    lemonbar -g "x${height}" \
-             -B "${color0:-#000000}" -F "${color15:-#F0F0F0}"\
-             -n "bar" -f "$font" -f "$icon" |\
-
-    # get commands and run them
-    while read line; do
-        IFS=$'\t' read -ra cmd <<< "${line}"
-        case "${cmd[0]}" in
-            toggle) mpc toggle ;;
-            mute) vol mute;;
-        esac
-    done
+    lemonbar -db \
+            -g "500x${height}+433+50" \
+            -f "$font" -f "$icon" \
+            -n "bar" \
+            -B "$color0" \
+            -F "$color15"
 }
-
 
 main "$@"

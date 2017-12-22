@@ -37,8 +37,8 @@ XF86MonBrightness{Up,Down}
     xbacklight -{inc,dec} 10
 
 # wal
-super + w
-    wal -i $HOME/Pictures/Wallpapers -o wal-set
+# super + w
+#     wal -i $HOME/Pictures/Wallpapers -o wal-set
 
 #
 # bspwm hotkeys
