@@ -3,8 +3,8 @@
 ! -- Created:   2015
 ! -- Modified:  2016
 
-*background:  #322b26
 *foreground:  #63554c
+*background:  #322b26
 *color0:      #322b26
 *color8:      #63554c
 *color1:      #bd6151

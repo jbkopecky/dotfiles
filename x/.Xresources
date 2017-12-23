@@ -2,24 +2,24 @@ URxvt*font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
 URxvt*boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
 
 URxvt.scrollBar: false
-URxvt.internalBorder: 10
+URxvt.internalBorder: 20
 
-*foreground: #d0d0d0 
-*background: #3a3a3a 
-*color0:     #3a3a3a
-*color8:     #626262
-*color1:     #d68787 
-*color9:     #d75f87
-*color2:     #5f865f
-*color10:    #87af87
-*color3:     #d8af5f
-*color11:    #ffd787 
-*color4:     #85add4
-*color12:    #add4fb
-*color5:     #d7afaf
-*color13:    #ffafaf
-*color6:     #87afaf
-*color14:    #87d7d7
-*color7:     #d0d0d0
-*color15:    #e4e4e4
+*foreground:  #c8b49d
+*background:  #322b26
+*color0:      #322b26
+*color8:      #63554c
+*color1:      #bd6151
+*color9:      #bd6151
+*color2:      #6e9383
+*color10:     #6e9383
+*color3:      #d7b18a
+*color11:     #d7b18a
+*color4:      #8a8f94
+*color12:     #8a8f94
+*color5:      #bd9a81
+*color13:     #bd9a81
+*color6:      #91a1a5
+*color14:     #91a1a5
+*color7:      #c8b49d
+*color15:     #c8b49d
 

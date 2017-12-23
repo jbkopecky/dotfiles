@@ -215,6 +215,12 @@
     <keybind key="W-c">
       <action name="MoveToCenter"/>
     </keybind>
+    <keybind key="XF86Launch1">
+      <action name="Execute">
+        <name>Lock</name>
+        <command>lck</command>
+      </action>
+    </keybind>
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
         <name>Vol Up</name>
@@ -459,9 +465,7 @@
   </mouse>
   <applications>
     <application class="Firefox*">
-      <desktop>1</desktop>
-      <focus>no</focus>
-      <layer>below</layer>
+      <desktop>2</desktop>
     </application>
     <application class="Gimp*">
       <desktop>4</desktop>

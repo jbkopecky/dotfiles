@@ -88,6 +88,7 @@ set laststatus=0                " Always show status bar
 set fillchars=
 set noruler
 set noshowcmd
+set visualbell
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set backupdir=~/.vim/backups/
 set noswapfile
