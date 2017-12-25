@@ -20,7 +20,7 @@
   </placement>
   <theme>
     <name>thicc</name>
-    <titleLayout>LMC</titleLayout>
+    <titleLayout>L</titleLayout>
     <cornerRadius>8</cornerRadius>
     <keepBorder>no</keepBorder>
     <animateIconify>no</animateIconify>
@@ -35,30 +35,6 @@
       <size>8</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
-    </font>
-    <font place="ActiveOnScreenDisplay">
-      <name>artwiz lemon</name>
-      <size>9</size>
-      <weight>Normal</weight>
-      <slant>Normal</slant>
-    </font>
-    <font place="InactiveOnScreenDisplay">
-      <name>artwiz lemon</name>
-      <size>9</size>
-      <weight>Normal</weight>
-      <slant>Normal</slant>
-    </font>
-    <font place="MenuHeader">
-      <name>Sans</name>
-      <size>8</size>
-      <weight></weight>
-      <slant></slant>
-    </font>
-    <font place="MenuItem">
-      <name>Sans</name>
-      <size>8</size>
-      <weight></weight>
-      <slant></slant>
     </font>
   </theme>
   <desktops>
@@ -174,9 +150,11 @@
     <!-- <keybind key="W-a"> -->
     <!--   <action name="ToggleAlwaysOnTop"/> -->
     <!-- </keybind> -->
-    <keybind key="W-f">
+    <keybind key="W-m">
       <action name="ToggleMaximize"/>
-      <action name="ToggleDecorations"/>
+    </keybind>
+    <keybind key="W-f">
+      <action name="ToggleFullscreen"/>
     </keybind>
     <keybind key="W-BackSpace">
       <action name="ToggleDecorations"/>
@@ -259,36 +237,33 @@
     </keybind>
     <keybind key="W-w">
       <action name="Execute">
-        <name>Change to random wallpaper</name>
         <command>wal -i ~/Pictures/Wallpapers -o wal-set</command>
       </action>
     </keybind>
-    <keybind key="W-Left">        # HalfLeftScreen
+    <keybind key="W-Left">
         <action name="UnmaximizeFull"/>
         <action name="MoveResizeTo"><x>0</x><y>0</y><height>100%</height><width>50%</width></action>
     </keybind>
-    <keybind key="W-Right">       # HalfRightScreen
+    <keybind key="W-Right">
         <action name="UnmaximizeFull"/>
         <action name="MoveResizeTo"><x>-0</x><y>0</y><height>100%</height><width>50%</width></action>
     </keybind>
-    <keybind key="W-Up">          # HalfUpperScreen
+    <keybind key="W-Up">
         <action name="UnmaximizeFull"/>
         <action name="MoveResizeTo"><x>0</x><y>0</y><width>100%</width><height>50%</height></action>
     </keybind>
-    <keybind key="W-Down">        # HalfLowerScreen
+    <keybind key="W-Down">
         <action name="UnmaximizeFull"/>
         <action name="MoveResizeTo"><x>0</x><y>-0</y><width>100%</width><height>50%</height></action>
     </keybind>
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute">
-        <name>Brightness</name>
-        <command>xbacklight -inc 10</command>
+        <command>xbacklight -inc 5</command>
       </action>
     </keybind>
     <keybind key="XF86MonBrightnessDown">
       <action name="Execute">
-        <name>Brightness</name>
-        <command>xbacklight -dec 10</command>
+        <command>xbacklight -dec 5</command>
       </action>
     </keybind>
 
@@ -464,13 +439,6 @@
     </context>
   </mouse>
   <applications>
-    <application class="Firefox*">
-      <desktop>2</desktop>
-    </application>
-    <application class="Gimp*">
-      <desktop>4</desktop>
-      <focus>no</focus>
-    </application>
     <application class="mpv">
       <decor>no</decor>
     </application>
@@ -480,19 +448,5 @@
     <application title="qiv*">
       <decor>no</decor>
     </application>
-    <application type="dock">
-      <decor>no</decor>
-    </application>
   </applications>
-  <dock>
-    <position>Bottom</position>
-    <floatingX>0</floatingX>
-    <floatingY>0</floatingY>
-    <stacking>Above</stacking>
-    <direction>Horizontal</direction>
-    <noStrut>no</noStrut>
-    <autoHide>no</autoHide>
-    <hideDelay>300</hideDelay>
-    <showDelay>300</showDelay>
-  </dock>
 </openbox_config>
