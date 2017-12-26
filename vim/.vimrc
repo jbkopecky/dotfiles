@@ -85,6 +85,8 @@ set clipboard=unnamed
 set lazyredraw                   " Speed up things
 set splitright                   " More natural split opening
 set laststatus=0                " Always show status bar
+set shortmess=atI
+set cmdheight=2
 set fillchars=
 set noruler
 set noshowcmd
@@ -109,6 +111,9 @@ if !isdirectory(expand(&undodir))
 endif
 
 silent! colo wal
+
+command Col80  match WarningMsg '\%>80v.\+'
+command Col100 match WarningMsg '\%>100v.\+'
 
 "}}}
 
@@ -256,6 +261,10 @@ nnoremap ]q :cnext<cr>zz
 nnoremap [q :cprev<cr>zz
 nnoremap ]l :lnext<cr>zz
 nnoremap [l :lprev<cr>zz
+
+" Surround
+nmap ss ysiw
+vmap s S
 
 " Buffers
 nnoremap ]b :bnext<cr>
