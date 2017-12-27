@@ -54,8 +54,8 @@ main(){
     color15="#$(xrdb -query | grep "^\*color15:" | cut -d '#' -f2)"
 
     for((;;)) {
-        printf "   %s   \\n" " %{l}$(vol)    $(wif)%{c}$(tim)%{r}$(bri)    $(bat)"
-        # printf "   %s   \\n" " %{l}$(vol) %{c}$(tim)%{r} $(bat)"
+        # printf "   %s   \\n" " %{l}$(vol)    $(wif)%{c}$(tim)%{r}$(bri)    $(bat)"
+        printf "   %s   \\n" " %{l}$(vol) %{c}$(tim)%{r} $(bat)"
         sleep 2
     } |\
 

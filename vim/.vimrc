@@ -86,7 +86,6 @@ set lazyredraw                   " Speed up things
 set splitright                   " More natural split opening
 set laststatus=0                " Always show status bar
 set shortmess=atI
-set cmdheight=2
 set fillchars=
 set noruler
 set noshowcmd
