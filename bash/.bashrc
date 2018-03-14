@@ -54,9 +54,13 @@ __set_ps1 (){
     if [[ $VIRTUAL_ENV != "" ]]; then
         venv="${nor}(${dirty}${VIRTUAL_ENV##*/}${nor})${rst}"
     fi
+
+    if [[ $CONDA_DEFAULT_ENV != "" ]]; then
+        cenv="${nor}(${dirty}${CONDA_DEFAULT_ENV##*/}${nor})${rst}"
+    fi
     #
     # generate prompt »
-    PS1="\n $nor\W ${venv}${gitinfo}\$([[ \$? != 0 ]] && echo \"$err\" || echo \"$por\") $PROMPT_CHAR $rst"
+    PS1="\n $nor\W ${venv}${cenv}${gitinfo}\$([[ \$? != 0 ]] && echo \"$err\" || echo \"$por\") $PROMPT_CHAR $rst"
 }
 #}}}
 
