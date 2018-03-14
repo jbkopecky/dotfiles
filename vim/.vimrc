@@ -81,7 +81,7 @@ set shiftround                   " Round Shifts
 set expandtab smarttab           " Smart tabs
 set fileformats=unix,dos,mac     " Freaking formats
 set encoding=utf-8 nobomb        " Freaking formats
-set clipboard=unnamed
+set clipboard+=unnamed
 set lazyredraw                   " Speed up things
 set splitright                   " More natural split opening
 set laststatus=0                " Always show status bar
@@ -160,7 +160,10 @@ if has('autocmd')
               \ setl efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m |
               \ setl nowrap |
               \ setl foldmethod=indent |
-              \ nnoremap <silent> <buffer> <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c> |
+              \ nnoremap <silent> <buffer> <Leader>b Oimport IPython; IPython.embed() # BREAKPOINT<C-c> |
+
+        autocmd Filetype latex
+              \ let b:dispatch = "pdflatex %" |
 
         autocmd Filetype markdown
               \ setl conceallevel=2 |
@@ -219,6 +222,11 @@ nmap <Down> ]e
 vmap <Up> [egv
 vmap <Down> ]egv
 
+" kj | Escaping!
+inoremap kj <Esc>
+xnoremap kj <Esc>
+cnoremap kj <C-c>
+
 " Leader Mappings
 map <silent> <Leader>q :ccl<CR>
 map <silent> <Leader>c :cd %:p:h<CR>
@@ -258,8 +266,9 @@ command! Q q
 " Quickfix
 nnoremap ]q :cnext<cr>zz
 nnoremap [q :cprev<cr>zz
-nnoremap ]l :lnext<cr>zz
 nnoremap [l :lprev<cr>zz
+nnoremap [e ddkkp
+nnoremap ]e ddp
 
 " Surround
 nmap ss ysiw

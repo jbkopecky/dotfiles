@@ -3,6 +3,7 @@
 #
 
 # export
+export PLATFORM=$(uname -s)
 export EDITOR="vim"
 export HISTCONTROL=ignoredups
 export HISTIGNORE="cd *:ls:ls *:history*:cat *:clear:pwd:..:..."
@@ -18,7 +19,7 @@ alias tm="tmux new-session"
 alias urxvt="urxvtc"
 alias vi="vim"
 alias v="vim"
-alias l='ls --color=auto --group-directories-first -h'
+alias l='ls'
 alias ll='l -la'
 alias la='l -a'
 alias grep='grep --color=auto'
@@ -29,11 +30,11 @@ alias met='curl wttr.in/paris?0'
 alias meteo='curl wttr.in/paris'
 
 # PS1 with error, and git info
-export PROMPT_CHAR=✿
+export PROMPT_CHAR=$
 __set_ps1 (){
     # {{{
+    local nor="\[\033[m\]"   # normal -- white
     local err="\[\033[0;31m\]"   # error -- red
-    local nor="\[\033[1;30m\]"   # normal -- white
     local por="\[\033[0;35m\]"   # prompt char
     local dirty="\[\033[0;33m\]" # dirty git
     local rst="\[\033[0m\]"      # Text Reset
@@ -65,5 +66,4 @@ PROMPT_COMMAND="__set_ps1"
 [ -f ~/.local.bashrc ] && source ~/.local.bashrc
 [ -f ~/.fzfrc ] && source ~/.fzfrc
 [ -f ~/.hyperjump ] && source ~/.hyperjump
-[ -f $HOME/.dircolors ] && eval $(dircolors -b $HOME/.dircolors)
 
