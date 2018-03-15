@@ -41,12 +41,12 @@ Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
 
-Plug 'godlygeek/tabular', {'for': ['md', 'mkd', 'markdown']}
+Plug 'godlygeek/tabular',       {'for': ['md', 'mkd', 'markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'chrisbra/colorizer', {'on': 'ColorHighlight'}
-Plug 'lervag/vimtex', {'for': 'tex'}
-Plug 'chrisbra/csv.vim', {'for': 'csv'}
+Plug 'davidhalter/jedi-vim',    {'for': 'python'}
+Plug 'chrisbra/colorizer',      {'on': 'ColorHighlight'}
+Plug 'lervag/vimtex',           {'for': 'tex'}
+Plug 'chrisbra/csv.vim',        {'for': 'csv'}
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -84,7 +84,7 @@ set encoding=utf-8 nobomb        " Freaking formats
 set clipboard+=unnamed
 set lazyredraw                   " Speed up things
 set splitright                   " More natural split opening
-set laststatus=0                " Always show status bar
+set laststatus=0                 " Always show status bar
 set shortmess=atI
 set fillchars=
 set noruler
@@ -234,9 +234,7 @@ map <silent> <Leader>1 z=
 map <Leader>i :set list!<CR>
 nnoremap <silent> <Leader><Leader> :noh<CR>
 nnoremap <silent> <Leader>N :Files ~/Dropbox/Notes<CR>
-
 nnoremap U :UndotreeToggle<CR>
-
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
@@ -247,11 +245,6 @@ map <silent> <F3> "<Esc>:silent setlocal spell! spelllang=fr<CR>"
 nnoremap <F5> :w<CR> :Dispatch<CR>
 nnoremap <F6> :w<CR> :Make<CR>
 nnoremap <F7> :w<CR> :Start<CR>
-
-nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-            \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-            \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
 nnoremap <F11> :NERDTreeToggle<cr>
 nnoremap <F12> :call ToggleHiddenAll()<cr>
 
@@ -325,7 +318,7 @@ let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_conceal = 1
 
 " buftabline
-let g:buftabline_show=1
+let g:buftabline_show = 1
 
 " goyo
 let g:goyo_width = "80%"
@@ -355,19 +348,6 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 
 " Toggle StatusLine ******************************************************* {{{
-" function! s:statusline_expr()
-"   let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
-"   let ro  = "%{&readonly ? '[RO] ' : ''}"
-"   let ft  = "%{len(&filetype) ? '['.&filetype.'] ' : ''}"
-"   let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : ''}"
-"   let sep = ' %= '
-"   let pos = ' %-12(%l : %c%V%) '
-"   let pct = ' %P'
-"   return '[%n] %F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
-" endfunction
-
-" let &statusline = s:statusline_expr()
-
 let s:hidden_all=1
 function! ToggleHiddenAll()
     if s:hidden_all == 0

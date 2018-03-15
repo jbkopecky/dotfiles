@@ -282,3 +282,12 @@ bcp() {
     done
   fi
 }
+
+fce() {
+  local cenv=$(conda env list | grep envs | sort | fzf-tmux)
+
+  if [[ $cenv ]]; then
+    local env=$(echo $cenv | cut -f 1 -d " ")
+    source activate $env
+  fi
+}

@@ -55,6 +55,7 @@ __set_ps1 (){
         venv="${nor}(${dirty}${VIRTUAL_ENV##*/}${nor})${rst}"
     fi
 
+    local cenv=
     if [[ $CONDA_DEFAULT_ENV != "" ]]; then
         cenv="${nor}(${dirty}${CONDA_DEFAULT_ENV##*/}${nor})${rst}"
     fi
