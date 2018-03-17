@@ -45,7 +45,6 @@ Plug 'godlygeek/tabular',       {'for': ['md', 'mkd', 'markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim',    {'for': 'python'}
 Plug 'chrisbra/colorizer',      {'on': 'ColorHighlight'}
-Plug 'lervag/vimtex',           {'for': 'tex'}
 Plug 'chrisbra/csv.vim',        {'for': 'csv'}
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }

@@ -7,7 +7,6 @@ export PLATFORM=$(uname -s)
 export EDITOR="vim"
 export HISTCONTROL=ignoredups
 export HISTIGNORE="cd *:ls:ls *:history*:cat *:clear:pwd:..:..."
-export PATH="${PATH}:/home/jb/.scripts"
 
 # aliases
 alias tmux="tmux -2"
@@ -25,13 +24,12 @@ alias la='l -a'
 alias grep='grep --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'
-alias clean='sudo pacman -Rns $(pacman -Qtdq)'
 alias met='curl wttr.in/paris?0'
 alias meteo='curl wttr.in/paris'
 
 # PS1 with error, and git info
 export PROMPT_CHAR=$
-__set_ps1 (){
+__set_ps1() {
     # {{{
     local nor="\[\033[m\]"   # normal -- white
     local err="\[\033[0;31m\]"   # error -- red
@@ -68,7 +66,7 @@ __set_ps1 (){
 PROMPT_COMMAND="__set_ps1"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/.local.bashrc ] && source ~/.local.bashrc
 [ -f ~/.fzfrc ] && source ~/.fzfrc
 [ -f ~/.hyperjump ] && source ~/.hyperjump
+[ -f ~/.local.bashrc ] && source ~/.local.bashrc
 
