@@ -6,7 +6,7 @@
 	name = jb kopecky
     username = jean-baptiste_kopecky
 [color]
-    ui = auto
+	ui = true
 [alias]
     f = fetch -pv
     s = status
@@ -16,3 +16,20 @@
     dh1 = diff HEAD~1
     l = log --graph --pretty="tformat:%C(yellow)%h%Creset\\ %Cgreen(%ar)%Creset\\ %C(blue)<%an>%Creset\\ %C(red)%d%Creset\\ %s"
 
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[diff-so-fancy]
+	markEmptyLines = false
+	stripLeadingSymbols = false

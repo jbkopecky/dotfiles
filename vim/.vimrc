@@ -63,7 +63,7 @@ set undolevels=700               " More undo
 set wildmenu                     " Cmd completion
 set wildmode=longest,full:full   " Cmd completion options
 set completeopt+=longest,menuone " Start at the head of the popup menulist
-set complete=.,w,b,t,kspell      " Completion scope
+set completeopt-=preview
 set incsearch                    " Show search result as I type
 set hlsearch                     " Highlight search results
 set ignorecase                   " Search for min and maj
@@ -269,11 +269,6 @@ vmap s S
 " Buffers
 nnoremap ]b :bnext<cr>
 nnoremap [b :bprev<cr>
-
-" Files
-nnoremap <Leader>; :Files<cr>
-nnoremap ; :Buffers<cr>
-
 
 "Zoom
 function! s:zoom()
