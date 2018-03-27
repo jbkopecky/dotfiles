@@ -34,28 +34,30 @@ __set_ps1() {
     local nor="\[\033[m\]"   # normal -- white
     local err="\[\033[0;31m\]"   # error -- red
     local por="\[\033[0;35m\]"   # prompt char
-    local dirty="\[\033[0;33m\]" # dirty git
+    local clean="\[\033[0;32m\]" # clean git
+    local average="\[\033[0;33m\]" # neutral
+    local dirty="\[\033[0;31m\]" # dirty git
     local rst="\[\033[0m\]"      # Text Reset
 
     # git info
     local gitinfo=
     local branch=$(git symbolic-ref HEAD --short 2> /dev/null)
     if [[ $branch ]]; then
-        local x=$(git status --porcelain)
+        local x=$(git status --porcelain | grep -v '^??')
         if [[ $x ]]; then
             gitinfo="${nor}(${dirty}${branch}${nor})"
         else
-            gitinfo="${nor}(${branch})"
+            gitinfo="${nor}(${clean}${branch}${nor})"
         fi
     fi
     local venv=
     if [[ $VIRTUAL_ENV != "" ]]; then
-        venv="${nor}(${dirty}${VIRTUAL_ENV##*/}${nor})${rst}"
+        venv="${nor}(${average}${VIRTUAL_ENV##*/}${nor})${rst}"
     fi
 
     local cenv=
     if [[ $CONDA_DEFAULT_ENV != "" ]]; then
-        cenv="${nor}(${dirty}${CONDA_DEFAULT_ENV##*/}${nor})${rst}"
+        cenv="${nor}(${average}${CONDA_DEFAULT_ENV##*/}${nor})${rst}"
     fi
     #
     # generate prompt »
