@@ -46,6 +46,7 @@ Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim',    {'for': 'python'}
 Plug 'chrisbra/colorizer',      {'on': 'ColorHighlight'}
 Plug 'chrisbra/csv.vim',        {'for': 'csv'}
+Plug 'RRethy/vim-illuminate',   {'for': 'python'}
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
