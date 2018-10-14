@@ -86,11 +86,24 @@ fkill() {
 # }}}
 
 # ff - switch color                                                          {{{
-ff() {
-  local colo
-  colo=$(ls ~/.colors/ | fzf-tmux) &&
-  [[ -n "~/.colors/$colo" ]] && xrdb -merge "$HOME/.colors/${colo[@]}"
-  wa
+da() {
+    theme=$(ls ~/.config/wal/colorschemes/dark |  sed -n 's/.json//p' | fzf-tmux --select-1 --exit-0) 
+    [ -n "$theme" ] && wal --theme $theme
+}
+
+li() {
+    theme=$(ls ~/.config/wal/colorschemes/light |  sed -n 's/.json//p' | fzf-tmux --select-1 --exit-0) 
+    [ -n "$theme" ] && wal -l --theme $theme
+}
+
+iml() {
+    theme=$(ls ~/Pictures/Wallpapers |  sed -n 's/.jpg//p' | fzf-tmux --select-1 --exit-0) 
+    [ -n "$theme" ] && wal -l -i ~/Pictures/Wallpapers/$theme.jpg
+}
+
+imd() {
+    theme=$(ls ~/Pictures/Wallpapers |  sed -n 's/.jpg//p' | fzf-tmux --select-1 --exit-0) 
+    [ -n "$theme" ] && wal -i ~/Pictures/Wallpapers/$theme.jpg
 }
 # }}}
 
