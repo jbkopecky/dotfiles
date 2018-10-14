@@ -43,6 +43,7 @@ Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
 
 Plug 'godlygeek/tabular',       {'for': ['md', 'mkd', 'markdown']}
 Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
+Plug 'junegunn/vim-xmark',      {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim',    {'for': 'python'}
 Plug 'chrisbra/colorizer',      {'on': 'ColorHighlight'}
 Plug 'chrisbra/csv.vim',        {'for': 'csv'}
@@ -169,7 +170,8 @@ if has('autocmd')
               \ setl conceallevel=2 |
               \ setl spell |
               \ let b:dispatch = "pandoc % --latex-engine=xelatex --highlight-style pygments -o output.pdf" |
-              \ syn match comment /^\s*-\s\[x\].*$/
+              \ syn match comment /^\s*-\s\[x\].*$/ |
+              \ syn match comment /^\s*-\sDONE.*$/
 
         autocmd Filetype mail
               \ setl tw=76 |
@@ -339,6 +341,30 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+"}}}
+
+" Todo ******************************************************************** {{{
+function! s:todo() abort "{{{
+  let entries = []
+  for cmd in ['git grep -niI -e TODO -e FIXME -e XXX 2> /dev/null',
+            \ 'grep -rniI -e TODO -e FIXME -e XXX * 2> /dev/null']
+    let lines = split(system(cmd), '\n')
+    if v:shell_error != 0 | continue | endif
+    for line in lines
+      let [fname, lno, text] = matchlist(line, '^\([^:]*\):\([^:]*\):\(.*\)')[1:3]
+      call add(entries, { 'filename': fname, 'lnum': lno, 'text': text })
+    endfor
+    break
+  endfor
+
+  if !empty(entries)
+    call setqflist(entries)
+    copen
+  endif
+endfunction "}}}
+
+command! Todo call s:todo()
 
 "}}}
 
