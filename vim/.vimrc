@@ -112,8 +112,8 @@ endif
 
 silent! colo wal
 
-command Col80  match WarningMsg '\%>80v.\+'
-command Col100 match WarningMsg '\%>100v.\+'
+command! Col80  match WarningMsg '\%>80v.\+'
+command! Col100 match WarningMsg '\%>100v.\+'
 
 "}}}
 
@@ -171,7 +171,8 @@ if has('autocmd')
               \ setl spell |
               \ let b:dispatch = "pandoc % --latex-engine=xelatex --highlight-style pygments -o output.pdf" |
               \ syn match comment /^\s*-\s\[x\].*$/ |
-              \ syn match comment /^\s*-\sDONE.*$/
+              \ syn match comment /^\s*-\sDONE.*$/ |
+              \ syn match todo /TODO/ |
 
         autocmd Filetype mail
               \ setl tw=76 |
