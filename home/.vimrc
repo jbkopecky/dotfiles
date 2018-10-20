@@ -23,7 +23,7 @@ silent! call plug#begin('~/.vim/plugged')
 Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/seoul256.vim'
 
-" Plug 'jbkopecky/statusline.vim'
+Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ap/vim-buftabline'
 Plug 'lifepillar/vim-mucomplete'
@@ -39,15 +39,11 @@ Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
-Plug 'scrooloose/nerdtree',  {'on': 'NERDTreeToggle'}
 
-Plug 'godlygeek/tabular',       {'for': ['md', 'mkd', 'markdown']}
-Plug 'plasticboy/vim-markdown', {'for': ['md', 'mkd', 'markdown']}
 Plug 'junegunn/vim-xmark',      {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim',    {'for': 'python'}
 Plug 'chrisbra/colorizer',      {'on': 'ColorHighlight'}
 Plug 'chrisbra/csv.vim',        {'for': 'csv'}
-Plug 'RRethy/vim-illuminate',   {'for': 'python'}
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -172,7 +168,7 @@ if has('autocmd')
               \ let b:dispatch = "pandoc % --latex-engine=xelatex --highlight-style pygments -o output.pdf" |
               \ syn match comment /^\s*-\s\[x\].*$/ |
               \ syn match comment /^\s*-\sDONE.*$/ |
-              \ syn match todo /TODO/ |
+              \ syn match Todo /\v<(FIXME|TODO|NOTE)/ |
 
         autocmd Filetype mail
               \ setl tw=76 |
@@ -310,10 +306,6 @@ let g:jedi#usages_command = '<leader>u'
 
 " Markdown
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_folding_level = 2
-let g:vim_markdown_toc_autofit = 1
-let g:vim_markdown_conceal = 1
 
 " buftabline
 let g:buftabline_show = 1
@@ -321,6 +313,11 @@ let g:buftabline_show = 1
 " goyo
 let g:goyo_width = "80%"
 let g:goyo_height = "90%"
+
+" Lightline
+let g:lightline = {
+      \ 'colorscheme': 'wal',
+      \ }
 
 function! s:goyo_enter()
   silent !tmux set status off
@@ -348,8 +345,8 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " Todo ******************************************************************** {{{
 function! s:todo() abort "{{{
   let entries = []
-  for cmd in ['git grep -niI -e TODO -e FIXME -e XXX 2> /dev/null',
-            \ 'grep -rniI -e TODO -e FIXME -e XXX * 2> /dev/null']
+  for cmd in ['git grep -niI -e TODO -e FIXME 2> /dev/null',
+            \ 'grep -rniI -e TODO -e FIXME * 2> /dev/null']
     let lines = split(system(cmd), '\n')
     if v:shell_error != 0 | continue | endif
     for line in lines
@@ -370,7 +367,7 @@ command! Todo call s:todo()
 "}}}
 
 " Toggle StatusLine ******************************************************* {{{
-let s:hidden_all=1
+let s:hidden_all = 1
 function! ToggleHiddenAll()
     if s:hidden_all == 0
         let s:hidden_all = 1
