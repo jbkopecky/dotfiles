@@ -8,6 +8,19 @@ export EDITOR="vim"
 export HISTCONTROL=ignoredups
 export HISTIGNORE="cd *:ls:ls *:history*:cat *:clear:pwd:..:..."
 
+# Better TAB completion.
+bind 'TAB: menu-complete'
+bind 'set show-all-if-ambiguous on'
+bind 'set completion-ignore-case on'
+bind 'set completion-map-case on'
+bind 'set page-completions off'
+bind 'set menu-complete-display-prefix on'
+bind 'set completion-query-items 0'
+
+# History completion.
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
 # aliases
 alias tmux="tmux -2"
 alias tml="tmux list-sessions"
@@ -28,7 +41,7 @@ alias met='curl wttr.in/paris?0'
 alias meteo='curl wttr.in/paris'
 
 # PS1 with error, and git info
-export PROMPT_CHAR=$
+export PROMPT_CHAR=➜ 
 __set_ps1() {
     # {{{
     local nor="\[\033[m\]"   # normal -- white

@@ -4,13 +4,13 @@
 " Source: https://github.com/jbkopecky/dotfiles
 " -----------------------------------------------------------------------------
 
-" Runtime Path ************************************************************ {{{
+" Runtime Path                                                              {{{
 if has('win32')
     let &runtimepath = substitute(&runtimepath,'\(Documents and Settings\|Users\)[\\/][^\\/,]*[\\/]\zsvimfiles\>','.vim','g')
 endif
 " }}}
 
-" Plugins ! *************************************************************** {{{
+" Plugins !                                                                 {{{
 
 "if empty(glob('~/.vim/autoload/plug.vim'))
 "	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -23,7 +23,6 @@ silent! call plug#begin('~/.vim/plugged')
 Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/seoul256.vim'
 
-Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ap/vim-buftabline'
 Plug 'lifepillar/vim-mucomplete'
@@ -44,6 +43,8 @@ Plug 'junegunn/vim-xmark',      {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim',    {'for': 'python'}
 Plug 'chrisbra/colorizer',      {'on': 'ColorHighlight'}
 Plug 'chrisbra/csv.vim',        {'for': 'csv'}
+Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['md', 'mkd', 'markdown']}
+Plug 'JuliaEditorSupport/julia-vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -51,7 +52,7 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 "}}}
 
-" Preamble **************************************************************** {{{
+" Preamble                                                                  {{{
 set nocompatible                 " Get rid of Vi compatibility
 set noshowmode                   " dont show mode. airline does it
 set mouse=a                      " Enable Mouse
@@ -111,33 +112,11 @@ silent! colo wal
 command! Col80  match WarningMsg '\%>80v.\+'
 command! Col100 match WarningMsg '\%>100v.\+'
 
+hi! link Folded Ignore
+
 "}}}
 
-" Folding ***************************************************************** {{{
-fu! CustomFoldText() "{{{
-    "get first non-blank line
-    let fs = v:foldstart
-    while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
-    endwhile
-
-    if fs > v:foldend
-        let line = getline(v:foldstart)
-    else
-        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
-    endif
-
-    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-    let foldSize = 1 + v:foldend - v:foldstart
-    let foldSizeStr = " " . foldSize . " lines "
-    let foldLevelStr = repeat("+--", v:foldlevel)
-    let lineCount = line("$")
-    let expansionString = " " . repeat("-", w - strwidth(foldSizeStr.line.foldLevelStr) - 1)
-    return line . expansionString . foldSizeStr . foldLevelStr
-endf "}}}
-set foldtext=CustomFoldText()
-"}}}
-
-" FileType **************************************************************** {{{
+" FileType                                                                  {{{
 let g:tex_flavor='latex' "Recognise Latex files
 if has('autocmd')
     augroup Misc "{{{
@@ -157,6 +136,7 @@ if has('autocmd')
               \ setl efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m |
               \ setl nowrap |
               \ setl foldmethod=indent |
+              \ syn match WarningMsg /\v#\sBREAKPOINT$/ |
               \ nnoremap <silent> <buffer> <Leader>b Oimport IPython; IPython.embed() # BREAKPOINT<C-c> |
 
         autocmd Filetype latex
@@ -168,7 +148,9 @@ if has('autocmd')
               \ let b:dispatch = "pandoc % --latex-engine=xelatex --highlight-style pygments -o output.pdf" |
               \ syn match comment /^\s*-\s\[x\].*$/ |
               \ syn match comment /^\s*-\sDONE.*$/ |
-              \ syn match Todo /\v<(FIXME|TODO|NOTE)/ |
+              \ syn match Todo /\v<(FIXME|TODO)/ |
+              " \ syn region yamlFrontmatter start=/\%^---$/ end=/^---$/ keepend |
+              " \ hi link yamlFrontmatter Comment
 
         autocmd Filetype mail
               \ setl tw=76 |
@@ -191,7 +173,7 @@ if has('autocmd')
 endif
 "}}}
 
-" Mappings **************************************************************** {{{
+" Mappings                                                                  {{{
 
 " Leader
 let g:mapleader = "\<Space>"
@@ -270,7 +252,7 @@ vmap s S
 nnoremap ]b :bnext<cr>
 nnoremap [b :bprev<cr>
 
-"Zoom
+" Zoom
 function! s:zoom()
     if winnr('$') > 1
         tab split
@@ -280,9 +262,8 @@ function! s:zoom()
     endif
 endfunction
 nnoremap <silent> <leader>z :call <sid>zoom()<cr>
-"}}}
 
-" Toggle options ********************************************************** {{{
+" Toogle
 function! s:map_change_option(...)
   let [key, opt] = a:000[0:1]
   let op = get(a:, 3, 'set '.opt.'!')
@@ -292,9 +273,10 @@ endfunction
 call s:map_change_option('p', 'paste')
 call s:map_change_option('n', 'number')
 call s:map_change_option('w', 'wrap')
+
 " }}}
 
-" Plugins Settings ******************************************************** {{{
+" Plugins Settings                                                          {{{
 " Dispatch
 let g:dispatch_tmux_height=20
 let g:dispatch_quickfix_height=20
@@ -306,6 +288,7 @@ let g:jedi#usages_command = '<leader>u'
 
 " Markdown
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
+let g:markdown_syntax_conceal = 4
 
 " buftabline
 let g:buftabline_show = 1
@@ -313,11 +296,6 @@ let g:buftabline_show = 1
 " goyo
 let g:goyo_width = "80%"
 let g:goyo_height = "90%"
-
-" Lightline
-let g:lightline = {
-      \ 'colorscheme': 'wal',
-      \ }
 
 function! s:goyo_enter()
   silent !tmux set status off
@@ -342,7 +320,7 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 "}}}
 
-" Todo ******************************************************************** {{{
+" Todo                                                                      {{{
 function! s:todo() abort "{{{
   let entries = []
   for cmd in ['git grep -niI -e TODO -e FIXME 2> /dev/null',
@@ -366,7 +344,7 @@ command! Todo call s:todo()
 
 "}}}
 
-" Toggle StatusLine ******************************************************* {{{
+" Toggle StatusLine                                                         {{{
 let s:hidden_all = 1
 function! ToggleHiddenAll()
     if s:hidden_all == 0
@@ -384,7 +362,7 @@ endfunction
 
 "}}}
 
-" Local Vimrc ************************************************************* {{{
+" Local Vimrc                                                               {{{
 if filereadable(glob('~/.local.vimrc'))
   so ~/.local.vimrc
 endif
