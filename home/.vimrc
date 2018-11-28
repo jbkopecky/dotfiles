@@ -18,6 +18,8 @@ endif
 "	autocmd VimEnter * PlugInstall
 "endif
 
+let s:darwin = has('mac')
+
 silent! call plug#begin('~/.vim/plugged')
 
 Plug 'dylanaraps/wal.vim'
@@ -36,10 +38,10 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'junegunn/vim-easy-align', {'on': ['<Plug>(EasyAlign)','EasyAlign']}
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
+Plug 'junegunn/vim-emoji'
 
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 
-Plug 'junegunn/vim-xmark',      {'for': ['md', 'mkd', 'markdown']}
 Plug 'davidhalter/jedi-vim',    {'for': 'python'}
 Plug 'chrisbra/colorizer',      {'on': 'ColorHighlight'}
 Plug 'chrisbra/csv.vim',        {'for': 'csv'}
@@ -48,6 +50,10 @@ Plug 'JuliaEditorSupport/julia-vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+if s:darwin
+  Plug 'junegunn/vim-xmark'
+endif
 
 call plug#end()
 "}}}
@@ -128,7 +134,8 @@ if has('autocmd')
     augroup FTOptions "{{{
         autocmd!
         autocmd FileType gitcommit
-              \ setlocal spell
+              \ setl spell |
+              \ setl completefunc=emoji#complete
 
         autocmd Filetype python
               \ setlocal makeprg=python\ % |
@@ -149,6 +156,7 @@ if has('autocmd')
               \ syn match comment /^\s*-\s\[x\].*$/ |
               \ syn match comment /^\s*-\sDONE.*$/ |
               \ syn match Todo /\v<(FIXME|TODO)/ |
+              \ setl completefunc=emoji#complete
               " \ syn region yamlFrontmatter start=/\%^---$/ end=/^---$/ keepend |
               " \ hi link yamlFrontmatter Comment
 
@@ -277,6 +285,15 @@ call s:map_change_option('w', 'wrap')
 " }}}
 
 " Plugins Settings                                                          {{{
+
+" git gutter
+if s:darwin
+    let g:signify_sign_add = emoji#for('small_blue_diamond')
+    let g:signify_sign_change = emoji#for('small_orange_diamond')
+    let g:signify_sign_delete = emoji#for('small_red_triangle')
+    let g:signify_sign_delete_first_line = emoji#for('small_red_triangle')
+endif
+
 " Dispatch
 let g:dispatch_tmux_height=20
 let g:dispatch_quickfix_height=20
@@ -292,6 +309,14 @@ let g:markdown_syntax_conceal = 4
 
 " buftabline
 let g:buftabline_show = 1
+
+" mucomplete
+let g:mucomplete#chains = {
+    \ 'default' : ['path', 'omni', 'keyn', 'dict', 'uspl'],
+    \ 'python'  : ['omni', 'path', 'keyn'],
+    \ 'vim'     : ['path', 'cmd', 'keyn'],
+    \ 'markdown': ['path', 'dict', 'user']
+    \ }
 
 " goyo
 let g:goyo_width = "80%"
@@ -344,7 +369,14 @@ command! Todo call s:todo()
 
 "}}}
 
-" Toggle StatusLine                                                         {{{
+" StatusLine                                                                {{{
+
+set statusline=\ \ %<%f
+set statusline+=%w%h%m%r                 
+set statusline+=\ %{getcwd()}
+set statusline+=\ [%{&ff}:%{&fenc}:%Y]
+set statusline+=%=%-14.(%l,%c%V%)\ %p%%
+
 let s:hidden_all = 1
 function! ToggleHiddenAll()
     if s:hidden_all == 0
