@@ -13,7 +13,7 @@ vol() {
         [5-6]?%*|*)  vol_icon="\\ue0e0" ;;
     esac
 
-    printf "%b" "  $vol_icon ${cur/ *}%"
+    printf "%b" "$vol_icon"
 }
 
 
@@ -23,12 +23,7 @@ wif() {
 }
 
 tim() {
-    printf "%(%a %d %b  - %l:%M %p)T"
-}
-
-bri() {
-    cur="$(< /sys/class/backlight/intel_backlight/brightness)"
-    printf "%b" "$((cur / 30))% \\ue26e"
+    printf "%(%l:%M %p)T"
 }
 
 bat() {
@@ -45,7 +40,8 @@ bat() {
 
     [[ "$sta" != Discharging ]] && bat_icon+=" \\ue20e"
 
-    printf "%s%%  %b" "$cur" "$bat_icon"
+    # printf "%s%%  %b" "$cur" "$bat_icon"
+    printf " %b" "$bat_icon"
 }
 
 main(){
@@ -54,13 +50,13 @@ main(){
     color15="#$(xrdb -query | grep "^\*color15:" | cut -d '#' -f2)"
 
     for((;;)) {
-        # printf "   %s   \\n" " %{l}$(vol)    $(wif)%{c}$(tim)%{r}$(bri)    $(bat)"
-        printf "   %s   \\n" " %{l}$(vol) %{c}$(tim)%{r} $(bat)"
+        # printf "   %s   \\n" " %{l}$(vol) %{c}$(tim)%{r} $(bat)"
+        printf "   %s   \\n" "%{l}  $(vol)$(bat)%{r}$(tim)"
         sleep 2
     } |\
 
     lemonbar -db \
-            -g "500x${height}+433+30" \
+            -g "140x${height}+30+30" \
             -f "$font" -f "$icon" \
             -n "bar" \
             -B "$color15" \

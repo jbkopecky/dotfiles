@@ -82,17 +82,17 @@ fkill() {
 # ff - switch color                                                          {{{
 da() {
     theme=$(ls ~/.config/wal/colorschemes/dark |  sed -n 's/.json//p' | fzf-tmux --select-1 --exit-0) 
-    [ -n "$theme" ] && wal --theme $theme
+    [ -n "$theme" ] && wal --theme $theme -o wal-set
 }
 
 li() {
     theme=$(ls ~/.config/wal/colorschemes/light |  sed -n 's/.json//p' | fzf-tmux --select-1 --exit-0) 
-    [ -n "$theme" ] && wal -l --theme $theme
+    [ -n "$theme" ] && wal -l --theme $theme -o wal-set
 }
 
 iml() {
     theme=$(ls ~/Pictures/Wallpapers |  sed -n 's/.jpg//p' | fzf-tmux --select-1 --exit-0) 
-    [ -n "$theme" ] && wal -l -i ~/Pictures/Wallpapers/$theme.jpg
+    [ -n "$theme" ] && wal -l  -o wal-set -i ~/Pictures/Wallpapers/$theme.jpg
 }
 
 imd() {
