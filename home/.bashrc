@@ -32,7 +32,7 @@ alias urxvt="urxvtc"
 alias vi="vim"
 alias v="vim"
 alias l='ls'
-alias ll='l -la'
+alias ll='l -lha'
 alias la='l -a'
 alias grep='grep --color=auto'
 alias ..='cd ..'

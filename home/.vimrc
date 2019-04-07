@@ -12,18 +12,19 @@ endif
 
 " Plugins !                                                                 {{{
 
-"if empty(glob('~/.vim/autoload/plug.vim'))
-"	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-"	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"	autocmd VimEnter * PlugInstall
-"endif
+if empty(glob('~/.vim/autoload/plug.vim'))
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall
+endif
 
 let s:darwin = has('mac')
 
-silent! call plug#begin('~/.vim/plugged')
+silent! call plug#begin()
 
 Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/seoul256.vim'
+Plug 'thaerkh/vim-indentguides'
 
 Plug 'mhinz/vim-signify'
 Plug 'ap/vim-buftabline'
@@ -299,6 +300,7 @@ let g:dispatch_tmux_height=20
 let g:dispatch_quickfix_height=20
 
 " Jedi-vim
+let g:jedi#force_py_version=3
 let g:python_highlight_all = 1
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = '<leader>u'
@@ -373,7 +375,6 @@ command! Todo call s:todo()
 
 set statusline=\ \ %<%f
 set statusline+=%w%h%m%r                 
-set statusline+=\ %{getcwd()}
 set statusline+=\ [%{&ff}:%{&fenc}:%Y]
 set statusline+=%=%-14.(%l,%c%V%)\ %p%%
 
