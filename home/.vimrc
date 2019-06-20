@@ -24,7 +24,7 @@ silent! call plug#begin()
 
 Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/seoul256.vim'
-Plug 'thaerkh/vim-indentguides'
+Plug 'rbong/vim-crystalline'
 
 Plug 'mhinz/vim-signify'
 Plug 'ap/vim-buftabline'
@@ -120,6 +120,7 @@ command! Col80  match WarningMsg '\%>80v.\+'
 command! Col100 match WarningMsg '\%>100v.\+'
 
 hi! link Folded Ignore
+hi! link StatusLine Ignore
 
 "}}}
 
@@ -286,15 +287,6 @@ call s:map_change_option('w', 'wrap')
 " }}}
 
 " Plugins Settings                                                          {{{
-
-" git gutter
-if s:darwin
-    let g:signify_sign_add = emoji#for('small_blue_diamond')
-    let g:signify_sign_change = emoji#for('small_orange_diamond')
-    let g:signify_sign_delete = emoji#for('small_red_triangle')
-    let g:signify_sign_delete_first_line = emoji#for('small_red_triangle')
-endif
-
 " Dispatch
 let g:dispatch_tmux_height=20
 let g:dispatch_quickfix_height=20
@@ -372,26 +364,37 @@ command! Todo call s:todo()
 "}}}
 
 " StatusLine                                                                {{{
-
-set statusline=\ \ %<%f
-set statusline+=%w%h%m%r                 
-set statusline+=\ [%{&ff}:%{&fenc}:%Y]
-set statusline+=%=%-14.(%l,%c%V%)\ %p%%
-
-let s:hidden_all = 1
-function! ToggleHiddenAll()
-    if s:hidden_all == 0
-        let s:hidden_all = 1
-        set laststatus=0
-        set noruler
-        set noshowcmd
-    else
-        let s:hidden_all = 0
-        set laststatus=2
-        set ruler
-        set showcmd
-    endif
+function! StatusLine(current)
+  return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CrystallineInactive#')
+        \ . ' %f%h%w%m%r '
+        \ . (a:current ? '%#CrystallineFill# %{fugitive#head()} ' : '')
+        \ . '%=' . (a:current ? '%#Crystalline# %{&paste?"PASTE ":""}%{&spell?"SPELL ":""}' . crystalline#mode_color() : '')
+        \ . ' [%{&enc}] %l/%L'
 endfunction
+
+function! TabLine()
+  let l:vimlabel = has("nvim") ?  " NVIM " : " VIM "
+  return crystalline#bufferline(2, len(l:vimlabel), 1) . '%=%#CrystallineTab# ' . l:vimlabel
+endfunction
+
+let g:crystalline_statusline_fn = 'StatusLine'
+
+set showtabline=2
+set laststatus=2
+" let s:hidden_all = 1
+" function! ToggleHiddenAll()
+"     if s:hidden_all == 0
+"         let s:hidden_all = 1
+"         set laststatus=0
+"         set noruler
+"         set noshowcmd
+"     else
+"         let s:hidden_all = 0
+"         set laststatus=2
+"         set ruler
+"         set showcmd
+"     endif
+" endfunction
 
 "}}}
 
