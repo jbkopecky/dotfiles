@@ -24,7 +24,9 @@ silent! call plug#begin()
 
 Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/seoul256.vim'
-Plug 'rbong/vim-crystalline'
+Plug 'vim-airline/vim-airline'
+Plug 'psliwka/vim-smoothie'
+Plug 'ryanoasis/vim-devicons'
 
 Plug 'mhinz/vim-signify'
 Plug 'ap/vim-buftabline'
@@ -44,6 +46,7 @@ Plug 'junegunn/vim-emoji'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 
 Plug 'davidhalter/jedi-vim',    {'for': 'python'}
+Plug 'python/black',            {'for': 'python'}
 Plug 'chrisbra/colorizer',      {'on': 'ColorHighlight'}
 Plug 'chrisbra/csv.vim',        {'for': 'csv'}
 Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['md', 'mkd', 'markdown']}
@@ -85,7 +88,7 @@ set shiftwidth=4                 " Four spaces shifts
 set shiftround                   " Round Shifts
 set expandtab smarttab           " Smart tabs
 set fileformats=unix,dos,mac     " Freaking formats
-set encoding=utf-8 nobomb        " Freaking formats
+set encoding=UTF-8               " Freaking formats
 set clipboard+=unnamed
 set lazyredraw                   " Speed up things
 set splitright                   " More natural split opening
@@ -287,6 +290,9 @@ call s:map_change_option('w', 'wrap')
 " }}}
 
 " Plugins Settings                                                          {{{
+" Airline
+let g:airline_theme='wal'
+
 " Dispatch
 let g:dispatch_tmux_height=20
 let g:dispatch_quickfix_height=20
@@ -296,6 +302,7 @@ let g:jedi#force_py_version=3
 let g:python_highlight_all = 1
 let g:jedi#popup_on_dot = 0
 let g:jedi#usages_command = '<leader>u'
+let @w = 'o"""Parameters----------Returns-------"""'
 
 " Markdown
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'vim']
@@ -307,7 +314,7 @@ let g:buftabline_show = 1
 " mucomplete
 let g:mucomplete#chains = {
     \ 'default' : ['path', 'omni', 'keyn', 'dict', 'uspl'],
-    \ 'python'  : ['omni', 'path', 'keyn'],
+    \ 'python'  : ['omni', 'path', 'keyn', 'ulti'],
     \ 'vim'     : ['path', 'cmd', 'keyn'],
     \ 'markdown': ['path', 'dict', 'user']
     \ }
@@ -363,38 +370,8 @@ command! Todo call s:todo()
 
 "}}}
 
-" StatusLine                                                                {{{
-function! StatusLine(current)
-  return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CrystallineInactive#')
-        \ . ' %f%h%w%m%r '
-        \ . (a:current ? '%#CrystallineFill# %{fugitive#head()} ' : '')
-        \ . '%=' . (a:current ? '%#Crystalline# %{&paste?"PASTE ":""}%{&spell?"SPELL ":""}' . crystalline#mode_color() : '')
-        \ . ' [%{&enc}] %l/%L'
-endfunction
-
-function! TabLine()
-  let l:vimlabel = has("nvim") ?  " NVIM " : " VIM "
-  return crystalline#bufferline(2, len(l:vimlabel), 1) . '%=%#CrystallineTab# ' . l:vimlabel
-endfunction
-
-let g:crystalline_statusline_fn = 'StatusLine'
-
 set showtabline=2
 set laststatus=2
-" let s:hidden_all = 1
-" function! ToggleHiddenAll()
-"     if s:hidden_all == 0
-"         let s:hidden_all = 1
-"         set laststatus=0
-"         set noruler
-"         set noshowcmd
-"     else
-"         let s:hidden_all = 0
-"         set laststatus=2
-"         set ruler
-"         set showcmd
-"     endif
-" endfunction
 
 "}}}
 

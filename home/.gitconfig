@@ -1,6 +1,6 @@
 # vim: filetype=gitconfig:
 [user]
-	name = jb kopecky
+	name = jb
 	email = Jean-Baptiste_Kopecky@mckinsey.com
 [github]
 	name = jb kopecky

@@ -84,4 +84,3 @@ PROMPT_COMMAND="__set_ps1"
 [ -f ~/.fzfrc ] && source ~/.fzfrc
 [ -f ~/.hyperjump ] && source ~/.hyperjump
 [ -f ~/.local.bashrc ] && source ~/.local.bashrc
-
