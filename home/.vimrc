@@ -13,9 +13,9 @@ endif
 " Plugins !                                                                 {{{
 
 if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
 endif
 
 let s:darwin = has('mac')
@@ -25,7 +25,6 @@ silent! call plug#begin()
 Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'psliwka/vim-smoothie'
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'mhinz/vim-signify'
@@ -46,11 +45,9 @@ Plug 'junegunn/vim-emoji'
 Plug 'mbbill/undotree',      {'on': 'UndotreeToggle'}
 
 Plug 'davidhalter/jedi-vim',    {'for': 'python'}
-Plug 'python/black',            {'for': 'python'}
 Plug 'chrisbra/colorizer',      {'on': 'ColorHighlight'}
 Plug 'chrisbra/csv.vim',        {'for': 'csv'}
 Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['md', 'mkd', 'markdown']}
-Plug 'JuliaEditorSupport/julia-vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -343,30 +340,6 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-"}}}
-
-" Todo                                                                      {{{
-function! s:todo() abort "{{{
-  let entries = []
-  for cmd in ['git grep -niI -e TODO -e FIXME 2> /dev/null',
-            \ 'grep -rniI -e TODO -e FIXME * 2> /dev/null']
-    let lines = split(system(cmd), '\n')
-    if v:shell_error != 0 | continue | endif
-    for line in lines
-      let [fname, lno, text] = matchlist(line, '^\([^:]*\):\([^:]*\):\(.*\)')[1:3]
-      call add(entries, { 'filename': fname, 'lnum': lno, 'text': text })
-    endfor
-    break
-  endfor
-
-  if !empty(entries)
-    call setqflist(entries)
-    copen
-  endif
-endfunction "}}}
-
-command! Todo call s:todo()
 
 "}}}
 
