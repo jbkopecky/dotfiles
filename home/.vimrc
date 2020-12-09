@@ -8,7 +8,6 @@ silent! call plug#begin()
 Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-slash'
-Plug 'vim-airline/vim-airline'
 Plug 'mhinz/vim-signify'
 Plug 'ap/vim-buftabline'
 Plug 'lifepillar/vim-mucomplete'
@@ -17,7 +16,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sensible'
 Plug 'davidhalter/jedi-vim',    {'for': 'python'}
 Plug 'chrisbra/csv.vim',        {'for': 'csv'}
 call plug#end()
@@ -36,6 +34,10 @@ set shortmess=atI
 set visualbell
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set noswapfile
+set laststatus=0
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
 silent! colo wal
 
@@ -48,34 +50,25 @@ if has('autocmd')
     augroup END
     augroup FTOptions
         autocmd!
-        autocmd FileType gitcommit
-              \ setl spell |
-              \ setl completefunc=emoji#complete
 
         autocmd Filetype python
               \ setlocal makeprg=python\ % |
               \ let b:dispatch = 'python %'|
-              \ setl efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m |
               \ setl nowrap |
               \ setl foldmethod=indent |
               \ syn match WarningMsg /\v#\sBREAKPOINT$/ |
               \ nnoremap <silent> <buffer> <Leader>b Oimport IPython; IPython.embed() # BREAKPOINT<C-c> |
 
         autocmd Filetype markdown
-              \ setl conceallevel=2 |
               \ setl spell |
-              \ let b:dispatch = "pandoc % --latex-engine=xelatex --highlight-style pygments -o output.pdf" |
               \ syn match comment /^\s*-\s\[x\].*$/ |
               \ syn match comment /^\s*-\sDONE.*$/ |
               \ syn match Todo /\v<(FIXME|TODO)/ |
-              \ setl completefunc=emoji#complete
 
         autocmd FileType help
               \ setl ai fo+=2n | silent! setlocal nospell |
               \ nnoremap <silent><buffer> q :q<CR>
 
-        autocmd FileType netrw
-              \ nnoremap <silent><buffer> <Esc> :bprevious<CR>
     augroup END
 endif
 
