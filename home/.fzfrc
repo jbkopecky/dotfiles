@@ -34,24 +34,6 @@ fe() {
 }
 # }}}
 
-# fo - Open command                                                          {{{
-#    - CTRL-O to open with `open` command,
-#    - CTRL-E or Enter key to open with the $EDITOR
-fo() {
-  local out file key
-  IFS=$'\n' read -d '' -r -a out < <(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)
-  key=${out[0]}
-  file=${out[1]}
-  if [ -n "$file" ]; then
-    if [ "$key" = ctrl-o ]; then
-      open "$file"
-    else
-      ${EDITOR:-vim} "$file"
-    fi
-  fi
-}
-# }}}
-
 # fd - cd to selected drectory                                               {{{
 fd() {
   local dir
@@ -79,55 +61,6 @@ fkill() {
 }
 # }}}
 
-# ff - switch color                                                          {{{
-da() {
-    theme=$(ls ~/.config/wal/colorschemes/dark |  sed -n 's/.json//p' | fzf-tmux --select-1 --exit-0) 
-    [ -n "$theme" ] && wal --theme $theme -o wal-set
-}
-
-li() {
-    theme=$(ls ~/.config/wal/colorschemes/light |  sed -n 's/.json//p' | fzf-tmux --select-1 --exit-0) 
-    [ -n "$theme" ] && wal -l --theme $theme -o wal-set
-}
-
-iml() {
-    theme=$(ls ~/Pictures/Wallpapers |  sed -n 's/.jpg//p' | fzf-tmux --select-1 --exit-0) 
-    [ -n "$theme" ] && wal -l  -o wal-set -i ~/Pictures/Wallpapers/$theme.jpg
-}
-
-imd() {
-    theme=$(ls ~/Pictures/Wallpapers |  sed -n 's/.jpg//p' | fzf-tmux --select-1 --exit-0) 
-    [ -n "$theme" ] && wal -i ~/Pictures/Wallpapers/$theme.jpg
-}
-# }}}
-
-# fjj - Hyperjump                                                            {{{
-function _hyperjumpdatabase() {
-    local dbdir="$HOME"/.local/lib
-    local db="$dbdir"/hyperjumpdb
-    local db_old="$HOME"/.hyperjumpdb
-    if [[ ! -f "$db" ]]; then
-        # Create ~/.local/lib directory if it fors not exists
-        if [[ ! -d "$dbdir" ]]; then
-            mkdir -p "$dbdir" >> /dev/null
-        fi
-        # If old DB exists, move it to the new location
-        if [[ -f "$db_old" ]]; then
-            mv "$db_old" "$db"
-        else
-            touch "$db"
-            echo "home:$HOME" >> "$db"
-        fi
-    fi
-    echo "$db"
-}
-
-fjj() {
-    local db=$(_hyperjumpdatabase)
-    dir=$(cat "$db" | sed 's/.*://g' | fzf-down) && cd "$dir"
-}
-# }}}
-
 # fshow - git commit browser                                                 {{{
 fshow() {
   git log --graph --color=always \
@@ -141,16 +74,6 @@ fshow() {
 }
 # }}}
 
-# gf - git status                                                            {{{
-gf() {
-  is_in_git_repo || return
-  git -c color.status=always status --short |
-  fzf-down -m --ansi --nth 2..,.. \
-    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
-  cut -c4- | sed 's/.* -> //'
-}
-# }}}
-
 # gb - git branch                                                            {{{
 gb() {
   is_in_git_repo || return
@@ -161,27 +84,6 @@ gb() {
   sed 's#^remotes/##'
 }
 # }}}
-
-# gh - head log                                                              {{{
-gh() {
-  is_in_git_repo || return
-  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
-  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
-    --header 'Press CTRL-S to toggle sort' \
-    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -200' |
-  grep -o "[a-f0-9]\{7,\}"
-}
-#}}}
-
-# gr - git remote                                                            {{{
-gr() {
-  is_in_git_repo || return
-  git remote -v | awk '{print $1 "\t" $2}' | uniq |
-  fzf-down --tac \
-    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
-  cut -d$'\t' -f1
-}
-#}}}
 
 # fco - Checkout local branch                                                {{{
 fco() {
@@ -218,5 +120,3 @@ fce() {
   fi
 }
 # }}}
-
-[ -f ~/.local.fzfrc ] && source ~/.local.fzfrc
