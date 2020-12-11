@@ -21,6 +21,7 @@ Plug 'chrisbra/csv.vim',        {'for': 'csv'}
 call plug#end()
 
 set nocompatible
+set number
 set mouse=a
 set wildmenu
 set wildmode=longest,full:full

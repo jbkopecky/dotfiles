@@ -21,7 +21,6 @@ is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
 }
 
-# }}}
 
 # fe - Open the selected file with the default editor                        {{{
 #    - Bypass fuzzy finder if there's only one match (--select-1)
@@ -32,7 +31,6 @@ fe() {
   file=$(fzf-tmux --preview "cat {}" --query="$1" --select-1 --exit-0)
   [ -n "$file" ] && ${EDITOR:-vim} "$file"
 }
-# }}}
 
 # fd - cd to selected drectory                                               {{{
 fd() {
@@ -48,7 +46,6 @@ fda() {
   local dir
   dir=$(find ${1:-.} -type d 2> /dev/null | fzf-tmux) && cd "$dir"
 }
-# }}}
 
 # fkill - kill process                                                       {{{
 fkill() {
@@ -59,7 +56,6 @@ fkill() {
      kill -${1:-9} $pid
    fi
 }
-# }}}
 
 # fshow - git commit browser                                                 {{{
 fshow() {
@@ -72,7 +68,6 @@ fshow() {
       --bind "enter:execute:echo {} | grep -o '[a-f0-9]\{7\}' | head -1 |
               xargs -I % sh -c 'vim fugitive://\$(git rev-parse --show-toplevel)/.git//% < /dev/tty'"
 }
-# }}}
 
 # gb - git branch                                                            {{{
 gb() {
@@ -83,7 +78,6 @@ gb() {
   sed 's/^..//' | cut -d' ' -f1 |
   sed 's#^remotes/##'
 }
-# }}}
 
 # fco - Checkout local branch                                                {{{
 fco() {
@@ -98,7 +92,6 @@ fco() {
     fzf-down --no-hscroll --reverse --ansi +m -d "\t" -n 2 -q "$*") || return
   git checkout $(echo "$target" | awk '{print $2}')
 }
-# }}}
 
 # fbr - Checkout branch with preview                                         {{{
 fbr() {
@@ -108,7 +101,6 @@ fbr() {
        --preview "git diff --color=always --stat {}"|
     xargs git checkout
 }
-# }}}
 
 # fce - activate conda environment                                           {{{
 fce() {
@@ -119,4 +111,13 @@ fce() {
     source activate $env
   fi
 }
-# }}}
+
+da() {
+     theme=$(ls ~/.config/wal/colorschemes/dark |  sed -n 's/.json//p' | fzf-tmux --select-1 --exit-0)
+     [ -n "$theme" ] && wal --theme $theme
+ }
+
+  li() {
+     theme=$(ls ~/.config/wal/colorschemes/light |  sed -n 's/.json//p' | fzf-tmux --select-1 --exit-0)
+     [ -n "$theme" ] && wal -l --theme $theme
+ }
