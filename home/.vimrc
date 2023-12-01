@@ -5,7 +5,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 silent! call plug#begin()
-Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-slash'
 Plug 'mhinz/vim-signify'
@@ -40,7 +39,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-silent! colo wal
+set background=dark
+let g:seoul256_background = 236
+silent! colo seoul256
 
 " FileType                                                                  {{{
 let g:tex_flavor='latex' "Recognise Latex files
@@ -100,17 +101,13 @@ vmap <Down> ]egv
 inoremap kj <Esc>
 xnoremap kj <Esc>
 cnoremap kj <C-c>
-
+   
 " Leader Mappings
 map <silent> <Leader>q :ccl<CR>
 map <silent> <Leader>c :cd %:p:h<CR>
 map <silent> <Leader>1 z=
 map <Leader>i :set list!<CR>
 nnoremap <silent> <Leader><Leader> :noh<CR>
-nnoremap <silent> <Leader>N :Files ~/Dropbox/Notes<CR>
-nnoremap U :UndotreeToggle<CR>
-nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <Leader>sv :source $MYVIMRC<cr>
 
 " F Mappings
 map <silent> <F2> "<Esc>:silent setlocal spell! spelllang=en<CR>"
@@ -129,14 +126,6 @@ command! Wqa wqa
 command! W w
 command! Q q
 
-" Unimpaired
-" Quickfix
-nnoremap ]q :cnext<cr>zz
-nnoremap [q :cprev<cr>zz
-nnoremap [l :lprev<cr>zz
-nnoremap [e ddkkp
-nnoremap ]e ddp
-
 " Surround
 nmap ss ysiw
 vmap s S
@@ -145,9 +134,6 @@ vmap s S
 nnoremap ]b :bnext<cr>
 nnoremap [b :bprev<cr>
 
-" Plugins Settings                                                          {{{
-" Airline
-let g:airline_theme='wal'
 
 " Dispatch
 let g:dispatch_tmux_height=20
