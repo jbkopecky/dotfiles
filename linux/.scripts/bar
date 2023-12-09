@@ -57,7 +57,8 @@ main(){
 
     lemonbar -db \
             -g "140x${height}+30+30" \
-            -f "$font" -f "$icon" \
+            # -f "$font"\
+            -f "$icon" \
             -n "bar" \
             -B "$color15" \
             -F "$color0"

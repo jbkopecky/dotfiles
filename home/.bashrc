@@ -81,3 +81,5 @@ __set_ps1() {
 PROMPT_COMMAND="__set_ps1"
 
 [ -f ~/.local.bashrc ] && source ~/.local.bashrc
+
+[ -d ~/.scripts ] && PATH="$PATH:$HOME/.scripts"
