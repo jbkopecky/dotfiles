@@ -6,11 +6,8 @@ bg="#$(xrdb -query | grep "^\*color0:" | cut -d '#' -f2)"
 red="#$(xrdb -query | grep "^\*color1:" | cut -d '#' -f2)"
 fg="#$(xrdb -query | grep "^\*color7:" | cut -d '#' -f2)"
 
-[[ "$HOSTNAME" == "bonez" ]] && \
-    font="Roboto 25"
-
 rofi -show run \
-     -font "${font:-Artwiz Lemon 7}" \
+     # -font "${font:-Artwiz Lemon 7}" \
      -separator-style none \
      -scrollbar-width 0 \
      -lines 10 \

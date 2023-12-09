@@ -11,9 +11,6 @@ EMPTY=┄
 BLOCK=██
 
 name=$USER
-host=`hostname`
-battery=/sys/class/power_supply/BAT1
-distro="arch linux"
 kernel=`uname -r`
 
 #█▓▒░ ANSI
@@ -36,7 +33,7 @@ initializeANSI() {
 
 #█▓▒░ greets
 greet() {
-printf "${reset} hello ${greenf}$name${reset} i'm ${redf}$host${reset}\n"
+printf "${reset} hello ${greenf}$name${reset}\n"
 printf "${reset}\n"
 }
 
@@ -87,7 +84,7 @@ printf "${redf}%-4s ${bluef}%-5s %-25s \n" " ram" "$ram%" `draw $ram 15`
 
 #█▓▒░ temp
 show_temp(){
-    tem=$(sensors | grep -oP 'Package.*?\+\K[0-9]+')
+    tem=$(sensors | grep -oP 'Tctl.*?\+\K[0-9]+')
     printf "${redf}%-4s ${bluef}%-5s %-25s \n" " tem" "$tem " `draw $tem 15` 
 }
 
