@@ -80,7 +80,4 @@ __set_ps1() {
 
 PROMPT_COMMAND="__set_ps1"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/.fzfrc ] && source ~/.fzfrc
-[ -f ~/.hyperjump ] && source ~/.hyperjump
 [ -f ~/.local.bashrc ] && source ~/.local.bashrc
