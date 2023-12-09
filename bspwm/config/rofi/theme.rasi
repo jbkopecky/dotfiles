@@ -1,7 +1,7 @@
 // define colors etc.
 * {
     font: "Hack 12";
-    bg: #3a3a3a;
+    bg: #212121;
     hv: #87af87; 
     primary: #626262; 
     ug: #d0d0d0;
