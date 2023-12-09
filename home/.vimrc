@@ -39,8 +39,8 @@ set shiftwidth=4
 set expandtab
 
 set background=dark
-" let g:seoul256_background = 236
-" silent! colo seoul256
+let g:seoul256_background = 236
+silent! colo seoul256
 
 " FileType                                                                  {{{
 let g:tex_flavor='latex' "Recognise Latex files

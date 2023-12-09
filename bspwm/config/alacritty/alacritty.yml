@@ -1,0 +1,34 @@
+import:
+  - ~/.config/alacritty/colors.yml
+
+env:
+  TERM: alacritty
+
+window:
+  dimensions:
+    columns: 82
+    lines: 25
+  padding:
+    x: 12
+    y: 12
+  decorations: none
+  startup_mode: Windowed
+  dynamic_title: true
+  history: 10000
+  multiplier: 3
+
+opacity: 1
+
+cursor:
+  style:
+    shape: beam
+  unfocused_hollow: true
+
+font:
+  normal:
+    family: hack
+
+live_config_reload: true
+
+
+
