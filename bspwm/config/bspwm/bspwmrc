@@ -1,7 +1,6 @@
 #! /bin/sh
-
-
 pgrep -x sxhkd > /dev/null || sxhkd &
+hsetroot -solid "#212121"
 
 bspc monitor -d I II III I
 
@@ -13,3 +12,5 @@ bspc config borderless_monocle true
 bspc config gapless_monocle true
 
 bspc rule -a Alacritty state=floating
+bspc rule -a Firefox state=floating
+bspc rule -a mpv state=floating
