@@ -17,6 +17,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'davidhalter/jedi-vim',    {'for': 'python'}
 Plug 'chrisbra/csv.vim',        {'for': 'csv'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 set nocompatible
@@ -43,7 +45,7 @@ set background=dark
 let g:seoul256_background = 236
 silent! colo seoul256
 
-" FileType                                                                  {{{
+" FileType
 let g:tex_flavor='latex' "Recognise Latex files
 if has('autocmd')
     augroup Misc
@@ -116,8 +118,6 @@ map <silent> <F3> "<Esc>:silent setlocal spell! spelllang=fr<CR>"
 nnoremap <F5> :w<CR> :Dispatch<CR>
 nnoremap <F6> :w<CR> :Make<CR>
 nnoremap <F7> :w<CR> :Start<CR>
-nnoremap <F11> :NERDTreeToggle<cr>
-nnoremap <F12> :call ToggleHiddenAll()<cr>
 
 " Abbreviations
 command! WQ wq
