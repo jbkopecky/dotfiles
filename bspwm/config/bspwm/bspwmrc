@@ -14,5 +14,5 @@ bspc config borderless_monocle true
 bspc config gapless_monocle true
 
 bspc rule -a Alacritty state=floating
-bspc rule -a Firefox state=floating
+bspc rule -a firefox state=floating
 bspc rule -a mpv state=floating
