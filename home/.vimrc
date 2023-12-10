@@ -34,7 +34,6 @@ set lazyredraw
 set splitright
 set shortmess=atI
 set visualbell
-set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set noswapfile
 set laststatus=0
 set tabstop=4

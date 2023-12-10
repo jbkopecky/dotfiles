@@ -1,7 +1,7 @@
 # vim: filetype=gitconfig:
 [user]
 	name = jb
-	email = Jean-Baptiste_Kopecky@mckinsey.com
+	email = jb.kopecky@gmail.com
 [github]
 	name = jb kopecky
     username = jean-baptiste_kopecky
@@ -10,26 +10,11 @@
 [alias]
     f = fetch -pv
     s = status
-	d = difftool
-    ec = config --global -e
     co = checkout
-    dh1 = diff HEAD~1
     l = log --graph --pretty="tformat:%C(yellow)%h%Creset\\ %Cgreen(%ar)%Creset\\ %C(blue)<%an>%Creset\\ %C(red)%d%Creset\\ %s"
-
-[core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
-[diff-so-fancy]
-	markEmptyLines = false
-	stripLeadingSymbols = false
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
