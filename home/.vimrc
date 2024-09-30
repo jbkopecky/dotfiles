@@ -5,8 +5,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 silent! call plug#begin()
-Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-slash'
+Plug 'dylanaraps/wal.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ap/vim-buftabline'
 Plug 'lifepillar/vim-mucomplete'
@@ -15,14 +15,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
-Plug 'davidhalter/jedi-vim',    {'for': 'python'}
-Plug 'chrisbra/csv.vim',        {'for': 'csv'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'psf/black', {'for': 'python', 'branch': 'stable'}
+Plug 'chrisbra/csv.vim', {'for': 'csv'}
 call plug#end()
 
 set nocompatible
-set number
+set nonumber
 set mouse=a
 set wildmenu
 set wildmode=longest,full:full
@@ -40,9 +39,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-set background=dark
-let g:seoul256_background = 236
-silent! colo seoul256
+colo wal
 
 " FileType
 let g:tex_flavor='latex' "Recognise Latex files
@@ -67,6 +64,7 @@ if has('autocmd')
               \ syn match comment /^\s*-\s\[x\].*$/ |
               \ syn match comment /^\s*-\sDONE.*$/ |
               \ syn match Todo /\v<(FIXME|TODO)/ |
+              \ setl foldmethod=indent |
 
         autocmd FileType help
               \ setl ai fo+=2n | silent! setlocal nospell |
