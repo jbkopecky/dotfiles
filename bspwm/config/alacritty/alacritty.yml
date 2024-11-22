@@ -9,8 +9,8 @@ window:
     columns: 82
     lines: 25
   padding:
-    x: 12
-    y: 12
+    x: 8
+    y: 8
   decorations: none
   startup_mode: Windowed
   dynamic_title: true
@@ -29,6 +29,3 @@ font:
     family: hack
 
 live_config_reload: true
-
-
-

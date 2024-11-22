@@ -16,3 +16,4 @@ bspc config gapless_monocle true
 bspc rule -a Alacritty state=floating
 bspc rule -a firefox state=floating
 bspc rule -a mpv state=floating
+bspc rule -a mupdf state=floating
